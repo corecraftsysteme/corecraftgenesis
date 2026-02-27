@@ -1,5 +1,3 @@
----
-
 # **docs/genesis.md — Genesis**
 
 ## Ursprung der Chain  
@@ -29,5 +27,3 @@ Der Genesis‑Block der CoreCraft‑Engine enthält:
 
 Diese Struktur ist deterministisch und unveränderlich.  
 Jede spätere Operation referenziert auf diesen Ursprung.
-
----
