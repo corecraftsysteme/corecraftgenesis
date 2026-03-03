@@ -1,0 +1,63 @@
+{
+  "operators": [
+    {
+      "operatorId": "OP-GENESIS-001",
+      "publicKey": "ed25519:GENESIS_PUBLIC_KEY_001",
+      "role": "GENESIS_OPERATOR",
+      "seal": "SEAL-GENESIS-001",
+      "permissions": [
+        "canModifyGenesis",
+        "canModifyOperators"
+      ],
+      "active": true
+    },
+    {
+      "operatorId": "OP-RITUAL-001",
+      "publicKey": "ed25519:RITUAL_PUBLIC_KEY_001",
+      "role": "RITUAL_OPERATOR",
+      "seal": "SEAL-RITUAL-001",
+      "permissions": [
+        "canTriggerRituals"
+      ],
+      "active": true
+    },
+    {
+      "operatorId": "OP-PAYOUT-001",
+      "publicKey": "ed25519:PAYOUT_PUBLIC_KEY_001",
+      "role": "PAYOUT_OPERATOR",
+      "seal": "SEAL-PAYOUT-001",
+      "permissions": [
+        "canAuthorizePayouts"
+      ],
+      "active": true
+    },
+    {
+      "operatorId": "OP-ECHO-001",
+      "publicKey": "ed25519:ECHO_PUBLIC_KEY_001",
+      "role": "ECHO_OPERATOR",
+      "seal": "SEAL-ECHO-001",
+      "permissions": [
+        "canWriteEcho"
+      ],
+      "active": true
+    },
+    {
+      "operatorId": "OP-SKELETTON-001",
+      "publicKey": "ed25519:SKELETTON_PUBLIC_KEY_001",
+      "role": "SKELETTON_OPERATOR",
+      "seal": "SEAL-SKELETTON-001",
+      "permissions": [
+        "canModifySkeletton"
+      ],
+      "active": true
+    },
+    {
+      "operatorId": "OP-AUDIT-001",
+      "publicKey": "ed25519:AUDIT_PUBLIC_KEY_001",
+      "role": "AUDIT_OPERATOR",
+      "seal": "SEAL-AUDIT-001",
+      "permissions": [],
+      "active": true
+    }
+  ]
+}
