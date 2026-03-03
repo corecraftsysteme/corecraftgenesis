@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoreCraft Operator State Model",
+  "description": "Definiert das deterministische Zustandsmodell eines Operators im Genesis Operational Layer.",
+  "type": "object",
+
+  "properties": {
+    "stateModel": {
+      "type": "object",
+      "description": "Struktur des finalen Operator-Zustands.",
+      "properties": {
+        "operatorId": {
+          "type": "string",
+          "description": "Eindeutige Identität des Operators."
+        },
+        "role": {
+          "type": "string",
+          "description": "Aktuelle funktionale Rolle des Operators."
+        },
+        "seal": {
+          "type": "string",
+          "description": "Aktuelles gültiges Seal des Operators."
+        },
+        "permissions": {
+          "type": "array",
+          "description": "Aktive Berechtigungen des Operators.",
+          "items": { "type": "string" }
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Aktivierungsstatus des Operators."
+        }
+      },
+      "required": ["operatorId", "role", "active"]
+    },
+
+    "derivedFrom": {
+      "type": "array",
+      "description": "Liste aller Audit-Ereignisse, aus denen der Operator-State deterministisch abgeleitet wird.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "operator_created",
+          "role_assigned",
+          "role_changed",
+          "seal_generated",
+          "permission_granted",
+          "permission_revoked",
+          "operator_disabled"
+        ]
+      }
+    }
+  },
+
+  "required": ["stateModel", "derivedFrom"]
+}
