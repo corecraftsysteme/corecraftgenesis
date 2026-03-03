@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoreCraft Genesis Audit Protocol",
+  "description": "Audit-Protokoll für die initiale Genesis-Konfiguration der CoreCraft-Engine.",
+  "type": "object",
+
+  "properties": {
+    "genesis": {
+      "type": "object",
+      "description": "Audit-relevante Daten des Genesis-Blocks.",
+      "properties": {
+        "chainId": { "type": "string" },
+        "genesisHash": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "engineVersion": { "type": "string" },
+        "blueprintVersion": { "type": "string" }
+      },
+      "required": ["chainId", "genesisHash", "timestamp"]
+    },
+
+    "validators": {
+      "type": "array",
+      "description": "Liste aller Validatoren und ihrer Signaturen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "validatorId": { "type": "string" },
+          "publicKey": { "type": "string" },
+          "signature": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["validatorId", "publicKey", "signature"]
+      }
+    },
+
+    "operators": {
+      "type": "array",
+      "description": "Initiale Operator-Rollen und Signaturen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operatorId": { "type": "string" },
+          "role": { "type": "string" },
+          "seal": { "type": "string" },
+          "signature": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["operatorId", "role", "signature"]
+      }
+    },
+
+    "initialEchoRegistry": {
+      "type": "object",
+      "description": "Initialer Zustand der Echo-Registry.",
+      "properties": {
+        "registryHash": { "type": "string" },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "eventId": { "type": "string" },
+              "hash": { "type": "string" }
+            },
+            "required": ["eventId", "hash"]
+          }
+        }
+      },
+      "required": ["registryHash"]
+    },
+
+    "initialPayoutConfig": {
+      "type": "object",
+      "description": "Auditierbare Payout-Konfiguration der Genesis.",
+      "properties": {
+        "payoutModel": { "type": "string" },
+        "initialBalance": { "type": "string" },
+        "rulesHash": { "type": "string" }
+      }
+    },
+
+    "auditChain": {
+      "type": "array",
+      "description": "Hash-Kette aller Genesis-Audit-Einträge.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "string" },
+          "hash": { "type": "string" },
+          "previousHash": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["event", "hash"]
+      }
+    },
+
+    "signatures": {
+      "type": "array",
+      "description": "Signaturen der gesamten Genesis-Audit-Kette.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operatorId": { "type": "string" },
+          "signature": { "type": "string" },
+          "hash": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["operatorId", "signature", "hash"]
+      }
+    },
+
+    "masterAuditHash": {
+      "type": "string",
+      "description": "SHA-256 Hash über alle Genesis-Audit-Daten."
+    }
+  },
+
+  "required": [
+    "genesis",
+    "validators",
+    "operators",
+    "initialEchoRegistry",
+    "auditChain",
+    "signatures"
+  ]
+}
