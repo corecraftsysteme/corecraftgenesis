@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoreCraft Ritual Audit Protocol",
+  "description": "Audit-Protokoll für die Ausführung aller Genesis-Rituale innerhalb der CoreCraft-Engine.",
+  "type": "object",
+
+  "properties": {
+    "ritualEvents": {
+      "type": "array",
+      "description": "Liste aller audit-relevanten Ritual-Ereignisse.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ritualId": { "type": "string" },
+          "ritualType": { "type": "string" },
+          "eventType": {
+            "type": "string",
+            "enum": [
+              "ritual_triggered",
+              "preconditions_validated",
+              "preconditions_failed",
+              "ritual_executed",
+              "postconditions_validated",
+              "postconditions_failed",
+              "echo_written",
+              "payout_triggered",
+              "ritual_aborted"
+            ]
+          },
+          "operatorId": { "type": "string" },
+          "payload": {
+            "type": "object",
+            "description": "Event-spezifische Daten."
+          },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["ritualId", "ritualType", "eventType", "timestamp"]
+      }
+    },
+
+    "ritualState": {
+      "type": "array",
+      "description": "Abbild des finalen Ritual-Zustands nach allen Ereignissen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ritualId": { "type": "string" },
+          "ritualType": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": [
+              "completed",
+              "failed_preconditions",
+              "failed_postconditions",
+              "aborted",
+              "pending"
+            ]
+          },
+          "executedBy": { "type": "string" },
+          "echoEventId": { "type": "string" },
+          "payoutEventId": { "type": "string" }
+        },
+        "required": ["ritualId", "ritualType", "status"]
+      }
+    },
+
+    "auditChain": {
+      "type": "array",
+      "description": "Hash-Kette aller Ritual-Audit-Einträge.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ritualId": { "type": "string" },
+          "eventType": { "type": "string" },
+          "hash": { "type": "string" },
+          "previousHash": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["ritualId", "eventType", "hash"]
+      }
+    },
+
+    "signatures": {
+      "type": "array",
+      "description": "Signaturen der Ritual-Audit-Kette.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operatorId": { "type": "string" },
+          "signature": { "type": "string" },
+          "hash": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["operatorId", "signature", "hash"]
+      }
+    },
+
+    "errors": {
+      "type": "array",
+      "description": "Liste aller Audit-Fehler im Zusammenhang mit Ritual-Ereignissen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "errorType": {
+            "type": "string",
+            "enum": [
+              "HashMismatch",
+              "InvalidSignature",
+              "MissingEvent",
+              "DriftDetected",
+              "PreconditionError",
+              "PostconditionError",
+              "EchoWriteFailure",
+              "PayoutFailure"
+            ]
+          },
+          "ritualId": { "type": "string" },
+          "details": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["errorType", "timestamp"]
+      }
+    },
+
+    "masterAuditHash": {
+      "type": "string",
+      "description": "SHA-256 Hash über alle Ritual-Audit-Daten."
+    }
+  },
+
+  "required": [
+    "ritualEvents",
+    "ritualState",
+    "auditChain",
+    "signatures"
+  ]
+}
