@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoreCraft Operator Audit Protocol",
+  "description": "Audit-Protokoll für Operator-Aktionen, Rollenänderungen, Siegel, Berechtigungen und Signaturen innerhalb der Genesis-Engine.",
+  "type": "object",
+
+  "properties": {
+    "operatorEvents": {
+      "type": "array",
+      "description": "Liste aller audit-relevanten Operator-Ereignisse.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "eventId": { "type": "string" },
+          "eventType": {
+            "type": "string",
+            "enum": [
+              "operator_created",
+              "role_assigned",
+              "role_changed",
+              "seal_generated",
+              "permission_granted",
+              "permission_revoked",
+              "ritual_authorized",
+              "ritual_denied",
+              "operator_disabled"
+            ]
+          },
+          "operatorId": { "type": "string" },
+          "performedBy": { "type": "string" },
+          "payload": {
+            "type": "object",
+            "description": "Event-spezifische Daten."
+          },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["eventId", "eventType", "operatorId", "timestamp"]
+      }
+    },
+
+    "operatorState": {
+      "type": "array",
+      "description": "Abbild des aktuellen Operator-Zustands nach allen Ereignissen.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operatorId": { "type": "string" },
+          "role": { "type": "string" },
+          "seal": { "type": "string" },
+          "permissions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "active": { "type": "boolean" }
+        },
+        "required": ["operatorId", "role", "active"]
+      }
+    },
+
+    "auditChain": {
+      "type":
