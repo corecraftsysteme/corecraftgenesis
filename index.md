@@ -1,7 +1,7 @@
 # CoreCraftGenesis — Portal der privaten Genesis‑Engine
 
 ## 🔱 Ursprung
-CoreCraftGenesis ist das öffentliche Portal der CoreCraft‑Engine:  
+CoreCraftGenesis ist das öffentliche Portal der CoreCraft‑Engine:
 eine audit‑versiegelte Infrastruktur für private Chains, Operator‑Systeme und geschlossene Ökonomien.
 
 Dies ist der Eingang — nicht die Engine.  
@@ -12,23 +12,25 @@ Die Engine lebt in **corecraft‑chainline**.
 ## 🜂 Genesis
 Der Ursprung jeder Chain.  
 Module:
+
 - Genesis‑Block  
 - ChainID  
 - Validator‑Signaturen  
 - Ritual‑Framework  
 
-**→ Zum Genesis‑Modul**
+[→ Zum Genesis‑Modul](./genesis/)
 
 ---
 
 ## 🧿 Echo
 Das Gedächtnis der Chain.  
 Module:
+
 - Echo‑Registry  
 - Drift‑Signale  
 - Chronik‑Fragmente  
 
-**→ Zum Echo‑Modul**
+[→ Zum Echo‑Modul](./echo/)
 
 ---
 
@@ -40,7 +42,7 @@ Module:
 - Rollen  
 - Ritual‑Berechtigungen  
 
-**→ Zum Operator‑Modul**
+[→ Zum Operators‑Modul](./operators/)
 
 ---
 
@@ -51,7 +53,7 @@ Module:
 - Closure‑Events  
 - Operator‑Payouts  
 
-**→ Zum Payout‑Modul**
+[→ Zum Payouts‑Modul](./payouts/)
 
 ---
 
@@ -62,7 +64,7 @@ Module:
 - Wallet‑Integration  
 - Asset‑Bridge  
 
-**→ Zum Bridge‑Modul**
+[→ Zum Bridge‑Modul](./bridge/)
 
 ---
 
@@ -73,7 +75,7 @@ Module:
 - Echo‑Kits  
 - Satellite‑Rituale  
 
-**→ Zum Skeletton‑Modul**
+[→ Zum Skeletton‑Modul](./skeletton/)
 
 ---
 
@@ -81,7 +83,7 @@ Module:
 Die technische Grundlage der Genesis‑Infrastruktur.  
 Repository: **corecraft‑chainline**
 
-**→ Zur Engine‑Dokumentation**
+[→ Zum Artefacts‑Modul](./artefacts/)
 
 ---
 
