@@ -1,137 +1,103 @@
-# **CoreCraftGenesis — Genesis Portal of the CoreCraft Engine**
+# CoreCraftGenesis — Portal der privaten Genesis‑Engine
 
-## 🔱 Ursprung und Auftrag
-CoreCraftGenesis ist das öffentliche Portal der CoreCraft‑Engine: eine audit‑versiegelte, mythologisch‑technische Infrastruktur für private Chains, Genesis‑Validierungen, Operator‑Systeme und geschlossene Ökonomien.  
-Es verbindet technische Präzision mit ritueller Struktur und bildet die sichtbare Oberfläche der Engine, die im Repository *corecraft‑chainline* lebt.
+## 🔱 Ursprung
+CoreCraftGenesis ist das öffentliche Portal der CoreCraft‑Engine:  
+eine audit‑versiegelte Infrastruktur für private Chains, Operator‑Systeme und geschlossene Ökonomien.
 
----
-
-## 🜂 Die Genesis‑Essenz
-Genesis ist der Ursprung jeder Chain.  
-Jede Genesis ist eine Schwelle.  
-Jede Schwelle ist ein Ritual.
-
-CoreCraftGenesis beschreibt diese Schwelle — und zeigt, wie aus einer technischen Engine ein vollständiges, privatisierbares Ökosystem entsteht:
-
-- **Genesis‑Block**  
-- **Validator‑Signaturen**  
-- **Ritual‑Framework**  
-- **Payout‑Systeme**  
-- **Echo‑Registry**  
-- **Operator‑Rollen**  
-- **Skeletton™ Drift‑Integration**
+Dies ist der Eingang — nicht die Engine.  
+Die Engine lebt in **corecraft‑chainline**.
 
 ---
 
-## 🔗 Die Engine: corecraft‑chainline
-Die technische Grundlage der Genesis‑Infrastruktur liegt im Engine‑Repository:
+## 🜂 Genesis
+Der Ursprung jeder Chain.  
+Module:
+- Genesis‑Block  
+- ChainID  
+- Validator‑Signaturen  
+- Ritual‑Framework  
 
-- deterministische Chain‑Konfiguration  
-- Genesis‑Block & ChainID  
-- Wallet‑Module  
-- RPC‑Deployment  
-- Payout‑Logs  
-- Ritual‑Trigger  
-- Echo‑System  
-- Skeletton‑Module  
-
-Die Engine ist modular, audit‑stabil und vollständig privatisierbar.
+**→ Zum Genesis‑Modul**
 
 ---
 
-## 🧬 Private Währungen & geschlossene Ökonomien
-CoreCraftGenesis ermöglicht:
+## 🧿 Echo
+Das Gedächtnis der Chain.  
+Module:
+- Echo‑Registry  
+- Drift‑Signale  
+- Chronik‑Fragmente  
 
-- private Token‑Ökonomien  
-- Server‑Währungen für Communities  
-- geschlossene Club‑Ökonomien  
-- audit‑versiegelte Auszahlungs‑Rituale  
-- Operator‑basierte Validierung  
-- symbolische & reale Payout‑Events  
-
-Damit können Organisationen, Netzwerke und private Akteure eigene Ökonomien betreiben — kontrolliert, auditierbar und mythologisch eingebettet.
+**→ Zum Echo‑Modul**
 
 ---
 
-## 🧿 Operator‑System
-Operatoren sind die Rollen und Validatoren der Genesis‑Engine.  
-Sie tragen:
-
+## 🪬 Operators
+Archetypische Rollen & Validatoren.  
+Module:
 - Operator‑IDs  
 - Siegel  
 - Rollen  
 - Ritual‑Berechtigungen  
-- Chain‑Verantwortung  
 
-Jede Operator‑ID ist ein Artefakt.  
-Jedes Artefakt ist ein Echo.
+**→ Zum Operator‑Modul**
 
 ---
 
-## 🌀 Echo‑Registry
-Die Echo‑Registry speichert:
+## 🜁 Payouts
+Symbolische & reale Auszahlungs‑Rituale.  
+Module:
+- Payout‑Logs  
+- Closure‑Events  
+- Operator‑Payouts  
 
-- Chain‑Ereignisse  
-- Auszahlungs‑Closures  
-- Ritual‑Trigger  
-- Drift‑Signale  
-- Chronik‑Fragmente  
-
-Sie bildet das Gedächtnis der Chain.
+**→ Zum Payout‑Modul**
 
 ---
 
-## 🛰️ Skeletton™ Integration
-Skeletton™ ist die rituelle Drift‑Sport‑Erweiterung der Engine:
+## 🛰️ Bridge
+Deployment & Asset‑Mirroring.  
+Module:
+- RPC‑Deployment  
+- Wallet‑Integration  
+- Asset‑Bridge  
 
+**→ Zum Bridge‑Modul**
+
+---
+
+## 🌀 Skeletton™
+Rituelle Drift‑Sport‑Ökonomie.  
+Module:
 - Driftpoints  
 - Echo‑Kits  
 - Satellite‑Rituale  
-- Tempel‑Module  
 
-Eine symbolische Sport‑Ökonomie, direkt mit der Genesis‑Engine verbunden.
-
----
-
-## 🧱 Module des Portals
-Die Portal‑Struktur spiegelt die Engine wider:
-
-- **Genesis** — Ursprung, ChainID, Validatoren  
-- **Payouts** — reale & symbolische Auszahlungen  
-- **Echo** — Registry, Drift‑Signale  
-- **Bridge** — RPC‑Deployment & Asset‑Mirroring  
-- **Chronik** — audit‑taugliche Narrative  
-- **Agents** — archetypische Rollen & Operatoren  
-- **Wallet** — Erzeugung, Transfers, Verifikation  
-- **Rituals** — modulare Genesis‑Rituale  
-
-Alle Module sind im Portal dokumentiert und verlinken auf die technische Engine.
+**→ Zum Skeletton‑Modul**
 
 ---
 
-## 🪬 Artefakte & Katalog
-CoreCraftGenesis präsentiert symbolische Artefakte:
+## 🧱 Engine
+Die technische Grundlage der Genesis‑Infrastruktur.  
+Repository: **corecraft‑chainline**
 
-- EngineCore Determinism Seal  
+**→ Zur Engine‑Dokumentation**
+
+---
+
+## 🪬 Artefakte
+Symbolische Objekte der Engine:
+- Determinism Seal  
 - Operator‑Patches  
 - Genesis‑Hoodies  
 - Metall‑Sticker  
-- Embossed‑Notebooks  
 
-Diese Artefakte sind rituelle Objekte — keine Mode.
+Erhältlich im offiziellen Store:  
+**https://aex-software.myshopify.com**
 
 ---
 
-## 📜 Lizenz & Autorenschaft
+## 📜 Lizenz
 - Code: MIT / CC0  
 - Skeletton™: Archneton License v1.0  
-- Autor: Daniel Aecherli (M.O.D.S.)  
-
----
-
-## 🌑 Der Weg nach vorn
-CoreCraftGenesis ist das Portal.  
-corecraft‑chainline ist die Engine.  
-Gemeinsam bilden sie eine privatisierbare Genesis‑Infrastruktur, die Mythos, Technik und Ökonomie verbindet.
-
----
+- Autor: Daniel Aecherli (M.O.D.S.)
