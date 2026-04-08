@@ -1,3 +1,14 @@
+# CoreCraftGenesis — Portal der privaten Genesis‑Engine
+
+## 🔱 Ursprung
+CoreCraftGenesis ist das öffentliche Portal der CoreCraft‑Engine:
+eine audit‑versiegelte Infrastruktur für private Chains, Operator‑Systeme und geschlossene Ökonomien.
+
+Dies ist der Eingang — nicht die Engine.  
+Die Engine lebt in **corecraft‑chainline**.
+
+---
+
 ## 🜂 Genesis
 Der Ursprung jeder Chain.  
 Module:
@@ -72,6 +83,14 @@ Module:
 
 ---
 
+## 🧱 Engine
+Die technische Grundlage der Genesis‑Infrastruktur.  
+Repository: **corecraft‑chainline**
+
+[→ Zur Engine‑Dokumentation](https://github.com/dein-repo/corecraft-chainline)
+
+---
+
 ## 🪬 Artefakte
 Symbolische Objekte der Engine:
 
@@ -80,4 +99,13 @@ Symbolische Objekte der Engine:
 - Genesis‑Hoodies  
 - Metall‑Sticker  
 
-[→ Zum Artefacts‑Modul](./artefacts/)
+Erhältlich im offiziellen Store:  
+https://aex-software.myshopify.com
+
+---
+
+## 📜 Lizenz
+- Code: MIT / CC0  
+- Skeletton™: Archneton License v1.0  
+- Autor: Daniel Aecherli (M.O.D.S.)
+
