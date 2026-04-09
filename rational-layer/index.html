@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Rational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Rational Layer</h1>
+  <p class="small">Die formale Begründungsebene der Genesis‑Engine — Modelle, Invarianten, Audit‑Grundlagen.</p>
+
+  <div class="card">
+    <h2>Rolle des Rational Layers</h2>
+    <p>Der Rational Layer beschreibt, <strong>warum</strong> die Engine so funktioniert, wie sie funktioniert.  
+    Er ist die formale, dokumentierte Begründungsschicht über den technischen Modulen —  
+    die Ebene, auf der Modelle, Invarianten und Sicherheitsannahmen definiert werden.</p>
+  </div>
+
+  <div class="card">
+    <h2>Formale Modellierung</h2>
+    <p>Der Rational Layer definiert die grundlegenden Strukturen der Engine:</p>
+    <ul>
+      <li>Zustandsräume</li>
+      <li>Übergangsregeln</li>
+      <li>Ritual‑Semantik</li>
+      <li>Operator‑Interaktionen</li>
+    </ul>
+    <p class="small">Diese Modelle bilden die Grundlage für deterministische und audit‑fähige Abläufe.</p>
+  </div>
+
+  <div class="card">
+    <h2>Invarianten</h2>
+    <p>Invarianten beschreiben Eigenschaften, die <strong>immer</strong> gelten müssen:</p>
+    <ul>
+      <li>kein Payout ohne Closure</li>
+      <li>kein Closure ohne Echo‑Eintrag</li>
+      <li>keine Operator‑Aktion ohne gültige Rolle</li>
+      <li>keine Genesis‑Änderung nach dem Start</li>
+    </ul>
+    <p class="small">Invarianten sind die Sicherheitsgarantien der Engine.</p>
+  </div>
+
+  <div class="card">
+    <h2>Ritual‑Semantik</h2>
+    <p>Rituale sind formale Übergänge zwischen Zuständen:</p>
+    <ul>
+      <li><strong>Genesis‑Ritual:</strong> Erzeugt den ersten Zustand</li>
+      <li><strong>Echo‑Rituale:</strong> Erfassen Ereignisse</li>
+      <li><strong>Closure‑Rituale:</strong> Schließen Aktionen ab</li>
+      <li><strong>Payout‑Rituale:</strong> Erzeugen ökonomische Konsequenzen</li>
+    </ul>
+    <p class="small">Jedes Ritual ist deterministisch definiert und audit‑fähig.</p>
+  </div>
+
+  <div class="card">
+    <h2>Begründungslogik</h2>
+    <p>Der Rational Layer liefert die Argumente für:</p>
+    <ul>
+      <li>Korrektheit</li>
+      <li>Liveness</li>
+      <li>Fairness</li>
+      <li>Rollen‑Sicherheit</li>
+      <li>Ritual‑Kohärenz</li>
+    </ul>
+    <p class="small">Er macht die Engine erklärbar, prüfbar und verteidigbar.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Integration</h2>
+    <p>Der Rational Layer ist die Grundlage der Audit‑Engine:</p>
+    <ul>
+      <li>Audit‑Specs basieren auf Invarianten</li>
+      <li>Audit‑Flows prüfen Ritual‑Kohärenz</li>
+      <li>Audit‑Protokolle referenzieren formale Modelle</li>
+    </ul>
+    <p class="small">Ohne Rational Layer gäbe es keine Audit‑Stabilität.</p>
+  </div>
+
+  <div class="card">
+    <h2>Untermodule</h2>
+    <p>Der Rational Layer besteht aus mehreren audit‑fähigen Teilbereichen:</p>
+    <ul>
+      <li><a href="audit/index.html">Audit‑Engine</a></li>
+      <li>Audit‑Specs</li>
+      <li>Audit‑Flows</li>
+      <li>Audit‑Protokolle</li>
+    </ul>
+    <p class="small">Diese Module werden separat dokumentiert.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
