@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="portal.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Portal der privaten Genesis‑Engine</h1>
+  <p class="small">Dies ist das öffentliche Portal der CoreCraft‑Engine. Die Engine selbst lebt in <code>corecraft‑chainline</code>.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>Ursprung</h2>
+      <p>Audit‑versiegelte Infrastruktur für private Chains, Operator‑Systeme und geschlossene Ökonomien.</p>
+    </div>
+
+    <div class="card">
+      <h2>Genesis</h2>
+      <p>Der Ursprung jeder Chain: Genesis‑Block, ChainID, Validator‑Signaturen, Ritual‑Framework.</p>
+      <p class="small">→ Zum Genesis‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Echo</h2>
+      <p>Das Gedächtnis der Chain: Echo‑Registry, Drift‑Signale, Chronik‑Fragmente.</p>
+      <p class="small">→ Zum Echo‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Operators</h2>
+      <p>Archetypische Rollen & Validatoren: Operator‑IDs, Siegel, Rollen, Ritual‑Berechtigungen.</p>
+      <p class="small">→ Zum Operators‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Payouts</h2>
+      <p>Symbolische & reale Auszahlungs‑Rituale: Payout‑Logs, Closure‑Events, Operator‑Payouts.</p>
+      <p class="small">→ Zum Payouts‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Bridge</h2>
+      <p>Deployment & Asset‑Mirroring: RPC‑Deployment, Wallet‑Integration, Asset‑Bridge.</p>
+      <p class="small">→ Zum Bridge‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Skeletton™</h2>
+      <p>Rituelle Drift‑Sport‑Ökonomie: Driftpoints, Echo‑Kits, Satellite‑Rituale.</p>
+      <p class="small">→ Zum Skeletton‑Modul</p>
+    </div>
+
+    <div class="card">
+      <h2>Engine</h2>
+      <p>Technische Grundlage der Genesis‑Infrastruktur.</p>
+      <p class="small">Repository: corecraft‑chainline</p>
+    </div>
+
+    <div class="card">
+      <h2>Artefakte</h2>
+      <p>Symbolische Objekte: Determinism Seal, Operator‑Patches, Genesis‑Hoodies, Metall‑Sticker.</p>
+      <p class="small">Store: aex‑software.myshopify.com</p>
+    </div>
+
+    <div class="card">
+      <h2>Lizenz</h2>
+      <p>Code: MIT / CC0<br>Skeletton™: Archneton License v1.0<br>Autor: Daniel Aecherli (M.O.D.S.)</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
