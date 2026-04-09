@@ -87,7 +87,7 @@ Module:
 Die technische Grundlage der Genesis‑Infrastruktur.  
 Repository: **corecraft‑chainline**
 
-[→ Zur Engine‑Dokumentation](https://github.com/dein-repo/corecraft-chainline)
+[→ Zur Engine‑Dokumentation](https://chain2025.corecraftgenesis.ch)
 
 ---
 
