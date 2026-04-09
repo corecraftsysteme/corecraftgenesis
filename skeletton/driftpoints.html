@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Driftpoints</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .diagram {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Skeletton Layer</span>
+  <h1>Driftpoints</h1>
+  <p class="small">Symbolische Marker für Abweichungen im Systemverhalten — Operator, Ritual, Payout, System.</p>
+
+  <div class="card">
+    <h2>Was sind Driftpoints?</h2>
+    <p>Driftpoints sind symbolische und technische Marker, die Abweichungen im Verhalten der Engine sichtbar machen.  
+    Sie entstehen, wenn Operatoren, Rituale oder Payout‑Sequenzen vom erwarteten Muster abweichen.</p>
+    <p>Driftpoints sind:</p>
+    <ul>
+      <li>audit‑fähig</li>
+      <li>Echo‑referenziert</li>
+      <li>deterministisch erzeugt</li>
+      <li>Teil des Skeletton‑Layers</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Arten von Driftpoints</h2>
+    <p>Die Engine unterscheidet vier Drift‑Kategorien:</p>
+    <ul>
+      <li><strong>Operator‑Drift:</strong> Verhalten weicht vom Rollenmodell ab</li>
+      <li><strong>Ritual‑Drift:</strong> Übergänge folgen nicht der Ritual‑Semantik</li>
+      <li><strong>Payout‑Drift:</strong> Sequenzen oder Trigger sind inkonsistent</li>
+      <li><strong>System‑Drift:</strong> globale Abweichungen im Engine‑Verhalten</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Driftpoint‑Erzeugung</h2>
+    <p>Ein Driftpoint entsteht, wenn eine Abweichung erkannt wird:</p>
+    <div class="diagram">
+Driftpoint‑Erzeugung
+│
+├─ Ereignis tritt auf
+├─ Audit‑Engine prüft Regeln
+├─ Abweichung erkannt?
+│     ├─ Nein → kein Driftpoint
+│     └─ Ja  → Driftpoint erzeugen
+│
+└─ Echo speichert Drift‑Signal
+    </div>
+    <p class="small">Jeder Driftpoint ist eindeutig und Echo‑gebunden.</p>
+  </div>
+
+  <div class="card">
+    <h2>Operator‑Drift</h2>
+    <p>Operator‑Drift entsteht, wenn ein Operator:</p>
+    <ul>
+      <li>Aktionen ohne gültige Rolle ausführt</li>
+      <li>Signaturen unregelmäßig setzt</li>
+      <li>Rituale falsch öffnet oder schließt</li>
+      <li>von seiner historischen Verhaltenslinie abweicht</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Ritual‑Drift</h2>
+    <p>Ritual‑Drift entsteht, wenn:</p>
+    <ul>
+      <li>Übergänge nicht den Ritual‑Regeln folgen</li>
+      <li>Kontext fehlt oder unvollständig ist</li>
+      <li>Echo‑Einträge nicht kohärent sind</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Payout‑Drift</h2>
+    <p>Payout‑Drift entsteht, wenn:</p>
+    <ul>
+      <li>Payout‑Sequenzen nicht monoton sind</li>
+      <li>Closures fehlen oder unvollständig sind</li>
+      <li>Payout‑Logs inkonsistent sind</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>System‑Drift</h2>
+    <p>System‑Drift ist die seltenste Form und entsteht, wenn:</p>
+    <ul>
+      <li>globale Invarianten verletzt werden</li>
+      <li>mehrere Drift‑Signale gleichzeitig auftreten</li>
+      <li>Module nicht kohärent interagieren</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Driftpoint‑Verwendung</h2>
+    <p>Driftpoints werden genutzt für:</p>
+    <ul>
+      <li>Audit‑Protokolle</li>
+      <li>Operator‑Bewertungen</li>
+      <li>Ritual‑Analyse</li>
+      <li>System‑Diagnostik</li>
+      <li>symbolische Artefakte (Drift‑Badges)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Driftpoints sind:</p>
+    <ul>
+      <li>deterministisch erzeugt</li>
+      <li>symbolisch interpretierbar</li>
+      <li>technisch präzise</li>
+      <li>audit‑stabil</li>
+      <li>Teil des inneren Engine‑Gerüsts</li>
+    </ul>
+    <p class="small">Sie machen das Unsichtbare sichtbar.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
