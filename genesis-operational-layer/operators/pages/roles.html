@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Operator Roles — Genesis Operational Layer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
+  <link rel="stylesheet" href="../../../portal.css">
+
   <style>
     .card {
       border: 1px solid #333;
@@ -22,6 +23,11 @@
       margin-top: 0;
       margin-bottom: .5rem;
     }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -35,21 +41,6 @@
     table th {
       background: rgba(255,255,255,0.05);
     }
-    .small {
-      opacity: .7;
-      font-size: .9rem;
-      margin-top: .5rem;
-    }
-    .json-block {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      white-space: pre;
-      overflow-x: auto;
-      font-family: monospace;
-      line-height: 1.4;
-    }
   </style>
 </head>
 
@@ -57,7 +48,7 @@
 
 <div id="header"></div>
 <script>
-  fetch("../header.html")
+  fetch("../../../header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
@@ -66,128 +57,97 @@
 
   <span class="tag">Operators</span>
   <h1>Operator Roles</h1>
-  <p class="small">Funktionale Rollen eines Operators im Genesis Operational Layer.</p>
+  <p class="small">Funktionale Rollen eines Operators innerhalb des Genesis Operational Layers.</p>
 
   <div class="card">
-    <h2>Beschreibung</h2>
-    <p>Rollen definieren die funktionale Position eines Operators innerhalb der Genesis‑Engine.  
-    Sie bestimmen, welche Aufgaben ein Operator ausführen darf und welche Permission‑Sets typischerweise zugewiesen werden.  
-    Rollen sind deterministisch, audit‑fähig und Teil des Operator‑State‑Modells.</p>
+    <h2>Überblick</h2>
+    <p>Rollen definieren die funktionale Zuständigkeit eines Operators innerhalb der Genesis‑Engine.  
+    Jede Rolle besitzt klar definierte Aufgaben, Berechtigungen und Audit‑Pflichten.</p>
   </div>
 
   <div class="card">
-    <h2>Rollen‑Tabelle</h2>
+    <h2>Rollenliste</h2>
     <table>
       <tr>
         <th>Rolle</th>
         <th>Beschreibung</th>
-        <th>Typische Permissions</th>
+        <th>Kern‑Permissions</th>
       </tr>
 
       <tr>
         <td><code>GENESIS_OPERATOR</code></td>
-        <td>Verantwortlich für Genesis‑Parameter, Engine‑Konfiguration und globale Systemzustände.</td>
-        <td>
-          canModifyGenesis<br>
-          canModifyOperators
-        </td>
+        <td>Verantwortlich für Änderungen an Genesis‑Parametern und Systemkonfiguration.</td>
+        <td>canModifyGenesis, canModifyOperators</td>
       </tr>
 
       <tr>
         <td><code>RITUAL_OPERATOR</code></td>
-        <td>Führt Rituale aus, signiert Ritual‑Ereignisse und erzeugt rituelle Systemzustände.</td>
-        <td>
-          canTriggerRituals
-        </td>
+        <td>Führt Rituale aus und löst deterministische Übergänge im System aus.</td>
+        <td>canTriggerRituals</td>
       </tr>
 
       <tr>
         <td><code>PAYOUT_OPERATOR</code></td>
-        <td>Autorisierung und Signatur von Payout‑Ereignissen.</td>
-        <td>
-          canAuthorizePayouts
-        </td>
+        <td>Autorisiert und signiert Payout‑Ereignisse.</td>
+        <td>canAuthorizePayouts</td>
       </tr>
 
       <tr>
         <td><code>ECHO_OPERATOR</code></td>
-        <td>Schreibt Echo‑Einträge in die Echo‑Registry.</td>
-        <td>
-          canWriteEcho
-        </td>
+        <td>Schreibt Ereignisse in die Echo‑Registry.</td>
+        <td>canWriteEcho</td>
       </tr>
 
       <tr>
         <td><code>SKELETTON_OPERATOR</code></td>
-        <td>Verantwortlich für Drift‑Signale, Skeletton‑Analysen und Meta‑Strukturen.</td>
-        <td>
-          canModifySkeletton
-        </td>
+        <td>Verwaltet Drift‑Signale und Skeletton‑Strukturen.</td>
+        <td>canModifySkeletton</td>
       </tr>
 
       <tr>
         <td><code>AUDIT_OPERATOR</code></td>
-        <td>Überwacht Operator‑Aktionen, prüft Signaturen und rekonstruiert Audit‑Ketten.</td>
-        <td>
-          canModifyOperators
-        </td>
+        <td>Rekonstruiert State, validiert Ereignisse und prüft Operator‑Integrität.</td>
+        <td>canModifyOperators</td>
       </tr>
     </table>
   </div>
 
   <div class="card">
-    <h2>Beispiel: Rollenzuweisung</h2>
+    <h2>Rollenmodell</h2>
+    <p>Das Rollenmodell ist deterministisch und audit‑fähig:</p>
+    <ul>
+      <li>Jede Rollenänderung erzeugt ein <code>role_changed</code> Event</li>
+      <li>Rollen sind Teil des Operator‑State</li>
+      <li>State‑Rekonstruktion erfolgt über die Audit‑Kette</li>
+      <li>Rollen definieren die minimalen System‑Berechtigungen</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel‑Operator mit Rolle</h2>
     <div class="json-block">
 {
-  "operatorId": "OPR-7F3A9C12B4",
+  "operatorId": "OPR-ROLE-EXAMPLE-01",
   "role": "RITUAL_OPERATOR",
   "permissions": [
-    "canTriggerRituals",
-    "canWriteEcho"
-  ]
+    "canTriggerRituals"
+  ],
+  "active": true
 }
     </div>
-    <p class="small">Dieses Beispiel basiert auf dem deterministischen Operator‑Blueprint.</p>
   </div>
 
   <div class="card">
-    <h2>Rollen‑Regeln</h2>
-    <ul>
-      <li>Rollen sind <strong>exklusiv</strong> — ein Operator hat genau eine Rolle.</li>
-      <li>Rollen definieren <strong>typische</strong> Permission‑Sets, aber Permissions sind unabhängig.</li>
-      <li>Rollenänderungen erzeugen ein <code>role_changed</code> Event.</li>
-      <li>Rollen sind Teil der <strong>Operator‑Audit‑Kette</strong>.</li>
-      <li>Rollen bestimmen die <strong>Engine‑Integration</strong> eines Operators.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Original‑Rollenliste</h2>
-    <div class="json-block">
-[
-  "GENESIS_OPERATOR",
-  "RITUAL_OPERATOR",
-  "PAYOUT_OPERATOR",
-  "ECHO_OPERATOR",
-  "SKELETTON_OPERATOR",
-  "AUDIT_OPERATOR"
-]
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Engine‑Integration</h2>
-    <ul>
-      <li>Genesis‑Parameter → <code>GENESIS_OPERATOR</code></li>
-      <li>Rituale → <code>RITUAL_OPERATOR</code></li>
-      <li>Echo‑Registry → <code>ECHO_OPERATOR</code></li>
-      <li>Payout‑Autorisierung → <code>PAYOUT_OPERATOR</code></li>
-      <li>Skeletton‑Drift → <code>SKELETTON_OPERATOR</code></li>
-      <li>Operator‑Management → <code>AUDIT_OPERATOR</code></li>
-    </ul>
+    <h2>Zusammenfassung</h2>
+    <p>Rollen definieren die funktionale Identität eines Operators.  
+    Sie bestimmen, welche Aktionen erlaubt sind und wie der Operator in der Engine interagiert.</p>
   </div>
 
 </div>
+
+</body>
+</html>
+
 
 </body>
 </html>
