@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Audit Flow Diagram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .diagram {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Audit Engine</span>
+  <h1>Audit‑Flow‑Diagramm</h1>
+  <p class="small">Standardisierte Prüfabläufe der Genesis‑Engine — deterministisch, rekonstruierbar, audit‑stabil.</p>
+
+  <div class="card">
+    <h2>Überblick</h2>
+    <p>Audit‑Flows definieren, wie die Audit‑Engine einzelne Bereiche der Genesis‑Engine prüft.  
+    Jeder Flow ist deterministisch aufgebaut und folgt einer festen Sequenz von Schritten.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flow: Genesis</h2>
+    <div class="diagram">
+Genesis‑Audit
+│
+├─ Prüfe ChainID
+├─ Prüfe Genesis‑Parameter
+├─ Prüfe Initial‑State
+├─ Prüfe Validator‑Set
+└─ Prüfe Ritual‑Definitionen
+    </div>
+    <p class="small">Der Genesis‑Audit stellt sicher, dass der Ursprung der Chain unverändert und korrekt ist.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flow: Operatoren</h2>
+    <div class="diagram">
+Operator‑Audit
+│
+├─ Prüfe Operator‑Identität
+├─ Prüfe Rollenmodell
+├─ Prüfe Berechtigungen
+├─ Prüfe Signatur‑Historie
+└─ Prüfe Drift‑Signale
+    </div>
+    <p class="small">Dieser Flow validiert die Kohärenz und Integrität aller Operatoren.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flow: Rituale</h2>
+    <div class="diagram">
+Ritual‑Audit
+│
+├─ Prüfe Ritual‑Typ
+├─ Prüfe Übergangsregeln
+├─ Prüfe Echo‑Einträge
+├─ Prüfe Closure‑Sequenzen
+└─ Prüfe Payout‑Trigger
+    </div>
+    <p class="small">Rituale sind formale Übergänge — dieser Flow prüft ihre korrekte Ausführung.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flow: Payouts</h2>
+    <div class="diagram">
+Payout‑Audit
+│
+├─ Prüfe Closure‑Event
+├─ Prüfe Payout‑Log
+├─ Prüfe Operator‑Kontext
+├─ Prüfe Echo‑Referenz
+└─ Prüfe Sequenz‑Integrität
+    </div>
+    <p class="small">Der Payout‑Audit stellt sicher, dass jede Auszahlung korrekt begründet ist.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flow: Drift</h2>
+    <div class="diagram">
+Drift‑Audit
+│
+├─ Prüfe Drift‑Signal
+├─ Prüfe Echo‑Kontext
+├─ Prüfe Operator‑Historie
+├─ Prüfe Ritual‑Bezug
+└─ Prüfe System‑Kohärenz
+    </div>
+    <p class="small">Drift‑Audits erkennen Abweichungen und Muster im Systemverhalten.</p>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Alle Audit‑Flows sind:</p>
+    <ul>
+      <li>deterministisch</li>
+      <li>rekonstruierbar</li>
+      <li>audit‑stabil</li>
+      <li>Echo‑basiert</li>
+      <li>unabhängig von Operator‑Einfluss</li>
+    </ul>
+    <p class="small">Sie bilden das Rückgrat der Audit‑Engine.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
