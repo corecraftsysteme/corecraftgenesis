@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operator Lifecycle — Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .diagram {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">Operators</span>
+  <h1>Operator Lifecycle</h1>
+  <p class="small">Lebenszyklus eines Operators im Genesis Operational Layer.</p>
+
+  <!-- Overview -->
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Der Operator‑Lifecycle beschreibt die vollständige Existenz eines Operators innerhalb des Genesis Operational Layers — von der Erzeugung über Aktivierung, Rollen‑Zuweisung, Drift‑Überwachung bis zur Deaktivierung.</p>
+  </div>
+
+  <!-- Lifecycle Diagram -->
+  <div class="card">
+    <h2>Lifecycle‑Diagramm</h2>
+    <div class="diagram">
+Operator Lifecycle
+│
+├─ 1. Blueprint Creation
+│     └─ Operator wird deterministisch erzeugt
+│
+├─ 2. Seal Assignment
+│     └─ Identitäts‑Artefakt wird signiert
+│
+├─ 3. Role Binding
+│     └─ Rolle + Berechtigungen werden zugewiesen
+│
+├─ 4. Activation
+│     └─ Operator wird aktiv und betritt den Operational Layer
+│
+├─ 5. Operational Phase
+│     ├─ Ritual‑Teilnahme
+│     ├─ Echo‑Schreiben
+│     ├─ Payout‑Autorisierung
+│     └─ Drift‑Überwachung
+│
+├─ 6. Drift Handling
+│     └─ Driftpoints, Audit‑Protokolle, Korrekturpfade
+│
+└─ 7. Deactivation
+      └─ Operator wird deaktiviert, bleibt aber historisch erhalten
+    </div>
+  </div>
+
+  <!-- Placeholder for MD content -->
+  <div class="card">
+    <h2>Lifecycle‑Dokumentation</h2>
+    <p class="small">Dieser Abschnitt wird automatisch aus <code>operator-lifecycle.md</code> generiert.</p>
+
+    <p><em>Bitte sende mir den Inhalt der Datei, damit ich ihn hier vollständig einbetten kann.</em></p>
+  </div>
+
+</div>
+
+</body>
+</html>
