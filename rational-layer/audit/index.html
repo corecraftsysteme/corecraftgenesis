@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Audit Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Rational Layer</span>
+  <h1>Audit Engine</h1>
+  <p class="small">Prüf‑ und Nachvollziehbarkeitskern der Genesis‑Engine — Specs, Flows, Protokolle.</p>
+
+  <div class="card">
+    <h2>Rolle der Audit‑Engine</h2>
+    <p>Die Audit‑Engine ist das operative Werkzeug zur Prüfung der gesamten Genesis‑Engine.  
+    Sie validiert nicht nur Blöcke, sondern das gesamte rituelle Gefüge:  
+    Operator‑Handlungen, Echo‑Einträge, Payout‑Sequenzen, Closure‑Abläufe.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Specs</h2>
+    <p>Die Audit‑Specs definieren die formalen Regeln, die immer gelten müssen:</p>
+    <ul>
+      <li>kein Payout ohne Closure</li>
+      <li>kein Closure ohne Echo‑Eintrag</li>
+      <li>keine Operator‑Aktion ohne gültige Rolle</li>
+      <li>keine Genesis‑Modifikation nach dem Start</li>
+    </ul>
+    <p class="small"><a href="audit-spec.html">→ Audit‑Specs öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Flows</h2>
+    <p>Audit‑Flows beschreiben standardisierte Prüfabläufe:</p>
+    <ul>
+      <li>Genesis‑Audit</li>
+      <li>Operator‑Audit</li>
+      <li>Payout‑Audit</li>
+      <li>Ritual‑Audit</li>
+    </ul>
+    <p class="small"><a href="audit-flow-diagram.html">→ Audit‑Flow‑Diagramm öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Protokolle</h2>
+    <p>Audit‑Protokolle sind strukturierte Reports, die Findings, Drift‑Signale und Abweichungen dokumentieren:</p>
+    <ul>
+      <li>Operator‑Verhalten</li>
+      <li>Ritual‑Kohärenz</li>
+      <li>Payout‑Sequenzen</li>
+      <li>Echo‑Integrität</li>
+    </ul>
+    <p class="small"><a href="audit-protocols/index.html">→ Audit‑Protokolle öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Engine Kern</h2>
+    <p>Der Kern der Audit‑Engine besteht aus:</p>
+    <ul>
+      <li>Audit‑Regeln (Specs)</li>
+      <li>Audit‑Abläufen (Flows)</li>
+      <li>Audit‑Berichten (Protokolle)</li>
+      <li>Rational‑Layer‑Invarianten</li>
+    </ul>
+    <p class="small"><a href="audit-engine.html">→ Audit‑Engine Dokumentation öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Die Audit‑Engine ist:</p>
+    <ul>
+      <li>deterministisch</li>
+      <li>rekonstruierbar</li>
+      <li>audit‑stabil</li>
+      <li>unabhängig von Operator‑Einfluss</li>
+    </ul>
+    <p class="small">Sie ist der Validator der Validatoren.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
