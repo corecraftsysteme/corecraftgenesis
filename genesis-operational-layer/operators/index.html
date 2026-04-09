@@ -3,9 +3,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>CoreCraftGenesis — Echo</title>
+  <title>CoreCraftGenesis — Operators</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
+  <link rel="stylesheet" href="../../portal.css">
   <style>
     .card {
       border: 1px solid #333;
@@ -35,73 +35,59 @@
 
 <div id="header"></div>
 <script>
-  fetch("../header.html")
+  fetch("../../header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
   <span class="tag">CoreCraftGenesis</span>
-  <h1>Echo</h1>
-  <p class="small">Das Gedächtnis der Chain — Ereignisse, Drift‑Signale und Chronik‑Fragmente.</p>
+  <h1>Operators</h1>
+  <p class="small">Die aktiven Rollen, Zustandsmaschinen und Berechtigungsmodelle der Genesis‑Engine.</p>
 
   <div class="card">
-    <h2>Rolle von Echo</h2>
-    <p>Echo ist die persistente Gedächtnisschicht der Genesis‑Engine.  
-    Es speichert, wie sich Zustände, Rollen und Rituale im Laufe der Zeit verändern.  
-    Jede Aktion hinterlässt ein Echo — ein audit‑fähiges Fragment der Systemgeschichte.</p>
+    <h2>Operator‑Blueprint</h2>
+    <p>Der Blueprint definiert die strukturellen Eigenschaften eines Operators:  
+    Rollen, Berechtigungen, Zustandsübergänge und erlaubte Aktionen.</p>
+    <p class="small"><a href="blueprint.html">Blueprint öffnen →</a></p>
   </div>
 
   <div class="card">
-    <h2>Event‑Registry</h2>
-    <p>Echo führt ein unveränderliches Register aller relevanten Ereignisse:</p>
-    <ul>
-      <li>Operator‑Aktionen</li>
-      <li>Ritual‑Übergänge</li>
-      <li>Closure‑Events</li>
-      <li>Payout‑Auslöser</li>
-      <li>System‑Signale</li>
-    </ul>
-    <p class="small">Jedes Ereignis ist referenzierbar und Teil der audit‑stabilen Chronik.</p>
+    <h2>Lifecycle</h2>
+    <p>Der Lifecycle beschreibt die vollständige Lebenslinie eines Operators:  
+    Aktivierung, Rotation, Suspension, Closure.</p>
+    <p class="small"><a href="lifecycle.html">Lifecycle öffnen →</a></p>
   </div>
 
   <div class="card">
-    <h2>Drift‑Signale</h2>
-    <p>Echo erkennt Muster, Abweichungen und Anomalien:</p>
-    <ul>
-      <li>Verhaltensdrift von Operatoren</li>
-      <li>Ungewöhnliche Payout‑Sequenzen</li>
-      <li>Ritual‑Fehlverhalten</li>
-      <li>Meta‑Signale aus der Chronik</li>
-    </ul>
-    <p class="small">Drift‑Signale dienen als Grundlage für Monitoring und Audit‑Analysen.</p>
+    <h2>Permissions</h2>
+    <p>Das Berechtigungsmodell definiert, welche Aktionen ein Operator ausführen darf  
+    und welche Übergänge audit‑pflichtig sind.</p>
+    <p class="small"><a href="permissions.html">Permissions öffnen →</a></p>
   </div>
 
   <div class="card">
-    <h2>Chronik‑Fragmente</h2>
-    <p>Echo gruppiert Ereignisse zu logisch zusammenhängenden Fragmenten:</p>
-    <ul>
-      <li>Genesis‑Phase</li>
-      <li>Operator‑Rotationen</li>
-      <li>Payout‑Wellen</li>
-      <li>System‑Migrationen</li>
-    </ul>
-    <p class="small">Diese Fragmente bilden die erzählerische Struktur der Chain‑Geschichte.</p>
+    <h2>Roles</h2>
+    <p>Operatoren können verschiedene Rollen einnehmen, die jeweils eigene  
+    Zuständigkeiten und Pflichten besitzen.</p>
+    <p class="small"><a href="roles.html">Roles öffnen →</a></p>
   </div>
 
   <div class="card">
-    <h2>Eigenschaft</h2>
-    <p>Echo ist:</p>
-    <ul>
-      <li>append‑only</li>
-      <li>audit‑fähig</li>
-      <li>deterministisch rekonstruierbar</li>
-      <li>Grundlage für alle Prüf‑ und Analyseprozesse</li>
-    </ul>
-    <p class="small">Ohne Echo gäbe es keine Nachvollziehbarkeit.</p>
+    <h2>State‑Model</h2>
+    <p>Das State‑Model definiert die erlaubten Zustände und Übergänge eines Operators  
+    innerhalb der Genesis‑Engine.</p>
+    <p class="small"><a href="state-model.html">State‑Model öffnen →</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Examples</h2>
+    <p>Konkrete Beispiele für Operator‑Konfigurationen, Übergänge und Audit‑Flows.</p>
+    <p class="small"><a href="examples.html">Examples öffnen →</a></p>
   </div>
 
 </div>
 
 </body>
 </html>
+
