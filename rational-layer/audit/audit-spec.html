@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Audit Specs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .spec {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Audit Engine</span>
+  <h1>Audit‑Specs</h1>
+  <p class="small">Formale Regeln der Genesis‑Engine — unveränderlich, deterministisch, audit‑stabil.</p>
+
+  <div class="card">
+    <h2>Was sind Audit‑Specs?</h2>
+    <p>Audit‑Specs sind die maschinenlesbaren, unveränderlichen Regeln der Genesis‑Engine.  
+    Sie definieren, welche Bedingungen immer erfüllt sein müssen, damit das System als korrekt gilt.</p>
+    <p>Sie bilden die Grundlage für:</p>
+    <ul>
+      <li>Audit‑Flows</li>
+      <li>Audit‑Protokolle</li>
+      <li>Ritual‑Validierung</li>
+      <li>Payout‑Integrität</li>
+      <li>Operator‑Kohärenz</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Spec 1 — Payout‑Kohärenz</h2>
+    <div class="spec">
+RULE: NO_PAYOUT_WITHOUT_CLOSURE
+IF payout.exists THEN closure.exists AND closure.references(payout)
+    </div>
+    <p class="small">Jeder Payout muss durch ein gültiges Closure‑Event begründet sein.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 2 — Closure‑Kohärenz</h2>
+    <div class="spec">
+RULE: NO_CLOSURE_WITHOUT_ECHO
+IF closure.exists THEN echo.exists AND echo.references(closure)
+    </div>
+    <p class="small">Jedes Closure‑Event muss ein Echo erzeugen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 3 — Operator‑Validität</h2>
+    <div class="spec">
+RULE: NO_ACTION_WITHOUT_ROLE
+IF operator.action THEN operator.role.is_valid AND operator.role.allows(action)
+    </div>
+    <p class="small">Keine Operator‑Aktion ohne gültige Rolle und Berechtigung.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 4 — Genesis‑Unveränderlichkeit</h2>
+    <div class="spec">
+RULE: GENESIS_IMMUTABLE
+IF state.height > 0 THEN genesis_state MUST NOT CHANGE
+    </div>
+    <p class="small">Die Genesis ist unveränderlich nach dem Start der Chain.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 5 — Drift‑Integrität</h2>
+    <div class="spec">
+RULE: DRIFT_REQUIRES_ECHO
+IF drift_signal.exists THEN echo.exists AND echo.references(drift_signal)
+    </div>
+    <p class="small">Drift‑Signale müssen durch Echo‑Einträge begründet sein.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 6 — Ritual‑Kohärenz</h2>
+    <div class="spec">
+RULE: RITUAL_TRANSITION_VALID
+IF ritual.transition THEN transition.follows(ritual.rules) AND operator.role.allows(transition)
+    </div>
+    <p class="small">Jeder Ritual‑Übergang muss den formalen Regeln entsprechen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 7 — Payout‑Sequenz‑Integrität</h2>
+    <div class="spec">
+RULE: PAYOUT_SEQUENCE_ORDERED
+IF payout.sequence THEN payout.sequence.is_monotonic AND payout.references_previous_closure
+    </div>
+    <p class="small">Payout‑Sequenzen müssen geordnet und lückenlos sein.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 8 — Echo‑Konsistenz</h2>
+    <div class="spec">
+RULE: ECHO_CONSISTENT
+IF echo.entry THEN echo.entry.references_valid_state AND echo.entry.is_append_only
+    </div>
+    <p class="small">Echo‑Einträge müssen konsistent und append‑only sein.</p>
+  </div>
+
+  <div class="card">
+    <h2>Spec 9 — Operator‑Drift</h2>
+    <div class="spec">
+RULE: OPERATOR_DRIFT_DETECTED
+IF operator
