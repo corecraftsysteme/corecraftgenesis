@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Genesis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Genesis</h1>
+  <p class="small">Der Ursprung jeder Chain — deterministisch, einmalig, audit‑versiegelt.</p>
+
+  <div class="card">
+    <h2>Rolle der Genesis</h2>
+    <p>Genesis ist der erste gültige Zustand der Chain. Sie definiert Identität, Regeln und die initiale Struktur der Engine. Alles, was danach geschieht, muss logisch auf die Genesis zurückführbar sein.</p>
+  </div>
+
+  <div class="card">
+    <h2>Chain Identity</h2>
+    <p>Die Genesis legt die Identität der Chain fest:</p>
+    <ul>
+      <li>ChainID</li>
+      <li>Netzwerk‑Konfiguration</li>
+      <li>Namensraum der Engine</li>
+    </ul>
+    <p class="small">Diese Parameter sind unveränderlich und bilden die Grundlage aller späteren Zustände.</p>
+  </div>
+
+  <div class="card">
+    <h2>Initial State</h2>
+    <p>Der Anfangszustand definiert:</p>
+    <ul>
+      <li>Anfangsallokationen</li>
+      <li>System‑Konten</li>
+      <li>erste Operator‑Rollen</li>
+    </ul>
+    <p class="small">Der Initial State ist deterministisch reproduzierbar.</p>
+  </div>
+
+  <div class="card">
+    <h2>Validator‑Set</h2>
+    <p>Die Genesis enthält das erste Validator‑Set:</p>
+    <ul>
+      <li>Validator‑Schlüssel</li>
+      <li>Signaturen des Genesis‑Blocks</li>
+      <li>Konsens‑Parameter</li>
+    </ul>
+    <p class="small">Dieses Set bildet die Grundlage für die ersten Blöcke.</p>
+  </div>
+
+  <div class="card">
+    <h2>Ritual‑Framework</h2>
+    <p>Die Genesis definiert die ersten Ritual‑Typen der Engine:</p>
+    <ul>
+      <li>Genesis‑Ritual</li>
+      <li>Echo‑Rituale</li>
+      <li>Closure‑Rituale</li>
+      <li>Payout‑Rituale</li>
+    </ul>
+    <p class="small">Diese Rituale bestimmen, wie sich die Chain im Laufe der Zeit entwickelt.</p>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Genesis ist:</p>
+    <ul>
+      <li>einmalig</li>
+      <li>unveränderlich</li>
+      <li>audit‑versiegelt</li>
+      <li>deterministisch rekonstruierbar</li>
+    </ul>
+    <p class="small">Sie ist der Ursprung aller späteren Zustände und Ereignisse.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
