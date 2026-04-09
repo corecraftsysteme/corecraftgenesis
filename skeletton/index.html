@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Skeletton Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Skeletton Layer</h1>
+  <p class="small">Interner Unterbau der Engine — Driftpoints, Echo‑Kits, Satelliten‑Rituale.</p>
+
+  <div class="card">
+    <h2>Rolle des Skeletton Layers</h2>
+    <p>Der Skeletton‑Layer bildet das innere Gerüst der Genesis‑Engine.  
+    Er enthält die symbolischen und technischen Bausteine, die nicht direkt im Hauptfluss erscheinen,  
+    aber essenziell für Drift‑Analyse, Echo‑Erweiterungen und rituelle Nebenpfade sind.</p>
+  </div>
+
+  <div class="card">
+    <h2>Driftpoints</h2>
+    <p>Driftpoints sind symbolische Marker, die Abweichungen im Systemverhalten kennzeichnen:</p>
+    <ul>
+      <li>Operator‑Drift</li>
+      <li>Ritual‑Drift</li>
+      <li>Payout‑Drift</li>
+      <li>System‑Drift</li>
+    </ul>
+    <p class="small"><a href="driftpoints.html">→ Driftpoints öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Echo‑Kits</h2>
+    <p>Echo‑Kits sind modulare Erweiterungen des Echo‑Systems:</p>
+    <ul>
+      <li>Erweiterte Ereignis‑Cluster</li>
+      <li>Meta‑Signale</li>
+      <li>Ritual‑Kontext‑Erweiterungen</li>
+      <li>Operator‑Historien</li>
+    </ul>
+    <p class="small"><a href="echo-kits.html">→ Echo‑Kits öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Satelliten‑Rituale</h2>
+    <p>Satelliten‑Rituale sind Nebenrituale, die nicht im Hauptfluss liegen, aber wichtige Funktionen erfüllen:</p>
+    <ul>
+      <li>Meta‑Rituale</li>
+      <li>Analyse‑Rituale</li>
+      <li>Drift‑Rituale</li>
+      <li>Operator‑Nebenpfade</li>
+    </ul>
+    <p class="small"><a href="satellite-rituale.html">→ Satelliten‑Rituale öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Der Skeletton‑Layer ist:</p>
+    <ul>
+      <li>symbolisch</li>
+      <li>technisch</li>
+      <li>audit‑fähig</li>
+      <li>erweiterbar</li>
+      <li>nicht öffentlich exponiert</li>
+    </ul>
+    <p class="small">Er bildet das unsichtbare Fundament der Engine.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
