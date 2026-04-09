@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Artefakte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Artefakte</h1>
+  <p class="small">Symbolische Objekte der Genesis‑Engine.</p>
+
+  <div class="card">
+    <h2>Determinism Seal</h2>
+    <p>Das zentrale Symbol der Engine. Markiert deterministische, audit‑stabile Vorgänge.</p>
+  </div>
+
+  <div class="card">
+    <h2>Operator‑Patches</h2>
+    <p>Rituelle Identifikatoren für Operatoren, Rollen und Berechtigungen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Genesis‑Hoodies</h2>
+    <p>Symbolische Kleidungsstücke für Operatoren und Ritual‑Teilnehmer.</p>
+  </div>
+
+  <div class="card">
+    <h2>Metall‑Sticker</h2>
+    <p>Lasergravierte Artefakte für Geräte, Validator‑Nodes und physische Ritual‑Objekte.</p>
+  </div>
+
+  <div class="card">
+    <h2>Store</h2>
+    <p>Offizieller Shop für Artefakte:</p>
+    <p class="small"><a href="https://aex-software.myshopify.com" target="_blank">aex-software.myshopify.com</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Lizenz</h2>
+    <p>Code: MIT / CC0<br>Skeletton™: Archneton License v1.0<br>Autor: Daniel Aecherli (M.O.D.S.)</p>
+  </div>
+
+</div>
+
+</body>
+</html>
