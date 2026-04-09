@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operator Roles — Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    table th {
+      background: rgba(255,255,255,0.05);
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .json-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      white-space: pre;
+      overflow-x: auto;
+      font-family: monospace;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">Operators</span>
+  <h1>Operator Roles</h1>
+  <p class="small">Funktionale Rollen eines Operators im Genesis Operational Layer.</p>
+
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Rollen definieren die funktionale Position eines Operators innerhalb der Genesis‑Engine.  
+    Sie bestimmen, welche Aufgaben ein Operator ausführen darf und welche Permission‑Sets typischerweise zugewiesen werden.  
+    Rollen sind deterministisch, audit‑fähig und Teil des Operator‑State‑Modells.</p>
+  </div>
+
+  <div class="card">
+    <h2>Rollen‑Tabelle</h2>
+    <table>
+      <tr>
+        <th>Rolle</th>
+        <th>Beschreibung</th>
+        <th>Typische Permissions</th>
+      </tr>
+
+      <tr>
+        <td><code>GENESIS_OPERATOR</code></td>
+        <td>Verantwortlich für Genesis‑Parameter, Engine‑Konfiguration und globale Systemzustände.</td>
+        <td>
+          canModifyGenesis<br>
+          canModifyOperators
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>RITUAL_OPERATOR</code></td>
+        <td>Führt Rituale aus, signiert Ritual‑Ereignisse und erzeugt rituelle Systemzustände.</td>
+        <td>
+          canTriggerRituals
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>PAYOUT_OPERATOR</code></td>
+        <td>Autorisierung und Signatur von Payout‑Ereignissen.</td>
+        <td>
+          canAuthorizePayouts
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>ECHO_OPERATOR</code></td>
+        <td>Schreibt Echo‑Einträge in die Echo‑Registry.</td>
+        <td>
+          canWriteEcho
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>SKELETTON_OPERATOR</code></td>
+        <td>Verantwortlich für Drift‑Signale, Skeletton‑Analysen und Meta‑Strukturen.</td>
+        <td>
+          canModifySkeletton
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>AUDIT_OPERATOR</code></td>
+        <td>Überwacht Operator‑Aktionen, prüft Signaturen und rekonstruiert Audit‑Ketten.</td>
+        <td>
+          canModifyOperators
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel: Rollenzuweisung</h2>
+    <div class="json-block">
+{
+  "operatorId": "OPR-7F3A9C12B4",
+  "role": "RITUAL_OPERATOR",
+  "permissions": [
+    "canTriggerRituals",
+    "canWriteEcho"
+  ]
+}
+    </div>
+    <p class="small">Dieses Beispiel basiert auf dem deterministischen Operator‑Blueprint.</p>
+  </div>
+
+  <div class="card">
+    <h2>Rollen‑Regeln</h2>
+    <ul>
+      <li>Rollen sind <strong>exklusiv</strong> — ein Operator hat genau eine Rolle.</li>
+      <li>Rollen definieren <strong>typische</strong> Permission‑Sets, aber Permissions sind unabhängig.</li>
+      <li>Rollenänderungen erzeugen ein <code>role_changed</code> Event.</li>
+      <li>Rollen sind Teil der <strong>Operator‑Audit‑Kette</strong>.</li>
+      <li>Rollen bestimmen die <strong>Engine‑Integration</strong> eines Operators.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Original‑Rollenliste</h2>
+    <div class="json-block">
+[
+  "GENESIS_OPERATOR",
+  "RITUAL_OPERATOR",
+  "PAYOUT_OPERATOR",
+  "ECHO_OPERATOR",
+  "SKELETTON_OPERATOR",
+  "AUDIT_OPERATOR"
+]
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Engine‑Integration</h2>
+    <ul>
+      <li>Genesis‑Parameter → <code>GENESIS_OPERATOR</code></li>
+      <li>Rituale → <code>RITUAL_OPERATOR</code></li>
+      <li>Echo‑Registry → <code>ECHO_OPERATOR</code></li>
+      <li>Payout‑Autorisierung → <code>PAYOUT_OPERATOR</code></li>
+      <li>Skeletton‑Drift → <code>SKELETTON_OPERATOR</code></li>
+      <li>Operator‑Management → <code>AUDIT_OPERATOR</code></li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
