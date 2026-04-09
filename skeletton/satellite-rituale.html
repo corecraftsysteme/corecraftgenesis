@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Satelliten‑Rituale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .diagram {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: monospace;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Skeletton Layer</span>
+  <h1>Satelliten‑Rituale</h1>
+  <p class="small">Nebenrituale der Engine — Meta‑Rituale, Analyse‑Rituale, Drift‑Rituale, Operator‑Nebenpfade.</p>
+
+  <div class="card">
+    <h2>Was sind Satelliten‑Rituale?</h2>
+    <p>Satelliten‑Rituale sind rituelle Nebenpfade, die nicht im Hauptfluss der Engine liegen,  
+    aber essenzielle Funktionen für Analyse, Drift‑Verarbeitung und Meta‑Strukturen erfüllen.</p>
+    <p>Sie sind:</p>
+    <ul>
+      <li>nicht öffentlich exponiert</li>
+      <li>audit‑fähig</li>
+      <li>deterministisch</li>
+      <li>Teil des Skeletton‑Layers</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Kategorien von Satelliten‑Ritualen</h2>
+    <p>Die Engine unterscheidet vier Hauptkategorien:</p>
+    <ul>
+      <li><strong>Meta‑Rituale:</strong> erzeugen Meta‑Signale und System‑Kontext</li>
+      <li><strong>Analyse‑Rituale:</strong> rekonstruieren Muster und Ereignis‑Cluster</li>
+      <li><strong>Drift‑Rituale:</strong> verarbeiten Drift‑Signale und erzeugen Driftpoints</li>
+      <li><strong>Operator‑Nebenpfade:</strong> rituelle Aktionen außerhalb des Hauptflusses</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Meta‑Rituale</h2>
+    <p>Meta‑Rituale erzeugen abstrakte System‑Signale:</p>
+    <ul>
+      <li>Meta‑Echos</li>
+      <li>System‑Kontext‑Frames</li>
+      <li>Ritual‑Meta‑Sequenzen</li>
+      <li>Operator‑Meta‑Profile</li>
+    </ul>
+    <div class="diagram">
+Meta‑Ritual
+│
+├─ Ereignisse sammeln
+├─ Muster extrahieren
+├─ Meta‑Signal erzeugen
+└─ Echo‑Meta‑Eintrag schreiben
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Analyse‑Rituale</h2>
+    <p>Analyse‑Rituale dienen der Rekonstruktion und Strukturierung:</p>
+    <ul>
+      <li>Cluster‑Rekonstruktion</li>
+      <li>Ritual‑Sequenz‑Analyse</li>
+      <li>Payout‑Wellen‑Analyse</li>
+      <li>Operator‑Historien‑Synthese</li>
+    </ul>
+    <p class="small">Sie arbeiten eng mit Echo‑Kits zusammen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Drift‑Rituale</h2>
+    <p>Drift‑Rituale verarbeiten Drift‑Signale und erzeugen Driftpoints:</p>
+    <ul>
+      <li>Drift‑Erkennung</li>
+      <li>Drift‑Klassifikation</li>
+      <li>Driftpoint‑Erzeugung</li>
+      <li>Drift‑Kontext‑Er
