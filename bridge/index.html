@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Bridge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Bridge</h1>
+  <p class="small">Verbindung der Genesis‑Engine mit externen Chains, Systemen und Wallets.</p>
+
+  <div class="card">
+    <h2>Rolle der Bridge</h2>
+    <p>Die Bridge ist die kontrollierte Schnittstelle zwischen der Genesis‑Engine und externen Ökosystemen.  
+    Sie ermöglicht Interoperabilität, ohne die Integrität der privaten Chain zu gefährden.</p>
+  </div>
+
+  <div class="card">
+    <h2>Deployment‑Layer</h2>
+    <p>Der Deployment‑Layer stellt die technische Exposition der Engine bereit:</p>
+    <ul>
+      <li>RPC‑Endpunkte</li>
+      <li>Node‑Konfiguration</li>
+      <li>Netzwerk‑Exposition</li>
+      <li>Deployment‑Rituale</li>
+    </ul>
+    <p class="small">Er bildet die Grundlage für externe Zugriffe und Integrationen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Wallet‑Integration</h2>
+    <p>Die Bridge verbindet Operator‑Identitäten mit externen Wallet‑Systemen:</p>
+    <ul>
+      <li>Adressformate</li>
+      <li>Signatur‑Flows</li>
+      <li>Mapping zwischen Operator‑IDs und Wallet‑Identitäten</li>
+      <li>Ritualisierte Verknüpfung von On‑Chain und Off‑Chain Identität</li>
+    </ul>
+    <p class="small">Dies ermöglicht sichere Interaktionen mit externen Assets.</p>
+  </div>
+
+  <div class="card">
+    <h2>Asset‑Mirroring</h2>
+    <p>Die Bridge unterstützt kontrollierte Wertübertragungen:</p>
+    <ul>
+      <li>Lock‑Rituale</li>
+      <li>Mint‑Rituale</li>
+      <li>Burn‑Rituale</li>
+      <li>Release‑Rituale</li>
+    </ul>
+    <p class="small">Jeder Schritt ist audit‑fähig und deterministisch nachvollziehbar.</p>
+  </div>
+
+  <div class="card">
+    <h2>Sicherheitsmodell</h2>
+    <p>Die Bridge minimiert Angriffsflächen durch:</p>
+    <ul>
+      <li>strikte Ritual‑Policies</li>
+      <li>Operator‑Berechtigungen</li>
+      <li>Echo‑basierte Überwachung</li>
+      <li>Audit‑Flows für jede externe Interaktion</li>
+    </ul>
+    <p class="small">Die Bridge ist ein kontrollierter Engpass, kein offenes Gateway.</p>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Die Bridge ist:</p>
+    <ul>
+      <li>audit‑stabil</li>
+      <li>deterministisch</li>
+      <li>minimal exponiert</li>
+      <li>ritual‑kontrolliert</li>
+    </ul>
+    <p class="small">Sie verbindet die Engine mit der Außenwelt, ohne ihre Integrität zu kompromittieren.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
