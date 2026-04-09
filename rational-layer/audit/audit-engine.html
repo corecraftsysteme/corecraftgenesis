@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Audit Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Audit Engine</span>
+  <h1>Audit‑Engine</h1>
+  <p class="small">Der Prüf‑ und Nachvollziehbarkeitskern der Genesis‑Engine — Regeln, Abläufe, Berichte.</p>
+
+  <div class="card">
+    <h2>Was ist die Audit‑Engine?</h2>
+    <p>Die Audit‑Engine ist das zentrale Werkzeug zur Prüfung der gesamten Genesis‑Engine.  
+    Sie validiert nicht nur Blöcke, sondern das gesamte rituelle Gefüge:  
+    Operator‑Handlungen, Echo‑Einträge, Closure‑Abläufe, Payout‑Sequenzen und Rollen‑Kohärenz.</p>
+  </div>
+
+  <div class="card">
+    <h2>Aufgaben der Audit‑Engine</h2>
+    <p>Die Audit‑Engine führt deterministische Prüfungen durch:</p>
+    <ul>
+      <li>Validierung von Ritual‑Übergängen</li>
+      <li>Überprüfung von Operator‑Berechtigungen</li>
+      <li>Analyse von Echo‑Einträgen</li>
+      <li>Überwachung von Payout‑Sequenzen</li>
+      <li>Erkennung von Drift‑Signalen</li>
+      <li>Erstellung audit‑stabiler Protokolle</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Regeln (Specs)</h2>
+    <p>Die Audit‑Specs definieren die unveränderlichen Regeln der Engine:</p>
+    <ul>
+      <li>kein Payout ohne Closure</li>
+      <li>kein Closure ohne Echo</li>
+      <li>keine Operator‑Aktion ohne gültige Rolle</li>
+      <li>keine Genesis‑Modifikation nach dem Start</li>
+      <li>keine Drift‑Signale ohne Echo‑Referenz</li>
+    </ul>
+    <p class="small"><a href="audit-spec.html">→ Audit‑Specs öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Abläufe (Flows)</h2>
+    <p>Audit‑Flows beschreiben standardisierte Prüfprozesse:</p>
+    <ul>
+      <li>Genesis‑Audit</li>
+      <li>Operator‑Audit</li>
+      <li>Payout‑Audit</li>
+      <li>Ritual‑Audit</li>
+      <li>Drift‑Audit</li>
+    </ul>
+    <p class="small"><a href="audit-flow-diagram.html">→ Audit‑Flow‑Diagramm öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Protokolle</h2>
+    <p>Audit‑Protokolle dokumentieren Findings, Abweichungen und Drift‑Signale:</p>
+    <ul>
+      <li>Operator‑Verhalten</li>
+      <li>Ritual‑Kohärenz</li>
+      <li>Payout‑Integrität</li>
+      <li>Echo‑Konsistenz</li>
+      <li>System‑Drift</li>
+    </ul>
+    <p class="small"><a href="audit-protocols/index.html">→ Audit‑Protokolle öffnen</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Architektur der Audit‑Engine</h2>
+    <p>Die Audit‑Engine besteht aus vier Schichten:</p>
+    <ul>
+      <li><strong>Rational Layer:</strong> formale Modelle & Invarianten</li>
+      <li><strong>Specs:</strong> maschinenlesbare Regeln</li>
+      <li><strong>Flows:</strong> deterministische Prüfabläufe</li>
+      <li><strong>Protokolle:</strong> audit‑stabile Berichte</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Die Audit‑Engine ist:</p>
+    <ul>
+      <li>deterministisch</li>
+      <li>rekonstruierbar</li>
+      <li>audit‑stabil</li>
+      <li>unabhängig von Operator‑Einfluss</li>
+      <li>vollständig Echo‑basiert</li>
+    </ul>
+    <p class="small">Sie ist der Validator der Validatoren.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
