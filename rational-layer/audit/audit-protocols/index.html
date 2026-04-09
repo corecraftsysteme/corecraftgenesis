@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Audit Protokolle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .proto {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Audit Engine</span>
+  <h1>Audit‑Protokolle</h1>
+  <p class="small">Strukturierte Berichte der Audit‑Engine — Findings, Drift‑Signale, Abweichungen.</p>
+
+  <div class="card">
+    <h2>Was sind Audit‑Protokolle?</h2>
+    <p>Audit‑Protokolle sind die formalisierten Berichte der Audit‑Engine.  
+    Sie dokumentieren alle Findings, Abweichungen, Drift‑Signale und System‑Kohärenzprüfungen.</p>
+    <p>Jedes Protokoll ist:</p>
+    <ul>
+      <li>deterministisch erzeugt</li>
+      <li>Echo‑referenziert</li>
+      <li>rollen‑neutral</li>
+      <li>audit‑stabil</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Protokoll‑Typen</h2>
+    <p>Die Audit‑Engine erzeugt verschiedene Protokoll‑Typen:</p>
+    <ul>
+      <li><strong>Genesis‑Protokolle</strong> — Prüfung des Ursprungszustands</li>
+      <li><strong>Operator‑Protokolle</strong> — Verhalten, Rollen, Drift</li>
+      <li><strong>Ritual‑Protokolle</strong> — Übergänge, Regeln, Semantik</li>
+      <li><strong>Payout‑Protokolle</strong> — Closure‑Kohärenz, Sequenzen</li>
+      <li><strong>Drift‑Protokolle</strong> — Abweichungen & Muster</li>
+      <li><strong>System‑Protokolle</strong> — globale Kohärenz</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel: Operator‑Audit‑Protokoll</h2>
+    <div class="proto">
+OPERATOR_AUDIT_REPORT
+────────────────────────────────────
+Operator: 0xA1F3
+Rolle: Validator
+
+Findings:
+- Signatur‑Historie konsistent
+- Rollenmodell gültig
+- Keine Drift‑Signale
+
+Status: PASS
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel: Payout‑Audit‑Protokoll</h2>
+    <div class="proto">
+PAYOUT_AUDIT_REPORT
+────────────────────────────────────
+Payout‑ID: 0x44B9
+Closure: 0x11C2
+Echo‑Ref: 0xE77A
+
+Findings:
+- Closure vorhanden
+- Payout‑Log vollständig
+- Sequenz‑Integrität bestätigt
+
+Status: PASS
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel: Drift‑Audit‑Protokoll</h2>
+    <div class="proto">
+DRIFT_AUDIT_REPORT
+────────────────────────────────────
+Signal: DRIFT_0021
+Operator: 0xC9D4
+
+Findings:
+- Abweichung erkannt
+- Echo‑Kontext vorhanden
+- Ritual‑Bezug gültig
+- System‑Kohärenz nicht verletzt
+
+Status: PASS_WITH_NOTICE
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Eigenschaft</h2>
+    <p>Audit‑Protokolle sind:</p>
+    <ul>
+      <li>maschinenlesbar</li>
+      <li>menschenverständlich</li>
+      <li>deterministisch erzeugt</li>
+      <li>vollständig Echo‑basiert</li>
+      <li>unabhängig von Operator‑Einfluss</li>
+    </ul>
+    <p class="small">Sie bilden die dokumentarische Grundlage der gesamten Audit‑Engine.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
