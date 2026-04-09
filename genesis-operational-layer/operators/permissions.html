@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operator Permissions — Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    table th {
+      background: rgba(255,255,255,0.05);
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .json-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      white-space: pre;
+      overflow-x: auto;
+      font-family: monospace;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">Operators</span>
+  <h1>Operator Permissions</h1>
+  <p class="small">Granulare Berechtigungen eines Operators im Genesis Operational Layer.</p>
+
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Permissions definieren, welche Aktionen ein Operator innerhalb der Genesis‑Engine ausführen darf.  
+    Sie sind granular, deterministisch und vollständig auditierbar.  
+    Jede Permission ist ein eigenständiges Kontrollsignal innerhalb des Operator‑State‑Modells.</p>
+  </div>
+
+  <div class="card">
+    <h2>Permission‑Tabelle</h2>
+    <table>
+      <tr>
+        <th>Permission</th>
+        <th>Beschreibung</th>
+        <th>Typische Rolle</th>
+      </tr>
+
+      <tr>
+        <td><code>canTriggerRituals</code></td>
+        <td>Erlaubt das Auslösen und Signieren von Ritual‑Ereignissen.</td>
+        <td>RITUAL_OPERATOR</td>
+      </tr>
+
+      <tr>
+        <td><code>canWriteEcho</code></td>
+        <td>Erlaubt das Schreiben von Echo‑Einträgen in die Echo‑Registry.</td>
+        <td>ECHO_OPERATOR</td>
+      </tr>
+
+      <tr>
+        <td><code>canAuthorizePayouts</code></td>
+        <td>Erlaubt das Signieren und Autorisieren von Payout‑Ereignissen.</td>
+        <td>PAYOUT_OPERATOR</td>
+      </tr>
+
+      <tr>
+        <td><code>canModifyOperators</code></td>
+        <td>Erlaubt Änderungen an anderen Operatoren (Rollen, Permissions, Seal).</td>
+        <td>AUDIT_OPERATOR / GENESIS_OPERATOR</td>
+      </tr>
+
+      <tr>
+        <td><code>canModifyGenesis</code></td>
+        <td>Erlaubt Änderungen an Genesis‑Parametern und globalen Engine‑Konfigurationen.</td>
+        <td>GENESIS_OPERATOR</td>
+      </tr>
+
+      <tr>
+        <td><code>canModifySkeletton</code></td>
+        <td>Erlaubt das Schreiben von Drift‑Signalen und Skeletton‑Modifikationen.</td>
+        <td>SKELETTON_OPERATOR</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Beispiel: Permission‑Set eines Operators</h2>
+    <div class="json-block">
+{
+  "operatorId": "OPR-7F3A9C12B4",
+  "permissions": [
+    "canTriggerRituals",
+    "canWriteEcho"
+  ]
+}
+    </div>
+    <p class="small">Dieses Beispiel stammt aus dem deterministischen Operator‑Blueprint.</p>
+  </div>
+
+  <div class="card">
+    <h2>Permission‑Regeln</h2>
+    <ul>
+      <li>Permissions sind <strong>append‑only</strong> (Entzug erzeugt ein eigenes Event).</li>
+      <li>Jede Permission ist ein <strong>auditierbares Kontrollsignal</strong>.</li>
+      <li>Permissions werden in der <strong>Operator‑Audit‑Kette</strong> rekonstruiert.</li>
+      <li>Permissions sind <strong>nicht automatisch</strong> an Rollen gebunden — Rollen definieren nur typische Muster.</li>
+      <li>Ein Operator kann mehrere Permissions gleichzeitig besitzen.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Original‑Permission‑Liste</h2>
+    <p class="small">Basierend auf Blueprint + Lifecycle.</p>
+
+    <div class="json-block">
+[
+  "canTriggerRituals",
+  "canWriteEcho",
+  "canAuthorizePayouts",
+  "canModifyOperators",
+  "canModifyGenesis",
+  "canModifySkeletton"
+]
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Integration in die Engine</h2>
+    <ul>
+      <li>Rituale → <code>canTriggerRituals</code></li>
+      <li>Echo‑Registry → <code>canWriteEcho</code></li>
+      <li>Payout‑Autorisierung → <code>canAuthorizePayouts</code></li>
+      <li>Operator‑Management → <code>canModifyOperators</code></li>
+      <li>Genesis‑Parameter → <code>canModifyGenesis</code></li>
+      <li>Skeletton‑Drift → <code>canModifySkeletton</code></li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
