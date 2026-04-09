@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Payouts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Payouts</h1>
+  <p class="small">Ökonomische & rituelle Ausgleichsmechanismen — deterministische Closure‑Rituale.</p>
+
+  <div class="card">
+    <h2>Rolle der Payouts</h2>
+    <p>Payouts sind die ökonomischen und symbolischen Ausgleichsmechanismen der Genesis‑Engine.  
+    Jede Auszahlung ist ein <strong>Closure‑Ritual</strong> — ein audit‑fähiger Abschluss einer Operator‑Handlung.</p>
+  </div>
+
+  <div class="card">
+    <h2>Payout‑Logs</h2>
+    <p>Unveränderliche Aufzeichnungen aller Auszahlungen. Sie enthalten:</p>
+    <ul>
+      <li>Operator‑ID</li>
+      <li>Ereignis‑Kontext</li>
+      <li>Ritual‑Trigger</li>
+      <li>Betrag oder Symbolwert</li>
+      <li>Zeitstempel</li>
+      <li>Echo‑Referenz</li>
+    </ul>
+    <p class="small">Payout‑Logs sind Teil der audit‑stabilen Chronik.</p>
+  </div>
+
+  <div class="card">
+    <h2>Closure‑Events</h2>
+    <p>Ein Closure‑Event markiert den rituellen Abschluss einer Operator‑Aktion:</p>
+    <ul>
+      <li>Ende eines Rituals</li>
+      <li>Erfüllung einer Aufgabe</li>
+      <li>Übergang in einen neuen Zustand</li>
+    </ul>
+    <p class="small">Closures erzeugen Echos und können Payouts auslösen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Operator‑Payouts</h2>
+    <p>Belohnungen für Operatoren, die:</p>
+    <ul>
+      <li>validiert</li>
+      <li>signiert</li>
+      <li>Rituale geöffnet</li>
+      <li>Drift‑Signale verarbeitet</li>
+      <li>Echo‑Fragmente erzeugt</li>
+    </ul>
+    <p>Payouts können sein:</p>
+    <ul>
+      <li>symbolisch (Driftpoints, Marker, Tokens)</li>
+      <li>real (Assets, externe Werte)</li>
+    </ul>
+    <p class="small">Die Engine trennt symbolische und reale Ökonomie klar.</p>
+  </div>
+
+  <div class="card">
+    <h2>Payout‑Ablauf</h2>
+    <p>Der Ablauf ist deterministisch und audit‑stabil:</p>
+    <ol>
+      <li>Operator führt eine Aktion aus</li>
+      <li>Echo registriert das Ereignis</li>
+      <li>Ritual‑Trigger wird gesetzt</li>
+      <li>Closure‑Event wird erzeugt</li>
+      <li>Payout‑Log wird geschrieben</li>
+      <li>Payout wird ausgeführt</li>
+      <li>Echo speichert das Ergebnis</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Verbindung zur Engine</h2>
+    <p>Die technische Grundlage der Payout‑Infrastruktur liegt in <strong>corecraft‑chainline</strong>:</p>
+    <ul>
+      <li>Payout‑Module</li>
+      <li>Closure‑System</li>
+      <li>Ritual‑Trigger</li>
+      <li>Echo‑Integration</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Artefakte</h2>
+    <p>Payout‑Rituale erzeugen symbolische Objekte:</p>
+    <ul>
+      <li>Closure‑Seals</li>
+      <li>Payout‑Badges</li>
+      <li>Driftpoint‑Marker</li>
+    </ul>
+    <p class="small">Erhältlich im offiziellen Store.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
