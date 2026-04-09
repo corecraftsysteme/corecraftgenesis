@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operator Blueprint — Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    table th {
+      background: rgba(255,255,255,0.05);
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .json-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      white-space: pre;
+      overflow-x: auto;
+      font-family: monospace;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">Operators</span>
+  <h1>Operator Blueprint</h1>
+  <p class="small">Maschinenlesbare Grunddefinition eines Operators im Genesis Operational Layer.</p>
+
+  <!-- Overview -->
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Der Operator‑Blueprint definiert die minimale, deterministische Struktur eines Operators innerhalb des Genesis Operational Layers.  
+    Er ist maschinenlesbar, audit‑fähig und bildet die Grundlage für Rollen, Berechtigungen und Operator‑Zustände.</p>
+  </div>
+
+  <!-- Properties Table -->
+  <div class="card">
+    <h2>Blueprint‑Struktur</h2>
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Typ</th>
+        <th>Beschreibung</th>
+        <th>Enum</th>
+        <th>Required</th>
+      </tr>
+
+      <tr>
+        <td>operatorId</td>
+        <td>string</td>
+        <td>Deterministisch generierte Identität des Operators.</td>
+        <td>–</td>
+        <td>✔</td>
+      </tr>
+
+      <tr>
+        <td>publicKey</td>
+        <td>string</td>
+        <td>Ed25519 Public Key des Operators.</td>
+        <td>–</td>
+        <td>✔</td>
+      </tr>
+
+      <tr>
+        <td>role</td>
+        <td>string</td>
+        <td>Funktionale Rolle des Operators.</td>
+        <td>
+          GENESIS_OPERATOR<br>
+          RITUAL_OPERATOR<br>
+          PAYOUT_OPERATOR<br>
+          ECHO_OPERATOR<br>
+          SKELETTON_OPERATOR<br>
+          AUDIT_OPERATOR
+        </td>
+        <td>✔</td>
+      </tr>
+
+      <tr>
+        <td>seal</td>
+        <td>string</td>
+        <td>Signiertes Identitäts‑Artefakt des Operators.</td>
+        <td>–</td>
+        <td>✖</td>
+      </tr>
+
+      <tr>
+        <td>permissions</td>
+        <td>array[string]</td>
+        <td>Granulare Berechtigungen des Operators.</td>
+        <td>
+          canTriggerRituals<br>
+          canWriteEcho<br>
+          canAuthorizePayouts<br>
+          canModifyOperators<br>
+          canModifyGenesis<br>
+          canModifySkeletton
+        </td>
+        <td>✖</td>
+      </tr>
+
+      <tr>
+        <td>active</td>
+        <td>boolean</td>
+        <td>Aktivierungsstatus des Operators.</td>
+        <td>–</td>
+        <td>✔</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Example Operator -->
+  <div class="card">
+    <h2>Beispiel‑Operator</h2>
+    <p>Ein deterministisches Beispielobjekt, das exakt dem Blueprint‑Schema entspricht:</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-7F3A9C12B4",
+  "publicKey": "ed25519:9f8c1d7a3b2e4f6a9d1c0b7e3f2a9c8d7b6a5f4c3e2b1a0f9d8c7b6a5f4e3d2",
+  "role": "RITUAL_OPERATOR",
+  "seal": "SEAL-0xA7C9F1E2D4B8",
+  "permissions": [
+    "canTriggerRituals",
+    "canWriteEcho"
+  ],
+  "active": true
+}
+    </div>
+  </div>
+
+  <!-- Schema Raw -->
+  <div class="card">
+    <h2>Original‑Schema (JSON)</h2>
+    <p class="small">Für vollständige maschinelle Verarbeitung.</p>
+
+    <div class="json-block">
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoreCraft Operator Blueprint",
+  "description": "Maschinenlesbare Grunddefinition eines Operators innerhalb des Genesis Operational Layer.",
+  "type": "object",
+  "properties": {
+    "operatorId": { "type": "string" },
+    "publicKey": { "type": "string" },
+    "role": { "type": "string" },
+    "seal": { "type": "string" },
+    "permissions": { "type": "array" },
+    "active": { "type": "boolean" }
+  },
+  "required": [
+    "operatorId",
+    "publicKey",
+    "role",
+    "active"
+  ]
+}
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
