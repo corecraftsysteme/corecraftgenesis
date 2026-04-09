@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Engine</h1>
+  <p class="small">Die deterministische Ausführungs‑ und Validierungsmaschine der Genesis‑Plattform.</p>
+
+  <div class="card">
+    <h2>Runtime</h2>
+    <p>Die Runtime ist der deterministische Kern der Engine.  
+    Sie führt Operator‑Aktionen, Rituale, State‑Übergänge und Audit‑Events aus — vollständig reproduzierbar und signiert.</p>
+    <p class="small">Zuständig für: Execution, State‑Updates, Hash‑Ketten, Signaturen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Scheduler</h2>
+    <p>Der Scheduler orchestriert zeit‑ oder ereignisbasierte Abläufe innerhalb der Engine.  
+    Er garantiert deterministische Reihenfolgen und verhindert Race‑Conditions.</p>
+    <p class="small">Zuständig für: Ritual‑Trigger, Payout‑Zyklen, Echo‑Flushes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Validator</h2>
+    <p>Der Validator prüft jede Aktion gegen Rollen, Permissions und Audit‑Regeln.  
+    Er ist das sicherheitskritische Herzstück der Engine.</p>
+    <p class="small">Zuständig für: Permission‑Checks, Signatur‑Validierung, Hash‑Konsistenz.</p>
+  </div>
+
+  <div class="card">
+    <h2>State‑Machine</h2>
+    <p>Die State‑Machine definiert alle erlaubten Zustände und Übergänge der Engine‑Objekte.  
+    Sie ist vollständig deterministisch und audit‑fähig.</p>
+    <p class="small">Zuständig für: Operator‑State, Ritual‑State, Genesis‑Parameter.</p>
+  </div>
+
+  <div class="card">
+    <h2>Execution‑Layer</h2>
+    <p>Der Execution‑Layer führt deterministische Operationen aus, die von Operatoren oder Ritualen ausgelöst werden.  
+    Jede Operation ist signiert und Teil der Audit‑Kette.</p>
+    <p class="small">Zuständig für: Write‑Ops, Transition‑Ops, Seal‑Ops.</p>
+  </div>
+
+  <div class="card">
+    <h2>Audit‑Engine</h2>
+    <p>Die Audit‑Engine rekonstruiert den vollständigen System‑State aus der Ereigniskette.  
+    Sie ist die ultimative Quelle der Wahrheit.</p>
+    <p class="small">Zuständig für: Replay, Konsistenzprüfung, Drift‑Erkennung.</p>
+  </div>
+
+  <div class="card">
+    <h2>Zusammenfassung</h2>
+    <p>Die Engine ist das deterministische Fundament der gesamten Genesis‑Plattform.  
+    Sie garantiert Integrität, Sicherheit, Reproduzierbarkeit und Audit‑Fähigkeit.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
