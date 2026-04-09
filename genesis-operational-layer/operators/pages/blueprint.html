@@ -1,19 +1,11 @@
+<!DOCTYPE html>
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>Operator Blueprint — Genesis Operational Layer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../portal.css">
-</head>
 
-<body>
-
-<div id="header"></div>
-<script>
-  fetch("../../../header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
-</script>
-  
   <style>
     .card {
       border: 1px solid #333;
@@ -66,7 +58,7 @@
 
 <div id="header"></div>
 <script>
-  fetch("../header.html")
+  fetch("../../../header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
@@ -77,14 +69,12 @@
   <h1>Operator Blueprint</h1>
   <p class="small">Maschinenlesbare Grunddefinition eines Operators im Genesis Operational Layer.</p>
 
-  <!-- Overview -->
   <div class="card">
     <h2>Beschreibung</h2>
     <p>Der Operator‑Blueprint definiert die minimale, deterministische Struktur eines Operators innerhalb des Genesis Operational Layers.  
     Er ist maschinenlesbar, audit‑fähig und bildet die Grundlage für Rollen, Berechtigungen und Operator‑Zustände.</p>
   </div>
 
-  <!-- Properties Table -->
   <div class="card">
     <h2>Blueprint‑Struktur</h2>
     <table>
@@ -160,7 +150,6 @@
     </table>
   </div>
 
-  <!-- Example Operator -->
   <div class="card">
     <h2>Beispiel‑Operator</h2>
     <p>Ein deterministisches Beispielobjekt, das exakt dem Blueprint‑Schema entspricht:</p>
@@ -180,7 +169,6 @@
     </div>
   </div>
 
-  <!-- Schema Raw -->
   <div class="card">
     <h2>Original‑Schema (JSON)</h2>
     <p class="small">Für vollständige maschinelle Verarbeitung.</p>
@@ -213,3 +201,4 @@
 
 </body>
 </html>
+
