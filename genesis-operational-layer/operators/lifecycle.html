@@ -38,6 +38,10 @@
       margin-bottom: 1.5rem;
       line-height: 1.4;
     }
+    ul {
+      margin-top: .4rem;
+      margin-bottom: .4rem;
+    }
   </style>
 </head>
 
@@ -54,52 +58,210 @@
 
   <span class="tag">Operators</span>
   <h1>Operator Lifecycle</h1>
-  <p class="small">Lebenszyklus eines Operators im Genesis Operational Layer.</p>
+  <p class="small">Lebenszyklus eines Operators innerhalb der Genesis‑Engine.</p>
 
-  <!-- Overview -->
   <div class="card">
-    <h2>Beschreibung</h2>
-    <p>Der Operator‑Lifecycle beschreibt die vollständige Existenz eines Operators innerhalb des Genesis Operational Layers — von der Erzeugung über Aktivierung, Rollen‑Zuweisung, Drift‑Überwachung bis zur Deaktivierung.</p>
+    <h2>Überblick</h2>
+    <p>Der Operator‑Lifecycle beschreibt alle technischen Phasen, die ein Operator innerhalb der Genesis‑Engine durchläuft.  
+    Jede Phase ist deterministisch, signiert und vollständig auditierbar. Der Lifecycle bildet die Grundlage für Operator‑Management, Berechtigungsprüfung und State‑Rekonstruktion.</p>
   </div>
 
-  <!-- Lifecycle Diagram -->
   <div class="card">
-    <h2>Lifecycle‑Diagramm</h2>
+    <h2>1. Erstellung eines Operators</h2>
+    <h3>1.1 Initiale Erzeugung</h3>
+    <p>Ein Operator wird durch folgende Schritte erzeugt:</p>
+    <ul>
+      <li>Generierung einer <code>operatorId</code></li>
+      <li>Erzeugung eines Ed25519‑Schlüsselpaares</li>
+      <li>Zuweisung einer Rolle</li>
+      <li>Erstellung eines Seals (signiertes Identitäts‑Artefakt)</li>
+      <li>Initiale Vergabe von Permissions</li>
+      <li>Setzen von <code>active = true</code></li>
+    </ul>
+
+    <h3>1.2 Audit‑Eintrag</h3>
+    <p>Die Engine erzeugt:</p>
+    <ul>
+      <li><code>operator_created</code> Event</li>
+      <li>SHA‑256‑Hash</li>
+      <li>Ketten‑Hash</li>
+      <li>Ed25519‑Signatur</li>
+      <li>Zeitstempel</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Rollenverwaltung</h2>
+    <h3>2.1 Rollenvergabe</h3>
+    <p>Eine Rolle wird einem Operator zugewiesen:</p>
+    <ul>
+      <li><code>role_assigned</code> Event</li>
+      <li>Aktualisierung des Operator‑State</li>
+      <li>Signatur durch autorisierten Operator</li>
+    </ul>
+
+    <h3>2.2 Rollenänderung</h3>
+    <p>Eine bestehende Rolle wird ersetzt:</p>
+    <ul>
+      <li><code>role_changed</code> Event</li>
+      <li>deterministische State‑Rekonstruktion</li>
+    </ul>
+
+    <h3>2.3 Rollenmodell</h3>
+    <p>Gültige Rollen:</p>
+    <ul>
+      <li><code>GENESIS_OPERATOR</code></li>
+      <li><code>RITUAL_OPERATOR</code></li>
+      <li><code>PAYOUT_OPERATOR</code></li>
+      <li><code>ECHO_OPERATOR</code></li>
+      <li><code>SKELETTON_OPERATOR</code></li>
+      <li><code>AUDIT_OPERATOR</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3. Berechtigungsverwaltung</h2>
+    <h3>3.1 Vergabe von Permissions</h3>
+    <p>Ein Operator erhält zusätzliche Berechtigungen:</p>
+    <ul>
+      <li><code>permission_granted</code> Event</li>
+      <li>Aktualisierung des State</li>
+    </ul>
+
+    <h3>3.2 Entzug von Permissions</h3>
+    <p>Eine Berechtigung wird entfernt:</p>
+    <ul>
+      <li><code>permission_revoked</code> Event</li>
+    </ul>
+
+    <h3>3.3 Permission‑Sets</h3>
+    <p>Granulare Berechtigungen:</p>
+    <ul>
+      <li><code>canTriggerRituals</code></li>
+      <li><code>canWriteEcho</code></li>
+      <li><code>canAuthorizePayouts</code></li>
+      <li><code>canModifyOperators</code></li>
+      <li><code>canModifyGenesis</code></li>
+      <li><code>canModifySkeletton</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Seal‑Management</h2>
+    <h3>4.1 Seal‑Erzeugung</h3>
+    <p>Ein neues Seal wird generiert:</p>
+    <ul>
+      <li><code>seal_generated</code> Event</li>
+      <li>Signatur durch autorisierten Operator</li>
+    </ul>
+
+    <h3>4.2 Seal‑Rotation</h3>
+    <p>Ein bestehendes Seal kann ersetzt werden, z. B. bei Schlüsselrotation.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Aktivierung &amp; Deaktivierung</h2>
+    <h3>5.1 Deaktivierung</h3>
+    <p>Ein Operator wird deaktiviert:</p>
+    <ul>
+      <li><code>operator_disabled</code> Event</li>
+      <li>State: <code>active = false</code></li>
+    </ul>
+
+    <h3>5.2 Reaktivierung</h3>
+    <p>Optional möglich, abhängig von Engine‑Regeln.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Audit‑Integration</h2>
+    <h3>6.1 Audit‑Trigger</h3>
+    <p>Jede Operator‑Aktion erzeugt:</p>
+    <ul>
+      <li>Event‑Hash</li>
+      <li>Ketten‑Hash</li>
+      <li>Ed25519‑Signatur</li>
+      <li>Zeitstempel</li>
+    </ul>
+
+    <h3>6.2 Audit‑Kette</h3>
+    <p>Die Operator‑Audit‑Kette ist eine verkettete Hash‑Struktur:</p>
     <div class="diagram">
-Operator Lifecycle
-│
-├─ 1. Blueprint Creation
-│     └─ Operator wird deterministisch erzeugt
-│
-├─ 2. Seal Assignment
-│     └─ Identitäts‑Artefakt wird signiert
-│
-├─ 3. Role Binding
-│     └─ Rolle + Berechtigungen werden zugewiesen
-│
-├─ 4. Activation
-│     └─ Operator wird aktiv und betritt den Operational Layer
-│
-├─ 5. Operational Phase
-│     ├─ Ritual‑Teilnahme
-│     ├─ Echo‑Schreiben
-│     ├─ Payout‑Autorisierung
-│     └─ Drift‑Überwachung
-│
-├─ 6. Drift Handling
-│     └─ Driftpoints, Audit‑Protokolle, Korrekturpfade
-│
-└─ 7. Deactivation
-      └─ Operator wird deaktiviert, bleibt aber historisch erhalten
+SHA256(event1 + event2 + event3 + ...)
     </div>
+
+    <h3>6.3 Reproduktion</h3>
+    <p>Der Operator‑State wird vollständig aus der Audit‑Kette rekonstruiert:</p>
+    <ul>
+      <li>Rolle</li>
+      <li>Seal</li>
+      <li>Permissions</li>
+      <li>Aktivierungsstatus</li>
+    </ul>
   </div>
 
-  <!-- Placeholder for MD content -->
   <div class="card">
-    <h2>Lifecycle‑Dokumentation</h2>
-    <p class="small">Dieser Abschnitt wird automatisch aus <code>operator-lifecycle.md</code> generiert.</p>
+    <h2>7. Fehlerklassen</h2>
+    <ul>
+      <li><code>HashMismatch</code> – Hash stimmt nicht</li>
+      <li><code>InvalidSignature</code> – Signatur ungültig</li>
+      <li><code>MissingEvent</code> – Ereignis fehlt</li>
+      <li><code>DriftDetected</code> – State widerspricht Audit‑Kette</li>
+      <li><code>PermissionViolation</code> – fehlende Berechtigung</li>
+      <li><code>UnknownOperator</code> – Operator existiert nicht</li>
+      <li><code>SealMismatch</code> – Seal ungültig</li>
+    </ul>
+  </div>
 
-    <p><em>Bitte sende mir den Inhalt der Datei, damit ich ihn hier vollständig einbetten kann.</em></p>
+  <div class="card">
+    <h2>8. Engine‑Integration</h2>
+    <h3>8.1 Genesis</h3>
+    <p>Nur Operatoren mit:</p>
+    <ul>
+      <li><code>GENESIS_OPERATOR</code></li>
+      <li><code>canModifyGenesis</code></li>
+    </ul>
+    <p>dürfen Genesis‑Parameter ändern.</p>
+
+    <h3>8.2 Rituale</h3>
+    <p>Rituale erfordern:</p>
+    <ul>
+      <li><code>RITUAL_OPERATOR</code></li>
+      <li><code>canTriggerRituals</code></li>
+    </ul>
+
+    <h3>8.3 Echo‑Registry</h3>
+    <p>Echo‑Writes erfordern:</p>
+    <ul>
+      <li><code>ECHO_OPERATOR</code></li>
+      <li><code>canWriteEcho</code></li>
+    </ul>
+
+    <h3>8.4 Payouts</h3>
+    <p>Payout‑Ereignisse erfordern:</p>
+    <ul>
+      <li><code>PAYOUT_OPERATOR</code></li>
+      <li><code>canAuthorizePayouts</code></li>
+    </ul>
+
+    <h3>8.5 Skeletton</h3>
+    <p>Drift‑Signale erfordern:</p>
+    <ul>
+      <li><code>SKELETTON_OPERATOR</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>9. Zusammenfassung</h2>
+    <p>Der Operator‑Lifecycle definiert:</p>
+    <ul>
+      <li>wie Operatoren entstehen</li>
+      <li>wie sie verändert werden</li>
+      <li>wie sie autorisiert werden</li>
+      <li>wie sie deaktiviert werden</li>
+      <li>wie ihr Zustand rekonstruiert wird</li>
+      <li>wie jede Aktion auditierbar bleibt</li>
+    </ul>
+    <p>Er bildet die technische Grundlage für Governance, Sicherheit und deterministische Kontrolle innerhalb der Genesis‑Engine.</p>
   </div>
 
 </div>
