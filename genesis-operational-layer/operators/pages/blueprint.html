@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>Operator Blueprint — Genesis Operational Layer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
+  <link rel="stylesheet" href="../../../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+  
   <style>
     .card {
       border: 1px solid #333;
