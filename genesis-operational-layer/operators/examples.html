@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operator Examples — Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+      transition: background .2s, border-color .2s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #555;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    .json-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      white-space: pre;
+      overflow-x: auto;
+      font-family: monospace;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">Operators</span>
+  <h1>Operator Examples</h1>
+  <p class="small">Beispielhafte Operator‑Objekte für Tests, Simulationen und Engine‑Validierung.</p>
+
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Diese Seite enthält deterministische Beispiel‑Operatoren, die exakt dem Operator‑Blueprint entsprechen.  
+    Sie dienen als Referenz für Engine‑Tests, State‑Rekonstruktion, Audit‑Validierung und Dokumentation.</p>
+  </div>
+
+  <!-- Example 1 -->
+  <div class="card">
+    <h2>Beispiel 1 — Ritual Operator</h2>
+    <p>Ein minimaler Ritual‑Operator mit zwei Permissions.</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-7F3A9C12B4",
+  "publicKey": "ed25519:9f8c1d7a3b2e4f6a9d1c0b7e3f2a9c8d7b6a5f4c3e2b1a0f9d8c7b6a5f4e3d2",
+  "role": "RITUAL_OPERATOR",
+  "seal": "SEAL-0xA7C9F1E2D4B8",
+  "permissions": [
+    "canTriggerRituals",
+    "canWriteEcho"
+  ],
+  "active": true
+}
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="card">
+    <h2>Beispiel 2 — Genesis Operator</h2>
+    <p>Ein Operator mit erweiterten Berechtigungen für Genesis‑Modifikationen.</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-11AA22BB33",
+  "publicKey": "ed25519:ab12cd34ef56ab78cd90ef12ab34cd56ef78ab90cd12ef34ab56cd78ef90ab1",
+  "role": "GENESIS_OPERATOR",
+  "seal": "SEAL-0xF1D2C3B4A596",
+  "permissions": [
+    "canModifyGenesis",
+    "canModifyOperators"
+  ],
+  "active": true
+}
+    </div>
+  </div>
+
+  <!-- Example 3 -->
+  <div class="card">
+    <h2>Beispiel 3 — Audit Operator</h2>
+    <p>Ein Operator, der ausschließlich für Audit‑Ketten und State‑Rekonstruktion zuständig ist.</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-AUD9911CC",
+  "publicKey": "ed25519:cc77dd88ee99ff00112233445566778899aabbccddeeff001122334455667788",
+  "role": "AUDIT_OPERATOR",
+  "seal": "SEAL-0xC0FFEE123456",
+  "permissions": [
+    "canModifyOperators"
+  ],
+  "active": true
+}
+    </div>
+  </div>
+
+  <!-- Example 4 -->
+  <div class="card">
+    <h2>Beispiel 4 — Deaktivierter Operator</h2>
+    <p>Ein Operator, der deaktiviert wurde, aber weiterhin in der Audit‑Kette existiert.</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-4455DEAD77",
+  "publicKey": "ed25519:deadbeefcafebabefeedface11223344556677889900aabbccddeeff00112233",
+  "role": "ECHO_OPERATOR",
+  "seal": "SEAL-0xDEADFA11C0DE",
+  "permissions": [
+    "canWriteEcho"
+  ],
+  "active": false
+}
+    </div>
+  </div>
+
+  <!-- Example 5 -->
+  <div class="card">
+    <h2>Beispiel 5 — Skeletton Operator</h2>
+    <p>Ein Operator, der Drift‑Signale und Skeletton‑Strukturen verwaltet.</p>
+
+    <div class="json-block">
+{
+  "operatorId": "OPR-SKL888222",
+  "publicKey": "ed25519:1122aabb3344ccdd5566eeff77889900aabbccddeeff00112233445566778899",
+  "role": "SKELETTON_OPERATOR",
+  "seal": "SEAL-0xB0NE1234FACE",
+  "permissions": [
+    "canModifySkeletton"
+  ],
+  "active": true
+}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Zusammenfassung</h2>
+    <p>Die Beispiel‑Operatoren zeigen typische Konfigurationen für:</p>
+    <ul>
+      <li>Rituale</li>
+      <li>Genesis‑Modifikationen</li>
+      <li>Audit‑Kontrolle</li>
+      <li>Echo‑Registry</li>
+      <li>Skeletton‑Drift</li>
+      <li>Deaktivierte Operatoren</li>
+    </ul>
+    <p>Sie dienen als Grundlage für Engine‑Tests, Simulationen und Dokumentation.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
