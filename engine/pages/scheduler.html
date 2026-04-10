@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Scheduler — Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Scheduler</h1>
+
+  <p>
+    Der Scheduler orchestriert zeit‑ oder ereignisbasierte Abläufe innerhalb der Engine.
+    Er garantiert deterministische Reihenfolgen und verhindert Race‑Conditions.
+  </p>
+
+  <h2>Zuständig für</h2>
+  <ul>
+    <li>Ritual‑Trigger</li>
+    <li>Payout‑Zyklen</li>
+    <li>Echo‑Flushes</li>
+  </ul>
+</div>
+
+</body>
+</html>
