@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Audit‑Engine — Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Audit‑Engine</h1>
+
+  <p>
+    Die Audit‑Engine rekonstruiert den vollständigen System‑State aus der Ereigniskette.
+    Sie ist die ultimative Quelle der Wahrheit.
+  </p>
+
+  <h2>Zuständig für</h2>
+  <ul>
+    <li>Replay</li>
+    <li>Konsistenzprüfung</li>
+    <li>Drift‑Erkennung</li>
+  </ul>
+</div>
+
+</body>
+</html>
