@@ -2,41 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>CoreCraftGenesis — Engine</title>
+  <title>Chain2025 — Chronik</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/portal.css">
-  <style>
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .card {
-      background: #11151f;
-      padding: 1.4rem;
-      border-radius: 10px;
-      border: 1px solid #1f2633;
-      transition: 0.2s ease;
-    }
-    .card:hover {
-      border-color: #7fd4ff;
-      box-shadow: 0 0 12px #7fd4ff33;
-    }
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: .5rem;
-      font-size: 1.3rem;
-    }
-    .card p {
-      opacity: .85;
-      margin-bottom: 1rem;
-    }
-    .card a {
-      color: #7fd4ff;
-      font-weight: 600;
-    }
-  </style>
 </head>
 
 <body>
@@ -50,57 +18,46 @@
 
 <div class="wrap">
   <span class="tag">Chain2025</span>
-  <h1>CoreCraftGenesis — Engine</h1>
+  <h1>Chronik</h1>
 
-  <p>Die deterministische Ausführungs‑ und Validierungsmaschine der Genesis‑Plattform.</p>
+  <p>Dynamische Timeline aus <code>chronik.json</code>.</p>
 
-  <div class="grid">
-
-    <div class="card">
-      <h3>Runtime</h3>
-      <p>Deterministischer Kern der Engine. Führt Operator‑Aktionen, Rituale und State‑Übergänge aus.</p>
-      <a href="/engine/pages/runtime.html">Öffnen →</a>
-    </div>
-
-    <div class="card">
-      <h3>Scheduler</h3>
-      <p>Orchestriert zeit‑ und ereignisbasierte Abläufe. Garantiert deterministische Reihenfolgen.</p>
-      <a href="/engine/pages/scheduler.html">Öffnen →</a>
-    </div>
-
-    <div class="card">
-      <h3>Validator</h3>
-      <p>Prüft Rollen, Permissions und Audit‑Regeln. Sicherheitskritischer Kern.</p>
-      <a href="/engine/pages/validator.html">Öffnen →</a>
-    </div>
-
-    <div class="card">
-      <h3>State‑Machine</h3>
-      <p>Definiert erlaubte Zustände und Übergänge. Vollständig deterministisch.</p>
-      <a href="/engine/pages/state-machine.html">Öffnen →</a>
-    </div>
-
-    <div class="card">
-      <h3>Execution‑Layer</h3>
-      <p>Führt deterministische Operationen aus. Jede Operation signiert und audit‑fähig.</p>
-      <a href="/engine/pages/execution-layer.html">Öffnen →</a>
-    </div>
-
-    <div class="card">
-      <h3>Audit‑Engine</h3>
-      <p>Rekonstruiert den vollständigen System‑State. Ultimative Quelle der Wahrheit.</p>
-      <a href="/engine/pages/audit-engine.html">Öffnen →</a>
-    </div>
-
-  </div>
-
-  <h2 style="margin-top:3rem;">Zusammenfassung</h2>
-  <p>
-    Die Engine ist das deterministische Fundament der gesamten Genesis‑Plattform.
-    Sie garantiert Integrität, Sicherheit, Reproduzierbarkeit und Audit‑Fähigkeit.
+  <p style="opacity:.85; margin-top:1rem;">
+    Die Chronik ist das operative Gedächtnis der Genesis‑Plattform.
+    Sie zeigt alle signierten Ereignisse, Rituale und State‑Transitions
+    in ihrer exakten zeitlichen Reihenfolge — vollständig deterministisch
+    und reproduzierbar.
   </p>
+
+  <div id="timeline" class="timeline"></div>
 </div>
+
+<script>
+  fetch("chronik.json")
+    .then(r => r.json())
+    .then(data => {
+      const t = document.getElementById("timeline");
+      const events = [];
+
+      events.push(data.chain2025.genesis);
+      data.chain2025.echo.forEach(e => events.push(e));
+      events.push(data.chain2025.closure);
+
+      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      events.forEach(ev => {
+        t.innerHTML += `
+          <div class="entry">
+            <div class="date">${ev.id}</div>
+            <div class="title">${ev.title}</div>
+            <div class="desc">${ev.description}</div>
+          </div>
+        `;
+      });
+    });
+</script>
 
 </body>
 </html>
+
 
