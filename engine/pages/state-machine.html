@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>State‑Machine — Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>State‑Machine</h1>
+
+  <p>
+    Die State‑Machine definiert alle erlaubten Zustände und Übergänge der Engine‑Objekte.
+    Sie ist vollständig deterministisch und audit‑fähig.
+  </p>
+
+  <h2>Zuständig für</h2>
+  <ul>
+    <li>Operator‑State</li>
+    <li>Ritual‑State</li>
+    <li>Genesis‑Parameter</li>
+  </ul>
+</div>
+
+</body>
+</html>
