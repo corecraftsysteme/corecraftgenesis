@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Execution‑Layer — Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Execution‑Layer</h1>
+
+  <p>
+    Der Execution‑Layer führt deterministische Operationen aus, die von Operatoren
+    oder Ritualen ausgelöst werden. Jede Operation ist signiert und Teil der Audit‑Kette.
+  </p>
+
+  <h2>Zuständig für</h2>
+  <ul>
+    <li>Write‑Ops</li>
+    <li>Transition‑Ops</li>
+    <li>Seal‑Ops</li>
+  </ul>
+</div>
+
+</body>
+</html>
