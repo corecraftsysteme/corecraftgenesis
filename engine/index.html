@@ -5,6 +5,38 @@
   <title>CoreCraftGenesis — Engine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/portal.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #11151f;
+      padding: 1.4rem;
+      border-radius: 10px;
+      border: 1px solid #1f2633;
+      transition: 0.2s ease;
+    }
+    .card:hover {
+      border-color: #7fd4ff;
+      box-shadow: 0 0 12px #7fd4ff33;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+      font-size: 1.3rem;
+    }
+    .card p {
+      opacity: .85;
+      margin-bottom: 1rem;
+    }
+    .card a {
+      color: #7fd4ff;
+      font-weight: 600;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,17 +54,47 @@
 
   <p>Die deterministische Ausführungs‑ und Validierungsmaschine der Genesis‑Plattform.</p>
 
-  <h2>Module</h2>
-  <ul>
-    <li><a href="/engine/pages/runtime.html">Runtime</a></li>
-    <li><a href="/engine/pages/scheduler.html">Scheduler</a></li>
-    <li><a href="/engine/pages/validator.html">Validator</a></li>
-    <li><a href="/engine/pages/state-machine.html">State‑Machine</a></li>
-    <li><a href="/engine/pages/execution-layer.html">Execution‑Layer</a></li>
-    <li><a href="/engine/pages/audit-engine.html">Audit‑Engine</a></li>
-  </ul>
+  <div class="grid">
 
-  <h2>Zusammenfassung</h2>
+    <div class="card">
+      <h3>Runtime</h3>
+      <p>Deterministischer Kern der Engine. Führt Operator‑Aktionen, Rituale und State‑Übergänge aus.</p>
+      <a href="/engine/pages/runtime.html">Öffnen →</a>
+    </div>
+
+    <div class="card">
+      <h3>Scheduler</h3>
+      <p>Orchestriert zeit‑ und ereignisbasierte Abläufe. Garantiert deterministische Reihenfolgen.</p>
+      <a href="/engine/pages/scheduler.html">Öffnen →</a>
+    </div>
+
+    <div class="card">
+      <h3>Validator</h3>
+      <p>Prüft Rollen, Permissions und Audit‑Regeln. Sicherheitskritischer Kern.</p>
+      <a href="/engine/pages/validator.html">Öffnen →</a>
+    </div>
+
+    <div class="card">
+      <h3>State‑Machine</h3>
+      <p>Definiert erlaubte Zustände und Übergänge. Vollständig deterministisch.</p>
+      <a href="/engine/pages/state-machine.html">Öffnen →</a>
+    </div>
+
+    <div class="card">
+      <h3>Execution‑Layer</h3>
+      <p>Führt deterministische Operationen aus. Jede Operation signiert und audit‑fähig.</p>
+      <a href="/engine/pages/execution-layer.html">Öffnen →</a>
+    </div>
+
+    <div class="card">
+      <h3>Audit‑Engine</h3>
+      <p>Rekonstruiert den vollständigen System‑State. Ultimative Quelle der Wahrheit.</p>
+      <a href="/engine/pages/audit-engine.html">Öffnen →</a>
+    </div>
+
+  </div>
+
+  <h2 style="margin-top:3rem;">Zusammenfassung</h2>
   <p>
     Die Engine ist das deterministische Fundament der gesamten Genesis‑Plattform.
     Sie garantiert Integrität, Sicherheit, Reproduzierbarkeit und Audit‑Fähigkeit.
