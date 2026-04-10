@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Runtime — Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Runtime</h1>
+
+  <p>
+    Die Runtime ist der deterministische Kern der Engine.
+    Sie führt Operator‑Aktionen, Rituale, State‑Übergänge und Audit‑Events aus —
+    vollständig reproduzierbar und signiert.
+  </p>
+
+  <h2>Zuständig für</h2>
+  <ul>
+    <li>Execution</li>
+    <li>State‑Updates</li>
+    <li>Hash‑Ketten</li>
+    <li>Signaturen</li>
+  </ul>
+</div>
+
+</body>
+</html>
