@@ -14,7 +14,63 @@
   fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
+<script>
+/* ---------------------------------------------------------
+   GENESIS ENGINE LAYER — CHRONIK MODULE
+   Deterministic Event Loader + Renderer
+--------------------------------------------------------- */
+
+const ChronikEngine = (() => {
+
+  const registry = {
+    requiredRoots: ["chain2025"],
+    requiredFields: ["id", "title", "description", "timestamp"]
+  };
+
+  function validateEvent(ev) {
+    registry.requiredFields.forEach(f => {
+      if (!ev[f]) throw new Error(`Chronik: Missing field '${f}' in event`);
+    });
+  }
+
+  async function load(url) {
+    const raw = await fetch(url).then(r => r.json());
+
+    if (!raw.chain2025) {
+      throw new Error("Chronik: Missing root 'chain2025'");
+    }
+
+    const events = [];
+
+    events.push(raw.chain2025.genesis);
+    raw.chain2025.echo.forEach(e => events.push(e));
+    events.push(raw.chain2025.closure);
+
+    events.forEach(validateEvent);
+
+    events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+    return events;
+  }
+
+  function render(events, targetId = "timeline") {
+    const t = document.getElementById(targetId);
+    if (!t) throw new Error("Chronik: target element not found");
+
+    t.innerHTML = events.map(ev => `
+      <div class="entry">
+        <div class="date">${ev.id}</div>
+        <div class="title">${ev.title}</div>
+        <div class="desc">${ev.description}</div>
+      </div>
+    `).join("");
+  }
+
+  return { load, render };
+
+})();
 </script>
+
 
 <div class="wrap">
   <span class="tag">Chain2025</span>
@@ -55,6 +111,13 @@
         `;
       });
     });
+</script>
+  
+<script>
+  ChronikEngine
+    .load("chronik.json")
+    .then(events => ChronikEngine.render(events))
+    .catch(err => console.error(err));
 </script>
 
 </body>
