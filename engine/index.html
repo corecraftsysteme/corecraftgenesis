@@ -14,8 +14,8 @@
   fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
-</script>   <!-- ✅ korrekt geschlossen -->
-  
+</script>
+
 <script>
 /* ---------------------------------------------------------
    GENESIS ENGINE LAYER — CHRONIK MODULE
@@ -73,7 +73,6 @@ const ChronikEngine = (() => {
 })();
 </script>
 
-
 <div class="wrap">
   <span class="tag">Chain2025</span>
   <h1>Chronik</h1>
@@ -89,7 +88,7 @@ const ChronikEngine = (() => {
 
   <div id="timeline" class="timeline"></div>
 </div>
-  
+
 <script>
   ChronikEngine
     .load("chronik.json")
