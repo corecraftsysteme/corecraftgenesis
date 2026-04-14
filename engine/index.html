@@ -14,6 +14,8 @@
   fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
+</script>   <!-- ✅ korrekt geschlossen -->
+  
 <script>
 /* ---------------------------------------------------------
    GENESIS ENGINE LAYER — CHRONIK MODULE
@@ -87,31 +89,6 @@ const ChronikEngine = (() => {
 
   <div id="timeline" class="timeline"></div>
 </div>
-
-<script>
-  fetch("chronik.json")
-    .then(r => r.json())
-    .then(data => {
-      const t = document.getElementById("timeline");
-      const events = [];
-
-      events.push(data.chain2025.genesis);
-      data.chain2025.echo.forEach(e => events.push(e));
-      events.push(data.chain2025.closure);
-
-      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
-      events.forEach(ev => {
-        t.innerHTML += `
-          <div class="entry">
-            <div class="date">${ev.id}</div>
-            <div class="title">${ev.title}</div>
-            <div class="desc">${ev.description}</div>
-          </div>
-        `;
-      });
-    });
-</script>
   
 <script>
   ChronikEngine
