@@ -129,7 +129,138 @@ Wenn sich einer dieser Werte ändern würde, wäre es nicht mehr dieselbe Chain.
 
   <div class="card">
     <h2>Validator‑Set</h2>
-    <p>Die Genesis enthält das erste Validator‑Set:</p>
+    <p>1. ChainID
+Die ChainID ist die eindeutige Kennung der Chain.
+Sie dient mehreren technischen Zwecken:
+
+verhindert Kollisionen zwischen verschiedenen Chains
+
+definiert die Zugehörigkeit aller Blöcke und Zustände
+
+wird in Signaturen, Hashes und Netzwerkpaketen verwendet
+
+ist Teil der deterministischen Engine‑Konfiguration
+
+ist Grundlage für Cross‑Chain‑Isolation und Interoperabilität
+
+Die ChainID ist unveränderlich.
+Eine Änderung würde eine neue Chain erzeugen, nicht eine Fortsetzung der bestehenden.
+
+2. Netzwerk‑Konfiguration
+Die Genesis definiert die grundlegenden Netzwerkparameter, die bestimmen, wie die Chain operiert:
+
+Netzwerktyp (lokal, isoliert, öffentlich, hybrid)
+
+Kommunikations‑ und Synchronisationsregeln
+
+Discovery‑Mechanismen
+
+Validierungs‑ und Konsensparameter
+
+Timing‑ und Latenzanforderungen
+
+Sicherheits‑ und Zugriffskontrollmodelle
+
+Diese Konfiguration legt fest:
+
+wie Nodes miteinander kommunizieren
+
+wie Zustände verteilt werden
+
+wie Blöcke propagiert werden
+
+wie Konsens erreicht wird
+
+wie das Netzwerk auf Fehler reagiert
+
+Die Netzwerk‑Konfiguration ist Teil der Identität und darf nicht verändert werden, ohne die Chain zu invalidieren.
+
+3. Namensraum der Engine
+Der Engine‑Namensraum definiert den logischen Raum, in dem:
+
+Module
+
+Systeme
+
+Rituale
+
+Operatoren
+
+Datenstrukturen
+
+Policies
+
+Erweiterungen
+
+existieren und miteinander interagieren.
+
+Er legt fest:
+
+wie Komponenten adressiert werden
+
+wie sie versioniert werden
+
+wie sie voneinander isoliert sind
+
+wie sie miteinander kompatibel bleiben
+
+wie sie in der Runtime verankert sind
+
+Der Namensraum ist die semantische Identität der Engine.
+Er bestimmt, welche Art von Engine läuft und welche Regeln für sie gelten.
+
+4. Unveränderlichkeit der Chain Identity
+Alle Identitätsparameter der Genesis sind permanent:
+
+Sie können nicht überschrieben werden.
+
+Sie können nicht migriert werden.
+
+Sie können nicht „gepatcht“ werden.
+
+Sie können nicht dynamisch angepasst werden.
+
+Eine Änderung würde technisch bedeuten:
+
+Es entsteht eine neue Chain.
+
+Damit ist die Chain Identity der stabile Ankerpunkt, auf dem alle späteren Zustände aufbauen.
+
+5. Bedeutung für spätere Zustände
+Jeder spätere Zustand der Engine muss:
+
+logisch
+
+deterministisch
+
+auditierbar
+
+kryptografisch ableitbar
+
+mit der Chain Identity kompatibel sein.
+
+Wenn ein Zustand nicht mit der Chain Identity übereinstimmt, ist er:
+
+ungültig,
+
+nicht verifizierbar,
+
+nicht Teil der Chain,
+
+nicht ausführbar.
+
+6. Rolle in der Genesis
+Die Chain Identity ist ein integraler Bestandteil der Genesis:
+
+Sie definiert die Engine‑Existenz.
+
+Sie legt die Struktur der Runtime fest.
+
+Sie bestimmt die Regeln der Transitionen.
+
+Sie bildet die Grundlage für Audit‑ und Sicherheitsmechanismen.
+
+Sie ist der Ursprung aller späteren Kausalität.</p>
     <ul>
       <li>Validator‑Schlüssel</li>
       <li>Signaturen des Genesis‑Blocks</li>
