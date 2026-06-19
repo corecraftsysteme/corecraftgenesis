@@ -1,409 +1,183 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>CoreCraftGenesis — Genesis</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
-  <style>
-    .card {
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 1.5rem;
-      transition: background .2s, border-color .2s;
-    }
-    .card:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: #555;
-    }
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: .5rem;
-    }
-    .small {
-      opacity: .7;
-      font-size: .9rem;
-      margin-top: .5rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>CoreCraft Genesis – Artefaktübersicht</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg: #05060a;
+            --card: #0f1117;
+            --accent: #4fd1c5;
+            --accent-soft: rgba(79, 209, 197, 0.12);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: #1f2933;
+            --danger: #f97373;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+            color: var(--text);
+        }
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 32px 16px 64px;
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .title {
+            font-size: 1.9rem;
+            font-weight: 650;
+            letter-spacing: 0.03em;
+        }
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.8rem;
+            border: 1px solid rgba(79, 209, 197, 0.4);
+        }
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+            gap: 20px;
+        }
+        @media (max-width: 840px) {
+            main { grid-template-columns: minmax(0, 1fr); }
+        }
+        .card {
+            background: linear-gradient(145deg, rgba(15,17,23,0.98), rgba(8,10,16,0.98));
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 16px 18px 18px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+        }
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #e5e7ff;
+        }
+        .card p {
+            margin: 0 0 10px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+        }
+        .list li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(31,41,51,0.9);
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .list li:last-child { border-bottom: none; }
+        .list a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .list a:hover {
+            text-decoration: underline;
+        }
+        .pill {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        .pill strong {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+        .badge-danger {
+            color: var(--danger);
+            font-size: 0.8rem;
+        }
+        .mono {
+            font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.8rem;
+        }
+    </style>
 </head>
-
 <body>
-
-<div id="header"></div>
-<script>
-  fetch("../header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
-</script>
-
-<div class="wrap">
-  <span class="tag">CoreCraftGenesis</span>
-  <h1>Genesis</h1>
-  <p class="small">Der Ursprung jeder Chain — deterministisch, einmalig, audit‑versiegelt.</p>
-
-  <div class="card">
-    <h2>Rolle der Genesis</h2>
-    <p>Alles klar, Daniel — du willst den Text **bereinigen**, **präzisieren** und **den internen M‑Layer‑Bezug (M001)** **entfernen**, weil der Abschnitt als **Webtext für corecraft** gedacht ist und dort **keine internen Modul‑Bezeichnungen** wie *M001* erscheinen dürfen.
-
-Ich gebe dir jetzt die **saubere, externe, publikationsfähige Version**, ohne interne Engine‑Referenzen, aber mit derselben technischen Schärfe.
-
----
-
-# **Genesis – der erste gültige Zustand der gesamten Engine‑Existenz**
-
-Genesis ist der **Ursprung aller Kausalität** innerhalb der Chain.  
-Sie ist nicht einfach „der erste Block“, sondern der **erste definierte Zustand**, aus dem sich jede spätere Struktur logisch ableiten muss.
-
-Genesis ist:
-
-- **der erste definierte Zustand**  
-  → Der Ausgangspunkt der gesamten Engine‑Ontologie.
-
-- **der erste gültige Zustand**  
-  → Ohne Genesis existiert keine Chain, keine Runtime, keine Transition.
-
-- **der erste auditierbare Zustand**  
-  → Genesis bildet den Ursprung der Audit‑Kette.
-
-- **der erste deterministische Zustand**  
-  → Genesis ist bit‑identisch reproduzierbar und bildet die deterministische Basis der Engine.
-
-Alles, was später geschieht — jeder Block, jedes Ritual, jede Transition, jede State‑Änderung — muss **mathematisch, logisch und auditierbar** auf die Genesis zurückführbar sein.
-
-> **Wenn ein Zustand nicht auf die Genesis zurückführbar ist, ist er ungültig.**
-
-Damit ist Genesis der **Root‑Hash der gesamten Engine‑Existenz**.
-
----
-
-Wenn du willst, kann ich dir jetzt:
-
-- eine **Version für Marketing**,  
-- eine **Version für technische Dokumentation**,  
-- eine **Version für die Engine‑Spezifikation**,  
-- oder eine **grafische Darstellung der Genesis‑Kausalität**  
-
-erstellen.</p>
-  </div>
-
-  <div class="card">
-    <h2>Chain Identity</h2>
-    <p>Die Genesis legt die Identität der Chain fest.
-Sie definiert die grundlegenden Parameter, die bestimmen, welche Chain existiert und wie sie sich verhält.
-
-Diese Identitätsmerkmale umfassen:
-
-ChainID  
-Die eindeutige Kennung der Chain. Sie bestimmt, welche Chain gemeint ist und verhindert Kollisionen mit anderen Netzwerken.
-
-Netzwerk‑Konfiguration  
-Die grundlegenden Netzwerkparameter, die festlegen, wie die Chain kommuniziert, synchronisiert und validiert wird.
-
-Namensraum der Engine  
-Der logische Raum, in dem alle Engine‑Komponenten, Module und Systeme operieren. Er definiert die semantische und strukturelle Umgebung der Chain.
-
-Diese Parameter sind unveränderlich.
-Sie bilden die Grundlage aller späteren Zustände, aller Blöcke, aller Rituale und aller Transitionen.
-Wenn sich einer dieser Werte ändern würde, wäre es nicht mehr dieselbe Chain.</p>
-    <ul>
-      <li>ChainID</li>
-      <li>Netzwerk‑Konfiguration</li>
-      <li>Namensraum der Engine</li>
-    </ul>
-    <p class="small">Diese Parameter sind unveränderlich und bilden die Grundlage aller späteren Zustände.</p>
-  </div>
-
-  <div class="card">
-    <h2>Initial State</h2>
-    <p>Der Anfangszustand definiert:</p>
-    <ul>
-      <li>Anfangsallokationen</li>
-      <li>System‑Konten</li>
-      <li>erste Operator‑Rollen</li>
-    </ul>
-    <p class="small">Der Initial State ist deterministisch reproduzierbar.</p>
-  </div>
-
-  <div class="card">
-    <h2>Validator‑Set</h2>
-    <p>1. ChainID
-Die ChainID ist die eindeutige Kennung der Chain.
-Sie dient mehreren technischen Zwecken:
-
-verhindert Kollisionen zwischen verschiedenen Chains
-
-definiert die Zugehörigkeit aller Blöcke und Zustände
-
-wird in Signaturen, Hashes und Netzwerkpaketen verwendet
-
-ist Teil der deterministischen Engine‑Konfiguration
-
-ist Grundlage für Cross‑Chain‑Isolation und Interoperabilität
-
-Die ChainID ist unveränderlich.
-Eine Änderung würde eine neue Chain erzeugen, nicht eine Fortsetzung der bestehenden.
-
-2. Netzwerk‑Konfiguration
-Die Genesis definiert die grundlegenden Netzwerkparameter, die bestimmen, wie die Chain operiert:
-
-Netzwerktyp (lokal, isoliert, öffentlich, hybrid)
-
-Kommunikations‑ und Synchronisationsregeln
-
-Discovery‑Mechanismen
-
-Validierungs‑ und Konsensparameter
-
-Timing‑ und Latenzanforderungen
-
-Sicherheits‑ und Zugriffskontrollmodelle
-
-Diese Konfiguration legt fest:
-
-wie Nodes miteinander kommunizieren
-
-wie Zustände verteilt werden
-
-wie Blöcke propagiert werden
-
-wie Konsens erreicht wird
-
-wie das Netzwerk auf Fehler reagiert
-
-Die Netzwerk‑Konfiguration ist Teil der Identität und darf nicht verändert werden, ohne die Chain zu invalidieren.
-
-3. Namensraum der Engine
-Der Engine‑Namensraum definiert den logischen Raum, in dem:
-
-Module
-
-Systeme
-
-Rituale
-
-Operatoren
-
-Datenstrukturen
-
-Policies
-
-Erweiterungen
-
-existieren und miteinander interagieren.
-
-Er legt fest:
-
-wie Komponenten adressiert werden
-
-wie sie versioniert werden
-
-wie sie voneinander isoliert sind
-
-wie sie miteinander kompatibel bleiben
-
-wie sie in der Runtime verankert sind
-
-Der Namensraum ist die semantische Identität der Engine.
-Er bestimmt, welche Art von Engine läuft und welche Regeln für sie gelten.
-
-4. Unveränderlichkeit der Chain Identity
-Alle Identitätsparameter der Genesis sind permanent:
-
-Sie können nicht überschrieben werden.
-
-Sie können nicht migriert werden.
-
-Sie können nicht „gepatcht“ werden.
-
-Sie können nicht dynamisch angepasst werden.
-
-Eine Änderung würde technisch bedeuten:
-
-Es entsteht eine neue Chain.
-
-Damit ist die Chain Identity der stabile Ankerpunkt, auf dem alle späteren Zustände aufbauen.
-
-5. Bedeutung für spätere Zustände
-Jeder spätere Zustand der Engine muss:
-
-logisch
-
-deterministisch
-
-auditierbar
-
-kryptografisch ableitbar
-
-mit der Chain Identity kompatibel sein.
-
-Wenn ein Zustand nicht mit der Chain Identity übereinstimmt, ist er:
-
-ungültig,
-
-nicht verifizierbar,
-
-nicht Teil der Chain,
-
-nicht ausführbar.
-
-6. Rolle in der Genesis
-Die Chain Identity ist ein integraler Bestandteil der Genesis:
-
-Sie definiert die Engine‑Existenz.
-
-Sie legt die Struktur der Runtime fest.
-
-Sie bestimmt die Regeln der Transitionen.
-
-Sie bildet die Grundlage für Audit‑ und Sicherheitsmechanismen.
-
-Sie ist der Ursprung aller späteren Kausalität.</p>
-    <ul>
-      <li>Validator‑Schlüssel</li>
-      <li>Signaturen des Genesis‑Blocks</li>
-      <li>Konsens‑Parameter</li>
-    </ul>
-    <p class="small">Dieses Set bildet die Grundlage für die ersten Blöcke.</p>
-  </div>
-
-  <div class="card">
-    <h2>Alles klar, Daniel — du willst den Abschnitt **kohärent, sauber strukturiert und dokumentationsreif** zusammengeführt haben.  
-Ich gebe dir jetzt die **finale, erweiterte technische Dokumentation** für den Abschnitt *Initial State*, inklusive des Punktes **5. Bedeutung für die gesamte Engine‑Existenz**, vollständig integriert und ohne Wiederholungen.
-
----
-
-# **Initial State – Erweiterte technische Dokumentation**
-
-Der **Initial State** beschreibt den vollständigen Anfangszustand der Engine unmittelbar nach der Genesis.  
-Er definiert alle Ausgangsparameter, die notwendig sind, damit die Chain **deterministisch**, **reproduzierbar** und **auditierbar** starten kann.  
-Dieser Zustand ist **fix**, **unveränderlich** und **bit‑identisch rekonstruierbar**.
-
-Der Initial State umfasst folgende Kernkomponenten:
-
----
-
-## **1. Anfangsallokationen (Initial Allocations)**  
-Der Initial State legt fest, welche Ressourcen zu Beginn existieren und wie sie verteilt sind. Dazu gehören:
-
-- Allokationen für Systemmodule  
-- Allokationen für Operatoren  
-- Allokationen für interne Engine‑Mechanismen  
-- reservierte Kapazitäten für zukünftige Rituale und Systemprozesse  
-
-Diese Allokationen bilden die **ökonomische und strukturelle Ausgangsbasis** der Engine.
-
----
-
-## **2. System‑Konten (System Accounts)**  
-Der Initial State definiert alle System‑Konten, die für die Engine‑Funktion notwendig sind:
-
-- interne Engine‑Konten  
-- Governance‑Konten  
-- Audit‑Konten  
-- Ritual‑Konten  
-- technische Runtime‑Konten  
-
-System‑Konten sind **nicht optional**.  
-Sie bilden die **operativen Wurzeln** der Engine und ermöglichen:
-
-- Validierung  
-- Auditierung  
-- Governance  
-- Ritual‑Ausführung  
-- interne Engine‑Operationen
-
----
-
-## **3. Erste Operator‑Rollen (Initial Operator Roles)**  
-Der Initial State legt fest, welche Rollen zu Beginn existieren und welche Berechtigungen sie besitzen:
-
-- Validator‑Rollen  
-- Governance‑Operatoren  
-- technische Operatoren  
-- System‑Operatoren  
-- Rollen für Ritual‑ und Chain‑Management  
-
-Diese Rollen definieren die **erste funktionale Struktur** der Engine und bestimmen, wie die Chain in den ersten Zyklen operiert.
-
----
-
-## **4. Deterministische Reproduzierbarkeit**  
-Der Initial State muss **bit‑identisch reproduzierbar** sein.  
-Das bedeutet:
-
-- Jede Node, die die Genesis lädt, erzeugt exakt denselben Initial State.  
-- Es existieren keine dynamischen, zufälligen oder zeitabhängigen Elemente.  
-- Der Initial State ist vollständig aus der Genesis ableitbar.  
-- Jede spätere Transition muss mathematisch auf diesen Zustand zurückführbar sein.
-
-Damit bildet der Initial State die **deterministische Grundlage** für Konsens, Audit, Transitionen und Runtime‑Stabilität.
-
----
-
-## **5. Bedeutung für die gesamte Engine‑Existenz**  
-Der Initial State ist der **erste ausführbare Zustand** der Engine.  
-Er definiert:
-
-- **wie die Engine startet**  
-- **welche Mechanismen aktiv sind**  
-- **welche Operatoren existieren**  
-- **welche Ressourcen verfügbar sind**  
-- **wie die ersten Transitionen ablaufen**  
-- **wie die Chain ihre Identität operationalisiert**
-
-Ohne einen korrekt definierten Initial State kann die Engine:
-
-- nicht deterministisch starten  
-- nicht auditierbar sein  
-- keine gültigen Transitionen erzeugen  
-- keine Runtime aufbauen  
-- keine Chain bilden  
-
-Der Initial State ist damit der **operative Ursprung** der gesamten Engine‑Existenz.
-
----
-
-Wenn du willst, kann ich dir jetzt zusätzlich:
-
-- eine **YAML‑Registry für den Initial State**,  
-- eine **grafische Darstellung des Genesis → Initial State → First Transition‑Flows**,  
-- eine **Integration in deine Genesis‑Dokumentation**,  
-- oder eine **Version für GovernanceDoc**  
-
-erstellen.</h2>
-    <p>Die Genesis definiert die ersten Ritual‑Typen der Engine:</p>
-    <ul>
-      <li>Genesis‑Ritual</li>
-      <li>Echo‑Rituale</li>
-      <li>Closure‑Rituale</li>
-      <li>Payout‑Rituale</li>
-    </ul>
-    <p class="small">Eigenschaft
-Genesis ist:
-
-einmalig
-unveränderlich
-audit‑versiegelt
-deterministisch rekonstruierbar
-Sie ist der Ursprung aller späteren Zustände und Ereignisse.</p>
-  </div>
-
-  <div class="card">
-    <h2>Eigenschaft</h2>
-    <p>Genesis ist:</p>
-    <ul>
-      <li>einmalig</li>
-      <li>unveränderlich</li>
-      <li>audit‑versiegelt</li>
-      <li>deterministisch rekonstruierbar</li>
-    </ul>
-    <p class="small">Sie ist der Ursprung aller späteren Zustände und Ereignisse.</p>
-  </div>
-
+<div class="page">
+    <header>
+        <div>
+            <div class="title">CoreCraft Genesis</div>
+            <div class="subtitle">Deterministische Artefakt‑Initialisierung für System‑ und Patent‑Stacks</div>
+        </div>
+        <div class="tag">
+            <span>●</span>
+            <span>genesis / index.html</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Artefakt‑Einstieg</h2>
+            <p>
+                Diese Seite dient als Einstiegspunkt in die <span class="mono">genesis</span>‑Struktur.
+                Sie verlinkt die zentralen Start‑Artefakte, mit denen ein System, eine Patentfamilie
+                oder ein Projekt deterministisch initialisiert werden kann.
+            </p>
+            <ul class="list">
+                <li>
+                    <span><a href="./">/</a> Root‑Verzeichnis</span>
+                    <span class="pill"><strong>Hinweis:</strong> GitHub‑Strukturansicht</span>
+                </li>
+                <li>
+                    <span><a href="./FAM-001/">FAM‑001</a> Patentfamilie</span>
+                    <span class="pill">Core‑Serie · Patent‑Artefakte</span>
+                </li>
+                <li>
+                    <span><a href="./system/">system/</a> System‑Genesis</span>
+                    <span class="pill">Systemarchitektur · Execution‑Layer</span>
+                </li>
+                <li>
+                    <span><a href="./docs/">docs/</a> Dokumentation</span>
+                    <span class="pill">Lesbare Spezifikation · Overview</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Konzept in einem Satz</h2>
+            <p>
+                Genesis ist der deterministische Startpunkt: aus wenigen, klar definierten Artefakten
+                entsteht ein vollständig nachvollziehbarer System‑ oder Patent‑Stack.
+            </p>
+            <p class="mono">
+                input:  manifest + claims + description<br>
+                output: reproduzierbarer, audit‑tauglicher Artefakt‑Graph
+            </p>
+            <p class="badge-danger">
+                Achtung: Änderungen direkt im Repo ohne Manifest‑Update brechen die Nachvollziehbarkeit.
+            </p>
+        </section>
+    </main>
 </div>
-
 </body>
 </html>
+
