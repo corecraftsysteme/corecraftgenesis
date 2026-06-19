@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>CoreCraft Genesis – Artefaktübersicht</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --bg: #05060a;
+            --card: #0f1117;
+            --accent: #4fd1c5;
+            --accent-soft: rgba(79, 209, 197, 0.12);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: #1f2933;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+            color: var(--text);
+        }
+
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 650;
+            letter-spacing: 0.03em;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 26px;
+            margin-bottom: 26px;
+        }
+
+        .section h2 {
+            margin: 0 0 12px;
+            font-size: 1.2rem;
+            letter-spacing: 0.04em;
+        }
+
+        .section p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .item-title {
+            font-weight: 600;
+        }
+
+        .item-sub {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+
+    <header>
+        <div class="title">CoreCraft Genesis</div>
+        <div class="subtitle">Artefaktübersicht · deterministisch · audit‑versiegelt</div>
+    </header>
+
+    <div class="section">
+        <h2>Genesis</h2>
+        <p>
+            Genesis ist der erste definierte Zustand der Engine  
+            – der Ursprung aller späteren Zustände und Ereignisse  
+            .
+        </p>
+
+        <p>Sie ist:</p>
+
+        <ul>
+            <li><span class="item-title">einmalig</span></li>
+            <li><span class="item-title">unveränderlich</span></li>
+            <li><span class="item-title">audit‑versiegelt</span></li>
+            <li><span class="item-title">deterministisch rekonstruierbar</span></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Artefakte</h2>
+        <ul>
+            <li>
+                <span>
+                    <a href="./FAM-001/">
+                        <span class="item-title">FAM‑001 Patentfamilie</span>
+                    </a>
+                    <br>
+                    <span class="item-sub">Core‑Serie · deterministische Patent‑Artefakte</span>
+                </span>
+            </li>
+
+            <li>
+                <span>
+                    <a href="./engine/">
+                        <span class="item-title">Engine‑Genesis</span>
+                    </a>
+                    <br>
+                    <span class="item-sub">Initial State · Chain Identity · Runtime‑Basis</span>
+                </span>
+            </li>
+
+            <li>
+                <span>
+                    <a href="./docs/">
+                        <span class="item-title">Dokumentation</span>
+                    </a>
+                    <br>
+                    <span class="item-sub">Spezifikationen · Modelle · Architektur</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
