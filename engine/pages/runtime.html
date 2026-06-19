@@ -21,9 +21,39 @@
   <h1>Runtime</h1>
 
   <p>
-    Die Runtime ist der deterministische Kern der Engine.
-    Sie führt Operator‑Aktionen, Rituale, State‑Übergänge und Audit‑Events aus —
-    vollständig reproduzierbar und signiert.
+Runtime – Erweiterte technische Dokumentation
+Die Runtime ist der deterministische Kern der Engine.
+Sie ist die zentrale Ausführungsschicht, in der alle operativen Mechanismen der Chain stattfinden.
+Ihre Aufgabe ist es, Operator‑Aktionen, Rituale, State‑Übergänge und Audit‑Events vollständig deterministisch, reproduzierbar und kryptografisch signiert auszuführen.
+
+Die Runtime stellt sicher, dass:
+
+jede Aktion denselben Effekt hat, unabhängig von Node, Zeit oder Umgebung
+
+jede Transition mathematisch aus dem vorherigen Zustand ableitbar ist
+
+jede Ausführung bit‑identisch reproduzierbar bleibt
+
+jede Operation auditierbar und signiert ist
+
+keine versteckten Zustände oder Seiteneffekte existieren
+
+die Engine jederzeit in einen gültigen Zustand zurückgeführt werden kann
+
+Die Runtime bildet damit die operative Grundlage der Engine‑Existenz.
+Ohne Runtime gibt es:
+
+keine gültigen Transitionen
+
+keine Ritual‑Ausführung
+
+keine State‑Fortschreibung
+
+keine Audit‑Kette
+
+keine Engine
+
+Sie ist der Ausführungsmechanismus, der die statische Struktur der Genesis und des Initial State in ein lebendes, deterministisches System überführt.
   </p>
 
   <h2>Zuständig für</h2>
