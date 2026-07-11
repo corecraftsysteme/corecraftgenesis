@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Genesis – CoreCraft Genesis Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Genesis</h1>
+    <p class="lead">
+        Die zentrale Ursprungsschicht der CoreCraft‑Engine: Definition, Artefakte, Operational Layer,
+        deterministische Ausführung und Audit‑Mechanik.
+    </p>
+
+    <!-- Intro Card -->
+    <div class="card">
+        <h2>Überblick</h2>
+        <p>
+            Die Genesis‑Schicht definiert den ersten gültigen, unveränderlichen und auditierbaren Zustand
+            einer privaten Chain. Sie bildet die Grundlage für alle Operator‑Prozesse, Artefakte,
+            Validierungsmechanismen und deterministischen Abläufe der Engine.
+        </p>
+        <p>
+            Von hier aus werden alle weiteren Schichten der Engine initialisiert, strukturiert und
+            reproduzierbar ausgeführt.
+        </p>
+    </div>
+
+    <!-- Main Modules -->
+    <div class="grid">
+
+        <a class="module" href="../genesis-operational-layer/">
+            <h3>Operational Layer</h3>
+            <p>Operator‑Routinen, deterministische Abläufe, Audit‑Protokolle.</p>
+        </a>
+
+        <a class="module" href="../artefakte/">
+            <h3>Artefakte</h3>
+            <p>Patentfamilien, Engine‑Genesis, Dokumentation, Chain‑Assets.</p>
+        </a>
+
+        <a class="module" href="../system/">
+            <h3>System Layer</h3>
+            <p>Genesis‑Initialisierung, Struktur, Manifest, Identität.</p>
+        </a>
+
+        <a class="module" href="../engine/">
+            <h3>Engine Layer</h3>
+            <p>Runtime‑Mechanik, deterministische Ausführung, Frame‑Model.</p>
+        </a>
+
+    </div>
+
+    <!-- Genesis Definition -->
+    <div class="card">
+        <h2>Genesis Definition</h2>
+        <p>
+            Die Genesis‑Definition beschreibt die formale Struktur des ersten gültigen Chain‑Zustands.
+            Sie umfasst:
+        </p>
+        <ul>
+            <li>Genesis‑Manifest</li>
+            <li>Genesis‑Identity</li>
+            <li>Genesis‑Artefakte</li>
+            <li>Deterministische Validierungsregeln</li>
+            <li>Audit‑Reproduzierbarkeit</li>
+        </ul>
+    </div>
+
+    <!-- Cross‑Site Link -->
+    <div class="card">
+        <h2>Chain2025 Integration</h2>
+        <p>
+            Die Genesis‑Engine ist vollständig mit der Chain2025‑Timeline verknüpft.
+            Der Einstiegspunkt befindet sich unter:
+        </p>
+        <p>
+            <a href="https://chain2025.corecraftgenesis.ch/" class="external-link">
+                chain2025.corecraftgenesis.ch
+            </a>
+        </p>
+        <p>
+            Von dort kann direkt auf diese Genesis‑Startseite verlinkt werden:
+        </p>
+        <p>
+            <code>https://corecraftgenesis.ch/genesis/</code>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
