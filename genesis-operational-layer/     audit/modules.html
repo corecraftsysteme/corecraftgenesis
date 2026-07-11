@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>DNSSeed Module – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>DNSSeed Module</h1>
+    <p class="lead">Wähle ein Modul aus.</p>
+
+    <div class="module-grid">
+
+        <a class="module" href="audit.html">
+            <h3>Audit Viewer</h3>
+            <p>Interaktive Anzeige der Audit‑Schemas.</p>
+        </a>
+
+        <a class="module" href="echo.html">
+            <h3>Echo‑Hub</h3>
+            <p>Alle Echo‑Artefakte zentral.</p>
+        </a>
+
+        <a class="module" href="bootstrap.html">
+            <h3>Node‑Bootstrap</h3>
+            <p>Seeds, Peers, Hash‑Anchors.</p>
+        </a>
+
+        <a class="module" href="operator.html">
+            <h3>Operator‑Routing</h3>
+            <p>Operator‑Audit → DNSSeed → Genesis.</p>
+        </a>
+
+    </div>
+
+    <div class="footer">
+        Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+        Domain: dnsseed.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
