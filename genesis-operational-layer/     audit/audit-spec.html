@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Audit Specification – Genesis Operational Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Audit Specification</h1>
+    <p class="lead">Spezifikation der Audit‑Mechanik innerhalb des Genesis Operational Layer.</p>
+
+    <div class="card">
+        <h2>Überblick</h2>
+        <p>
+            Die Audit Specification definiert Struktur, Ablauf und Prüfbarkeit aller Audit‑Protokolle
+            innerhalb der Genesis‑Engine. Sie beschreibt die deterministische Verarbeitung von Ritual‑Audits,
+            die JSON‑Schemas für Audit‑Objekte sowie die Anforderungen an Reproduzierbarkeit und
+            Chain‑Validierung.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Inhalt</h2>
+        <p>Diese Spezifikation umfasst:</p>
+        <ul>
+            <li>Audit‑Ziele und deterministische Anforderungen</li>
+            <li>Struktur der Audit‑Objekte (JSON‑Schemas)</li>
+            <li>Ritual‑Audit‑Definitionen</li>
+            <li>Audit‑Flow und Prozessgraph</li>
+            <li>Validierungs‑ und Prüfroutinen</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Protokolle</h2>
+        <p>
+            Die Audit‑Protokolle definieren die formalen Schritte zur Überprüfung einer Genesis‑Chain.
+            Dazu gehören:
+        </p>
+        <ul>
+            <li>Initialisierungs‑Audit</li>
+            <li>Ritual‑Audit</li>
+            <li>State‑Transition‑Audit</li>
+            <li>Final‑Audit</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>JSON‑Schemas</h2>
+        <p>
+            Die Audit‑Schemas werden in <code>ritual-audit.json</code> und weiteren Schema‑Dateien definiert.
+            Sie stellen sicher, dass alle Audit‑Objekte maschinenlesbar, deterministisch und reproduzierbar sind.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Flow</h2>
+        <p>
+            Der Audit‑Flow beschreibt die exakte Reihenfolge der Audit‑Operationen. Die vollständige
+            Prozessdarstellung befindet sich in <code>audit-flow-diagram.md</code>.
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
