@@ -1,69 +1,126 @@
+/* ============================================================
+   CoreCraft Genesis – portal.css
+   Einheitlicher Stil für Genesis, Operational Layer, Artefakte,
+   DNSSeed, System Layer, Engine Layer
+   ============================================================ */
+
+/* --- GLOBAL --- */
 body {
-  margin: 0;
-  padding: 0;
-  background: #0b0b0c;
-  color: #eee;
-  font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0a0f0d;
+    color: #d9d9d9;
+    font-family: "Futura LT", "Futura", sans-serif;
+    line-height: 1.55;
 }
 
-.header {
-  background: #111;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #222;
-}
-
-.header a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 1rem;
-}
-
+/* --- WRAPPER --- */
 .wrap {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* --- HEADINGS --- */
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    color: #8affc1;
+    text-shadow: 0 0 18px rgba(138,255,193,0.45);
 }
 
 .lead {
-  opacity: .8;
-  margin-top: -1rem;
+    font-size: 1.2rem;
+    opacity: 0.85;
+    margin-bottom: 40px;
 }
 
+/* --- CARDS --- */
 .card {
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  background: rgba(255,255,255,0.02);
-  margin-bottom: 1.5rem;
+    background: rgba(10, 15, 14, 0.85);
+    border: 1px solid rgba(0,255,200,0.12);
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 22px rgba(0,255,180,0.08);
+    backdrop-filter: blur(6px);
+    transition: 0.25s ease;
 }
 
+.card:hover {
+    border-color: rgba(0,255,200,0.35);
+    box-shadow: 0 0 28px rgba(0,255,180,0.18);
+    transform: translateY(-3px);
+}
+
+/* --- GRID MODULES --- */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
 }
 
 .module {
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 1rem;
-  background: rgba(255,255,255,0.02);
-  text-decoration: none;
-  color: #fff;
-  transition: background .2s, border-color .2s;
+    display: block;
+    background: rgba(10, 15, 14, 0.85);
+    border: 1px solid rgba(0,255,200,0.12);
+    padding: 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #d9d9d9;
+    box-shadow: 0 0 22px rgba(0,255,180,0.08);
+    transition: 0.25s ease;
 }
 
 .module:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: #555;
+    border-color: rgba(0,255,200,0.35);
+    box-shadow: 0 0 28px rgba(0,255,180,0.18);
+    transform: translateY(-3px);
 }
 
+.module h3 {
+    margin-top: 0;
+    color: #8affc1;
+    text-shadow: 0 0 12px rgba(138,255,193,0.35);
+}
+
+/* --- CODE BLOCKS --- */
+code {
+    background: rgba(0,0,0,0.55);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #9effd8;
+    border: 1px solid rgba(0,255,200,0.15);
+}
+
+/* --- FOOTER --- */
 .footer {
-  opacity: .6;
-  font-size: .9rem;
-  margin-top: 3rem;
-  text-align: center;
+    margin-top: 60px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    color: #aaa;
+}
+
+/* --- LINKS --- */
+a {
+    color: #8affc1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- DNSSeed GRID OVERLAY (optional) --- */
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 1;
 }
