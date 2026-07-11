@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Dokumentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <h1>Dokumentation</h1>
+  <p class="lead">
+    Technische Referenzen, Chainline‑Modelle, Genesis‑Definitionen und Operator‑Strukturen.
+  </p>
+
+  <div class="card">
+    <h2>Überblick</h2>
+    <p>
+      Dieser Bereich enthält alle Markdown‑Dokumente der CoreCraftGenesis‑Engine.
+      GitHub Pages rendert diese Dateien automatisch, sodass sie direkt lesbar sind.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <a class="module" href="genesis.md">
+      <h3>Genesis</h3>
+      <p>Definition des Genesis‑Blocks, ChainID, Ritual‑Framework.</p>
+    </a>
+
+    <a class="module" href="operators.md">
+      <h3>Operators</h3>
+      <p>Operator‑Mechanik, deterministische Abläufe, Runtime‑Graph.</p>
+    </a>
+
+    <a class="module" href="chainline.md">
+      <h3>Chainline</h3>
+      <p>Chainline‑State‑Model, Übergänge, deterministische Struktur.</p>
+    </a>
+
+    <a class="module" href="private-chains.md">
+      <h3>Private Chains</h3>
+      <p>Isolierte Ökonomien, Struktur, Sicherheitsmodell.</p>
+    </a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
