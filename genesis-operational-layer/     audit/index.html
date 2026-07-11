@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Audit – Genesis Operational Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Audit</h1>
+    <p class="lead">Audit‑Protokolle, Ritual‑Audits, JSON‑Schemas und Validierungsmechanismen.</p>
+
+    <div class="grid">
+
+        <a class="module" href="audit-spec.html">
+            <h3>Audit Specification</h3>
+            <p>Definition der Audit‑Mechanik und deterministischen Prüfroutinen.</p>
+        </a>
+
+        <a class="module" href="audit-engine.md">
+            <h3>Audit Engine</h3>
+            <p>Dokumentation der Audit‑Engine.</p>
+        </a>
+
+        <a class="module" href="audit-flow-diagram.md">
+            <h3>Audit Flow Diagram</h3>
+            <p>Prozessgraph und Ablaufdiagramm.</p>
+        </a>
+
+        <a class="module" href="audit-protocols/">
+            <h3>Audit Protocols</h3>
+            <p>JSON‑Schemas und Ritual‑Audit‑Definitionen.</p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
