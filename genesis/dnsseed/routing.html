@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>DNSSeed Routing Hub – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>DNSSeed Routing Hub</h1>
+    <p class="lead">Deterministische Verknüpfung von Chain2025, Genesis‑Layer und DNSSeed.</p>
+
+    <!-- Chain2025 -->
+    <div class="card">
+        <h2>Chain2025</h2>
+        <p>Root‑Chain, Audit‑Anker und Ursprung der Seed‑Identität.</p>
+        <ul>
+            <li><a href="https://chain2025.corecraftgenesis.ch/">Chain2025 Hauptseite</a></li>
+            <li><a href="../system/">Genesis System Layer</a></li>
+            <li><a href="../genesis-operational-layer/audit/">Audit‑Modul</a></li>
+            <li><a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a></li>
+        </ul>
+    </div>
+
+    <!-- Genesis Layer -->
+    <div class="card">
+        <h2>Genesis Layer</h2>
+        <p>System‑Layer, Manifeste, Hashes und deterministische Artefakte.</p>
+        <ul>
+            <li><a href="../system/">Genesis System Overview</a></li>
+            <li><a href="../system/manifest.html">Genesis Manifest Hub</a></li>
+            <li><a href="../system/hashes.html">Genesis Hashes</a></li>
+            <li><a href="../system/echo/">Echo Artefakte</a></li>
+        </ul>
+    </div>
+
+    <!-- DNSSeed -->
+    <div class="card">
+        <h2>DNSSeed</h2>
+        <p>Seed‑Domain, Validierungen, Node‑Integration und Audit‑Anker.</p>
+        <ul>
+            <li><a href="index.html">DNSSeed Startseite</a></li>
+            <li><a href="manifest.html">DNSSeed Manifest</a></li>
+            <li><a href="schemas.html">DNSSeed JSON‑Schema Viewer</a></li>
+            <li><code>dig +short dnsseed.corecraftgenesis.ch</code></li>
+            <li><code>addnode=dnsseed.corecraftgenesis.ch</code></li>
+        </ul>
+    </div>
+
+    <!-- Deterministic Path -->
+    <div class="card">
+        <h2>Deterministischer Pfad</h2>
+        <p>Die deterministische Routing‑Kette:</p>
+        <pre>
+Chain2025
+   ↓ Audit Seal (Echo 25)
+Genesis Layer
+   ↓ Genesis Hash
+DNSSeed
+        </pre>
+    </div>
+
+    <div class="footer">
+        Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+        Domain: dnsseed.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
