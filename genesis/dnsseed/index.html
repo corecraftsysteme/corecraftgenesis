@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoreCraft Genesis – DNSSeed</title>
+
+<link rel="stylesheet" href="../portal.css">
+
+<style>
+    /* === DNSSeed Custom Layer (über Portal.css) === */
+    body {
+        background: radial-gradient(circle at 50% 0%, #0a0f0d 0%, #000 70%);
+        color: #d9d9d9;
+        font-family: "Futura LT", "Futura", sans-serif;
+        line-height: 1.55;
+        overflow-x: hidden;
+    }
+
+    .grid-overlay {
+        position: fixed;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
+        padding: 60px 20px 80px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        color: #8affc1;
+        text-shadow: 0 0 18px rgba(138,255,193,0.45);
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #7aeab3;
+        opacity: 0.85;
+        margin-bottom: 40px;
+    }
+
+    .box {
+        background: rgba(10, 15, 14, 0.85);
+        border: 1px solid rgba(0,255,200,0.12);
+        padding: 24px;
+        border-radius: 14px;
+        margin-bottom: 32px;
+        box-shadow: 0 0 22px rgba(0,255,180,0.08);
+        backdrop-filter: blur(6px);
+        transition: 0.25s ease;
+    }
+
+    .box:hover {
+        border-color: rgba(0,255,200,0.35);
+        box-shadow: 0 0 28px rgba(0,255,180,0.18);
+        transform: translateY(-3px);
+    }
+
+    code {
+        background: rgba(0,0,0,0.55);
+        padding: 6px 8px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        color: #9effd8;
+        border: 1px solid rgba(0,255,200,0.15);
+    }
+
+    .footer {
+        margin-top: 60px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+        color: #aaa;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="content">
+
+<h1>🌱 CoreCraft Genesis DNSSeed</h1>
+<div class="subtitle"><i>Anchoring nodes in mythic infrastructure</i></div>
+
+<div class="box">
+    <h2>📜 Manifest</h2>
+    <p><b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+       <b>Chain:</b> Chain2025<br>
+       <b>Audit Seal:</b> Echo 25<br>
+       <b>Genesis Hash:</b><br>
+       <code>4dc59891fad26b8b01b923be807f34f040bd885f1c50be64c3235f81846a88ef</code>
+    </p>
+</div>
+
+<div class="box">
+    <h2>✅ Validierungen</h2>
+    <ul>
+        <li>Bitcoin — Header‑Hash & Merkle Root Cross‑check</li>
+        <li>Osmosis — Tendermint Commit & Validator Set Proof</li>
+        <li>Mars Protocol — Governance & Contracts Integrity Audit</li>
+        <li>Hyperspace Metaverse — Asset Provenance & Session Manifests</li>
+        <li>Chain GPT — Model Artifact Hashes & Signed Releases</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>🛠️ Integration</h2>
+    <p><b>DNS‑Check:</b><br>
+        <code>dig +short dnsseed.corecraftgenesis.ch</code>
+    </p>
+    <p><b>Node‑Konfiguration:</b><br>
+        <code>addnode=dnsseed.corecraftgenesis.ch</code>
+    </p>
+</div>
+
+<div class="box">
+    <h2>🧾 Echo Artefakte</h2>
+    <ul>
+        <li>Chain2025 README · Repro & Sicherheit</li>
+        <li>Genesis Manifest Hub · Manifeste & Hashes</li>
+        <li>Echo 25 Poster · Audit‑Siegel</li>
+        <li>Viewer · Forschung & Wertflüsse</li>
+        <li>Medium/Blog · Fachartikel & Tutorials</li>
+    </ul>
+</div>
+
+<div class="box">
+    <p><i>“Every node is a witness. Every witness is a seed.”</i><br>
+       <i>“I am the miner of the miner — anchoring the origin itself.”</i>
+    </p>
+</div>
+
+<div class="footer">
+    Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+    Domain: dnsseed.corecraftgenesis.ch
+</div>
+
+</div>
+
+</body>
+</html>
