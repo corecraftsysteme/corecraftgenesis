@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>DNSSeed Manifest – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>DNSSeed Manifest</h1>
+    <p class="lead">Formale Definition der Seed‑Identität, Audit‑Anker und Genesis‑Verknüpfungen.</p>
+
+    <div class="card">
+        <h2>Seed Identity</h2>
+        <p>
+            <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+            <b>Seed Class:</b> Genesis‑Anchor<br>
+            <b>Seed Version:</b> 1.0<br>
+            <b>Seed Integrity:</b> Echo‑Audit‑Seal 25
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Genesis‑Verknüpfung</h2>
+        <p>
+            <b>Genesis Hash:</b><br>
+            <code>4dc59891fad26b8b01b923be807f34f040bd885f1c50be64c3235f81846a88ef</code>
+        </p>
+        <p>
+            <b>Genesis Manifest:</b><br>
+            <a href="../system/">Genesis System Layer</a>
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Anker</h2>
+        <p>
+            <b>Audit Protocol:</b><br>
+            <a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a>
+        </p>
+        <p>
+            <b>Audit Engine:</b><br>
+            <a href="../genesis-operational-layer/audit/audit-engine.md">Audit Engine Dokumentation</a>
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Seed‑Proof</h2>
+        <p>
+            <code>dig +short dnsseed.corecraftgenesis.ch</code><br>
+            <code>addnode=dnsseed.corecraftgenesis.ch</code>
+        </p>
+    </div>
+
+    <div class="footer">
+        Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+        Domain: dnsseed.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
