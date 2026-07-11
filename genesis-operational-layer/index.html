@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Genesis Operational Layer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <h1>Genesis Operational Layer</h1>
+  <p class="lead">Ausführungsschicht der Genesis‑Engine: Operator‑Routinen, deterministische Abläufe, Audit‑Protokolle.</p>
+
+  <div class="card">
+    <h2>Überblick</h2>
+    <p>
+      Der Genesis Operational Layer definiert die deterministische Ausführung aller Operator‑Prozesse,
+      die zur Initialisierung, Validierung und Auditierung einer privaten Chain notwendig sind.
+      Er bildet die Brücke zwischen Genesis‑Definition und Runtime‑Mechanik.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <a class="module" href="operators/">
+      <h3>Operators</h3>
+      <p>Operator‑Routinen, deterministische Abläufe, Runtime‑Graph.</p>
+    </a>
+
+    <a class="module" href="audit/">
+      <h3>Audit</h3>
+      <p>Audit‑Protokolle, Ritual‑Audit, JSON‑Schemas für Prüfbarkeit.</p>
+    </a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
