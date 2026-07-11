@@ -1,85 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Genesis</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
+    <meta charset="UTF-8">
+    <title>Genesis Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
 </head>
 
 <body>
-
 <div id="header"></div>
 <script>
-  fetch("../header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
-<main>
+<div class="wrap">
 
-  <section class="card">
-    <h2>Genesis</h2>
-    <p>
-      Die Genesis definiert den ersten, audit‑versiegelten Zustand einer Chain. 
-      Sie bildet den Ursprung aller späteren Blöcke, Ereignisse und Artefakte.
-    </p>
-  </section>
+    <h1>Genesis Engine</h1>
+    <p class="lead">System‑Genesis, Artefakte, Operational Layer, Audit‑Mechanik.</p>
 
-  <section class="card">
-    <h2>Genesis‑Block</h2>
-    <p>
-      Der Genesis‑Block ist der erste gültige Block einer Chain. Er enthält keine Vorgänger 
-      und definiert die initialen Parameter, Regeln und den Startzustand.
-    </p>
-    <ul class="list">
-      <li><span>keine Eltern</span> <span class="pill">Block #0</span></li>
-      <li><span>Startparameter</span> <span class="pill">Chain‑Regeln</span></li>
-      <li><span>Initiale Zustände</span> <span class="pill">System‑Setup</span></li>
-    </ul>
-  </section>
+    <div class="grid">
+        <a class="module" href="../genesis-operational-layer/">
+            <h3>Operational Layer</h3>
+            <p>Operator‑Routinen, Audit‑Protokolle, deterministische Abläufe.</p>
+        </a>
 
-  <section class="card">
-    <h2>ChainID</h2>
-    <p>
-      Die ChainID identifiziert eine Chain eindeutig. Sie verhindert Replay‑Angriffe 
-      und stellt sicher, dass Signaturen nur innerhalb der korrekten Chain gültig sind.
-    </p>
-    <ul class="list">
-      <li><span>eindeutig</span> <span class="pill">keine Kollisionen</span></li>
-      <li><span>deterministisch</span> <span class="pill">aus Genesis abgeleitet</span></li>
-      <li><span>sicher</span> <span class="pill">Replay‑Schutz</span></li>
-    </ul>
-  </section>
+        <a class="module" href="../artefakte/">
+            <h3>Artefakte</h3>
+            <p>Patentfamilien, Engine‑Genesis, Dokumentation.</p>
+        </a>
+    </div>
 
-  <section class="card">
-    <h2>Validator‑Signaturen</h2>
-    <p>
-      Validator‑Signaturen bestätigen die Gültigkeit der Genesis. 
-      Sie bilden die kryptografische Grundlage für Vertrauen und Integrität.
-    </p>
-    <ul class="list">
-      <li><span>Signaturen</span> <span class="pill">Validator‑Keys</span></li>
-      <li><span>Integrität</span> <span class="pill">unverfälschbar</span></li>
-      <li><span>Audit‑fähig</span> <span class="pill">vollständig prüfbar</span></li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <h2>Ritual‑Framework</h2>
-    <p>
-      Das Ritual‑Framework definiert die formalen Schritte, die zur Erzeugung der Genesis 
-      notwendig sind. Es stellt sicher, dass der Prozess reproduzierbar und dokumentiert ist.
-    </p>
-    <ul class="list">
-      <li><span>Initialisierung</span> <span class="pill">Start‑Ritual</span></li>
-      <li><span>Signatur‑Phase</span> <span class="pill">Validator‑Ritual</span></li>
-      <li><span>Versiegelung</span> <span class="pill">Audit‑Ritual</span></li>
-    </ul>
-  </section>
-
-</main>
-
+</div>
 </body>
 </html>
+
+
 
