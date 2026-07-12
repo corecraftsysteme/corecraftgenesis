@@ -1,0 +1,116 @@
+warp_potential:
+  id: hyperspace-warp-potential
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Potentialfunktion des Hyperspace-Warp-Raums. Das Warp-Potential beschreibt die
+  energetische Landschaft, die die Bewegung zwischen States, Execution-Points,
+  Transition-Vektoren und Interlink-Ankern bestimmt. Niedriges Potential
+  entspricht stabilen Zuständen, hohes Potential kritischen oder terminalen
+  Punkten.
+
+potential_map:
+  HS_INIT: 0.10
+  HS_CONFIGURED: 0.20
+  HS_READY: 0.35
+  HS_RUNNING: 0.50
+  HS_DEGRADED: 0.70
+  HS_AUDIT: 0.65
+  HS_SHUTDOWN: 1.00
+
+execution_potential:
+  EX_INIT: 0.10
+  EX_PREPARE: 0.20
+  EX_VALIDATE: 0.30
+  EX_START: 0.40
+  EX_LOOP: 0.55
+  EX_MONITOR: 0.45
+  EX_AUDIT: 0.60
+  EX_SHUTDOWN: 1.00
+
+transition_barriers:
+  HS_INIT→HS_CONFIGURED: 0.05
+  HS_CONFIGURED→HS_READY: 0.10
+  HS_READY→HS_RUNNING: 0.15
+  HS_RUNNING→HS_DEGRADED: 0.25
+  HS_DEGRADED→HS_RUNNING: 0.20
+  HS_RUNNING→HS_AUDIT: 0.30
+  HS_AUDIT→HS_RUNNING: 0.25
+  HS_READY→HS_SHUTDOWN: 0.50
+  HS_RUNNING→HS_SHUTDOWN: 0.60
+
+interlink_potential:
+  GENESIS_ROOT→HS_INIT: 0.05
+  DNSSEED_OK→HS_READY: 0.10
+  OPERATIONAL_READY→HS_RUNNING: 0.15
+  CHAIN2025_AUDIT→HS_AUDIT: 0.20
+  MAINCHAIN_DEGRADED→HS_DEGRADED: 0.30
+  MAINCHAIN_SHUTDOWN→HS_SHUTDOWN: 0.80
+
+potential_gradient:
+  HS_INIT:  +0.10
+  HS_CONFIGURED: +0.15
+  HS_READY:    +0.20
+  HS_RUNNING:  +0.25
+  HS_DEGRADED: +0.40
+  HS_AUDIT:    +0.35
+  HS_SHUTDOWN: -1.00
+
+critical_points:
+  - id: CP_READY
+    state: HS_READY
+    potential: 0.35
+    role: "Pre-Execution Critical Point"
+
+  - id: CP_RUNNING
+    state: HS_RUNNING
+    potential: 0.50
+    role: "Central Warp Hub"
+
+  - id: CP_DEGRADED
+    state: HS_DEGRADED
+    potential: 0.70
+    role: "High-Potential Instability Zone"
+
+  - id: CP_SHUTDOWN
+    state: HS_SHUTDOWN
+    potential: 1.00
+    role: "Terminal Potential Well"
+
+potential_surfaces:
+  state_surface:
+    type: "scalar-field"
+    resolution: "7x1"
+    values:
+      - 0.10
+      - 0.20
+      - 0.35
+      - 0.50
+      - 0.70
+      - 0.65
+      - 1.00
+
+  execution_surface:
+    type: "scalar-field"
+    resolution: "8x1"
+    values:
+      - 0.10
+      - 0.20
+      - 0.30
+      - 0.40
+      - 0.55
+      - 0.45
+      - 0.60
+      - 1.00
+
+meta:
+  description: "Potentialfunktion des Hyperspace Warp-Raums."
+  usage: "Für energetische Modellierung, Stabilitätsanalyse, Audit und Runtime-Optimierung."
+  compatible_with:
+    - "/hyperspace/warp-field.yaml"
+    - "/hyperspace/warp-tensor.yaml"
+    - "/hyperspace/warp-matrix.yaml"
+    - "/hyperspace/warp-topology.yaml"
