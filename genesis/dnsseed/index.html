@@ -10,12 +10,15 @@
 <body>
 
 <!-- Header -->
-<div id="header"></div>
-<script>
-    fetch("/header.html")
-        .then(r => r.text())
-        .then(h => document.getElementById("header").innerHTML = h);
-</script>
+<head>
+    <meta charset="UTF-8">
+    <title>DNSSeed – CoreCraft Genesis Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS: CORE + DNSSEED -->
+    <link rel="stylesheet" href="../portal-core.css">
+    <link rel="stylesheet" href="../portal-dnsseed.css">
+</head>
 
 <div class="wrap">
 
