@@ -1,0 +1,185 @@
+runtime_graph:
+  id: hyperspace-runtime-graph
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+states:
+  - id: HS_INIT
+    label: "Hyperspace Init"
+    type: warp-state
+    entry: true
+
+  - id: HS_CONFIGURED
+    label: "Runtime Configured"
+    type: warp-state
+
+  - id: HS_READY
+    label: "Runtime Ready"
+    type: warp-state
+
+  - id: HS_RUNNING
+    label: "Runtime Running"
+    type: warp-state
+
+  - id: HS_DEGRADED
+    label: "Degraded Mode"
+    type: warp-state
+
+  - id: HS_AUDIT
+    label: "Audit Snapshot"
+    type: warp-state
+
+  - id: HS_SHUTDOWN
+    label: "Runtime Shutdown"
+    type: warp-state
+    terminal: true
+
+execution:
+  - id: EX_INIT
+    label: "Execution Init"
+    type: execution-state
+    entry: true
+
+  - id: EX_PREPARE
+    label: "Prepare Runtime"
+    type: execution-state
+
+  - id: EX_VALIDATE
+    label: "Validate Runtime"
+    type: execution-state
+
+  - id: EX_START
+    label: "Start Execution"
+    type: execution-state
+
+  - id: EX_LOOP
+    label: "Execution Loop"
+    type: execution-state
+
+  - id: EX_MONITOR
+    label: "Monitor Runtime"
+    type: execution-state
+
+  - id: EX_AUDIT
+    label: "Audit Runtime"
+    type: execution-state
+
+  - id: EX_SHUTDOWN
+    label: "Execution Shutdown"
+    type: execution-state
+    terminal: true
+
+transitions:
+  - from: HS_INIT
+    to: HS_CONFIGURED
+    label: "Load Runtime Configuration"
+    deterministic: true
+
+  - from: HS_CONFIGURED
+    to: HS_READY
+    label: "Validate Warp-States"
+    deterministic: true
+
+  - from: HS_READY
+    to: HS_RUNNING
+    label: "Start Warp-Execution"
+    deterministic: true
+
+  - from: HS_RUNNING
+    to: HS_DEGRADED
+    label: "Enter Degraded Mode"
+    deterministic: true
+
+  - from: HS_DEGRADED
+    to: HS_RUNNING
+    label: "Recover to Normal"
+    deterministic: true
+
+  - from: HS_RUNNING
+    to: HS_AUDIT
+    label: "Create Audit Snapshot"
+    deterministic: true
+
+  - from: HS_AUDIT
+    to: HS_RUNNING
+    label: "Resume Execution"
+    deterministic: true
+
+  - from: HS_READY
+    to: HS_SHUTDOWN
+    label: "Shutdown from Ready"
+    deterministic: true
+
+  - from: HS_RUNNING
+    to: HS_SHUTDOWN
+    label: "Controlled Shutdown"
+    deterministic: true
+
+execution_transitions:
+  - from: EX_INIT
+    to: EX_PREPARE
+    label: "Initialize Runtime"
+
+  - from: EX_PREPARE
+    to: EX_VALIDATE
+    label: "Load & Validate Configuration"
+
+  - from: EX_VALIDATE
+    to: EX_START
+    label: "Runtime Validation OK"
+
+  - from: EX_START
+    to: EX_LOOP
+    label: "Enter Execution Loop"
+
+  - from: EX_LOOP
+    to: EX_MONITOR
+    label: "Monitor Runtime"
+
+  - from: EX_MONITOR
+    to: EX_AUDIT
+    label: "Create Audit Snapshot"
+
+  - from: EX_AUDIT
+    to: EX_LOOP
+    label: "Resume Execution"
+
+  - from: EX_LOOP
+    to: EX_SHUTDOWN
+    label: "Controlled Shutdown"
+
+interlinks:
+  - from: GENESIS_ROOT
+    to: HS_INIT
+    label: "Genesis → Hyperspace Init"
+
+  - from: DNSSEED_OK
+    to: HS_READY
+    label: "DNSSeed OK → Hyperspace Ready"
+
+  - from: OPERATIONAL_READY
+    to: HS_RUNNING
+    label: "Operational Layer Ready → Hyperspace Running"
+
+  - from: CHAIN2025_AUDIT
+    to: HS_AUDIT
+    label: "Chain2025 Audit → Hyperspace Audit Snapshot"
+
+  - from: MAINCHAIN_DEGRADED
+    to: HS_DEGRADED
+    label: "Mainchain Degraded → Hyperspace Degraded Mode"
+
+  - from: MAINCHAIN_SHUTDOWN
+    to: HS_SHUTDOWN
+    label: "Mainchain Shutdown → Hyperspace Shutdown"
+
+meta:
+  description: "Vollständiger deterministischer Runtime-Graph der Hyperspace Runtime."
+  usage: "Für Viewer, Debugger, Superlayer und Audit-Pipelines."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.yaml"
+
