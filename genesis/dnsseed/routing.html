@@ -4,78 +4,113 @@
     <meta charset="UTF-8">
     <title>DNSSeed Routing Hub – CoreCraft Genesis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
+
+    <!-- CORE + DNSSEED STYLES -->
+    <link rel="stylesheet" href="../portal-core.css">
+    <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
 
 <body>
 
-<head>
-    <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS: CORE + DNSSEED -->
-    <link rel="stylesheet" href="../portal-core.css">
-    <link rel="stylesheet" href="../portal-dnsseed.css">
-</head>
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
 
 <div class="grid-overlay"></div>
 
 <div class="wrap">
 
     <h1>DNSSeed Routing Hub</h1>
-    <p class="lead">Deterministische Verknüpfung von Chain2025, Genesis‑Layer und DNSSeed.</p>
+    <p class="lead">Routing‑Tabellen, Node‑Discovery und deterministische Verknüpfung von Chain2025 und Genesis.</p>
 
-    <!-- Chain2025 -->
+    <!-- Navigation -->
+    <div id="dnsseed-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
+    </script>
+
+    <!-- Routing Overview -->
     <div class="card">
-        <h2>Chain2025</h2>
-        <p>Root‑Chain, Audit‑Anker und Ursprung der Seed‑Identität.</p>
-        <ul>
-            <li><a href="https://chain2025.corecraftgenesis.ch/">Chain2025 Hauptseite</a></li>
-            <li><a href="../system/">Genesis System Layer</a></li>
-            <li><a href="../genesis-operational-layer/audit/">Audit‑Modul</a></li>
-            <li><a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a></li>
-        </ul>
+        <h2>Routing‑Übersicht</h2>
+        <p>
+            Der DNSSeed Routing Hub definiert, welche Nodes als Einstiegspunkte für
+            Chain2025‑Clients und Genesis‑Audit‑Verknüpfungen dienen.
+        </p>
+        <p>
+            <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+            <b>Routing Class:</b> Genesis‑Anchor / Chain2025‑Bootstrap<br>
+            <b>Routing Version:</b> 1.0
+        </p>
     </div>
 
-    <!-- Genesis Layer -->
+    <!-- Static Routing Entries -->
     <div class="card">
-        <h2>Genesis Layer</h2>
-        <p>System‑Layer, Manifeste, Hashes und deterministische Artefakte.</p>
-        <ul>
-            <li><a href="../system/">Genesis System Overview</a></li>
-            <li><a href="../system/manifest.html">Genesis Manifest Hub</a></li>
-            <li><a href="../system/hashes.html">Genesis Hashes</a></li>
-            <li><a href="../system/echo/">Echo Artefakte</a></li>
-        </ul>
+        <h2>Statische Routing‑Einträge</h2>
+        <p>Beispiele für deterministische Bootstrap‑Konfiguration:</p>
+        <pre><code>
+addnode=dnsseed.corecraftgenesis.ch
+addnode=node1.corecraftgenesis.ch
+addnode=node2.corecraftgenesis.ch
+        </code></pre>
+        <p class="small">
+            Diese Einträge können direkt in Chain2025‑Node‑Konfigurationen übernommen werden,
+            um einen deterministischen Einstieg in das Netzwerk zu gewährleisten.
+        </p>
     </div>
 
-    <!-- DNSSeed -->
+    <!-- Genesis / Chain2025 Binding -->
     <div class="card">
-        <h2>DNSSeed</h2>
-        <p>Seed‑Domain, Validierungen, Node‑Integration und Audit‑Anker.</p>
-        <ul>
-            <li><a href="index.html">DNSSeed Startseite</a></li>
-            <li><a href="manifest.html">DNSSeed Manifest</a></li>
-            <li><a href="schemas.html">DNSSeed JSON‑Schema Viewer</a></li>
-            <li><code>dig +short dnsseed.corecraftgenesis.ch</code></li>
-            <li><code>addnode=dnsseed.corecraftgenesis.ch</code></li>
-        </ul>
+        <h2>Bindung an Genesis und Chain2025</h2>
+        <p>
+            <b>Genesis System Layer:</b><br>
+            <a href="../system/">Genesis System Layer Portal</a>
+        </p>
+        <p>
+            <b>Chain2025 Portal:</b><br>
+            <a href="../chain2025/">Chain2025 Portal</a>
+        </p>
+        <p>
+            <b>Genesis Manifest:</b><br>
+            <a href="../genesis/manifest.html">Genesis Manifest Viewer</a>
+        </p>
     </div>
 
-    <!-- Deterministic Path -->
+    <!-- Audit Hooks -->
     <div class="card">
-        <h2>Deterministischer Pfad</h2>
-        <p>Die deterministische Routing‑Kette:</p>
-        <pre>
-Chain2025
-   ↓ Audit Seal (Echo 25)
-Genesis Layer
-   ↓ Genesis Hash
-DNSSeed
-        </pre>
+        <h2>Audit‑Hooks</h2>
+        <p>
+            <b>Routing‑Audit Schema:</b><br>
+            <a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a>
+        </p>
+        <p>
+            <b>Routing‑Audit Engine:</b><br>
+            <a href="../genesis-operational-layer/audit/audit-engine.md">Audit Engine Dokumentation</a>
+        </p>
+        <p class="small">
+            Routing‑Änderungen sollten über das Genesis‑Audit‑Schema protokolliert und
+            über die Audit‑Engine nachvollziehbar gemacht werden.
+        </p>
     </div>
 
+    <!-- Network Proof -->
+    <div class="card">
+        <h2>Netzwerk‑Proof</h2>
+        <p>
+            <code>dig +short dnsseed.corecraftgenesis.ch</code><br>
+            <code>addnode=dnsseed.corecraftgenesis.ch</code>
+        </p>
+        <p class="small">
+            Diese Kommandos verifizieren die Erreichbarkeit des DNSSeed und die
+            deterministische Bootstrap‑Konfiguration im Chain2025‑Netzwerk.
+        </p>
+    </div>
+
+    <!-- Contact -->
     <div class="footer">
         Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
         Domain: dnsseed.corecraftgenesis.ch
