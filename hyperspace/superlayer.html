@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyperspace Superlayer – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+    fetch("/header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Hyperspace Superlayer</h1>
+    <p class="lead">Warp‑Execution · Multidimensionale States · Genesis‑Interlink</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+        fetch("../genesis/super-nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card">
+        <h2>Über den Hyperspace Superlayer</h2>
+        <p>
+            Der Hyperspace Superlayer ist die oberste Kontroll‑ und Integrationsschicht
+            der Hyperspace Runtime. Er definiert die multidimensionalen Warp‑States,
+            orchestriert State‑Transitions und verbindet die Runtime mit den
+            Genesis‑Artefakten über mehrere Ebenen hinweg.
+        </p>
+        <p>
+            Der Superlayer stellt sicher:
+        </p>
+        <ul>
+            <li>Deterministische Warp‑Execution</li>
+            <li>Audit‑Secure State‑Warping</li>
+            <li>Cross‑Layer Runtime‑Integration</li>
+            <li>Multidimensionale State‑Graphen</li>
+            <li>Genesis‑Interlink‑Routing</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Hyperspace Module</h2>
+        <ul>
+            <li><a href="states.html">Warp‑State Engine</a></li>
+            <li><a href="transitions.html">State‑Transition Hub</a></li>
+            <li><a href="interlink.html">Genesis‑Interlink Module</a></li>
+            <li><a href="runtime.html">Runtime Execution Layer</a></li>
+            <li><a href="viewer.html">Hyperspace Viewer</a></li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Schnellzugriff</h2>
+        <ul>
+            <li><a href="../index.html">Portal – Start</a></li>
+            <li><a href="../genesis/dnsseed/index.html">DNSSeed Portal</a></li>
+            <li><a href="../genesis-operational-layer/index.html">Operational Layer</a></li>
+            <li><a href="../chain2025/index.html">Chain2025</a></li>
+            <li><a href="../mainchain/index.html">Mainchain Audio Engine</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
