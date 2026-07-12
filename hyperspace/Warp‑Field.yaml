@@ -1,0 +1,105 @@
+warp_field:
+  id: hyperspace-warp-field
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Feld-Darstellung der Warp-Dynamik im Hyperspace. Beschreibt lokale
+  Warp-Stärken, Richtungen und Stabilität in jedem State- und Execution-Punkt.
+
+field_points:
+  - id: WF_HS_INIT
+    state: HS_INIT
+    execution: EX_INIT
+    intensity: 0.2
+    direction: "INIT→CONFIG"
+    stability: "stable"
+
+  - id: WF_HS_CONFIGURED
+    state: HS_CONFIGURED
+    execution: EX_PREPARE
+    intensity: 0.4
+    direction: "CONFIG→READY"
+    stability: "stable"
+
+  - id: WF_HS_READY
+    state: HS_READY
+    execution: EX_VALIDATE
+    intensity: 0.6
+    direction: "READY→RUNNING"
+    stability: "critical"
+
+  - id: WF_HS_RUNNING_START
+    state: HS_RUNNING
+    execution: EX_START
+    intensity: 0.8
+    direction: "START→LOOP"
+    stability: "stable"
+
+  - id: WF_HS_RUNNING_LOOP
+    state: HS_RUNNING
+    execution: EX_LOOP
+    intensity: 1.0
+    direction: "LOOP"
+    stability: "central"
+
+  - id: WF_HS_DEGRADED
+    state: HS_DEGRADED
+    execution: EX_MONITOR
+    intensity: 0.7
+    direction: "DEGRADED→RECOVERY"
+    stability: "metastable"
+
+  - id: WF_HS_AUDIT
+    state: HS_AUDIT
+    execution: EX_AUDIT
+    intensity: 0.9
+    direction: "AUDIT→RESUME"
+    stability: "stable"
+
+  - id: WF_HS_SHUTDOWN
+    state: HS_SHUTDOWN
+    execution: EX_SHUTDOWN
+    intensity: 0.0
+    direction: "SHUTDOWN"
+    stability: "terminal"
+
+field_lines:
+  - id: FL_STARTUP
+    label: "Startup Field Line"
+    path:
+      - WF_HS_INIT
+      - WF_HS_CONFIGURED
+      - WF_HS_READY
+      - WF_HS_RUNNING_START
+      - WF_HS_RUNNING_LOOP
+
+  - id: FL_AUDIT
+    label: "Audit Field Line"
+    path:
+      - WF_HS_RUNNING_LOOP
+      - WF_HS_AUDIT
+      - WF_HS_RUNNING_LOOP
+
+  - id: FL_DEGRADED
+    label: "Degraded Field Line"
+    path:
+      - WF_HS_RUNNING_LOOP
+      - WF_HS_DEGRADED
+      - WF_HS_RUNNING_LOOP
+
+  - id: FL_SHUTDOWN
+    label: "Shutdown Field Line"
+    path:
+      - WF_HS_RUNNING_LOOP
+      - WF_HS_SHUTDOWN
+
+meta:
+  description: "Feld-Darstellung der Hyperspace Warp-Dynamik."
+  usage: "Für Modellierung, Stabilitätsanalyse, Audit und Runtime-Design."
+  compatible_with:
+    - "/hyperspace/warp-tensor.yaml"
+    - "/hyperspace/warp-matrix.yaml"
+    - "/hyperspace/warp-topology.yaml"
