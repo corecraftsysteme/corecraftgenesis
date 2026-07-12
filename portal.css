@@ -1,126 +1,209 @@
 /* ============================================================
-   CoreCraft Genesis – portal.css
-   Einheitlicher Stil für Genesis, Operational Layer, Artefakte,
-   DNSSeed, System Layer, Engine Layer
+   CoreCraft Genesis – Portal CSS
+   Stabil, deterministisch, modular
    ============================================================ */
 
-/* --- GLOBAL --- */
+/* ------------------------------------------------------------
+   Global Layout
+   ------------------------------------------------------------ */
+
 body {
     margin: 0;
     padding: 0;
-    background: #0a0f0d;
-    color: #d9d9d9;
-    font-family: "Futura LT", "Futura", sans-serif;
-    line-height: 1.55;
+    background: #0d0d0d;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
 }
 
-/* --- WRAPPER --- */
 .wrap {
-    max-width: 1100px;
-    margin: 60px auto;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-/* --- HEADINGS --- */
-h1 {
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    color: #8affc1;
-    text-shadow: 0 0 18px rgba(138,255,193,0.45);
+/* ------------------------------------------------------------
+   Cards
+   ------------------------------------------------------------ */
+
+.card {
+    background: #1a1a1a;
+    border: 1px solid rgba(0,255,200,0.15);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
 }
+
+.card h2 {
+    margin-top: 0;
+    color: #8affc1;
+}
+
+/* ------------------------------------------------------------
+   Lead Text
+   ------------------------------------------------------------ */
 
 .lead {
     font-size: 1.2rem;
-    opacity: 0.85;
-    margin-bottom: 40px;
+    color: #cccccc;
+    margin-bottom: 25px;
 }
 
-/* --- CARDS --- */
-.card {
-    background: rgba(10, 15, 14, 0.85);
-    border: 1px solid rgba(0,255,200,0.12);
-    padding: 24px;
-    border-radius: 14px;
-    margin-bottom: 32px;
-    box-shadow: 0 0 22px rgba(0,255,180,0.08);
-    backdrop-filter: blur(6px);
-    transition: 0.25s ease;
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,255,200,0.15);
+    font-size: 0.9rem;
+    color: #999999;
 }
 
-.card:hover {
-    border-color: rgba(0,255,200,0.35);
-    box-shadow: 0 0 28px rgba(0,255,180,0.18);
-    transform: translateY(-3px);
+/* ------------------------------------------------------------
+   Header
+   ------------------------------------------------------------ */
+
+.header {
+    width: 100%;
+    background: rgba(0,0,0,0.65);
+    border-bottom: 1px solid rgba(0,255,200,0.15);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* --- GRID MODULES --- */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.module {
-    display: block;
-    background: rgba(10, 15, 14, 0.85);
-    border: 1px solid rgba(0,255,200,0.12);
-    padding: 20px;
-    border-radius: 14px;
-    text-decoration: none;
-    color: #d9d9d9;
-    box-shadow: 0 0 22px rgba(0,255,180,0.08);
-    transition: 0.25s ease;
-}
-
-.module:hover {
-    border-color: rgba(0,255,200,0.35);
-    box-shadow: 0 0 28px rgba(0,255,180,0.18);
-    transform: translateY(-3px);
-}
-
-.module h3 {
-    margin-top: 0;
+.header-title a {
+    font-size: 1.4rem;
+    font-weight: 600;
     color: #8affc1;
+    text-decoration: none;
     text-shadow: 0 0 12px rgba(138,255,193,0.35);
 }
 
-/* --- CODE BLOCKS --- */
-code {
-    background: rgba(0,0,0,0.55);
-    padding: 6px 8px;
-    border-radius: 6px;
+.header-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 22px;
+}
+
+.header-nav a {
+    color: #d9d9d9;
+    text-decoration: none;
     font-size: 0.95rem;
-    color: #9effd8;
-    border: 1px solid rgba(0,255,200,0.15);
+    transition: 0.2s ease;
 }
 
-/* --- FOOTER --- */
-.footer {
-    margin-top: 60px;
-    font-size: 0.9rem;
-    opacity: 0.7;
-    color: #aaa;
+.header-nav a:hover {
+    color: #8affc1;
+    text-shadow: 0 0 8px rgba(138,255,193,0.35);
 }
 
-/* --- LINKS --- */
-a {
+/* ------------------------------------------------------------
+   Super Navigation
+   ------------------------------------------------------------ */
+
+#super-nav .card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#super-nav .card ul li a {
     color: #8affc1;
     text-decoration: none;
+}
+
+#super-nav .card ul li a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   DNSSeed Navigation
+   ------------------------------------------------------------ */
+
+#dnsseed-nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#dnsseed-nav ul li a {
+    color: #8affc1;
+    text-decoration: none;
+}
+
+#dnsseed-nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   Viewer Pages (JSON / YAML / MD)
+   ------------------------------------------------------------ */
+
+.view-json pre,
+.view-yaml pre,
+.view-md pre {
+    background: #111111;
+    border: 1px solid rgba(0,255,200,0.15);
+    padding: 20px;
+    overflow-x: auto;
+    border-radius: 6px;
+    color: #e6e6e6;
+}
+
+/* ------------------------------------------------------------
+   Operational Layer Modules
+   ------------------------------------------------------------ */
+
+.audit h1,
+.operators h1,
+.pages h1,
+.payouts h1 {
+    color: #8affc1;
+}
+
+.audit ul,
+.operators ul,
+.pages ul,
+.payouts ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.audit ul li a,
+.operators ul li a,
+.pages ul li a,
+.payouts ul li a {
+    color: #8affc1;
+    text-decoration: none;
+}
+
+.audit ul li a:hover,
+.operators ul li a:hover,
+.pages ul li a:hover,
+.payouts ul li a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   Links
+   ------------------------------------------------------------ */
+
+a {
+    color: #8affc1;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-/* --- DNSSeed GRID OVERLAY (optional) --- */
-.grid-overlay {
-    position: fixed;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 1;
 }
