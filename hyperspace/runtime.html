@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Runtime Execution – Hyperspace Runtime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">Grid</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+<h1>Runtime Execution Layer</h1>
+<p class="lead">Warp‑Execution · Parallel‑Runtime · Deterministische Ausführung</p>
+
+<div id="super-nav"></div>
+<script>
+fetch("../genesis/super-nav.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("super-nav").innerHTML = h);
+</script>
+
+<div class="card">
+    <h2>Über den Execution Layer</h2>
+    <p>
+        Der Execution Layer führt alle Warp‑States deterministisch aus.
+        Er bildet die Grundlage für multidimensionale Parallel‑Ausführung
+        und audit‑fähige Runtime‑Transitions.
+    </p>
+    <ul>
+        <li>Deterministische Warp‑Execution</li>
+        <li>Parallel‑Runtime‑Pipelines</li>
+        <li>Audit‑Secure Execution‑Graphen</li>
+        <li>Genesis‑Interlink‑Runtime</li>
+    </ul>
+</div>
+
+<div class="footer">© CoreCraft Genesis — audit‑sealed</div>
+
+</div>
+</body>
+</html>
