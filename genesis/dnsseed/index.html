@@ -9,14 +9,13 @@
 
 <body>
 
+<!-- Header -->
 <div id="header"></div>
 <script>
     fetch("../header.html")
         .then(r => r.text())
         .then(h => document.getElementById("header").innerHTML = h);
 </script>
-
-<div class="grid-overlay"></div>
 
 <div class="wrap">
 
@@ -26,7 +25,7 @@
     <!-- Navigation -->
     <div id="dnsseed-nav"></div>
     <script>
-        fetch("nav.html")
+        fetch("navi.html")   <!-- FIX: richtige Datei -->
             .then(r => r.text())
             .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
     </script>
@@ -78,4 +77,3 @@
 
 </body>
 </html>
-
