@@ -2,94 +2,101 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>DNSSeed Identity Layer – CoreCraft Genesis</title>
+    <title>DNSSeed Identity – CoreCraft Genesis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
+
+    <!-- CORE + DNSSEED STYLES -->
+    <link rel="stylesheet" href="../portal-core.css">
+    <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
 
 <body>
 
-<head>
-    <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS: CORE + DNSSEED -->
-    <link rel="stylesheet" href="../portal-core.css">
-    <link rel="stylesheet" href="../portal-dnsseed.css">
-</head>
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
 
 <div class="grid-overlay"></div>
 
 <div class="wrap">
 
     <h1>DNSSeed Identity Layer</h1>
-    <p class="lead">Formale Identität des Seeds: Klasse, Integrität, Proof, Genesis‑Anker.</p>
+    <p class="lead">Formale Beschreibung der Seed‑Identität, Klassen, Integrität und Bindung an Genesis.</p>
 
-    <!-- Identity Definition -->
+    <!-- Navigation -->
+    <div id="dnsseed-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
+    </script>
+
+    <!-- Identity Core -->
     <div class="card">
-        <h2>Seed Identity Definition</h2>
+        <h2>Seed‑Identität</h2>
         <p>
             <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
             <b>Seed Class:</b> Genesis‑Anchor<br>
+            <b>Seed Role:</b> Public Entry Node für Chain2025 und Genesis‑Audit<br>
             <b>Seed Version:</b> 1.0<br>
-            <b>Seed Integrity:</b> Echo‑Audit‑Seal 25<br>
-            <b>Seed Status:</b> Active / Verified
+            <b>Seed Integrity:</b> Echo‑Audit‑Seal 25
         </p>
     </div>
 
-    <!-- Genesis Anchor -->
+    <!-- Binding to Genesis -->
     <div class="card">
-        <h2>Genesis‑Anker</h2>
+        <h2>Bindung an Genesis</h2>
         <p>
             <b>Genesis Hash:</b><br>
             <code>4dc59891fad26b8b01b923be807f34f040bd885f1c50be64c3235f81846a88ef</code>
         </p>
         <p>
+            <b>Genesis System Layer:</b><br>
+            <a href="../system/">Genesis System Layer Portal</a>
+        </p>
+        <p>
             <b>Genesis Manifest:</b><br>
-            <a href="../system/">Genesis System Layer</a>
+            <a href="../genesis/manifest.html">Genesis Manifest Viewer</a>
         </p>
     </div>
 
-    <!-- Audit Anchor -->
+    <!-- Audit Binding -->
     <div class="card">
-        <h2>Audit‑Anker</h2>
+        <h2>Audit‑Bindung</h2>
         <p>
-            <b>Audit Protocol:</b><br>
+            <b>Audit Schema:</b><br>
             <a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a>
         </p>
         <p>
             <b>Audit Engine:</b><br>
             <a href="../genesis-operational-layer/audit/audit-engine.md">Audit Engine Dokumentation</a>
         </p>
-    </div>
-
-    <!-- Seed Proof -->
-    <div class="card">
-        <h2>Seed‑Proof</h2>
         <p>
-            <b>DNS‑Proof:</b><br>
-            <code>dig +short dnsseed.corecraftgenesis.ch</code>
+            <b>Operator‑Audit:</b><br>
+            <a href="../genesis-operational-layer/audit/operator-audit.json">Operator Audit Log</a>
         </p>
         <p>
-            <b>Node‑Proof:</b><br>
+            <b>Ritual‑Audit:</b><br>
+            <a href="../genesis-operational-layer/audit/ritual-audit.json">Ritual Audit Log</a>
+        </p>
+    </div>
+
+    <!-- Network Proof -->
+    <div class="card">
+        <h2>Netzwerk‑Proof</h2>
+        <p>
+            <code>dig +short dnsseed.corecraftgenesis.ch</code><br>
             <code>addnode=dnsseed.corecraftgenesis.ch</code>
         </p>
+        <p class="small">
+            Diese Kommandos verifizieren die Erreichbarkeit und die deterministische Seed‑Konfiguration im Chain2025‑Netzwerk.
+        </p>
     </div>
 
-    <!-- Routing Identity -->
-    <div class="card">
-        <h2>Routing‑Identity</h2>
-        <p>Deterministische Identitätskette:</p>
-        <pre>
-Chain2025
-   ↓ Echo‑Audit‑Seal 25
-Genesis Layer
-   ↓ Genesis Hash
-DNSSeed Identity Layer
-        </pre>
-    </div>
-
+    <!-- Contact -->
     <div class="footer">
         Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
         Domain: dnsseed.corecraftgenesis.ch
