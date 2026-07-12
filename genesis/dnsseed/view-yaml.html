@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <title>YAML Viewer – DNSSeed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
-</head>
 
-<body>
-
-<head>
-    <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS: CORE + DNSSEED -->
+    <!-- Modular CSS -->
     <link rel="stylesheet" href="../portal-core.css">
     <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
 
-<div class="grid-overlay"></div>
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("/header.html")   <!-- oder ../header.html, je nach Speicherort -->
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Overlay entfernt -->
+<!-- <div class="grid-overlay"></div> -->
 
 <div class="wrap">
 
     <h1>YAML Viewer</h1>
     <p class="lead">dnsseed.yaml anzeigen</p>
 
-    <div class="card">
+    <div class="card view-yaml">
         <select id="yamlSelect">
             <option value="https://dnsseed.corecraftgenesis.ch/dnsseed.yaml">dnsseed.yaml</option>
         </select>
