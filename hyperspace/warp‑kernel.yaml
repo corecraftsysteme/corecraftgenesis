@@ -1,0 +1,120 @@
+warp_kernel:
+  id: hyperspace-warp-kernel
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Der Warp-Kernel ist die fundamentale Berechnungseinheit des Hyperspace-Warp-
+  Systems. Alle höheren Strukturen (Tensor, Potential, Field, Dynamics,
+  Manifold) basieren auf Kernel-Funktionen, Kernel-Operatoren und Kernel-
+  Konvolutionen. Der Kernel definiert die elementaren deterministischen
+  Transformationen des Warp-Raums.
+
+kernel_functions:
+  - id: K_STATE
+    type: scalar
+    definition: "K(S) = α · S"
+    description: "Basiskernel für State-Dimension."
+
+  - id: K_EXECUTION
+    type: scalar
+    definition: "K(E) = β · E"
+    description: "Basiskernel für Execution-Dimension."
+
+  - id: K_TRANSITION
+    type: scalar
+    definition: "K(T) = γ · T"
+    description: "Basiskernel für Transition-Dimension."
+
+  - id: K_POTENTIAL
+    type: scalar
+    definition: "K(P) = δ · P"
+    description: "Basiskernel für Potential-Dimension."
+
+  - id: K_TENSOR
+    type: tensor
+    definition: "K(T_ij) = λ · T_ij"
+    description: "Tensor-Kernel für Warp-Tensor-Komponenten."
+
+kernel_operators:
+  - id: KO_GRADIENT
+    type: differential
+    definition: "∇K(x)"
+    description: "Gradient des Kernel-Feldes."
+
+  - id: KO_DIVERGENCE
+    type: differential
+    definition: "∇ · K(x)"
+    description: "Divergenz des Kernel-Feldes."
+
+  - id: KO_LAPLACE
+    type: differential
+    definition: "ΔK(x) = ∇²K(x)"
+    description: "Laplace-Operator für Kernel-Glättung."
+
+  - id: KO_CONVOLUTION
+    type: convolution
+    definition: "K * F = ∫ K(x-y) F(y) dy"
+    description: "Kernel-Konvolution mit Warp-Feld."
+
+  - id: KO_EVOLUTION
+    type: dynamic
+    definition: "dK/dt = OP_TENSOR_APPLY(K)"
+    description: "Zeitliche Entwicklung des Kernels."
+
+kernel_integrals:
+  - id: KI_STATE
+    domain: "State"
+    definition: "∫ K(S) dS"
+    description: "Kernel-Integral über State-Dimension."
+
+  - id: KI_EXECUTION
+    domain: "Execution"
+    definition: "∫ K(E) dE"
+    description: "Kernel-Integral über Execution-Dimension."
+
+  - id: KI_POTENTIAL
+    domain: "Potential"
+    definition: "∫ K(P) dP"
+    description: "Kernel-Integral über Potential-Dimension."
+
+kernel_stability:
+  conditions:
+    - id: KS_LOW_POTENTIAL
+      condition: "K(P) < 0.4"
+      region: ["HS_INIT", "HS_CONFIGURED", "HS_READY"]
+      description: "Stabile Kernel-Region."
+
+    - id: KS_CENTRAL
+      condition: "K(P) ≈ 0.5"
+      region: ["HS_RUNNING"]
+      description: "Zentrale Kernel-Region."
+
+    - id: KS_METASTABLE
+      condition: "K(P) ≈ 0.7"
+      region: ["HS_DEGRADED"]
+      description: "Metastabile Kernel-Region."
+
+    - id: KS_AUDIT
+      condition: "K(P) ≈ 0.65"
+      region: ["HS_AUDIT"]
+      description: "Audit-Kernel-Region."
+
+    - id: KS_TERMINAL
+      condition: "K(P) = 1.0"
+      region: ["HS_SHUTDOWN"]
+      description: "Terminale Kernel-Region."
+
+meta:
+  description: "Fundamentaler Kernel des Hyperspace Warp-Raums."
+  usage: "Für Runtime-Engine, mathematische Modellierung, Tensor- und Potentialberechnung."
+  compatible_with:
+    - "/hyperspace/warp-manifold.yaml"
+    - "/hyperspace/warp-dynamics.yaml"
+    - "/hyperspace/warp-operator.yaml"
+    - "/hyperspace/warp-potential.yaml"
+    - "/hyperspace/warp-tensor.yaml"
+    - "/hyperspace/warp-field.yaml"
+    - "/hyperspace/warp-matrix.yaml"
