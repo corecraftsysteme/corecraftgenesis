@@ -1,0 +1,125 @@
+warp_operator:
+  id: hyperspace-warp-operator
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Operatoren des Hyperspace-Warp-Raums. Jeder Operator definiert eine
+  deterministische Transformation zwischen State-, Execution-, Transition-,
+  Interlink-, Tensor- und Potential-Dimensionen. Die Operatoren bilden die
+  mathematische Grundlage für Warp-Dynamik, Stabilität und Runtime-Verhalten.
+
+operators:
+
+  - id: OP_STATE_ADVANCE
+    type: state-operator
+    input: "HS_*"
+    output: "HS_*"
+    rule: "S(n+1) = S(n) + ΔS"
+    description: "Fortschrittsoperator entlang der State-Achse."
+    deterministic: true
+
+  - id: OP_EXECUTION_STEP
+    type: execution-operator
+    input: "EX_*"
+    output: "EX_*"
+    rule: "E(n+1) = E(n) + ΔE"
+    description: "Ausführungsschrittoperator entlang der Execution-Achse."
+    deterministic: true
+
+  - id: OP_TRANSITION_FIRE
+    type: transition-operator
+    input: "HS_x, HS_y"
+    output: "HS_y"
+    rule: "T(x→y) = 1 wenn Potential(x) < Potential(y) + Barrier(x→y)"
+    description: "Aktiviert deterministische Transitionen zwischen States."
+    deterministic: true
+
+  - id: OP_INTERLINK_BIND
+    type: interlink-operator
+    input: "External_Layer, HS_State"
+    output: "HS_State"
+    rule: "I(ext→s) = Bind(ext, s)"
+    description: "Bindet externe Layer (Genesis, DNSSeed, Chain2025, Mainchain) an Hyperspace."
+    deterministic: true
+
+  - id: OP_TENSOR_APPLY
+    type: tensor-operator
+    input: "warp_tensor"
+    output: "warp_tensor"
+    rule: "T' = T ⊗ Δ"
+    description: "Tensor-Transformation basierend auf Warp-Gradienten."
+    deterministic: true
+
+  - id: OP_POTENTIAL_FLOW
+    type: potential-operator
+    input: "Potential(x)"
+    output: "Flow(x)"
+    rule: "Flow(x) = -∇Potential(x)"
+    description: "Erzeugt deterministische Potentialflussrichtungen."
+    deterministic: true
+
+  - id: OP_FIELD_PROPAGATE
+    type: field-operator
+    input: "warp_field"
+    output: "warp_field"
+    rule: "F' = F + ΔF"
+    description: "Propagation des Warp-Feldes entlang der Feldlinien."
+    deterministic: true
+
+  - id: OP_WARP_EVAL
+    type: evaluation-operator
+    input: ["State", "Execution", "Tensor", "Potential"]
+    output: "WarpValue"
+    rule: "W = αS + βE + γT + δP"
+    description: "Berechnet den aktuellen Warp-Wert eines Punktes."
+    deterministic: true
+
+  - id: OP_WARP_COLLAPSE
+    type: collapse-operator
+    input: "HS_*"
+    output: "HS_SHUTDOWN"
+    rule: "Collapse(x) = SHUTDOWN wenn Potential(x) ≥ 1.0"
+    description: "Terminaler Kollapsoperator für Shutdown."
+    deterministic: true
+    terminal: true
+
+operator_sets:
+  state_operators:
+    - OP_STATE_ADVANCE
+
+  execution_operators:
+    - OP_EXECUTION_STEP
+
+  transition_operators:
+    - OP_TRANSITION_FIRE
+
+  interlink_operators:
+    - OP_INTERLINK_BIND
+
+  tensor_operators:
+    - OP_TENSOR_APPLY
+
+  potential_operators:
+    - OP_POTENTIAL_FLOW
+
+  field_operators:
+    - OP_FIELD_PROPAGATE
+
+  evaluation_operators:
+    - OP_WARP_EVAL
+
+  terminal_operators:
+    - OP_WARP_COLLAPSE
+
+meta:
+  description: "Operatoren für deterministische Warp-Berechnung."
+  usage: "Für Runtime-Engine, Audit, mathematische Modellierung und Superlayer."
+  compatible_with:
+    - "/hyperspace/warp-tensor.yaml"
+    - "/hyperspace/warp-potential.yaml"
+    - "/hyperspace/warp-field.yaml"
+    - "/hyperspace/warp-matrix.yaml"
+    - "/hyperspace/runtime-spec.yaml"
