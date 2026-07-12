@@ -1,0 +1,78 @@
+graph:
+  id: hyperspace-transition-graph
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+transitions:
+  - id: T_INIT_TO_CONFIG
+    from: HS_INIT
+    to: HS_CONFIGURED
+    label: "Load Runtime Configuration"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_CONFIG_TO_READY
+    from: HS_CONFIGURED
+    to: HS_READY
+    label: "Validate Warp-States"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_READY_TO_RUNNING
+    from: HS_READY
+    to: HS_RUNNING
+    label: "Start Warp-Execution"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_RUNNING_TO_DEGRADED
+    from: HS_RUNNING
+    to: HS_DEGRADED
+    label: "Enter Degraded Mode"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_DEGRADED_TO_RUNNING
+    from: HS_DEGRADED
+    to: HS_RUNNING
+    label: "Recover to Normal"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_RUNNING_TO_AUDIT
+    from: HS_RUNNING
+    to: HS_AUDIT
+    label: "Create Audit Snapshot"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_AUDIT_TO_RUNNING
+    from: HS_AUDIT
+    to: HS_RUNNING
+    label: "Resume Execution"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_READY_TO_SHUTDOWN
+    from: HS_READY
+    to: HS_SHUTDOWN
+    label: "Shutdown from Ready"
+    type: warp-transition
+    deterministic: true
+
+  - id: T_RUNNING_TO_SHUTDOWN
+    from: HS_RUNNING
+    to: HS_SHUTDOWN
+    label: "Controlled Shutdown"
+    type: warp-transition
+    deterministic: true
+
+meta:
+  description: "Deterministischer Transition-Graph der Hyperspace Runtime."
+  usage: "Für Viewer, Debugger und Audit-Pipelines im Hyperspace-Layer."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.yaml"
