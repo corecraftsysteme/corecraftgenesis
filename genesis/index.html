@@ -12,7 +12,7 @@
 <!-- Header -->
 <div id="header"></div>
 <script>
-    fetch("header.html")
+    fetch("/header.html")
         .then(r => r.text())
         .then(h => document.getElementById("header").innerHTML = h);
 </script>
