@@ -5,7 +5,6 @@
     <title>YAML Viewer – DNSSeed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Modular CSS -->
     <link rel="stylesheet" href="../portal-core.css">
     <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
@@ -14,13 +13,22 @@
 
 <div id="header"></div>
 <script>
-    fetch("/header.html")   <!-- oder ../header.html, je nach Speicherort -->
+    fetch("/header.html")
         .then(r => r.text())
         .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
-<!-- Overlay entfernt -->
-<!-- <div class="grid-overlay"></div> -->
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<!-- Debug Button -->
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
 
 <div class="wrap">
 
