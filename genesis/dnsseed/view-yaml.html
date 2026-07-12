@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>YAML Viewer – DNSSeed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>YAML Viewer</h1>
+    <p class="lead">dnsseed.yaml anzeigen</p>
+
+    <div class="card">
+        <select id="yamlSelect">
+            <option value="https://dnsseed.corecraftgenesis.ch/dnsseed.yaml">dnsseed.yaml</option>
+        </select>
+
+        <pre id="yamlOutput">YAML wird geladen…</pre>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('yamlSelect');
+    const output = document.getElementById('yamlOutput');
+
+    function loadYAML(file) {
+        output.textContent = 'YAML wird geladen…';
+        fetch(file)
+            .then(r => r.text())
+            .then(t => output.textContent = t)
+            .catch(e => output.textContent = 'Fehler: ' + e);
+    }
+
+    select.addEventListener('change', () => loadYAML(select.value));
+    loadYAML(select.value);
+})();
+</script>
+
+</body>
+</html>
