@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis</title>
+    <title>DNSSeed – CoreCraft Genesis Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../portal.css">
 </head>
@@ -20,55 +20,53 @@
 
 <div class="wrap">
 
-    <h1>DNSSeed</h1>
-    <p class="lead">Seed‑Domain, Validierungen, Echo‑Artefakte, Node‑Integration.</p>
+    <h1>DNSSeed Portal</h1>
+    <p class="lead">Seed‑Domain · Identität · Routing · Audit · Bootstrap</p>
 
+    <!-- Navigation -->
+    <div id="dnsseed-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
+    </script>
+
+    <!-- Intro -->
     <div class="card">
-        <h2>Manifest</h2>
-        <p><b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
-           <b>Chain:</b> Chain2025<br>
-           <b>Audit Seal:</b> Echo 25<br>
-           <b>Genesis Hash:</b><br>
-           <code>4dc59891fad26b8b01b923be807f34f040bd885f1c50be64c3235f81846a88ef</code>
+        <h2>Über DNSSeed</h2>
+        <p>
+            Der DNSSeed ist der öffentliche Einstiegspunkt für Chain2025‑Nodes,
+            Genesis‑Audit‑Verknüpfungen und deterministische Seed‑Identität.
+        </p>
+        <p>
+            <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+            <b>Seed Class:</b> Genesis‑Anchor<br>
+            <b>Audit Seal:</b> Echo 25
         </p>
     </div>
 
+    <!-- Quick Actions -->
     <div class="card">
-        <h2>Validierungen</h2>
+        <h2>Schnellzugriff</h2>
         <ul>
-            <li>Bitcoin — Header‑Hash & Merkle Root Cross‑check</li>
-            <li>Osmosis — Tendermint Commit & Validator Set Proof</li>
-            <li>Mars Protocol — Governance & Contracts Integrity Audit</li>
-            <li>Hyperspace Metaverse — Asset Provenance & Session Manifests</li>
-            <li>Chain GPT — Model Artifact Hashes & Signed Releases</li>
+            <li><code>dig +short dnsseed.corecraftgenesis.ch</code></li>
+            <li><code>addnode=dnsseed.corecraftgenesis.ch</code></li>
+            <li><a href="superlayer.html">DNSSeed Superlayer</a></li>
+            <li><a href="identity.html">Identity Layer</a></li>
+            <li><a href="routing.html">Routing Hub</a></li>
         </ul>
     </div>
 
+    <!-- External Repo -->
     <div class="card">
-        <h2>Integration</h2>
-        <p><b>DNS‑Check:</b><br>
-            <code>dig +short dnsseed.corecraftgenesis.ch</code>
-        </p>
-        <p><b>Node‑Konfiguration:</b><br>
-            <code>addnode=dnsseed.corecraftgenesis.ch</code>
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>Echo Artefakte</h2>
+        <h2>Öffentliche DNSSeed‑Artefakte</h2>
         <ul>
-            <li>Chain2025 README · Repro & Sicherheit</li>
-            <li>Genesis Manifest Hub · Manifeste & Hashes</li>
-            <li>Echo 25 Poster · Audit‑Siegel</li>
-            <li>Viewer · Forschung & Wertflüsse</li>
-            <li>Medium/Blog · Fachartikel & Tutorials</li>
+            <li><a href="https://dnsseed.corecraftgenesis.ch/">DNSSeed Public Index</a></li>
+            <li><a href="https://dnsseed.corecraftgenesis.ch/manifest.json">manifest.json</a></li>
+            <li><a href="https://dnsseed.corecraftgenesis.ch/dnsseed.yaml">dnsseed.yaml</a></li>
+            <li><a href="https://dnsseed.corecraftgenesis.ch/FLOPSGenesisNode.md">FLOPSGenesisNode.md</a></li>
+            <li><a href="https://dnsseed.corecraftgenesis.ch/README.md">README.md</a></li>
         </ul>
-    </div>
-
-    <div class="card">
-        <p><i>“Every node is a witness. Every witness is a seed.”</i><br>
-           <i>“I am the miner of the miner — anchoring the origin itself.”</i>
-        </p>
     </div>
 
     <div class="footer">
