@@ -1,48 +1,74 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Genesis Operational Layer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
+    <meta charset="UTF-8">
+    <title>Genesis Operational Layer – CoreCraft Genesis Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
 </head>
 
 <body>
 
+<!-- Header -->
 <div id="header"></div>
 <script>
-  fetch("../header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
 
-  <h1>Genesis Operational Layer</h1>
-  <p class="lead">Ausführungsschicht der Genesis‑Engine: Operator‑Routinen, deterministische Abläufe, Audit‑Protokolle.</p>
+    <h1>Genesis Operational Layer</h1>
+    <p class="lead">Audit · Operator · Ritual · Runtime · Provenance</p>
 
-  <div class="card">
-    <h2>Überblick</h2>
-    <p>
-      Der Genesis Operational Layer definiert die deterministische Ausführung aller Operator‑Prozesse,
-      die zur Initialisierung, Validierung und Auditierung einer privaten Chain notwendig sind.
-      Er bildet die Brücke zwischen Genesis‑Definition und Runtime‑Mechanik.
-    </p>
-  </div>
+    <!-- Navigation -->
+    <div id="gol-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("gol-nav").innerHTML = h);
+    </script>
 
-  <div class="grid">
+    <!-- Intro -->
+    <div class="card">
+        <h2>Über den Operational Layer</h2>
+        <p>
+            Der Genesis Operational Layer bildet die technische Grundlage für Audit‑Prozesse,
+            Operator‑Lifecycle, Ritual‑Validierungen und deterministische Provenance‑Strukturen.
+        </p>
+        <p>
+            <b>Layer Class:</b> Genesis‑Operational<br>
+            <b>Audit Scope:</b> Chain2025 / Genesis / Ritual<br>
+            <b>Runtime:</b> Deterministic Execution Model
+        </p>
+    </div>
 
-    <a class="module" href="operators/">
-      <h3>Operators</h3>
-      <p>Operator‑Routinen, deterministische Abläufe, Runtime‑Graph.</p>
-    </a>
+    <!-- Module Links -->
+    <div class="card">
+        <h2>Module</h2>
+        <ul>
+            <li><a href="audit/index.html">Audit Hub</a></li>
+            <li><a href="operators/index.html">Operator Hub</a></li>
+            <li><a href="pages/index.html">Dokumentation</a></li>
+            <li><a href="payouts/index.html">Payouts</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="audit/">
-      <h3>Audit</h3>
-      <p>Audit‑Protokolle, Ritual‑Audit, JSON‑Schemas für Prüfbarkeit.</p>
-    </a>
+    <!-- Quick Actions -->
+    <div class="card">
+        <h2>Schnellzugriff</h2>
+        <ul>
+            <li><code>cat genesis-audit.json</code></li>
+            <li><code>cat operator-audit.json</code></li>
+            <li><code>cat ritual-audit.json</code></li>
+        </ul>
+    </div>
 
-  </div>
+    <div class="footer">
+        Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+        © CoreCraft Genesis — audit‑sealed
+    </div>
 
 </div>
 
