@@ -1,0 +1,129 @@
+graph:
+  id: hyperspace-state-graph
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+nodes:
+  - id: GENESIS_ROOT
+    type: root
+    label: "Genesis Root"
+    layer: Genesis
+    entry: true
+
+  - id: HS_INIT
+    type: warp-state
+    label: "Hyperspace Init"
+    layer: Hyperspace
+    entry: true
+
+  - id: HS_CONFIGURED
+    type: warp-state
+    label: "Runtime Configured"
+    layer: Hyperspace
+
+  - id: HS_READY
+    type: warp-state
+    label: "Runtime Ready"
+    layer: Hyperspace
+
+  - id: HS_RUNNING
+    type: warp-state
+    label: "Runtime Running"
+    layer: Hyperspace
+
+  - id: HS_DEGRADED
+    type: warp-state
+    label: "Degraded Mode"
+    layer: Hyperspace
+
+  - id: HS_AUDIT
+    type: warp-state
+    label: "Audit Snapshot"
+    layer: Hyperspace
+
+  - id: HS_SHUTDOWN
+    type: warp-state
+    label: "Runtime Shutdown"
+    layer: Hyperspace
+    terminal: true
+
+edges:
+  - id: E1
+    from: GENESIS_ROOT
+    to: HS_INIT
+    type: genesis-interlink
+    label: "Genesis → Hyperspace Init"
+    deterministic: true
+
+  - id: E2
+    from: HS_INIT
+    to: HS_CONFIGURED
+    type: transition
+    label: "Load Runtime Configuration"
+    deterministic: true
+
+  - id: E3
+    from: HS_CONFIGURED
+    to: HS_READY
+    type: transition
+    label: "Validate Warp-States"
+    deterministic: true
+
+  - id: E4
+    from: HS_READY
+    to: HS_RUNNING
+    type: transition
+    label: "Start Warp-Execution"
+    deterministic: true
+
+  - id: E5
+    from: HS_RUNNING
+    to: HS_DEGRADED
+    type: transition
+    label: "Enter Degraded Mode"
+    deterministic: true
+
+  - id: E6
+    from: HS_DEGRADED
+    to: HS_RUNNING
+    type: transition
+    label: "Recover to Normal"
+    deterministic: true
+
+  - id: E7
+    from: HS_RUNNING
+    to: HS_AUDIT
+    type: transition
+    label: "Create Audit Snapshot"
+    deterministic: true
+
+  - id: E8
+    from: HS_AUDIT
+    to: HS_RUNNING
+    type: transition
+    label: "Resume Execution"
+    deterministic: true
+
+  - id: E9
+    from: HS_READY
+    to: HS_SHUTDOWN
+    type: transition
+    label: "Shutdown from Ready"
+    deterministic: true
+
+  - id: E10
+    from: HS_RUNNING
+    to: HS_SHUTDOWN
+    type: transition
+    label: "Controlled Shutdown"
+    deterministic: true
+
+meta:
+  description: "Deterministischer Warp-State-Graph der Hyperspace Runtime."
+  usage: "Für Viewer, Debugger und Audit-Pipelines im Hyperspace-Layer."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.json"
