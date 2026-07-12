@@ -1,12 +1,71 @@
 <div class="header">
-  <a href="/">CoreCraftGenesis</a>
-  <nav>
-    <a href="/genesis/">Genesis</a>
-    <a href="/echo/">Echo</a>
-    <a href="/genesis-operational-layer/operators/">Operators</a>
-    <a href="/payouts/">Payouts</a>
-    <a href="/bridge/">Bridge</a>
-    <a href="/skeletton/">Skeletton</a>
-    <a href="/engine/">Engine</a>
-  </nav>
+    <div class="header-inner">
+
+        <!-- Logo / Title -->
+        <div class="header-title">
+            <a href="/index.html">CoreCraft Genesis</a>
+        </div>
+
+        <!-- Global Navigation -->
+        <nav class="header-nav">
+            <ul>
+                <li><a href="/genesis/index.html">Genesis</a></li>
+                <li><a href="/genesis/dnsseed/index.html">DNSSeed</a></li>
+                <li><a href="/genesis-operational-layer/index.html">Operational Layer</a></li>
+                <li><a href="/chain2025/index.html">Chain2025</a></li>
+                <li><a href="/mainchain/index.html">Mainchain</a></li>
+                <li><a href="/hyperspace/index.html">Hyperspace</a></li>
+            </ul>
+        </nav>
+
+    </div>
 </div>
+
+<style>
+    .header {
+        width: 100%;
+        background: rgba(0,0,0,0.65);
+        border-bottom: 1px solid rgba(0,255,200,0.15);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-inner {
+        max-width: 1200px;
+        margin: auto;
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-title a {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #8affc1;
+        text-decoration: none;
+        text-shadow: 0 0 12px rgba(138,255,193,0.35);
+    }
+
+    .header-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 22px;
+    }
+
+    .header-nav a {
+        color: #d9d9d9;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: 0.2s ease;
+    }
+
+    .header-nav a:hover {
+        color: #8affc1;
+        text-shadow: 0 0 8px rgba(138,255,193,0.35);
+    }
+</style>
