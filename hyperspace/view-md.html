@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Viewer – Hyperspace Runtime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Markdown Viewer</h1>
+    <p class="lead">Hyperspace Runtime Markdown anzeigen</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+    fetch("../genesis/super-nav.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card view-md">
+        <select id="mdSelect">
+            <option value="https://hyperspace.corecraftgenesis.ch/runtime.md">runtime.md</option>
+        </select>
+
+        <pre id="mdOutput">Markdown wird geladen…</pre>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('mdSelect');
+    const output = document.getElementById('mdOutput');
+
+    function loadMD(url) {
+        output.textContent = 'Markdown wird geladen…';
+        fetch(url)
+            .then(r => r.text())
+            .then(t => output.textContent = t)
+            .catch(e => output.textContent = 'Fehler: ' + e);
+    }
+
+    select.addEventListener('change', () => loadMD(select.value));
+    loadMD(select.value);
+})();
+</script>
+
+</body>
+</html>
