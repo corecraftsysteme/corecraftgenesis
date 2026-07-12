@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyperspace Runtime – Manifest Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">Grid</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Hyperspace Runtime – Manifest</h1>
+    <p class="lead">Manifest‑Viewer für die Hyperspace Runtime des CoreCraft Genesis Systems</p>
+
+    <div id="super-nav"></div>
+    <script>
+    fetch("../genesis/super-nav.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card">
+        <h2>Manifest‑Quelle</h2>
+        <p>Wähle das Manifest‑Format:</p>
+        <select id="manifestSelect">
+            <option value="https://hyperspace.corecraftgenesis.ch/manifest.json">manifest.json</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/manifest.yaml">manifest.yaml</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/manifest.md">manifest.md</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h2>Manifest‑Inhalt</h2>
+        <pre id="manifestOutput">Manifest wird geladen…</pre>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('manifestSelect');
+    const output = document.getElementById('manifestOutput');
+
+    function loadManifest(url) {
+        output.textContent = 'Manifest wird geladen…';
+        fetch(url)
+            .then(r => r.text())
+            .then(t => output.textContent = t)
+            .catch(e => output.textContent = 'Fehler: ' + e);
+    }
+
+    select.addEventListener('change', () => loadManifest(select.value));
+    loadManifest(select.value);
+})();
+</script>
+
+</body>
+</html>
