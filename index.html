@@ -1,83 +1,106 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>CoreCraftGenesis Portal</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="portal.css">
+    <meta charset="UTF-8">
+    <title>CoreCraft Genesis – Superlayer Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
 </head>
 
 <body>
 
+<!-- Header -->
 <div id="header"></div>
 <script>
-  fetch("header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
 
-  <h1>CoreCraftGenesis</h1>
-  <p class="lead">Portal der privaten Genesis‑Engine</p>
+    <h1>CoreCraft Genesis Superlayer</h1>
+    <p class="lead">DNSSeed · Operational Layer · Chain2025 · Mainchain · Hyperspace</p>
 
-  <div class="card">
-    <h2>Ursprung</h2>
-    <p>Audit‑versiegelte Infrastruktur für private Chains, Operator‑Systeme und geschlossene Ökonomien.</p>
-  </div>
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+        fetch("super-nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
 
-  <div class="grid">
+    <!-- Intro -->
+    <div class="card">
+        <h2>Über das Genesis‑Superlayer Portal</h2>
+        <p>
+            Das Genesis‑Superlayer Portal vereint alle technischen und narrativen Schichten des
+            CoreCraft‑Ökosystems: DNSSeed‑Identität, Audit‑Prozesse, Operator‑Lifecycle,
+            deterministische Ausführung, Chain2025‑Forschung und Mainchain‑Audio‑Runtime.
+        </p>
+        <p>
+            Es ist der zentrale Einstiegspunkt für Infrastruktur, Dokumentation, Audit‑Verknüpfungen,
+            Seed‑Routing und Genesis‑Artefakte.
+        </p>
+    </div>
 
-    <a class="module" href="genesis/">
-      <h3>Genesis</h3>
-      <p>Ursprung jeder Chain: Genesis‑Block, ChainID, Validator‑Signaturen, Ritual‑Framework.</p>
-    </a>
+    <!-- DNSSeed -->
+    <div class="card">
+        <h2>DNSSeed Layer</h2>
+        <ul>
+            <li><a href="dnsseed/index.html">DNSSeed Portal</a></li>
+            <li><a href="dnsseed/superlayer.html">DNSSeed Superlayer</a></li>
+            <li><a href="dnsseed/identity.html">Identity Layer</a></li>
+            <li><a href="dnsseed/routing.html">Routing Hub</a></li>
+            <li><a href="dnsseed/modules.html">Module Hub</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="engine/">
-      <h3>Engine</h3>
-      <p>Deterministische Ausführungslogik, Initial State, Chain Identity, Operator‑Mechanik.</p>
-    </a>
+    <!-- Operational Layer -->
+    <div class="card">
+        <h2>Operational Layer</h2>
+        <ul>
+            <li><a href="../genesis-operational-layer/index.html">Operational Layer – Start</a></li>
+            <li><a href="../genesis-operational-layer/audit/index.html">Audit Hub</a></li>
+            <li><a href="../genesis-operational-layer/operators/index.html">Operator Hub</a></li>
+            <li><a href="../genesis-operational-layer/pages/index.html">Dokumentation</a></li>
+            <li><a href="../genesis-operational-layer/payouts/index.html">Payouts</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="genesis-operational-layer/">
-      <h3>Operational Layer</h3>
-      <p>Ausführungsschicht, Operator‑Routinen, deterministische Abläufe, Runtime‑Graph.</p>
-    </a>
+    <!-- Chain2025 -->
+    <div class="card">
+        <h2>Chain2025</h2>
+        <p>Forschung · Repro‑Builds · Sicherheit · SDKs · Gateways</p>
+        <ul>
+            <li><a href="../chain2025/index.html">Chain2025 Portal</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="artefacts/">
-      <h3>Artefakte</h3>
-      <p>Audit‑fähige Artefakt‑Graphen, Manifest‑Ableitungen, Claims, Description.</p>
-    </a>
+    <!-- Mainchain -->
+    <div class="card">
+        <h2>Mainchain Audio Engine</h2>
+        <p>Deterministischer DSP‑Kernel · Hyperspace Runtime · Provenance Ledger</p>
+        <ul>
+            <li><a href="../mainchain/index.html">Mainchain Portal</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="rational-layer/">
-      <h3>Rational Layer</h3>
-      <p>Begründungslogik, Claims‑Validierung, strukturelle Konsistenz.</p>
-    </a>
+    <!-- Hyperspace -->
+    <div class="card">
+        <h2>Hyperspace Runtime</h2>
+        <p>Containerisierte Audio‑Nodes · Session‑Manifeste · Asset‑Provenance</p>
+        <ul>
+            <li><a href="../hyperspace/index.html">Hyperspace Portal</a></li>
+        </ul>
+    </div>
 
-    <a class="module" href="bridge/">
-      <h3>Bridge</h3>
-      <p>Verknüpfung externer Systeme, deterministische Schnittstellen, sichere Übergänge.</p>
-    </a>
-
-    <a class="module" href="payouts/">
-      <h3>Payouts</h3>
-      <p>Ökonomische Logik, Reward‑Mechanismen, deterministische Abrechnungen.</p>
-    </a>
-
-    <a class="module" href="skeletton/">
-      <h3>Skeletton</h3>
-      <p>Minimal‑Struktur, Grundgerüst, Startpunkt für neue Chain‑Projekte.</p>
-    </a>
-
-    <a class="module" href="docs/">
-      <h3>Dokumentation</h3>
-      <p>Lesbare Spezifikation, Overview, technische Referenz.</p>
-    </a>
-
-  </div>
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
 
 </div>
 
 </body>
 </html>
-
 
