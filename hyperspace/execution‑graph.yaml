@@ -1,0 +1,106 @@
+graph:
+  id: hyperspace-execution-graph
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+execution_states:
+  - id: EX_INIT
+    label: "Execution Init"
+    type: execution-state
+    layer: Hyperspace
+    entry: true
+
+  - id: EX_PREPARE
+    label: "Prepare Runtime"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_VALIDATE
+    label: "Validate Runtime"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_START
+    label: "Start Execution"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_LOOP
+    label: "Execution Loop"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_MONITOR
+    label: "Monitor Runtime"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_AUDIT
+    label: "Audit Runtime"
+    type: execution-state
+    layer: Hyperspace
+
+  - id: EX_SHUTDOWN
+    label: "Execution Shutdown"
+    type: execution-state
+    layer: Hyperspace
+    terminal: true
+
+execution_transitions:
+  - id: ET_INIT_TO_PREPARE
+    from: EX_INIT
+    to: EX_PREPARE
+    label: "Initialize Runtime"
+    deterministic: true
+
+  - id: ET_PREPARE_TO_VALIDATE
+    from: EX_PREPARE
+    to: EX_VALIDATE
+    label: "Load & Validate Configuration"
+    deterministic: true
+
+  - id: ET_VALIDATE_TO_START
+    from: EX_VALIDATE
+    to: EX_START
+    label: "Runtime Validation OK"
+    deterministic: true
+
+  - id: ET_START_TO_LOOP
+    from: EX_START
+    to: EX_LOOP
+    label: "Enter Execution Loop"
+    deterministic: true
+
+  - id: ET_LOOP_TO_MONITOR
+    from: EX_LOOP
+    to: EX_MONITOR
+    label: "Monitor Runtime"
+    deterministic: true
+
+  - id: ET_MONITOR_TO_AUDIT
+    from: EX_MONITOR
+    to: EX_AUDIT
+    label: "Create Audit Snapshot"
+    deterministic: true
+
+  - id: ET_AUDIT_TO_LOOP
+    from: EX_AUDIT
+    to: EX_LOOP
+    label: "Resume Execution"
+    deterministic: true
+
+  - id: ET_LOOP_TO_SHUTDOWN
+    from: EX_LOOP
+    to: EX_SHUTDOWN
+    label: "Controlled Shutdown"
+    deterministic: true
+
+meta:
+  description: "Deterministischer Execution-Graph der Hyperspace Runtime."
+  usage: "Für Viewer, Debugger und Audit-Pipelines im Hyperspace-Layer."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.yaml"
