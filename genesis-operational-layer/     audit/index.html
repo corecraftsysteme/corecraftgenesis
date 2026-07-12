@@ -2,71 +2,51 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Audit – Genesis Operational Layer</title>
+    <title>Audit Hub – Genesis Operational Layer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
+    <link rel="stylesheet" href="../../portal.css">
 </head>
 
 <body>
 
 <div id="header"></div>
 <script>
-    fetch("../header.html")
+    fetch("../../header.html")
         .then(r => r.text())
         .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
 
-    <h1>Audit</h1>
-    <p class="lead">Audit‑Protokolle, Ritual‑Audits, JSON‑Schemas und Validierungsmechanismen.</p>
+    <h1>Audit Hub</h1>
+    <p class="lead">Genesis‑Audit · Operator‑Audit · Ritual‑Audit</p>
 
-    <div class="grid">
+    <div class="card">
+        <h2>Audit‑Artefakte</h2>
+        <ul>
+            <li><a href="audit-spec.html">Audit Specification</a></li>
+            <li><a href="audit-engine.md">Audit Engine</a></li>
+            <li><a href="audit-flow-diagram.md">Audit Flow Diagram</a></li>
+        </ul>
+    </div>
 
-        <a class="module" href="audit-spec.html">
-            <h3>Audit Specification</h3>
-            <p>Definition der Audit‑Mechanik und deterministischen Prüfroutinen.</p>
-        </a>
+    <div class="card">
+        <h2>JSON‑Schemas</h2>
+        <ul>
+            <li><a href="genesis-audit.json">Genesis Audit Schema</a></li>
+            <li><a href="operator-audit.json">Operator Audit Schema</a></li>
+            <li><a href="ritual-audit.json">Ritual Audit Schema</a></li>
+        </ul>
+    </div>
 
-        <a class="module" href="audit-engine.md">
-            <h3>Audit Engine</h3>
-            <p>Dokumentation der Audit‑Engine.</p>
-        </a>
-
-        <a class="module" href="audit-flow-diagram.md">
-            <h3>Audit Flow Diagram</h3>
-            <p>Prozessgraph und Ablaufdiagramm.</p>
-        </a>
-
-        <a class="module" href="audit-protocols/">
-            <h3>Audit Protocols</h3>
-            <p>JSON‑Schemas und Ritual‑Audit‑Definitionen.</p>
-        </a>
-
-        <!-- NEW: JSON Schema Modules -->
-        <a class="module" href="genesis-audit.json">
-            <h3>Genesis Audit Schema</h3>
-            <p>JSON‑Schema für Genesis Audit Protocol.</p>
-        </a>
-
-        <a class="module" href="operator-audit.json">
-            <h3>Operator Audit Schema</h3>
-            <p>JSON‑Schema für Operator Audit Protocol.</p>
-        </a>
-
-        <a class="module" href="ritual-audit.json">
-            <h3>Ritual Audit Schema</h3>
-            <p>JSON‑Schema für Ritual‑Audit‑Definitionen.</p>
-        </a>
-
-        <a class="module" href="schemas.html">
-            <h3>JSON Schema Viewer</h3>
-            <p>Interaktive Ansicht der Audit‑JSON‑Schemas.</p>
-       </a>
-
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
     </div>
 
 </div>
+
+</body>
+</html>
 
 </body>
 </html>
