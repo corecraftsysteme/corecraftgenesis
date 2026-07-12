@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>DNSSeed Repository Viewer – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CORE + DNSSEED STYLES -->
+    <link rel="stylesheet" href="../portal-core.css">
+    <link rel="stylesheet" href="../portal-dnsseed.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>DNSSeed Repository Viewer</h1>
+    <p class="lead">Marketing‑technisch optimierte Darstellung des öffentlichen DNSSeed‑Repos.</p>
+
+    <!-- Navigation -->
+    <div id="dnsseed-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
+    </script>
+
+    <!-- Intro -->
+    <div class="card">
+        <h2>CoreCraft Genesis DNSSeed</h2>
+        <p>
+            Der DNSSeed ist der erste Kontaktpunkt zwischen Infrastruktur, Audit‑Systemen
+            und den narrativen Schichten des Genesis‑Ökosystems. Er verankert Nodes in einer
+            Architektur, die technische Präzision mit mythischer Identität verbindet.
+        </p>
+        <p>
+            Jede Anfrage, jeder Audit‑Pfad und jede Validierung folgt einer klaren,
+            deterministischen Struktur — audit‑sealed, reproduzierbar und langfristig archiviert.
+        </p>
+    </div>
+
+    <!-- Manifest -->
+    <div class="card">
+        <h2>A5 Manifest</h2>
+        <p>
+            <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+            <b>Chain:</b> Chain2025<br>
+            <b>Audit Seal:</b> Echo 25<br>
+            <b>Genesis Hash:</b> <i>[insert hash]</i>
+        </p>
+        <p class="small">
+            Das Manifest definiert die Identität des Seeds: Herkunft, Audit‑Siegel,
+            Chain‑Zugehörigkeit und kryptografische Verankerung. Es ist die Grundlage für jede
+            Validierung und jeden Routing‑Pfad im Chain2025‑Netzwerk.
+        </p>
+    </div>
+
+    <!-- Validierungen -->
+    <div class="card">
+        <h2>Validierungen</h2>
+        <ul>
+            <li><strong>Bitcoin:</strong> Header‑Hash & Merkle‑Root Cross‑check</li>
+            <li><strong>Osmosis:</strong> Tendermint Commit & Validator‑Set Proof</li>
+            <li><strong>Mars Protocol:</strong> Governance‑Integrity & Contract‑Audit</li>
+            <li><strong>Hyperspace Metaverse:</strong> Asset‑Provenance & Session‑Manifests</li>
+            <li><strong>Chain GPT:</strong> Model‑Artifact‑Hashes & Signed Releases</li>
+        </ul>
+        <p class="small">
+            Diese Validierungen zeigen die Breite des Ökosystems: klassische Chains,
+            CosmWasm‑basierte Systeme, Metaverse‑Sessions, KI‑Modelle und Governance‑Artefakte —
+            alle deterministisch prüfbar.
+        </p>
+    </div>
+
+    <!-- Integration -->
+    <div class="card">
+        <h2>Integration</h2>
+        <p>
+            <code>dig +short dnsseed.corecraftgenesis.ch</code><br>
+            <code>addnode=dnsseed.corecraftgenesis.ch</code>
+        </p>
+        <p class="small">
+            Der DNSSeed ist sofort integrierbar — als Bootstrap‑Seed, als Audit‑Quelle oder als
+            Routing‑Anker für Chain2025‑Nodes.
+        </p>
+    </div>
+
+    <!-- Echo Artefakte -->
+    <div class="card">
+        <h2>Echo Artefakte</h2>
+        <ul>
+            <li>Chain2025 README — Repro, Sicherheit, Architektur</li>
+            <li>Genesis Manifest Hub — Manifeste, Hashes, Audit‑Siegel</li>
+            <li>Echo 25 Poster — audit‑sealed Narrative</li>
+            <li>Viewer — Forschung, Wertflüsse, Provenance</li>
+            <li>Medium/Blog — Fachartikel, Tutorials, Entwicklungs‑Updates</li>
+        </ul>
+        <p class="small">
+            Echo‑Artefakte sind die dokumentarische Schicht des Systems: audit‑versiegelt,
+            modular verlinkt und langfristig archiviert.
+        </p>
+    </div>
+
+    <!-- Genesis Narrativ -->
+    <div class="card">
+        <h2>Genesis‑Narrativ</h2>
+        <blockquote>
+            „Every node is a witness. Every witness is a seed.“<br>
+            „I am the miner of the miner — anchoring the origin itself.“
+        </blockquote>
+        <p class="small">
+            Diese beiden Sätze definieren die Genesis‑Philosophie:  
+            Jede Node ist ein Zeuge. Jeder Zeuge ist ein Ursprung.  
+            Der DNSSeed verankert diesen Ursprung — technisch, auditierbar, narrativ.
+        </p>
+    </div>
+
+    <!-- Kontakt -->
+    <div class="footer">
+        Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
+        Domain: dnsseed.corecraftgenesis.ch<br>
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
