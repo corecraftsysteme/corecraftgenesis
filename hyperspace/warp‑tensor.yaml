@@ -1,0 +1,143 @@
+warp_tensor:
+  id: hyperspace-warp-tensor
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Mehrdimensionaler Warp-Tensor des Hyperspace Runtime Systems. Der Tensor
+  beschreibt die Kopplungen zwischen State-, Execution-, Transition- und
+  Interlink-Dimensionen sowie die Intensitäten, Gradienten und Richtungsfelder
+  der Warp-Dynamik.
+
+dimensions:
+  state_axis: "S"
+  execution_axis: "E"
+  transition_axis: "T"
+  interlink_axis: "I"
+
+state_basis:
+  - HS_INIT
+  - HS_CONFIGURED
+  - HS_READY
+  - HS_RUNNING
+  - HS_DEGRADED
+  - HS_AUDIT
+  - HS_SHUTDOWN
+
+execution_basis:
+  - EX_INIT
+  - EX_PREPARE
+  - EX_VALIDATE
+  - EX_START
+  - EX_LOOP
+  - EX_MONITOR
+  - EX_AUDIT
+  - EX_SHUTDOWN
+
+transition_basis:
+  - HS_INIT→HS_CONFIGURED
+  - HS_CONFIGURED→HS_READY
+  - HS_READY→HS_RUNNING
+  - HS_RUNNING→HS_DEGRADED
+  - HS_DEGRADED→HS_RUNNING
+  - HS_RUNNING→HS_AUDIT
+  - HS_AUDIT→HS_RUNNING
+  - HS_READY→HS_SHUTDOWN
+  - HS_RUNNING→HS_SHUTDOWN
+
+interlink_basis:
+  - GENESIS_ROOT→HS_INIT
+  - DNSSEED_OK→HS_READY
+  - OPERATIONAL_READY→HS_RUNNING
+  - CHAIN2025_AUDIT→HS_AUDIT
+  - MAINCHAIN_DEGRADED→HS_DEGRADED
+  - MAINCHAIN_SHUTDOWN→HS_SHUTDOWN
+
+tensor_components:
+  SxE:
+    HS_INIT:
+      EX_INIT: 1.0
+    HS_CONFIGURED:
+      EX_PREPARE: 1.0
+    HS_READY:
+      EX_VALIDATE: 1.0
+    HS_RUNNING:
+      EX_START: 1.0
+      EX_LOOP: 0.8
+    HS_DEGRADED:
+      EX_MONITOR: 0.6
+    HS_AUDIT:
+      EX_AUDIT: 1.0
+    HS_SHUTDOWN:
+      EX_SHUTDOWN: 1.0
+
+  SxT:
+    HS_INIT:
+      HS_INIT→HS_CONFIGURED: 1.0
+    HS_CONFIGURED:
+      HS_CONFIGURED→HS_READY: 1.0
+    HS_READY:
+      HS_READY→HS_RUNNING: 1.0
+      HS_READY→HS_SHUTDOWN: 0.2
+    HS_RUNNING:
+      HS_RUNNING→HS_DEGRADED: 0.7
+      HS_RUNNING→HS_AUDIT: 0.9
+      HS_RUNNING→HS_SHUTDOWN: 1.0
+    HS_DEGRADED:
+      HS_DEGRADED→HS_RUNNING: 0.8
+    HS_AUDIT:
+      HS_AUDIT→HS_RUNNING: 0.8
+
+  SxI:
+    HS_INIT:
+      GENESIS_ROOT→HS_INIT: 1.0
+    HS_READY:
+      DNSSEED_OK→HS_READY: 1.0
+    HS_RUNNING:
+      OPERATIONAL_READY→HS_RUNNING: 1.0
+    HS_AUDIT:
+      CHAIN2025_AUDIT→HS_AUDIT: 1.0
+    HS_DEGRADED:
+      MAINCHAIN_DEGRADED→HS_DEGRADED: 1.0
+    HS_SHUTDOWN:
+      MAINCHAIN_SHUTDOWN→HS_SHUTDOWN: 1.0
+
+gradient_fields:
+  state_gradient:
+    HS_INIT: 0.1
+    HS_CONFIGURED: 0.2
+    HS_READY: 0.3
+    HS_RUNNING: 0.5
+    HS_DEGRADED: -0.4
+    HS_AUDIT: -0.3
+    HS_SHUTDOWN: -1.0
+
+  execution_gradient:
+    EX_INIT: 0.1
+    EX_PREPARE: 0.2
+    EX_VALIDATE: 0.3
+    EX_START: 0.4
+    EX_LOOP: 0.5
+    EX_MONITOR: 0.2
+    EX_AUDIT: -0.3
+    EX_SHUTDOWN: -1.0
+
+warp_intensity:
+  HS_RUNNING: 1.0
+  HS_AUDIT: 0.9
+  HS_DEGRADED: 0.7
+  HS_READY: 0.6
+  HS_CONFIGURED: 0.4
+  HS_INIT: 0.2
+  HS_SHUTDOWN: 0.0
+
+meta:
+  description: "Tensor-Darstellung der Hyperspace Warp-Matrix."
+  usage: "Für mathematische Modellierung, Runtime-Optimierung, Audit und Superlayer."
+  compatible_with:
+    - "/hyperspace/warp-matrix.yaml"
+    - "/hyperspace/warp-topology.yaml"
+    - "/hyperspace/runtime-spec.yaml"
+    - "/hyperspace/superlayer.yaml"
