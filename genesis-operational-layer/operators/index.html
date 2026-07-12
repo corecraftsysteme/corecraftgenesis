@@ -1,89 +1,47 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>CoreCraftGenesis — Operators</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../portal.css">
-  <style>
-    .card {
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 1.5rem;
-      transition: background .2s, border-color .2s;
-    }
-    .card:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: #555;
-    }
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: .5rem;
-    }
-    .small {
-      opacity: .7;
-      font-size: .9rem;
-      margin-top: .5rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Operator Hub – Genesis Operational Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../portal.css">
 </head>
 
 <body>
 
 <div id="header"></div>
 <script>
-  fetch("../../header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
+    fetch("../../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
-  <span class="tag">CoreCraftGenesis</span>
-  <h1>Operators</h1>
-  <p class="small">Die aktiven Rollen, Zustandsmaschinen und Berechtigungsmodelle der Genesis‑Engine.</p>
 
-  <div class="card">
-    <h2>Operator‑Blueprint</h2>
-    <p>Der Blueprint definiert die strukturellen Eigenschaften eines Operators:  
-    Rollen, Berechtigungen, Zustandsübergänge und erlaubte Aktionen.</p>
-    <p class="small"><a href="pages/blueprint.html">Blueprint öffnen →</a></p>
-  </div>
+    <h1>Operator Hub</h1>
+    <p class="lead">Lifecycle · Duties · Provenance</p>
 
-  <div class="card">
-    <h2>Lifecycle</h2>
-    <p>Der Lifecycle beschreibt die vollständige Lebenslinie eines Operators:  
-    Aktivierung, Rotation, Suspension, Closure.</p>
-    <p class="small"><a href="pages/lifecycle.html">Lifecycle öffnen →</a></p>
-  </div>
+    <div class="card">
+        <h2>Operator‑Dokumente</h2>
+        <ul>
+            <li><a href="../audit/operator-audit.json">Operator Audit Schema</a></li>
+            <li><a href="../audit/genesis-audit.json">Genesis Audit Schema</a></li>
+            <li><a href="../audit/ritual-audit.json">Ritual Audit Schema</a></li>
+        </ul>
+    </div>
 
-  <div class="card">
-    <h2>Permissions</h2>
-    <p>Das Berechtigungsmodell definiert, welche Aktionen ein Operator ausführen darf  
-    und welche Übergänge audit‑pflichtig sind.</p>
-    <p class="small"><a href="pages/permissions.html">Permissions öffnen →</a></p>
-  </div>
+    <div class="card">
+        <h2>Operator‑Rollen</h2>
+        <ul>
+            <li>Genesis Operator</li>
+            <li>Audit Operator</li>
+            <li>Ritual Operator</li>
+        </ul>
+    </div>
 
-  <div class="card">
-    <h2>Roles</h2>
-    <p>Operatoren können verschiedene Rollen einnehmen, die jeweils eigene  
-    Zuständigkeiten und Pflichten besitzen.</p>
-    <p class="small"><a href="pages/roles.html">Roles öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>State‑Model</h2>
-    <p>Das State‑Model definiert die erlaubten Zustände und Übergänge eines Operators  
-    innerhalb der Genesis‑Engine.</p>
-    <p class="small"><a href="pages/state-model.html">State‑Model öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Examples</h2>
-    <p>Konkrete Beispiele für Operator‑Konfigurationen, Übergänge und Audit‑Flows.</p>
-    <p class="small"><a href="pages/examples.html">Examples öffnen →</a></p>
-  </div>
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
 
 </div>
 
