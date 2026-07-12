@@ -4,78 +4,117 @@
     <meta charset="UTF-8">
     <title>DNSSeed Superlayer – CoreCraft Genesis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
+
+    <!-- CORE + DNSSEED STYLES -->
+    <link rel="stylesheet" href="../portal-core.css">
+    <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
 
 <body>
 
-<head>
-    <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS: CORE + DNSSEED -->
-    <link rel="stylesheet" href="../portal-core.css">
-    <link rel="stylesheet" href="../portal-dnsseed.css">
-</head>
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
 
 <div class="grid-overlay"></div>
 
 <div class="wrap">
 
     <h1>DNSSeed Superlayer</h1>
-    <p class="lead">Audit Viewer · Echo‑Hub · Node‑Bootstrap · Operator‑Routing</p>
+    <p class="lead">Meta‑Layer für Seed‑Identität, Routing, Audit‑Bindung und Genesis‑Verknüpfung.</p>
 
-    <!-- AUDIT VIEWER -->
+    <!-- Navigation -->
+    <div id="dnsseed-nav"></div>
+    <script>
+        fetch("nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
+    </script>
+
+    <!-- Superlayer Definition -->
     <div class="card">
-        <h2>Audit Viewer</h2>
-        <p>Interaktive Anzeige der Audit‑Schemas.</p>
-
-        <select id="auditSelect">
-            <option value="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit</option>
-            <option value="../genesis-operational-layer/audit/operator-audit.json">Operator Audit</option>
-            <option value="../genesis-operational-layer/audit/ritual-audit.json">Ritual Audit</option>
-        </select>
-
-        <pre id="auditOutput">Schema wird geladen…</pre>
-    </div>
-
-    <!-- ECHO HUB -->
-    <div class="card">
-        <h2>Echo‑Hub</h2>
-        <ul>
-            <li><a href="../system/echo/">Echo Artefakte Übersicht</a></li>
-            <li>Echo 25 Poster</li>
-            <li>Audit‑Siegel Dokumentation</li>
-            <li>Viewer · Forschung & Wertflüsse</li>
-        </ul>
-    </div>
-
-    <!-- NODE BOOTSTRAP -->
-    <div class="card">
-        <h2>Node‑Bootstrap</h2>
-        <p><b>DNS‑Seed:</b><br>
-            <code>dnsseed.corecraftgenesis.ch</code>
+        <h2>Superlayer‑Definition</h2>
+        <p>
+            Der DNSSeed Superlayer bündelt alle relevanten Aspekte des Seeds:
+            Identität, Routing, Audit‑Anker und Bindung an Genesis und Chain2025.
         </p>
-        <p><b>Bootstrap‑Node:</b><br>
+        <p>
+            <b>Seed Domain:</b> dnsseed.corecraftgenesis.ch<br>
+            <b>Seed Class:</b> Genesis‑Anchor Superlayer<br>
+            <b>Version:</b> 1.0<br>
+            <b>Integrity:</b> Echo‑Audit‑Seal 25
+        </p>
+    </div>
+
+    <!-- Layer Composition -->
+    <div class="card">
+        <h2>Layer‑Komposition</h2>
+        <ul>
+            <li><a href="identity.html">Identity Layer</a> – formale Seed‑Identität</li>
+            <li><a href="routing.html">Routing Hub</a> – Node‑Discovery und Bootstrap</li>
+            <li><a href="manifest.html">Manifest</a> – formale Seed‑Definition</li>
+        </ul>
+        <p class="small">
+            Diese drei Layer bilden zusammen den DNSSeed Superlayer und definieren
+            die deterministische Rolle des Seeds im Genesis‑ und Chain2025‑Ökosystem.
+        </p>
+    </div>
+
+    <!-- Genesis / Chain2025 Binding -->
+    <div class="card">
+        <h2>Bindung an Genesis und Chain2025</h2>
+        <p>
+            <b>Genesis System Layer:</b><br>
+            <a href="../system/">Genesis System Layer Portal</a>
+        </p>
+        <p>
+            <b>Genesis Manifest:</b><br>
+            <a href="../genesis/manifest.html">Genesis Manifest Viewer</a>
+        </p>
+        <p>
+            <b>Chain2025 Portal:</b><br>
+            <a href="../chain2025/">Chain2025 Portal</a>
+        </p>
+    </div>
+
+    <!-- Audit Hooks -->
+    <div class="card">
+        <h2>Audit‑Hooks</h2>
+        <p>
+            <b>Genesis Audit Schema:</b><br>
+            <a href="../genesis-operational-layer/audit/genesis-audit.json">Genesis Audit Schema</a>
+        </p>
+        <p>
+            <b>Audit Engine:</b><br>
+            <a href="../genesis-operational-layer/audit/audit-engine.md">Audit Engine Dokumentation</a>
+        </p>
+        <p>
+            <b>Operator‑Audit:</b><br>
+            <a href="../genesis-operational-layer/audit/operator-audit.json">Operator Audit Log</a>
+        </p>
+        <p>
+            <b>Ritual‑Audit:</b><br>
+            <a href="../genesis-operational-layer/audit/ritual-audit.json">Ritual Audit Log</a>
+        </p>
+    </div>
+
+    <!-- Network Proof -->
+    <div class="card">
+        <h2>Netzwerk‑Proof</h2>
+        <p>
+            <code>dig +short dnsseed.corecraftgenesis.ch</code><br>
             <code>addnode=dnsseed.corecraftgenesis.ch</code>
         </p>
-        <p><b>Genesis‑Hash:</b><br>
-            <code>4dc59891fad26b8b01b923be807f34f040bd885f1c50be64c3235f81846a88ef</code>
+        <p class="small">
+            Diese Kommandos verifizieren die Erreichbarkeit des Seeds und seine
+            deterministische Rolle als Superlayer‑Anchor im Chain2025‑Netzwerk.
         </p>
     </div>
 
-    <!-- OPERATOR ROUTING -->
-    <div class="card">
-        <h2>Operator‑Routing</h2>
-        <p>Operator‑Audit → DNSSeed → Genesis</p>
-        <ul>
-            <li><a href="../genesis-operational-layer/audit/operator-audit.json">Operator Audit Schema</a></li>
-            <li><a href="identity.html">DNSSeed Identity Layer</a></li>
-            <li><a href="../system/">Genesis System Layer</a></li>
-        </ul>
-    </div>
-
+    <!-- Contact -->
     <div class="footer">
         Kontakt: <a href="mailto:daniel@corecraftgenesis.ch">daniel@corecraftgenesis.ch</a><br>
         Domain: dnsseed.corecraftgenesis.ch
@@ -83,23 +122,4 @@
 
 </div>
 
-<script>
-(function() {
-    const select = document.getElementById('auditSelect');
-    const output = document.getElementById('auditOutput');
-
-    function loadSchema(file) {
-        output.textContent = 'Schema wird geladen…';
-        fetch(file)
-            .then(r => r.json())
-            .then(j => output.textContent = JSON.stringify(j, null, 2))
-            .catch(e => output.textContent = 'Fehler: ' + e);
-    }
-
-    select.addEventListener('change', () => loadSchema(select.value));
-    loadSchema(select.value);
-})();
-</script>
-
 </body>
-</html>
