@@ -1,0 +1,165 @@
+warp_matrix:
+  id: hyperspace-warp-matrix
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+dimensions:
+  - id: DIM_STATE
+    label: "Warp-State Dimension"
+    axis: "S"
+    description: "Alle Hyperspace Warp-States entlang der State-Achse."
+
+  - id: DIM_EXECUTION
+    label: "Execution Dimension"
+    axis: "E"
+    description: "Execution-States entlang der Execution-Achse."
+
+  - id: DIM_TRANSITION
+    label: "Transition Dimension"
+    axis: "T"
+    description: "Deterministische Übergänge zwischen States."
+
+  - id: DIM_INTERLINK
+    label: "Interlink Dimension"
+    axis: "I"
+    description: "Cross-Layer-Verbindungen zu Genesis, DNSSeed, Operational, Chain2025 und Mainchain."
+
+matrix:
+  axes:
+    S: ["HS_INIT", "HS_CONFIGURED", "HS_READY", "HS_RUNNING", "HS_DEGRADED", "HS_AUDIT", "HS_SHUTDOWN"]
+    E: ["EX_INIT", "EX_PREPARE", "EX_VALIDATE", "EX_START", "EX_LOOP", "EX_MONITOR", "EX_AUDIT", "EX_SHUTDOWN"]
+    T:
+      - { from: "HS_INIT", to: "HS_CONFIGURED" }
+      - { from: "HS_CONFIGURED", to: "HS_READY" }
+      - { from: "HS_READY", to: "HS_RUNNING" }
+      - { from: "HS_RUNNING", to: "HS_DEGRADED" }
+      - { from: "HS_DEGRADED", to: "HS_RUNNING" }
+      - { from: "HS_RUNNING", to: "HS_AUDIT" }
+      - { from: "HS_AUDIT", to: "HS_RUNNING" }
+      - { from: "HS_READY", to: "HS_SHUTDOWN" }
+      - { from: "HS_RUNNING", to: "HS_SHUTDOWN" }
+    I:
+      - { from: "GENESIS_ROOT", to: "HS_INIT" }
+      - { from: "DNSSEED_OK", to: "HS_READY" }
+      - { from: "OPERATIONAL_READY", to: "HS_RUNNING" }
+      - { from: "CHAIN2025_AUDIT", to: "HS_AUDIT" }
+      - { from: "MAINCHAIN_DEGRADED", to: "HS_DEGRADED" }
+      - { from: "MAINCHAIN_SHUTDOWN", to: "HS_SHUTDOWN" }
+
+cells:
+  mapping:
+    - id: CELL_S1_E1
+      state: "HS_INIT"
+      execution: "EX_INIT"
+      warp_vector: "INIT→CONFIG"
+      transition: "HS_INIT→HS_CONFIGURED"
+      interlink: "GENESIS_ROOT→HS_INIT"
+
+    - id: CELL_S2_E2
+      state: "HS_CONFIGURED"
+      execution: "EX_PREPARE"
+      warp_vector: "CONFIG→READY"
+      transition: "HS_CONFIGURED→HS_READY"
+
+    - id: CELL_S3_E3
+      state: "HS_READY"
+      execution: "EX_VALIDATE"
+      warp_vector: "READY→RUNNING"
+      transition: "HS_READY→HS_RUNNING"
+      interlink: "DNSSEED_OK→HS_READY"
+
+    - id: CELL_S4_E4
+      state: "HS_RUNNING"
+      execution: "EX_START"
+      warp_vector: "RUNNING→LOOP"
+      transition: "HS_RUNNING→HS_DEGRADED"
+      interlink: "OPERATIONAL_READY→HS_RUNNING"
+
+    - id: CELL_S4_E5
+      state: "HS_RUNNING"
+      execution: "EX_LOOP"
+      warp_vector: "LOOP→MONITOR"
+      transition: "HS_RUNNING→HS_AUDIT"
+
+    - id: CELL_S5_E6
+      state: "HS_DEGRADED"
+      execution: "EX_MONITOR"
+      warp_vector: "DEGRADED→RECOVERY"
+      transition: "HS_DEGRADED→HS_RUNNING"
+      interlink: "MAINCHAIN_DEGRADED→HS_DEGRADED"
+
+    - id: CELL_S6_E7
+      state: "HS_AUDIT"
+      execution: "EX_AUDIT"
+      warp_vector: "AUDIT→RESUME"
+      transition: "HS_AUDIT→HS_RUNNING"
+      interlink: "CHAIN2025_AUDIT→HS_AUDIT"
+
+    - id: CELL_S7_E8
+      state: "HS_SHUTDOWN"
+      execution: "EX_SHUTDOWN"
+      warp_vector: "SHUTDOWN"
+      transition: "HS_RUNNING→HS_SHUTDOWN"
+      interlink: "MAINCHAIN_SHUTDOWN→HS_SHUTDOWN"
+      terminal: true
+
+warp_vectors:
+  - id: WV_INIT_CONFIG
+    from: "HS_INIT"
+    to: "HS_CONFIGURED"
+    magnitude: 1
+    axis: "S"
+
+  - id: WV_CONFIG_READY
+    from: "HS_CONFIGURED"
+    to: "HS_READY"
+    magnitude: 1
+    axis: "S"
+
+  - id: WV_READY_RUNNING
+    from: "HS_READY"
+    to: "HS_RUNNING"
+    magnitude: 2
+    axis: "S"
+
+  - id: WV_RUNNING_DEGRADED
+    from: "HS_RUNNING"
+    to: "HS_DEGRADED"
+    magnitude: 3
+    axis: "S"
+
+  - id: WV_DEGRADED_RECOVER
+    from: "HS_DEGRADED"
+    to: "HS_RUNNING"
+    magnitude: -3
+    axis: "S"
+
+  - id: WV_RUNNING_AUDIT
+    from: "HS_RUNNING"
+    to: "HS_AUDIT"
+    magnitude: 4
+    axis: "S"
+
+  - id: WV_AUDIT_RESUME
+    from: "HS_AUDIT"
+    to: "HS_RUNNING"
+    magnitude: -4
+    axis: "S"
+
+  - id: WV_RUNNING_SHUTDOWN
+    from: "HS_RUNNING"
+    to: "HS_SHUTDOWN"
+    magnitude: 5
+    axis: "S"
+    terminal: true
+
+meta:
+  description: "Mehrdimensionale Warp-Matrix des Hyperspace Runtime Systems."
+  usage: "Für mathematische Modellierung, Viewer, Debugger, Audit und Superlayer."
+  compatible_with:
+    - "/hyperspace/runtime-graph.yaml"
+    - "/hyperspace/warp-pipeline.yaml"
+    - "/hyperspace/superlayer.yaml"
+    - "/hyperspace/manifest.yaml"
