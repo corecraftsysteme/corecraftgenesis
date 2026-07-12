@@ -1,0 +1,92 @@
+warp_topology:
+  id: hyperspace-warp-topology
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+description: >
+  Topologische Struktur des Hyperspace-Warp-Raums. Beschreibt die
+  zusammenhängenden Komponenten, Pfade, Zyklen und kritischen Punkte
+  der Warp-States und Execution-States.
+
+spaces:
+  - id: TOPO_CORE
+    label: "Core Warp Space"
+    nodes:
+      - HS_INIT
+      - HS_CONFIGURED
+      - HS_READY
+      - HS_RUNNING
+    type: connected-component
+
+  - id: TOPO_RESILIENCE
+    label: "Resilience Space"
+    nodes:
+      - HS_DEGRADED
+      - HS_AUDIT
+      - HS_RUNNING
+    type: resilience-component
+
+  - id: TOPO_TERMINAL
+    label: "Terminal Space"
+    nodes:
+      - HS_SHUTDOWN
+    type: terminal-component
+
+paths:
+  - id: PATH_STARTUP
+    label: "Startup Path"
+    sequence:
+      - HS_INIT
+      - HS_CONFIGURED
+      - HS_READY
+      - HS_RUNNING
+    type: simple-path
+
+  - id: PATH_AUDIT_LOOP
+    label: "Audit Loop"
+    sequence:
+      - HS_RUNNING
+      - HS_AUDIT
+      - HS_RUNNING
+    type: cycle
+
+  - id: PATH_DEGRADED_LOOP
+    label: "Degraded Loop"
+    sequence:
+      - HS_RUNNING
+      - HS_DEGRADED
+      - HS_RUNNING
+    type: cycle
+
+  - id: PATH_SHUTDOWN
+    label: "Shutdown Path"
+    sequence:
+      - HS_RUNNING
+      - HS_SHUTDOWN
+    type: terminal-path
+
+critical_points:
+  - id: CP_READY
+    state: HS_READY
+    role: "Pre-Execution Critical Point"
+    description: "Letzter Punkt vor Eintritt in die Execution-Phase."
+
+  - id: CP_RUNNING
+    state: HS_RUNNING
+    role: "Central Warp Hub"
+    description: "Zentraler Knoten für Audit, Degraded und Shutdown."
+
+  - id: CP_SHUTDOWN
+    state: HS_SHUTDOWN
+    role: "Terminal Critical Point"
+    description: "Endgültiger terminaler Zustand des Warp-Raums."
+
+meta:
+  description: "Topologische Beschreibung des Hyperspace-Warp-Raums."
+  usage: "Für Modellierung, Resilienz-Analyse, Audit und Runtime-Design."
+  compatible_with:
+    - "/hyperspace/warp-matrix.yaml"
+    - "/hyperspace/runtime-graph.yaml"
+    - "/hyperspace/warp-pipeline.yaml"
