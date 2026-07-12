@@ -1,0 +1,80 @@
+{
+    "manifest": {
+        "id": "hyperspace-runtime",
+        "layer": "Hyperspace",
+        "version": "1.0.0",
+        "generated": "2026-07-12T10:28:00Z",
+        "deterministic": true,
+        "audit_sealed": true
+    },
+
+    "runtime": {
+        "description": "Multidimensionale Warp‑Runtime des CoreCraft Genesis Systems.",
+        "modules": [
+            {
+                "id": "warp-state-engine",
+                "name": "Warp‑State Engine",
+                "path": "/hyperspace/states.html",
+                "type": "state-definition",
+                "deterministic": true
+            },
+            {
+                "id": "state-transition-hub",
+                "name": "State‑Transition Hub",
+                "path": "/hyperspace/transitions.html",
+                "type": "transition-graph",
+                "deterministic": true
+            },
+            {
+                "id": "genesis-interlink",
+                "name": "Genesis‑Interlink",
+                "path": "/hyperspace/interlink.html",
+                "type": "cross-layer-link",
+                "deterministic": true
+            },
+            {
+                "id": "runtime-execution",
+                "name": "Runtime Execution Layer",
+                "path": "/hyperspace/runtime.html",
+                "type": "execution",
+                "deterministic": true
+            },
+            {
+                "id": "hyperspace-viewer",
+                "name": "Hyperspace Viewer",
+                "path": "/hyperspace/viewer.html",
+                "type": "visualization",
+                "deterministic": true
+            },
+            {
+                "id": "hyperspace-debugger",
+                "name": "Warp‑State Debugger",
+                "path": "/hyperspace/debug.html",
+                "type": "debugger",
+                "deterministic": true
+            }
+        ]
+    },
+
+    "integrations": {
+        "genesis": {
+            "dnsseed": "/genesis/dnsseed/index.html",
+            "operational": "/genesis-operational-layer/index.html",
+            "chain2025": "/chain2025/index.html",
+            "mainchain": "/mainchain/index.html"
+        }
+    },
+
+    "integrity": {
+        "hash_algorithm": "SHA-256",
+        "hashes": {
+            "states.html": "",
+            "transitions.html": "",
+            "interlink.html": "",
+            "runtime.html": "",
+            "viewer.html": "",
+            "debug.html": "",
+            "manifest.json": ""
+        }
+    }
+}
