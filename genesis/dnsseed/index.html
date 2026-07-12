@@ -4,21 +4,13 @@
     <meta charset="UTF-8">
     <title>DNSSeed – CoreCraft Genesis Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../portal.css">
-</head>
-
-<body>
-
-<!-- Header -->
-<head>
-    <meta charset="UTF-8">
-    <title>DNSSeed – CoreCraft Genesis Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS: CORE + DNSSEED -->
     <link rel="stylesheet" href="../portal-core.css">
     <link rel="stylesheet" href="../portal-dnsseed.css">
 </head>
+
+<body>
 
 <div class="wrap">
 
@@ -28,7 +20,7 @@
     <!-- Navigation -->
     <div id="dnsseed-nav"></div>
     <script>
-        fetch("nav.html")   <!-- FIXED -->
+        fetch("nav.html")
             .then(r => r.text())
             .then(h => document.getElementById("dnsseed-nav").innerHTML = h);
     </script>
@@ -80,3 +72,4 @@
 
 </body>
 </html>
+
