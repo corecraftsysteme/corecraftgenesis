@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Payouts – Genesis Operational Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Payouts</h1>
+    <p class="lead">Vergütung · Audit‑Provenance · Operator‑Flows</p>
+
+    <div class="card">
+        <h2>Payout‑Modelle</h2>
+        <ul>
+            <li>Genesis Operator Compensation</li>
+            <li>Audit Operator Compensation</li>
+            <li>Ritual Operator Compensation</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Verknüpfungen</h2>
+        <ul>
+            <li><a href="../audit/operator-audit.json">Operator Audit Schema</a></li>
+            <li><a href="../audit/genesis-audit.json">Genesis Audit Schema</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
