@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Viewer – DNSSeed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>Markdown Viewer</h1>
+    <p class="lead">README.md & FLOPSGenesisNode.md anzeigen</p>
+
+    <div class="card">
+        <select id="mdSelect">
+            <option value="https://dnsseed.corecraftgenesis.ch/README.md">README.md</option>
+            <option value="https://dnsseed.corecraftgenesis.ch/FLOPSGenesisNode.md">FLOPSGenesisNode.md</option>
+        </select>
+
+        <pre id="mdOutput">Markdown wird geladen…</pre>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('mdSelect');
+    const output = document.getElementById('mdOutput');
+
+    function loadMD(file) {
+        output.textContent = 'Markdown wird geladen…';
+        fetch(file)
+            .then(r => r.text())
+            .then(t => output.textContent = t)
+            .catch(e => output.textContent = 'Fehler: ' + e);
+    }
+
+    select.addEventListener('change', () => loadMD(select.value));
+    loadMD(select.value);
+})();
+</script>
+
+</body>
+</html>
