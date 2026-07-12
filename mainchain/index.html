@@ -2,81 +2,138 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Mainchain Audio Engine – CoreCraft Genesis</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Modular CSS -->
-    <link rel="stylesheet" href="../portal-core.css">
+    <title>Chain2025 — Viewer</title>
+    <link rel="stylesheet" href="assets/chain2025.css">
 </head>
 
 <body>
 
-<!-- Header -->
-<div id="header"></div>
-<script>
-    fetch("/header.html")
-        .then(r => r.text())
-        .then(h => document.getElementById("header").innerHTML = h);
-</script>
+<header class="cc-header">
+    <div class="cc-header-title">Chain2025 — Viewer</div>
+    <div class="cc-header-subtitle">Forschung und Unternehmertum. Transparente, auditierbare Wertflüsse.</div>
+</header>
 
-<!-- Debug Grid -->
-<div class="grid-overlay">
-    <div></div><div></div><div></div><div></div><div></div><div></div>
-    <div></div><div></div><div></div><div></div><div></div><div></div>
-</div>
+<section class="cc-section">
+    <h2>Design öffnen</h2>
+    <p><a href="https://medium.com/@corecraftgenesis" target="_blank">CoreCraft Genesis Blog</a></p>
+    <p><a href="https://medium.com/chain2025" target="_blank">Medium: Chain2025</a></p>
+    <p>Hinweis: Ersetze die Beispiel‑Werte (Validator‑Adresse, GitHub, IPFS‑CIDs) durch deine echten Daten. HTTPS/TLS und HSTS sind Voraussetzung.</p>
+</section>
 
-<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
-    Grid
-</button>
-<script src="../grid-toggle.js"></script>
+<section class="cc-section">
+    <h2>Manifest // CoreCraftGenesis</h2>
+    <p>Audit-sealed Artefakte, Poster und narrative Kits</p>
+    <p>Genesis‑Echo · Chain2025 · Mars Network · Manifeste</p>
+    <p>Alle Artefakte sind modular verlinkt und audit‑sealed dokumentiert. Du kannst sie direkt in deine Genesis‑ oder Chain2025‑Workflows integrieren.</p>
+</section>
 
-<div class="wrap">
+<section class="cc-section">
+    <h2>Aktuelle Artefakte</h2>
+    <ul>
+        <li>Echo 25 – Loop Remnant — <a href="#">Poster ansehen</a> | <a href="#">Manifest</a> | <a href="#">Plaintext</a></li>
+        <li>Satoshi // Absence as Origin — <a href="#">Poster ansehen</a> | <a href="#">Manifest</a></li>
+    </ul>
+    <p>Blockchain‑Ecosystem Entwicklung: Forschung, Prototyping, Audit‑Publikationen und langfristige Archivierung.</p>
+</section>
 
-    <h1>Mainchain Audio Engine</h1>
-    <p class="lead">Deterministische Audio‑Runtime · DSP‑Graph · Audit‑Secure Execution</p>
+<section class="cc-section">
+    <h2>Chain2025 — Forschung & Entwicklung</h2>
+    <p>Frameworks, Gateways, Sicherheits‑Baseline</p>
+    <p>Chain2025 ist das forschungsgetriebene Ökosystem für modulare Blockchain‑Entwicklung. Es liefert SDKs, Gateways, Indexer und reproduzierbare Artefakte, die audit‑sealed veröffentlicht werden. Die Architektur trennt Konsens, Datenverfügbarkeit und Ausführung, um gezielte Sicherheitsprüfungen und unabhängige Upgrades zu ermöglichen.</p>
 
-    <!-- Super Navigation -->
-    <div id="super-nav"></div>
-    <script>
-        fetch("../genesis/super-nav.html")
-            .then(r => r.text())
-            .then(h => document.getElementById("super-nav").innerHTML = h);
-    </script>
+    <h3>Produkte / Artefakte</h3>
+    <ul>
+        <li>chain2025.manifest.json — Chain‑Parameter, Genesis‑Metadaten, Hashes.</li>
+        <li>SDK Releases — Rust/Go/TS mit Repro‑Build‑Manifests.</li>
+        <li>Gateway Images — Container mit SBOM und Runtime‑Policies.</li>
+        <li>Indexer Snapshots — signierte Index‑Dumps.</li>
+        <li>Audit Logs — append‑only Ereignisprotokolle.</li>
+    </ul>
+</section>
 
-    <div class="card">
-        <h2>Über die Mainchain Audio Engine</h2>
-        <p>
-            Die Mainchain Audio Engine ist die deterministische DSP‑Runtime des
-            CoreCraft‑Genesis‑Ökosystems. Sie führt Audio‑Operationen streng
-            zeitstabil, audit‑fähig und reproduzierbar aus.
-        </p>
-        <p>
-            Die Engine bildet die Grundlage für:
-        </p>
-        <ul>
-            <li>DSP‑Graph Execution</li>
-            <li>Sample‑Accurate Timing</li>
-            <li>Deterministische Scheduling‑Pipelines</li>
-            <li>Audit‑Secure State‑Transitions</li>
-            <li>Genesis‑Runtime‑Integration</li>
-        </ul>
-    </div>
+<section class="cc-section">
+    <h2>Mainchain — Audio Engine</h2>
+    <p>25 Jahre Optimierung · Hyperspace Tools</p>
+    <p>Die Mainchain beherbergt eine deterministische Audio‑Engine, die über 25 Jahre Forschung in Echtzeit‑Audio, Psychoakustik und deterministischer Reproduktion bündelt. Jede Session erzeugt signierte Metadaten, die Reproduzierbarkeit und Lizenz‑Provenance sicherstellen.</p>
 
-    <div class="card">
-        <h2>Schnellzugriff</h2>
-        <ul>
-            <li><a href="../genesis/dnsseed/index.html">DNSSeed Portal</a></li>
-            <li><a href="../genesis-operational-layer/index.html">Operational Layer</a></li>
-            <li><a href="../chain2025/index.html">Chain2025</a></li>
-            <li><a href="../hyperspace/index.html">Hyperspace Runtime</a></li>
-        </ul>
-    </div>
+    <h3>Produkte / Artefakte (Audio)</h3>
+    <ul>
+        <li>Engine Core — deterministischer DSP‑Kernel mit Repro‑Snapshots.</li>
+        <li>Audio Manifest — signierte Session‑Metadaten.</li>
+        <li>Hyperspace Runtime — containerisierte Audio‑Nodes.</li>
+        <li>Sync Gateway — sample‑accurate Synchronisation.</li>
+        <li>Provenance Ledger — append‑only Operation‑Hashes.</li>
+    </ul>
+</section>
 
-    <div class="footer">
-        © CoreCraft Genesis — audit‑sealed
-    </div>
+<section class="cc-section">
+    <h2>Edge‑Computing</h2>
+    <p>SECO MX93, M100, SCADA, LoRaWAN, TLS</p>
+    <ul>
+        <li>SECO MX93 — Industrie‑Gateway für robuste Feldanwendungen.</li>
+        <li>SECO M100 — kompakte Edge‑Appliance für lokale Verarbeitung.</li>
+        <li>SCADA Integrationen — sichere Schnittstellen zu OT‑Systemen.</li>
+        <li>LoRaWAN — Low‑Power Telemetrie mit signed payloads.</li>
+        <li>TLS / mTLS — verschlüsselte Transportkanäle für Telemetrie und Steuerdaten.</li>
+    </ul>
+</section>
 
-</div>
+<section class="cc-section">
+    <h2>Audit Transparency</h2>
+    <p>Nachvollziehbare Prozesse und Artefakte</p>
+    <p>Transparenz ist Kernprinzip: Alle Prozesse, Releases und Moderationsentscheidungen werden append‑only protokolliert und mit Hashes versehen. Prüfskripte erlauben lokalen Vergleich zwischen veröffentlichten Manifests und heruntergeladenen Artefakten.</p>
+    <p>Audit‑Workflow: Build → Sign → Publish → Tag → Audit‑Log Eintrag.</p>
+</section>
+
+<section class="cc-section">
+    <h2>GitHub Repo & Kontakt</h2>
+    <p>Alle Artefakte, Prüfskripte und Reproduktionsanleitungen liegen im zentralen Repository.</p>
+    <p>Empfohlene Links: <a href="https://github.com/corecraftgenesis" target="_blank">GitHub Repo</a> · <a href="https://node.corecraftgenesis.ch" target="_blank">node.corecraftgenesis.ch</a></p>
+</section>
+
+<section class="cc-section">
+    <h2>Quick Panel</h2>
+    <ul>
+        <li>Module · Chain2025 / Mainchain / Hyperspace</li>
+        <li>Validator-Adresse · 0xCAFEBABECAFEBABECAFEBABECAFEBABECAFEBABE</li>
+        <li>DNSSeed · dnsseed.corecraftgenesis.ch</li>
+        <li>Standort · Effretikon, Schweiz</li>
+    </ul>
+</section>
+
+<section class="cc-section">
+    <h2>Sicherheits- & Betriebsanforderungen</h2>
+    <ul>
+        <li>HTTPS/TLS + HSTS; DNSSEC für Seed‑Auflösung.</li>
+        <li>HSM / Hardware‑Wallet; Multi‑Sig Governance.</li>
+        <li>RBAC, least‑privilege Container Policies.</li>
+        <li>Append‑only Audit‑Logs; externe Archivierung (IPFS/S3‑WORM).</li>
+        <li>Repro‑Builds, SBOMs und deterministic toolchains.</li>
+    </ul>
+</section>
+
+<section class="cc-section">
+    <h2>Audit Marker</h2>
+    <p>2026-07-12T10:06:22.418Z | boot | Chain2025 Viewer geladen</p>
+    <p>2026-07-12T10:06:22.466Z | manifest | Bitte Validator-Adresse, Canva/Design-Link, Medium-URL und GitHub-Repo prüfen und ggf. ersetzen</p>
+    <p>Hinweis: Commits im Git‑Repo sollten getaggt und mit Release‑Hashes referenziert werden.</p>
+</section>
+
+<section class="cc-section">
+    <h2>Blog & Wissensplattform</h2>
+    <p>Fachartikel, Tutorials, Updates — zentralisiert auf CoreCraft Genesis Blog und Medium.</p>
+    <p>Wenn das Embed nicht geladen wird, öffne die Publication direkt: <a href="https://medium.com/chain2025" target="_blank">Medium: Chain2025</a></p>
+</section>
+
+<footer class="cc-footer">
+    <p>CoreCraft Genesis · Chain2025 · Audit Transparency · Deterministic Toolchains</p>
+</footer>
+
+<script src="assets/chain2025.js"></script>
+<script src="assets/audit-panel.js"></script>
 
 </body>
 </html>
+
