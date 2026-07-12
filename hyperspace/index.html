@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyperspace Runtime – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+    fetch("/header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Hyperspace Runtime</h1>
+    <p class="lead">Multidimensionale Runtime · State‑Warping · Genesis‑Interlink</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+        fetch("../genesis/super-nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card">
+        <h2>Über die Hyperspace Runtime</h2>
+        <p>
+            Die Hyperspace Runtime ist die multidimensionale Ausführungsumgebung
+            des CoreCraft‑Genesis‑Ökosystems. Sie ermöglicht State‑Warping,
+            deterministische Parallel‑Ausführung und die Verknüpfung von
+            Genesis‑Artefakten über mehrere Runtime‑Ebenen hinweg.
+        </p>
+        <p>
+            Die Runtime bildet die Grundlage für:
+        </p>
+        <ul>
+            <li>Multidimensionale State‑Transitions</li>
+            <li>Warp‑Execution Pipelines</li>
+            <li>Genesis‑Interlink‑Runtime</li>
+            <li>Audit‑Secure Warp‑States</li>
+            <li>Cross‑Layer Runtime‑Integration</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Schnellzugriff</h2>
+        <ul>
+            <li><a href="../genesis/dnsseed/index.html">DNSSeed Portal</a></li>
+            <li><a href="../genesis-operational-layer/index.html">Operational Layer</a></li>
+            <li><a href="../chain2025/index.html">Chain2025</a></li>
+            <li><a href="../mainchain/index.html">Mainchain Audio Engine</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
