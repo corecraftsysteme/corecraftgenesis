@@ -2,6 +2,16 @@
    CoreCraft Genesis – CORE CSS
    Globales Layout, Header, Footer, Karten, Typografie
    ============================================================ */
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+
+<script>
+function toggleGrid() {
+    const grid = document.querySelector('.grid-overlay');
+    grid.classList.toggle('grid-hidden');
+}
+</script>
 
 body {
     margin: 0;
@@ -10,6 +20,11 @@ body {
     color: #e6e6e6;
     font-family: Arial, sans-serif;
 }
+
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
 
 .wrap {
     max-width: 1200px;
