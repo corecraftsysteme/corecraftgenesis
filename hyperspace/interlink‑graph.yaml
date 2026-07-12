@@ -1,0 +1,57 @@
+graph:
+  id: hyperspace-interlink-graph
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+interlinks:
+  - id: L_GENESIS_TO_HS_INIT
+    from: GENESIS_ROOT
+    to: HS_INIT
+    type: genesis-interlink
+    label: "Genesis → Hyperspace Init"
+    deterministic: true
+
+  - id: L_DNSSEED_TO_HS_READY
+    from: DNSSEED_OK
+    to: HS_READY
+    type: cross-layer-link
+    label: "DNSSeed OK → Hyperspace Ready"
+    deterministic: true
+
+  - id: L_OPLAYER_TO_HS_RUNNING
+    from: OPERATIONAL_READY
+    to: HS_RUNNING
+    type: cross-layer-link
+    label: "Operational Layer Ready → Hyperspace Running"
+    deterministic: true
+
+  - id: L_CHAIN2025_TO_HS_AUDIT
+    from: CHAIN2025_AUDIT
+    to: HS_AUDIT
+    type: cross-layer-link
+    label: "Chain2025 Audit → Hyperspace Audit Snapshot"
+    deterministic: true
+
+  - id: L_MAINCHAIN_TO_HS_DEGRADED
+    from: MAINCHAIN_DEGRADED
+    to: HS_DEGRADED
+    type: cross-layer-link
+    label: "Mainchain Degraded → Hyperspace Degraded Mode"
+    deterministic: true
+
+  - id: L_MAINCHAIN_TO_HS_SHUTDOWN
+    from: MAINCHAIN_SHUTDOWN
+    to: HS_SHUTDOWN
+    type: cross-layer-link
+    label: "Mainchain Shutdown → Hyperspace Shutdown"
+    deterministic: true
+
+meta:
+  description: "Cross-Layer Interlink Graph zwischen Genesis, DNSSeed, Operational Layer, Chain2025, Mainchain und Hyperspace."
+  usage: "Für Viewer, Debugger und Audit-Pipelines im Hyperspace-Layer."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.yaml"
