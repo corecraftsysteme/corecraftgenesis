@@ -12,12 +12,13 @@
 <body>
 
 <!-- Header -->
-<div id="header"></div>
+<div id="hyperspace-nav"></div>
 <script>
-    fetch("/header.html")
+    fetch("nav.html")
         .then(r => r.text())
-        .then(h => document.getElementById("header").innerHTML = h);
+        .then(h => document.getElementById("hyperspace-nav").innerHTML = h);
 </script>
+
 
 <!-- Debug Grid -->
 <div class="grid-overlay">
