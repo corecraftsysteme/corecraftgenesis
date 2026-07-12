@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Audit JSON Schemas – Genesis Operational Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+    <style>
+        .schema-container {
+            margin-top: 24px;
+        }
+        .schema-select {
+            margin-bottom: 16px;
+        }
+        pre {
+            background: rgba(0,0,0,0.55);
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,255,200,0.15);
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        .error {
+            color: #ff9f9f;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Audit JSON Schemas</h1>
+    <p class="lead">Visualisierung der Genesis‑, Operator‑ und Ritual‑Audit‑JSON‑Schemas.</p>
+
+    <div class="card schema-container">
+        <h2>Schema auswählen</h2>
+        <p>Wähle ein Audit‑Schema aus, um den JSON‑Inhalt formatiert anzuzeigen.</p>
+
+        <div class="schema-select">
+            <label for="schemaSelect"><b>Schema:</b></label>
+            <select id="schemaSelect">
+                <option value="genesis-audit.json">Genesis Audit Schema</option>
+                <option value="operator-audit.json">Operator Audit Schema</option>
+                <option value="ritual-audit.json">Ritual Audit Schema</option>
+            </select>
+        </div>
+
+        <pre id="schemaOutput">Schema wird geladen…</pre>
+        <div id="schemaError" class="error" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+        <h2>Direkte Links</h2>
+        <ul>
+            <li><a href="genesis-audit.json">Genesis Audit Schema (raw JSON)</a></li>
+            <li><a href="operator-audit.json">Operator Audit Schema (raw JSON)</a></li>
+            <li><a href="ritual-audit.json">Ritual Audit Schema (raw JSON)</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('schemaSelect');
+    const output = document.getElementById('schemaOutput');
+    const errorBox = document.getElementById('schemaError');
+
+    function loadSchema(file) {
+        output.textContent = 'Schema wird geladen…';
+        errorBox.style.display = 'none';
+        errorBox.textContent = '';
+
+        fetch(file)
+            .then(r => {
+                if (!r.ok) {
+                    throw new Error('HTTP ' + r.status + ' – ' + r.statusText);
+                }
+                return r.json();
+            })
+            .then(json => {
+                output.textContent = JSON.stringify(json, null, 2);
+            })
+            .catch(err => {
+                output.textContent = '';
+                errorBox.style.display = 'block';
+                errorBox.textContent = 'Fehler beim Laden des Schemas: ' + err.message;
+            });
+    }
+
+    select.addEventListener('change', function() {
+        loadSchema(this.value);
+    });
+
+    // Initial load
+    loadSchema(select.value);
+})();
+</script>
+
+</body>
+</html>
