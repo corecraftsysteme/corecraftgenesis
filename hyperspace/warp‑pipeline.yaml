@@ -1,0 +1,154 @@
+warp_pipeline:
+  id: hyperspace-warp-pipeline
+  layer: Hyperspace
+  version: "1.0.0"
+  deterministic: true
+  audit_sealed: true
+
+stages:
+  - id: WP_STAGE_01_INIT
+    label: "Initialize Hyperspace"
+    type: pipeline-stage
+    entry: true
+    consumes:
+      - GENESIS_ROOT
+    produces:
+      - HS_INIT
+
+  - id: WP_STAGE_02_CONFIG
+    label: "Load & Apply Configuration"
+    type: pipeline-stage
+    consumes:
+      - HS_INIT
+    produces:
+      - HS_CONFIGURED
+
+  - id: WP_STAGE_03_VALIDATE
+    label: "Validate Warp-State Model"
+    type: pipeline-stage
+    consumes:
+      - HS_CONFIGURED
+    produces:
+      - HS_READY
+
+  - id: WP_STAGE_04_EXECUTION_START
+    label: "Start Warp-Execution"
+    type: pipeline-stage
+    consumes:
+      - HS_READY
+    produces:
+      - HS_RUNNING
+
+  - id: WP_STAGE_05_EXECUTION_LOOP
+    label: "Execution Loop"
+    type: pipeline-stage
+    consumes:
+      - HS_RUNNING
+    produces:
+      - EX_LOOP
+
+  - id: WP_STAGE_06_MONITORING
+    label: "Runtime Monitoring"
+    type: pipeline-stage
+    consumes:
+      - EX_LOOP
+    produces:
+      - EX_MONITOR
+
+  - id: WP_STAGE_07_AUDIT
+    label: "Audit Snapshot"
+    type: pipeline-stage
+    consumes:
+      - EX_MONITOR
+    produces:
+      - HS_AUDIT
+
+  - id: WP_STAGE_08_RECOVERY
+    label: "Recover from Audit"
+    type: pipeline-stage
+    consumes:
+      - HS_AUDIT
+    produces:
+      - HS_RUNNING
+
+  - id: WP_STAGE_09_DEGRADED
+    label: "Enter Degraded Mode"
+    type: pipeline-stage
+    consumes:
+      - HS_RUNNING
+    produces:
+      - HS_DEGRADED
+
+  - id: WP_STAGE_10_DEGRADED_RECOVERY
+    label: "Recover from Degraded Mode"
+    type: pipeline-stage
+    consumes:
+      - HS_DEGRADED
+    produces:
+      - HS_RUNNING
+
+  - id: WP_STAGE_11_SHUTDOWN
+    label: "Controlled Shutdown"
+    type: pipeline-stage
+    consumes:
+      - HS_RUNNING
+    produces:
+      - HS_SHUTDOWN
+    terminal: true
+
+flows:
+  - from: WP_STAGE_01_INIT
+    to: WP_STAGE_02_CONFIG
+    deterministic: true
+
+  - from: WP_STAGE_02_CONFIG
+    to: WP_STAGE_03_VALIDATE
+    deterministic: true
+
+  - from: WP_STAGE_03_VALIDATE
+    to: WP_STAGE_04_EXECUTION_START
+    deterministic: true
+
+  - from: WP_STAGE_04_EXECUTION_START
+    to: WP_STAGE_05_EXECUTION_LOOP
+    deterministic: true
+
+  - from: WP_STAGE_05_EXECUTION_LOOP
+    to: WP_STAGE_06_MONITORING
+    deterministic: true
+
+  - from: WP_STAGE_06_MONITORING
+    to: WP_STAGE_07_AUDIT
+    deterministic: true
+
+  - from: WP_STAGE_07_AUDIT
+    to: WP_STAGE_08_RECOVERY
+    deterministic: true
+
+  - from: WP_STAGE_08_RECOVERY
+    to: WP_STAGE_05_EXECUTION_LOOP
+    deterministic: true
+
+  - from: WP_STAGE_05_EXECUTION_LOOP
+    to: WP_STAGE_09_DEGRADED
+    deterministic: true
+
+  - from: WP_STAGE_09_DEGRADED
+    to: WP_STAGE_10_DEGRADED_RECOVERY
+    deterministic: true
+
+  - from: WP_STAGE_10_DEGRADED_RECOVERY
+    to: WP_STAGE_05_EXECUTION_LOOP
+    deterministic: true
+
+  - from: WP_STAGE_05_EXECUTION_LOOP
+    to: WP_STAGE_11_SHUTDOWN
+    deterministic: true
+
+meta:
+  description: "Deterministische Warp-Pipeline der Hyperspace Runtime."
+  usage: "Für Superlayer, Runtime-Viewer, Debugger und Audit-Pipelines."
+  compatible_with:
+    - "/hyperspace/viewer.html"
+    - "/hyperspace/debug.html"
+    - "/hyperspace/manifest.yaml"
