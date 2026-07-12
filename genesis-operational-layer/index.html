@@ -10,7 +10,14 @@
 <body>
 
 <!-- Header -->
-<div id="super-nav"></div>
+<div id="header"></div>
+<script>
+    fetch("/header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+    <div id="super-nav"></div>
 <script>
     fetch("../../super-nav.html")
         .then(r => r.text())
