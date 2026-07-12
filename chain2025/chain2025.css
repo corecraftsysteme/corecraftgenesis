@@ -1,1 +1,202 @@
 
+/* ============================================================
+   Chain2025 — Design Baseline
+   Deterministic, audit‑ready, Genesis‑compatible
+   ============================================================ */
+
+/* ------------------------------
+   Root Variables
+   ------------------------------ */
+:root {
+    --cc-bg: #0b0c0d;
+    --cc-bg-alt: #111213;
+    --cc-surface: #161718;
+    --cc-border: #2a2b2c;
+    --cc-text: #e5e5e5;
+    --cc-text-dim: #b3b3b3;
+    --cc-accent: #3a7afe;
+    --cc-accent-dim: #2f5fcc;
+    --cc-link: #4a8bff;
+    --cc-link-hover: #6aa0ff;
+    --cc-font: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --cc-radius: 4px;
+    --cc-spacing: 22px;
+    --cc-line: 1.6;
+}
+
+/* ------------------------------
+   Global Reset
+   ------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background: var(--cc-bg);
+    color: var(--cc-text);
+    font-family: var(--cc-font);
+    line-height: var(--cc-line);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------
+   Layout
+   ------------------------------ */
+body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+/* ------------------------------
+   Header
+   ------------------------------ */
+.cc-header {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--cc-border);
+}
+
+.cc-header-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cc-header-subtitle {
+    font-size: 1.2rem;
+    color: var(--cc-text-dim);
+}
+
+/* ------------------------------
+   Sections
+   ------------------------------ */
+.cc-section {
+    margin-bottom: 55px;
+    padding: 25px;
+    background: var(--cc-surface);
+    border: 1px solid var(--cc-border);
+    border-radius: var(--cc-radius);
+}
+
+.cc-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.cc-section h3 {
+    font-size: 1.25rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.cc-section p {
+    margin-bottom: 12px;
+    color: var(--cc-text);
+}
+
+.cc-section ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.cc-section ul li {
+    margin-bottom: 8px;
+    color: var(--cc-text-dim);
+}
+
+/* ------------------------------
+   Links
+   ------------------------------ */
+a {
+    color: var(--cc-link);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--cc-link-hover);
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   Footer
+   ------------------------------ */
+.cc-footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cc-border);
+    text-align: left;
+    color: var(--cc-text-dim);
+    font-size: 0.9rem;
+}
+
+/* ------------------------------
+   Quick Panel
+   ------------------------------ */
+.cc-section ul li strong {
+    color: var(--cc-text);
+}
+
+/* ------------------------------
+   Audit Marker
+   ------------------------------ */
+.audit-entry {
+    margin-bottom: 8px;
+    color: var(--cc-text-dim);
+    font-family: var(--cc-font);
+}
+
+/* ------------------------------
+   Buttons (Export / Actions)
+   ------------------------------ */
+.cc-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background: var(--cc-accent);
+    color: #fff;
+    border-radius: var(--cc-radius);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.cc-button:hover {
+    background: var(--cc-accent-dim);
+}
+
+/* ------------------------------
+   Code / Manifest Blocks
+   ------------------------------ */
+.cc-code {
+    background: var(--cc-bg-alt);
+    border: 1px solid var(--cc-border);
+    padding: 15px;
+    border-radius: var(--cc-radius);
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------
+   Responsive
+   ------------------------------ */
+@media (max-width: 800px) {
+    body {
+        padding: 25px 20px;
+    }
+
+    .cc-header-title {
+        font-size: 2rem;
+    }
+
+    .cc-section {
+        padding: 20px;
+    }
+}
