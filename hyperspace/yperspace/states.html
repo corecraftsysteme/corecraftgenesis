@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Warp‑State Engine – Hyperspace Runtime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">Grid</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+<h1>Warp‑State Engine</h1>
+<p class="lead">Multidimensionale State‑Definitionen · Audit‑Secure Warp‑States</p>
+
+<div id="super-nav"></div>
+<script>
+fetch("../genesis/super-nav.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("super-nav").innerHTML = h);
+</script>
+
+<div class="card">
+    <h2>Über die Warp‑State Engine</h2>
+    <p>
+        Die Warp‑State Engine definiert die multidimensionalen Zustände der Hyperspace Runtime.
+        Jeder Warp‑State ist deterministisch, audit‑fähig und vollständig reproduzierbar.
+    </p>
+    <ul>
+        <li>Deterministische State‑Definition</li>
+        <li>Audit‑Secure Warp‑States</li>
+        <li>Genesis‑Interlink‑Kompatibilität</li>
+        <li>Multidimensionale State‑Graphen</li>
+    </ul>
+</div>
+
+<div class="footer">© CoreCraft Genesis — audit‑sealed</div>
+
+</div>
+</body>
+</html>
+
 
