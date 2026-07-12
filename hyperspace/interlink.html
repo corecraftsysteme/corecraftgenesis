@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Genesis‑Interlink – Hyperspace Runtime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">Grid</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+<h1>Genesis‑Interlink</h1>
+<p class="lead">Cross‑Layer Runtime‑Integration · Warp‑Linking</p>
+
+<div id="super-nav"></div>
+<script>
+fetch("../genesis/super-nav.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("super-nav").innerHTML = h);
+</script>
+
+<div class="card">
+    <h2>Über das Genesis‑Interlink Modul</h2>
+    <p>
+        Das Interlink‑Modul verbindet die Hyperspace Runtime mit allen Genesis‑Layern.
+        Es ermöglicht multidimensionale Verknüpfungen und deterministische Cross‑Layer‑Transitions.
+    </p>
+    <ul>
+        <li>Cross‑Layer Runtime‑Integration</li>
+        <li>Deterministische Warp‑Links</li>
+        <li>Genesis‑State‑Routing</li>
+        <li>Audit‑Secure Interlink‑Graphen</li>
+    </ul>
+</div>
+
+<div class="footer">© CoreCraft Genesis — audit‑sealed</div>
+
+</div>
+</body>
+</html>
