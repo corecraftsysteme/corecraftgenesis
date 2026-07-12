@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Chain2025 – CoreCraft Genesis Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../portal.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+    fetch("../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+    <h1>Chain2025 Portal</h1>
+    <p class="lead">Forschung · Repro‑Builds · Sicherheit · SDKs · Gateways</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+        fetch("../genesis/super-nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <!-- Intro -->
+    <div class="card">
+        <h2>Über Chain2025</h2>
+        <p>
+            Chain2025 ist die Forschungs‑ und Entwicklungs‑Schicht des CoreCraft‑Genesis‑Ökosystems.
+            Sie bildet die Grundlage für deterministische Repro‑Builds, Sicherheitsanalysen,
+            Audit‑Verknüpfungen und die Weiterentwicklung der Genesis‑Runtime.
+        </p>
+        <p>
+            Chain2025 dient als technische Sandbox für neue Module, Gateways, SDKs und
+            experimentelle Genesis‑Artefakte.
+        </p>
+    </div>
+
+    <!-- Module -->
+    <div class="card">
+        <h2>Module & Artefakte</h2>
+        <ul>
+            <li>Repro‑Build Engine</li>
+            <li>Genesis Security Scanner</li>
+            <li>Chain2025 SDK</li>
+            <li>Genesis Gateway</li>
+            <li>Audit‑Integration Layer</li>
+        </ul>
+    </div>
+
+    <!-- Links -->
+    <div class="card">
+        <h2>Chain2025 Ressourcen</h2>
+        <ul>
+            <li><a href="../genesis/dnsseed/index.html">DNSSeed Portal</a></li>
+            <li><a href="../genesis-operational-layer/index.html">Operational Layer</a></li>
+            <li><a href="../mainchain/index.html">Mainchain Audio Engine</a></li>
+            <li><a href="../hyperspace/index.html">Hyperspace Runtime</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
