@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Mainchain Audio Engine – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+    fetch("/header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Mainchain Audio Engine</h1>
+    <p class="lead">Deterministische Audio‑Runtime · DSP‑Graph · Audit‑Secure Execution</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+        fetch("../genesis/super-nav.html")
+            .then(r => r.text())
+            .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card">
+        <h2>Über die Mainchain Audio Engine</h2>
+        <p>
+            Die Mainchain Audio Engine ist die deterministische DSP‑Runtime des
+            CoreCraft‑Genesis‑Ökosystems. Sie führt Audio‑Operationen streng
+            zeitstabil, audit‑fähig und reproduzierbar aus.
+        </p>
+        <p>
+            Die Engine bildet die Grundlage für:
+        </p>
+        <ul>
+            <li>DSP‑Graph Execution</li>
+            <li>Sample‑Accurate Timing</li>
+            <li>Deterministische Scheduling‑Pipelines</li>
+            <li>Audit‑Secure State‑Transitions</li>
+            <li>Genesis‑Runtime‑Integration</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Schnellzugriff</h2>
+        <ul>
+            <li><a href="../genesis/dnsseed/index.html">DNSSeed Portal</a></li>
+            <li><a href="../genesis-operational-layer/index.html">Operational Layer</a></li>
+            <li><a href="../chain2025/index.html">Chain2025</a></li>
+            <li><a href="../hyperspace/index.html">Hyperspace Runtime</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+</body>
+</html>
