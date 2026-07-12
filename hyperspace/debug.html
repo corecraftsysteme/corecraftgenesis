@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyperspace Warp‑State Debugger – CoreCraft Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="../portal-core.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+<script>
+fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<!-- Debug Grid -->
+<div class="grid-overlay">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<button onclick="toggleGrid()" style="position:fixed;top:10px;right:10px;z-index:10000;">
+    Grid
+</button>
+<script src="../grid-toggle.js"></script>
+
+<div class="wrap">
+
+    <h1>Hyperspace Warp‑State Debugger</h1>
+    <p class="lead">Warp‑States · Transition‑Graphen · Runtime‑Status · Audit‑Secure Debugging</p>
+
+    <!-- Super Navigation -->
+    <div id="super-nav"></div>
+    <script>
+    fetch("../genesis/super-nav.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("super-nav").innerHTML = h);
+    </script>
+
+    <div class="card">
+        <h2>Debugger Input</h2>
+        <p>Wähle eine Debug‑Datei der Hyperspace Runtime:</p>
+
+        <select id="debugSelect">
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/state.json">state.json</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/transitions.json">transitions.json</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/interlink.json">interlink.json</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/runtime.json">runtime.json</option>
+
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/state.yaml">state.yaml</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/transitions.yaml">transitions.yaml</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/interlink.yaml">interlink.yaml</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/runtime.yaml">runtime.yaml</option>
+
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/state.md">state.md</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/transitions.md">transitions.md</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/interlink.md">interlink.md</option>
+            <option value="https://hyperspace.corecraftgenesis.ch/debug/runtime.md">runtime.md</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h2>Debugger Output</h2>
+        <pre id="debugOutput">Debugger lädt…</pre>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const select = document.getElementById('debugSelect');
+    const output = document.getElementById('debugOutput');
+
+    function loadDebug(url) {
+        output.textContent = 'Debugger lädt…';
+        fetch(url)
+            .then(r => r.text())
+            .then(t => output.textContent = t)
+            .catch(e => output.textContent = 'Fehler: ' + e);
+    }
+
+    select.addEventListener('change', () => loadDebug(select.value));
+    loadDebug(select.value);
+})();
+</script>
+
+</body>
+</html>
