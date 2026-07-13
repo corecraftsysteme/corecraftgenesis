@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Artefakte Portal Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../portal-core.css">
+
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    ul.map {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.map li {
+      padding: 6px 0;
+    }
+    ul.map li a {
+      color: #8fb0d6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Artefakte — Full Portal Map</h1>
+  <p class="small">Komplette Übersicht aller Artefakt‑Seiten und symbolischen Objekte.</p>
+
+  <!-- SECTION: INDEX -->
+  <div class="card">
+    <h2>Index</h2>
+    <p>Öffentliche Übersicht aller Artefakte.</p>
+    <ul class="map">
+      <li><a href="index.html">index.html</a> — Public Index Viewer</li>
+    </ul>
+  </div>
+
+  <!-- SECTION: MANIFEST -->
+  <div class="card">
+    <h2>Manifest</h2>
+    <p>Kanonische Beschreibung aller Artefakte.</p>
+    <ul class="map">
+      <li><a href="manifest.html">manifest.html</a> — Artefacts Manifest Viewer</li>
+      <li><a href="artefacts-manifest.json">artefacts-manifest.json</a> — JSON Manifest (optional)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION: SYMBOL ARTEFACTS -->
+  <div class="card">
+    <h2>Symbol‑Artefakte</h2>
+    <p>Zentrale Symbole der Genesis‑Engine.</p>
+    <ul class="map">
+      <li><a href="determinism-seal.html">determinism-seal.html</a> — Determinism Seal</li>
+      <li><a href="metal-sticker.html">metal-sticker.html</a> — Metall‑Sticker</li>
+    </ul>
+  </div>
+
+  <!-- SECTION: OPERATOR INSIGNIA -->
+  <div class="card">
+    <h2>Operator‑Insignien</h2>
+    <p>Identitäts‑ und Rollen‑Artefakte für Operatoren.</p>
+    <ul class="map">
+      <li><a href="operator-patches.html">operator-patches.html</a> — Operator‑Patches</li>
+    </ul>
+  </div>
+
+  <!-- SECTION: RITUAL OBJECTS -->
+  <div class="card">
+    <h2>Ritual‑Objekte</h2>
+    <p>Symbolische Objekte für Genesis‑Rituale.</p>
+    <ul class="map">
+      <li><a href="hoodies.html">hoodies.html</a> — Genesis‑Hoodies</li>
+    </ul>
+  </div>
+
+  <!-- SECTION: STORE -->
+  <div class="card">
+    <h2>Store</h2>
+    <p>Offizielle Artefakte im Shop.</p>
+    <ul class="map">
+      <li><a href="store.html">store.html</a> — Store Viewer</li>
+      <li><a href="https://theagency.threadless.com" target="_blank">Shop (extern)</a></li>
+    </ul>
+  </div>
+
+  <!-- SECTION: LICENSE -->
+  <div class="card">
+    <h2>Lizenz</h2>
+    <p>Lizenzinformationen für Artefakte und Code.</p>
+    <ul class="map">
+      <li><a href="license.html">license.html</a> — Lizenz Viewer</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    © CoreCraft Genesis — audit‑sealed  
+    <br>
+    artefacts.corecraftgenesis.ch
+  </div>
+
+</div>
+
+</body>
+</html>
