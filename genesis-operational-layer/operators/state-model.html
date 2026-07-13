@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Operators — State Model Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../portal-core.css">
+    <link rel="stylesheet" href="../../portal-dnsseed.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>Operators — State Model Viewer</h1>
+    <p class="lead">Deterministische Zustandsmodelle für Genesis‑Operatoren.</p>
+
+    <div class="card">
+        <h2>State Model — Übersicht</h2>
+        <p>
+            Das State‑Model beschreibt die möglichen Zustände eines Operators, die erlaubten
+            Übergänge und die auditierbaren Ereignisse, die diese Übergänge auslösen.
+        </p>
+        <p>
+            Jeder Operator folgt einem klar definierten, deterministischen Zustandsgraphen,
+            der in Audit‑Logs und Manifeste eingebettet ist.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Zustände</h2>
+        <ul>
+            <li><strong>Init</strong> — Operator ist definiert, aber noch nicht aktiv.</li>
+            <li><strong>Active</strong> — Operator verarbeitet Events und erzeugt Artefakte.</li>
+            <li><strong>Paused</strong> — Operator ist temporär angehalten, State bleibt erhalten.</li>
+            <li><strong>Retired</strong> — Operator ist dauerhaft deaktiviert, State eingefroren.</li>
+            <li><strong>Error</strong> — Operator hat einen Fehlerzustand erreicht, Audit‑Event erzeugt.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Zustandsübergänge</h2>
+        <p>Beispielhafte Transitionen:</p>
+        <ul>
+            <li><code>Init → Active</code> — durch „operator.enable“ Event.</li>
+            <li><code>Active → Paused</code> — durch „operator.pause“ Event.</li>
+            <li><code>Paused → Active</code> — durch „operator.resume“ Event.</li>
+            <li><code>Active → Retired</code> — durch „operator.retire“ Event.</li>
+            <li><code>Active → Error</code> — durch „operator.error“ Event.</li>
+        </ul>
+        <p class="small">
+            Jede Transition wird als Audit‑Event protokolliert und in der WORM‑Audit‑Pipeline
+            verarbeitet.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Integration</h2>
+        <ul>
+            <li>Alle State‑Transitions schreiben in <code>operator-audit.json</code>.</li>
+            <li>Batch‑Jobs erzeugen tägliche <code>audit-log-YYYY-MM-DD.json</code>.</li>
+            <li>S3‑WORM und IPFS‑CID sichern die Unveränderlichkeit.</li>
+            <li>Genesis‑Manifeste referenzieren Operator‑State‑Artefakte.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Genesis‑Narrativ</h2>
+        <blockquote>
+            „Every operator is a witness of state.  
+            Every state is a transition of origin.“
+        </blockquote>
+        <p class="small">
+            Der State‑Model‑Viewer macht die deterministische Struktur der Operator‑Zustände
+            sichtbar und auditierbar.
+        </p>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed  
+        <br>
+        operators.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
