@@ -2,9 +2,11 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Operator Hub – Genesis Operational Layer</title>
+    <title>Operators — Genesis Operational Layer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../portal.css">
+
+    <link rel="stylesheet" href="../../portal-core.css">
+    <link rel="stylesheet" href="../../portal-dnsseed.css">
 </head>
 
 <body>
@@ -16,31 +18,75 @@
         .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
+<div class="grid-overlay"></div>
+
 <div class="wrap">
 
-    <h1>Operator Hub</h1>
-    <p class="lead">Lifecycle · Duties · Provenance</p>
+    <h1>Genesis Operational Layer — Operators</h1>
+    <p class="lead">Operator‑Modelle, State‑Transitions, Runtime‑Graphen und deterministische Ausführungslogik.</p>
 
     <div class="card">
-        <h2>Operator‑Dokumente</h2>
+        <h2>Public Index</h2>
+        <p>Automatisch generierte Übersicht der Operator‑Artefakte.</p>
+
+        <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+            <tr style="border-bottom:1px solid #23282d;">
+                <th style="padding:8px; color:#8fb0d6;">Name</th>
+                <th style="padding:8px; color:#8fb0d6;">Last commit message</th>
+                <th style="padding:8px; color:#8fb0d6;">Last commit date</th>
+            </tr>
+
+            <!-- Example entries — GitHub Pages will show your real files -->
+            <tr style="border-bottom:1px solid #23282d;">
+                <td style="padding:8px;">index.html</td>
+                <td style="padding:8px;">Update index.html</td>
+                <td style="padding:8px;">yesterday</td>
+            </tr>
+
+            <tr style="border-bottom:1px solid #23282d;">
+                <td style="padding:8px;">state-model.html</td>
+                <td style="padding:8px;">Rename state-model.html</td>
+                <td style="padding:8px;">yesterday</td>
+            </tr>
+
+            <tr style="border-bottom:1px solid #23282d;">
+                <td style="padding:8px;">operator-flow.html</td>
+                <td style="padding:8px;">Add operator flow model</td>
+                <td style="padding:8px;">2 days ago</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Operator Layer</h2>
+        <p>
+            Der Operator‑Layer definiert deterministische Zustandsübergänge, Ausführungsmodelle,
+            Trigger‑Graphen und Runtime‑Verhalten im Genesis‑Ökosystem.
+        </p>
         <ul>
-            <li><a href="../audit/operator-audit.json">Operator Audit Schema</a></li>
-            <li><a href="../audit/genesis-audit.json">Genesis Audit Schema</a></li>
-            <li><a href="../audit/ritual-audit.json">Ritual Audit Schema</a></li>
+            <li><a href="state-model.html">State Model</a></li>
+            <li><a href="operator-flow.html">Operator Flow</a></li>
+            <li><a href="../pages/">Pages</a></li>
         </ul>
     </div>
 
     <div class="card">
-        <h2>Operator‑Rollen</h2>
-        <ul>
-            <li>Genesis Operator</li>
-            <li>Audit Operator</li>
-            <li>Ritual Operator</li>
-        </ul>
+        <h2>Genesis‑Narrativ</h2>
+        <blockquote>
+            „Every operator is a witness of state.  
+            Every state is a transition of origin.“
+        </blockquote>
+        <p class="small">
+            Der Operator‑Layer bildet die deterministische Grundlage für Runtime‑Graphen,
+            Chain2025‑Execution und auditierbare Zustandsmodelle.
+        </p>
     </div>
 
     <div class="footer">
-        © CoreCraft Genesis — audit‑sealed
+        © CoreCraft Genesis — audit‑sealed  
+        <br>
+        operators.corecraftgenesis.ch
     </div>
 
 </div>
