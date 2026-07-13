@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Operators — Execution Timeline Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../portal-core.css">
+    <link rel="stylesheet" href="../../portal-dnsseed.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>Operators — Execution Timeline Viewer</h1>
+    <p class="lead">Zeitliche Ausführungssequenzen deterministischer Genesis‑Operatoren.</p>
+
+    <div class="card">
+        <h2>Execution Timeline — Übersicht</h2>
+        <p>
+            Die Execution Timeline zeigt die zeitliche Abfolge aller Operator‑Aktionen,
+            Trigger‑Events und State‑Transitions.  
+            Jede Aktion ist deterministisch, auditierbar und in der Genesis‑Runtime verankert.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Timeline (ASCII‑Diagramm)</h2>
+        <pre class="graph">
+t0   Init
+     └── operator.enable
+t1   Active
+     ├── operator.process(eventA)
+     ├── operator.process(eventB)
+t2   Active
+     └── operator.pause
+t3   Paused
+     └── operator.resume
+t4   Active
+     ├── operator.process(eventC)
+     └── operator.error
+t5   Error
+     └── operator.recover
+t6   Active
+     └── operator.retire
+t7   Retired (terminal)
+        </pre>
+        <p class="small">
+            Jede Phase erzeugt ein Audit‑Event, das in der WORM‑Pipeline archiviert wird.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Execution Phasen</h2>
+        <ul>
+            <li><strong>Init Phase</strong> — Operator ist definiert, aber inaktiv.</li>
+            <li><strong>Activation Phase</strong> — Operator wird aktiviert.</li>
+            <li><strong>Processing Phase</strong> — Operator verarbeitet Events.</li>
+            <li><strong>Pause Phase</strong> — Operator hält an, State bleibt erhalten.</li>
+            <li><strong>Error Phase</strong> — Fehlerzustand, Audit‑Event erzeugt.</li>
+            <li><strong>Recovery Phase</strong> — Operator kehrt in Active zurück.</li>
+            <li><strong>Retirement Phase</strong> — Operator wird dauerhaft deaktiviert.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Trigger‑Events</h2>
+        <ul>
+            <li><strong>operator.enable</strong> — Startet Execution.</li>
+            <li><strong>operator.process</strong> — Verarbeitet Runtime‑Events.</li>
+            <li><strong>operator.pause</strong> — Stoppt Execution temporär.</li>
+            <li><strong>operator.resume</strong> — Setzt Execution fort.</li>
+            <li><strong>operator.error</strong> — Fehlerzustand.</li>
+            <li><strong>operator.recover</strong> — Fehlerbehebung.</li>
+            <li><strong>operator.retire</strong> — Terminaler Zustand.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Integration</h2>
+        <ul>
+            <li>Alle Timeline‑Events werden in <code>operator-audit.json</code> protokolliert.</li>
+            <li>Batch‑Jobs erzeugen tägliche <code>audit-log-YYYY-MM-DD.json</code>.</li>
+            <li>S3‑WORM archiviert unveränderlich.</li>
+            <li>IPFS‑CID verankert global.</li>
+            <li>Genesis‑Manifeste referenzieren Timeline‑Artefakte.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Genesis‑Narrativ</h2>
+        <blockquote>
+            „Every execution is a witness of flow.  
+            Every flow is a timeline of origin.“
+        </blockquote>
+        <p class="small">
+            Die Execution Timeline bildet die zeitliche Grundlage für deterministische
+            Genesis‑Operatoren, Chain2025‑Runtime und auditierbare Ausführungsmodelle.
+        </p>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed  
+        <br>
+        operators.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
