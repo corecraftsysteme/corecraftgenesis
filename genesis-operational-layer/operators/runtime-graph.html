@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Operators — Runtime Graph Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../portal-core.css">
+    <link rel="stylesheet" href="../../portal-dnsseed.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+    fetch("../../header.html")
+        .then(r => r.text())
+        .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+    <h1>Operators — Runtime Graph Viewer</h1>
+    <p class="lead">Deterministischer Ausführungsgraph für Genesis‑Operatoren.</p>
+
+    <div class="card">
+        <h2>Runtime Graph — Übersicht</h2>
+        <p>
+            Der Runtime‑Graph zeigt die vollständige Ausführungslogik eines Operators:
+            Zustände, Übergänge, Trigger‑Events und auditierbare Operationen.
+        </p>
+        <p>
+            Jeder Operator folgt einem deterministischen Graphen, der in Audit‑Logs,
+            Manifeste und WORM‑Archive eingebettet ist.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Graph‑Struktur</h2>
+        <pre class="graph">
+Init
+ └── enable → Active
+Active
+ ├── pause → Paused
+ ├── error → Error
+ └── retire → Retired
+Paused
+ └── resume → Active
+Error
+ └── recover → Active
+Retired
+ └── (terminal)
+        </pre>
+        <p class="small">
+            Jeder Übergang erzeugt ein auditierbares Event im Operator‑Audit‑Log.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Trigger‑Events</h2>
+        <ul>
+            <li><strong>operator.enable</strong> — aktiviert Operator</li>
+            <li><strong>operator.pause</strong> — pausiert Operator</li>
+            <li><strong>operator.resume</strong> — setzt Operator fort</li>
+            <li><strong>operator.retire</strong> — deaktiviert Operator dauerhaft</li>
+            <li><strong>operator.error</strong> — Fehlerzustand</li>
+            <li><strong>operator.recover</strong> — Fehlerbehebung</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Audit‑Integration</h2>
+        <ul>
+            <li>Alle Runtime‑Transitions werden in <code>operator-audit.json</code> protokolliert.</li>
+            <li>Batch‑Jobs erzeugen tägliche <code>audit-log-YYYY-MM-DD.json</code>.</li>
+            <li>S3‑WORM sichert die Unveränderlichkeit.</li>
+            <li>IPFS‑CID verankert die globale Referenz.</li>
+            <li>Genesis‑Manifeste referenzieren alle Runtime‑Graph‑Artefakte.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Runtime‑Graph (SVG‑Style ASCII)</h2>
+        <pre class="graph">
++---------+      enable       +---------+
+|  Init   | -----------------> | Active  |
++---------+                    +---------+
+                                  |  |  |
+                                  |  |  | retire
+                                  |  |  v
+                                  |  | +---------+
+                                  |  | | Retired |
+                                  |  | +---------+
+                                  |  |
+                                  |  | pause
+                                  |  v
+                                  | +---------+
+                                  | | Paused  |
+                                  | +---------+
+                                  |     |
+                                  |     | resume
+                                  |     v
+                                  |   Active
+                                  |
+                                  | error
+                                  v
+                              +---------+
+                              |  Error  |
+                              +---------+
+                                  |
+                                  | recover
+                                  v
+                                Active
+        </pre>
+    </div>
+
+    <div class="card">
+        <h2>Genesis‑Narrativ</h2>
+        <blockquote>
+            „Every operator is a witness of execution.  
+            Every execution is a transition of origin.“
+        </blockquote>
+        <p class="small">
+            Der Runtime‑Graph bildet die deterministische Grundlage für Genesis‑Execution,
+            Chain2025‑Runtime und auditierbare Operator‑Modelle.
+        </p>
+    </div>
+
+    <div class="footer">
+        © CoreCraft Genesis — audit‑sealed  
+        <br>
+        operators.corecraftgenesis.ch
+    </div>
+
+</div>
+
+</body>
+</html>
