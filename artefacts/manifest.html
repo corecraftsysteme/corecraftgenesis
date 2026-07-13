@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CoreCraftGenesis — Artefakte Manifest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../portal-core.css">
+
+  <style>
+    .card {
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+    }
+    .small {
+      opacity: .7;
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+    pre.manifest {
+      background: #0f1316;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: .9rem;
+      overflow-x: auto;
+      border: 1px solid #23282d;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">CoreCraftGenesis</span>
+  <h1>Artefakte — Manifest</h1>
+  <p class="small">Kanonische Beschreibung der symbolischen Genesis‑Artefakte.</p>
+
+  <div class="card">
+    <h2>Manifest Übersicht</h2>
+    <p>
+      Das Artefakte‑Manifest beschreibt alle symbolischen Objekte der Genesis‑Engine,
+      ihre Bedeutung, ihren Einsatzkontext und ihre Zuordnung zu Operatoren, Rollen
+      und Ritual‑Strukturen.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Manifest (Beispielstruktur)</h2>
+    <pre class="manifest">
+{
+  "version": "1.0.0",
+  "namespace": "corecraftgenesis.artefacts",
+  "artefacts": [
+    {
+      "id": "determinism-seal",
+      "name": "Determinism Seal",
+      "type": "symbol",
+      "role": "engine-core",
+      "description": "Zentrales Symbol der Engine, markiert deterministische, audit-stabile Vorgänge.",
+      "medium": ["sticker", "patch", "print"],
+      "status": "active"
+    },
+    {
+      "id": "operator-patch",
+      "name": "Operator-Patches",
+      "type": "insignia",
+      "role": "operator-identity",
+      "description": "Rituelle Identifikatoren für Operatoren, Rollen und Berechtigungen.",
+      "medium": ["patch", "embroidery"],
+      "status": "active"
+    },
+    {
+      "id": "genesis-hoodie",
+      "name": "Genesis-Hoodies",
+      "type": "garment",
+      "role": "ritual-participant",
+      "description": "Symbolische Kleidungsstücke für Operatoren und Ritual-Teilnehmer.",
+      "medium": ["textile"],
+      "status": "active"
+    },
+    {
+      "id": "metal-sticker",
+      "name": "Metall-Sticker",
+      "type": "tag",
+      "role": "device-marking",
+      "description": "Lasergravierte Artefakte für Geräte, Validator-Nodes und physische Ritual-Objekte.",
+      "medium": ["metal", "engraving"],
+      "status": "active"
+    }
+  ],
+  "license": {
+    "code": ["MIT", "CC0"],
+    "skeletton": "Archneton License v1.0",
+    "author": "Daniel Aecherli (M.O.D.S.)"
+  }
+}
+    </pre>
+    <p class="small">
+      Die tatsächliche Manifest‑Datei kann als <code>artefacts-manifest.json</code> im Repository
+      abgelegt und von der Genesis‑Engine referenziert werden.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Integration</h2>
+    <ul>
+      <li>Verknüpfung mit Operator‑Layer (Patches, Rollen, Identitäten).</li>
+      <li>Verknüpfung mit Audit‑Layer (Determinism Seal als Marker).</li>
+      <li>Verknüpfung mit Store‑System (Hoodies, Sticker, Patches).</li>
+      <li>Verknüpfung mit Hardware‑Layer (Metall‑Sticker auf Geräten).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Lizenz</h2>
+    <p>
+      Code: MIT / CC0<br>
+      Skeletton™: Archneton License v1.0<br>
+      Autor: Daniel Aecherli (M.O.D.S.)
+    </p>
+  </div>
+
+  <div class="footer">
+    © CoreCraft Genesis — audit‑sealed  
+    <br>
+    artefacts.corecraftgenesis.ch
+  </div>
+
+</div>
+
+</body>
+</html>
