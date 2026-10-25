@@ -154,7 +154,7 @@ CoreCraft Genesis seeks to bridge software engineering, governance and education
 | CoreCraft Genesis | https://corecraftgenesis.ch |
 | Chain2025 | https://chain2025.corecraftgenesis.ch |
 | Chain2025 Node | https://node.corecraftgenesis.ch |
-| DNS Seed | https://github.com/corecraftsysteme/dnsseed.corecraftgenesis.ch |
+| DNS Seed | https://dnsseed.corecraftgenesis.ch |
 
 ---
 
