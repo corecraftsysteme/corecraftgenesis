@@ -1,297 +1,1008 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CoreCraft Genesis</title>
+  <title>CoreCraft Genesis | Engineering, Intelligence & Digital Infrastructure</title>
 
-<style>
+  <meta name="description"
+        content="CoreCraft Genesis verbindet deterministische Softwarearchitektur, digitale Infrastruktur, Blockchain Intelligence, technische Dokumentation und professionelle Knowledge-Produkte.">
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#0f1115;
-    color:#e6e6e6;
-    margin:0;
-    line-height:1.7;
-}
+  <style>
+    :root {
+      --bg: #05070a;
+      --surface: #0c1118;
+      --surface-light: #111924;
+      --line: #1d2938;
+      --text: #f4f7fb;
+      --muted: #95a2b3;
+      --blue: #4ea1ff;
+      --blue-dark: #1677e8;
+      --green: #42d392;
+      --max: 1180px;
+    }
 
-header{
-    background:#111827;
-    padding:80px 20px;
-    text-align:center;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-header h1{
-    font-size:48px;
-    margin-bottom:10px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-header p{
-    max-width:900px;
-    margin:auto;
-    color:#b0b8c4;
-}
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-section{
-    max-width:1200px;
-    margin:auto;
-    padding:60px 20px;
-}
+      background:
+        radial-gradient(circle at 70% -10%, #102c4a 0, transparent 28%),
+        var(--bg);
 
-h2{
-    color:#4dd0e1;
-}
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-.card{
-    background:#151922;
-    padding:25px;
-    border-radius:12px;
-    margin-bottom:20px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-a{
-    color:#4dd0e1;
-    text-decoration:none;
-}
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
 
-a:hover{
-    text-decoration:underline;
-}
+    /* HEADER */
 
-ul{
-    padding-left:20px;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
 
-footer{
-    text-align:center;
-    padding:40px;
-    background:#111827;
-    color:#888;
-}
+      background: rgba(5, 7, 10, 0.88);
+      backdrop-filter: blur(18px);
 
-.footer-links{
-    margin-bottom:20px;
-}
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
 
-.footer-links a{
-    margin:0 10px;
-}
+    nav {
+      min-height: 72px;
 
-</style>
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      font-size: 1.1rem;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      border: 1px solid var(--line);
+      padding: 9px 16px;
+      border-radius: 8px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 700px;
+
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+
+      gap: 70px;
+
+      padding: 110px 0;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 700;
+      font-size: .77rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.3rem);
+      line-height: .96;
+      letter-spacing: -.065em;
+      max-width: 850px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 720px;
+
+      margin: 30px 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+      border-radius: 8px;
+
+      font-weight: 650;
+      font-size: .93rem;
+
+      border: 1px solid var(--line);
+      transition: .2s ease;
+    }
+
+    .button-primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #001326;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: #45617e;
+    }
+
+    .hero-panel {
+      background:
+        linear-gradient(145deg, rgba(78,161,255,.08), transparent),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+
+      padding: 35px;
+    }
+
+    .status {
+      color: var(--green);
+      font-size: .8rem;
+      margin-bottom: 25px;
+    }
+
+    .stack-item {
+      border-top: 1px solid var(--line);
+      padding: 17px 0;
+    }
+
+    .stack-item small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -.045em;
+      line-height: 1.05;
+
+      margin: 12px 0 22px;
+      max-width: 850px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 1.07rem;
+      margin-bottom: 45px;
+    }
+
+    /* GRID */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+
+      border-radius: 14px;
+      padding: 28px;
+
+      transition: .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #3a5878;
+      background: var(--surface-light);
+    }
+
+    .card-number {
+      color: var(--blue);
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .card h3 {
+      font-size: 1.22rem;
+      margin: 25px 0 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .card-link {
+      color: var(--blue);
+      display: inline-block;
+      margin-top: 20px;
+      font-size: .9rem;
+    }
+
+    /* ENGINECORE */
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+
+      align-items: start;
+    }
+
+    .feature-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .feature-row {
+      border-bottom: 1px solid var(--line);
+      padding: 19px 0;
+
+      display: flex;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .feature-row span:last-child {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      background: rgba(255,255,255,.015);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* RESEARCH */
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .research-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+
+      color: #d9e4f0;
+      background: rgba(255,255,255,.018);
+    }
+
+    /* CTA */
+
+    .cta {
+      background:
+        linear-gradient(125deg, rgba(78,161,255,.15), transparent),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+
+      padding: 60px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 55px 0;
+
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    .copyright {
+      border-top: 1px solid var(--line);
+      padding-top: 30px;
+      margin-top: 45px;
+
+      font-size: .82rem;
+    }
+
+    @media (max-width: 900px) {
+
+      .hero,
+      .feature {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .grid,
+      .research-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .cta {
+        padding: 35px 25px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
+  <div class="container">
+    <nav>
 
-    <h1>CoreCraft Genesis</h1>
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
 
-    <p>
-        Engineering Deterministic Systems, Digital Infrastructure,
-        Blockchain Intelligence and Knowledge Products.
-    </p>
+      <div class="nav-links">
+        <a href="/products/">Produkte</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/docs/">Docs</a>
+        <a href="/pricing/">Preise</a>
+        <a href="/blog/">Research</a>
+        <a href="/about/">Über uns</a>
+        <a class="nav-button" href="/account/">Account</a>
+      </div>
 
+    </nav>
+  </div>
 </header>
 
-<section>
 
-    <h2>About CoreCraft Genesis</h2>
+<main>
 
-    <div class="card">
+  <!-- HERO -->
 
-        <p>
-            CoreCraft Genesis is an independent research and engineering initiative
-            focused on deterministic software architecture, governance frameworks,
-            digital commodities, blockchain intelligence and educational publications.
-        </p>
+  <section class="container hero">
 
-        <p>
-            The project combines software engineering, infrastructure design,
-            operational governance and technical documentation into a unified ecosystem
-            designed for long-term reliability and transparency.
-        </p>
+    <div>
 
-    </div>
+      <div class="eyebrow">
+        Engineering · Intelligence · Infrastructure
+      </div>
 
-    <h2>EngineCore Technology</h2>
+      <h1>
+        Engineering deterministic systems.
+      </h1>
 
-    <div class="card">
+      <p>
+        CoreCraft Genesis verbindet Software Engineering,
+        digitale Infrastruktur, Blockchain Intelligence,
+        Governance und technische Dokumentation zu einem
+        strukturierten Technologie- und Wissensökosystem.
+      </p>
 
-        <p>
-            EngineCore is the foundational runtime architecture developed throughout
-            the CoreCraft Genesis initiative. It was created to support deterministic
-            execution, state consistency, auditability and recoverability across
-            complex software environments.
-        </p>
+      <div class="buttons">
 
-        <p>Key capabilities include:</p>
+        <a class="button button-primary" href="/products/">
+          Produkte entdecken
+        </a>
 
-        <ul>
-            <li>Deterministic Runtime Execution</li>
-            <li>State Management and Recovery</li>
-            <li>Governance and Validation Layers</li>
-            <li>FreezeSync Technology</li>
-            <li>Audit and Compliance Frameworks</li>
-            <li>Snapshot and Finality Mechanisms</li>
-            <li>Modular Layer Architecture</li>
-            <li>Knowledge and Documentation Integration</li>
-        </ul>
+        <a class="button" href="/docs/">
+          Dokumentation
+        </a>
+
+      </div>
 
     </div>
 
-    <h2>Engineering Experience</h2>
 
-    <div class="card">
+    <div class="hero-panel">
 
-        <p>
-            The development of EngineCore generated extensive practical experience in
-            runtime stabilization, deterministic processing, state verification,
-            fault recovery and governance automation.
-        </p>
+      <div class="status">
+        ● CoreCraft Genesis Ecosystem
+      </div>
 
-        <p>
-            Numerous iterations of validation workflows, recovery systems and audit
-            mechanisms revealed the importance of consistent execution paths,
-            predictable state transitions and structured operational procedures.
-        </p>
+      <div class="stack-item">
+        <strong>EngineCore</strong>
+        <small>
+          Deterministische Runtime-Architektur
+        </small>
+      </div>
 
-        <p>
-            These lessons now form the basis for educational publications,
-            technical reference documents and reusable engineering patterns.
-        </p>
+      <div class="stack-item">
+        <strong>Genesis Intelligence</strong>
+        <small>
+          Research, Analyse und technische Intelligence
+        </small>
+      </div>
 
-    </div>
+      <div class="stack-item">
+        <strong>CoreCraft Pay</strong>
+        <small>
+          Payment- und digitale Asset-Infrastruktur
+        </small>
+      </div>
 
-    <h2>Research Areas</h2>
-
-    <div class="card">
-
-        <ul>
-            <li>Bitcoin Mining Intelligence</li>
-            <li>Fee Market Research</li>
-            <li>Digital Commodity Classification</li>
-            <li>Infrastructure Governance</li>
-            <li>Deterministic Runtime Systems</li>
-            <li>Knowledge Engineering</li>
-            <li>Blockchain Ecosystems</li>
-            <li>Operational Audit Frameworks</li>
-        </ul>
+      <div class="stack-item">
+        <strong>Knowledge Products</strong>
+        <small>
+          Dokumentationen, Guides und Engineering-Ressourcen
+        </small>
+      </div>
 
     </div>
 
-    <h2>Genesis Intelligence</h2>
+  </section>
 
-    <div class="card">
+
+  <!-- ECOSYSTEM -->
+
+  <section class="container">
+
+    <div class="section-label">
+      Ecosystem
+    </div>
+
+    <h2>
+      Eine Plattform für Engineering, Wissen und Infrastruktur.
+    </h2>
+
+    <p class="lead">
+      CoreCraft Genesis bündelt technische Entwicklung,
+      strukturierte Forschung und wiederverwendbare
+      Knowledge-Produkte unter einer gemeinsamen Plattform.
+    </p>
+
+
+    <div class="grid">
+
+      <article class="card">
+
+        <span class="card-number">01</span>
+
+        <h3>EngineCore</h3>
 
         <p>
-            Genesis Intelligence represents the analytical and research division
-            of the project. Its purpose is to transform complex technical
-            information into structured, understandable and professionally
-            documented knowledge.
+          Architektur für deterministische Ausführung,
+          State Management, Validierung, Recovery und
+          nachvollziehbare Systemzustände.
         </p>
 
+        <a class="card-link" href="/products/enginecore/">
+          EngineCore ansehen →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <span class="card-number">02</span>
+
+        <h3>Genesis Intelligence</h3>
+
         <p>
-            The focus includes market intelligence, blockchain infrastructure,
-            mining analytics, glossary development and technical publications.
+          Strukturierte Research- und Intelligence-Inhalte
+          rund um Blockchain, Infrastruktur, Mining,
+          digitale Commodities und Technologie.
         </p>
+
+        <a class="card-link" href="/blog/">
+          Research entdecken →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <span class="card-number">03</span>
+
+        <h3>CoreCraft Pay</h3>
+
+        <p>
+          Produktbereich für Payment Architecture,
+          Wallet-Komponenten, Transaktionsmodelle und
+          digitale Finanzinfrastruktur.
+        </p>
+
+        <a class="card-link" href="/products/corecraft-pay/">
+          CoreCraft Pay →
+        </a>
+
+      </article>
 
     </div>
 
-    <h2>Vision</h2>
+  </section>
 
-    <div class="card">
 
-        <p>
-            Technology should be transparent, reproducible and understandable.
-            CoreCraft Genesis aims to bridge engineering, governance and education
-            by transforming practical development experience into reusable knowledge
-            for professionals, researchers and builders.
+  <!-- ENGINECORE -->
+
+  <section class="container">
+
+    <div class="feature">
+
+      <div>
+
+        <div class="section-label">
+          Core Technology
+        </div>
+
+        <h2>
+          EngineCore
+        </h2>
+
+        <p class="lead">
+          Die grundlegende Runtime-Architektur innerhalb
+          des CoreCraft-Genesis-Ökosystems.
         </p>
+
+        <div class="buttons">
+
+          <a class="button button-primary"
+             href="/products/enginecore/">
+            EngineCore öffnen
+          </a>
+
+          <a class="button"
+             href="/docs/enginecore/">
+            Technische Docs
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature-list">
+
+        <div class="feature-row">
+          <span>Runtime</span>
+          <span>Deterministic Execution</span>
+        </div>
+
+        <div class="feature-row">
+          <span>State</span>
+          <span>Management & Recovery</span>
+        </div>
+
+        <div class="feature-row">
+          <span>Governance</span>
+          <span>Validation Layers</span>
+        </div>
+
+        <div class="feature-row">
+          <span>Audit</span>
+          <span>Traceability</span>
+        </div>
+
+        <div class="feature-row">
+          <span>Architecture</span>
+          <span>Modular Layers</span>
+        </div>
+
+      </div>
 
     </div>
 
-    <h2>Ecosystem & Infrastructure</h2>
+  </section>
 
-    <div class="card">
 
-        <p>
-            The CoreCraft Genesis ecosystem includes public infrastructure,
-            research platforms and supporting network services.
-        </p>
+  <!-- PRODUCTS -->
 
-        <ul>
+  <section class="products">
 
-            <li>
-                <strong>Main Platform:</strong>
-                <a href="https://corecraftgenesis.ch/" target="_blank">
-                    CoreCraft Genesis
-                </a>
-            </li>
+    <div class="container">
 
-            <li>
-                <strong>Research Platform:</strong>
-                <a href="https://chain2025.corecraftgenesis.ch/" target="_blank">
-                    Chain2025
-                </a>
-            </li>
+      <div class="section-label">
+        Products
+      </div>
 
-            <li>
-                <strong>Node Infrastructure:</strong>
-                <a href="https://node.corecraftgenesis.ch/" target="_blank">
-                    Chain2025 Node
-                </a>
-            </li>
+      <h2>
+        Produkte für Entwickler, Betreiber und Research.
+      </h2>
 
-            <li>
-                <strong>Network Discovery:</strong>
-                <a href="https://github.com/corecraftsysteme/dnsseed.corecraftgenesis.ch" target="_blank">
-                    DNS Seed Repository
-                </a>
-            </li>
+      <p class="lead">
+        Technische Produkte, Dokumentationspakete,
+        Entwicklungsressourcen und spezialisierte
+        Knowledge-Produkte.
+      </p>
 
-        </ul>
+
+      <div class="grid">
+
+        <a class="card" href="/products/enginecore/">
+
+          <span class="card-number">Runtime</span>
+
+          <h3>EngineCore</h3>
+
+          <p>
+            Runtime Architecture und Engineering Resources.
+          </p>
+
+        </a>
+
+
+        <a class="card" href="/products/corecraft-pay/">
+
+          <span class="card-number">Payments</span>
+
+          <h3>CoreCraft Pay</h3>
+
+          <p>
+            Payment- und Transaction-Architecture.
+          </p>
+
+        </a>
+
+
+        <a class="card" href="/products/bitcoin-mining/">
+
+          <span class="card-number">Infrastructure</span>
+
+          <h3>Bitcoin Mining</h3>
+
+          <p>
+            Mining Intelligence und Infrastructure Products.
+          </p>
+
+        </a>
+
+
+        <a class="card" href="/products/developer-tools/">
+
+          <span class="card-number">Developer</span>
+
+          <h3>Developer Tools</h3>
+
+          <p>
+            Werkzeuge und Ressourcen für technische Projekte.
+          </p>
+
+        </a>
+
+
+        <a class="card" href="/products/documentation/">
+
+          <span class="card-number">Knowledge</span>
+
+          <h3>Documentation</h3>
+
+          <p>
+            Technische Dokumentationen und Reference Packs.
+          </p>
+
+        </a>
+
+
+        <a class="card" href="/shop/">
+
+          <span class="card-number">Catalog</span>
+
+          <h3>Product Catalog</h3>
+
+          <p>
+            Alle verfügbaren CoreCraft-Produkte durchsuchen.
+          </p>
+
+        </a>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
+
+
+  <!-- RESEARCH -->
+
+  <section class="container">
+
+    <div class="section-label">
+      Research Areas
+    </div>
+
+    <h2>
+      Von Runtime-Systemen bis Blockchain Intelligence.
+    </h2>
+
+    <div class="research-grid">
+
+      <div class="research-item">
+        Deterministic Runtime Systems
+      </div>
+
+      <div class="research-item">
+        Bitcoin Mining Intelligence
+      </div>
+
+      <div class="research-item">
+        Digital Commodity Classification
+      </div>
+
+      <div class="research-item">
+        Infrastructure Governance
+      </div>
+
+      <div class="research-item">
+        Blockchain Ecosystems
+      </div>
+
+      <div class="research-item">
+        Operational Audit
+      </div>
+
+      <div class="research-item">
+        Knowledge Engineering
+      </div>
+
+      <div class="research-item">
+        Fee Market Research
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REFERRAL -->
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        CoreCraft Referral
+      </div>
+
+      <h2>
+        CoreCraft Genesis weiterempfehlen.
+      </h2>
+
+      <p class="lead">
+        Nutze das CoreCraft Referral-Programm,
+        um Produkte und Ressourcen über einen
+        persönlichen Empfehlungslink weiterzugeben.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button button-primary"
+           href="/referral/join/">
+          Referral starten
+        </a>
+
+        <a class="button"
+           href="/referral/terms/">
+          Bedingungen
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL CTA -->
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        Start Building
+      </div>
+
+      <h2>
+        Entdecke das CoreCraft-Genesis-Ökosystem.
+      </h2>
+
+      <p class="lead">
+        Starte mit den Produkten, öffne die technische
+        Dokumentation oder entdecke aktuelle
+        Engineering- und Research-Inhalte.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button button-primary"
+           href="/products/">
+          Produkte
+        </a>
+
+        <a class="button"
+           href="/docs/">
+          Dokumentation
+        </a>
+
+        <a class="button"
+           href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
 
 <footer>
 
-    <div class="footer-links">
+  <div class="container">
 
-        <a href="https://corecraftgenesis.ch/" target="_blank">
-            CoreCraft Genesis
-        </a>
+    <div class="footer-grid">
 
-        |
+      <div>
 
-        <a href="https://chain2025.corecraftgenesis.ch/" target="_blank">
-            Chain2025
-        </a>
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
 
-        |
+        <p style="margin-top:15px;max-width:360px;">
+          Engineering Deterministic Systems,
+          Digital Infrastructure,
+          Blockchain Intelligence and Knowledge Products.
+        </p>
 
-        <a href="https://node.corecraftgenesis.ch/" target="_blank">
-            Chain2025 Node
-        </a>
+      </div>
 
-        |
 
-        <a href="https://dnsseed.corecraftgenesis.ch" target="_blank">
-            DNS Seed
-        </a>
+      <div>
+
+        <h4>Produkte</h4>
+
+        <a href="/products/enginecore/">EngineCore</a>
+        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
+        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+        <a href="/shop/">Shop</a>
+
+      </div>
+
+
+      <div>
+
+        <h4>Resources</h4>
+
+        <a href="/docs/">Docs</a>
+        <a href="/downloads/">Downloads</a>
+        <a href="/blog/">Research</a>
+        <a href="/support/">Support</a>
+
+      </div>
+
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/about/">Über uns</a>
+        <a href="/contact/">Kontakt</a>
+        <a href="/referral/">Referral</a>
+        <a href="/legal/imprint/">Impressum</a>
+        <a href="/legal/privacy/">Datenschutz</a>
+
+      </div>
 
     </div>
 
-    <div>
-        Engineering Deterministic Systems • Digital Infrastructure • Blockchain Intelligence
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · EngineCore · Genesis Intelligence
     </div>
 
-    <div style="margin-top:12px;font-size:13px;color:#666;">
-        © 2026 CoreCraft Genesis • EngineCore • Genesis Intelligence
-    </div>
+  </div>
 
 </footer>
 
