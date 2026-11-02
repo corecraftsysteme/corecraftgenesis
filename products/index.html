@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Produkte | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Die Produktbereiche von CoreCraft Genesis: Audio, Bitcoin Mining, CoreCraft Pay, Developer Tools, Documentation und EngineCore."
+  >
+
+  <style>
+    :root {
+      --bg: #05070a;
+      --surface: #0c1118;
+      --surface-light: #111924;
+      --line: #1d2938;
+      --text: #f4f7fb;
+      --muted: #95a2b3;
+      --blue: #4ea1ff;
+      --green: #42d392;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(circle at 70% -10%, #102c4a 0, transparent 28%),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(5, 7, 10, 0.88);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -.03em;
+      font-size: 1.1rem;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: white;
+    }
+
+    .nav-button {
+      border: 1px solid var(--line);
+      padding: 9px 16px;
+      border-radius: 8px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 620px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+
+      gap: 70px;
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 700;
+      font-size: .77rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.3rem);
+      line-height: .96;
+      letter-spacing: -.065em;
+      max-width: 900px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 30px 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+      border-radius: 8px;
+
+      font-weight: 650;
+      font-size: .93rem;
+
+      border: 1px solid var(--line);
+      transition: .2s ease;
+    }
+
+    .button-primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #001326;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: #45617e;
+    }
+
+    /* DIRECTORY PANEL */
+
+    .directory-panel {
+      background:
+        linear-gradient(145deg, rgba(78,161,255,.08), transparent),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+
+      padding: 35px;
+    }
+
+    .status {
+      color: var(--green);
+      font-family: monospace;
+      font-size: .8rem;
+      margin-bottom: 25px;
+    }
+
+    .directory-path {
+      color: var(--muted);
+      font-family: monospace;
+      font-size: .8rem;
+      margin-bottom: 20px;
+    }
+
+    .directory-item {
+      border-top: 1px solid var(--line);
+      padding: 13px 0;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      font-family: monospace;
+      font-size: .83rem;
+    }
+
+    .directory-item span:last-child {
+      color: var(--blue);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -.045em;
+      line-height: 1.05;
+
+      margin: 12px 0 22px;
+      max-width: 900px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 780px;
+      font-size: 1.07rem;
+      margin-bottom: 45px;
+    }
+
+    /* PRODUCT GRID */
+
+    .products {
+      background: rgba(255,255,255,.015);
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 330px;
+
+      display: flex;
+      flex-direction: column;
+
+      border: 1px solid var(--line);
+      background: var(--surface);
+
+      border-radius: 14px;
+      padding: 28px;
+
+      transition: .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #3a5878;
+      background: var(--surface-light);
+    }
+
+    .card-number {
+      color: var(--blue);
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin: 25px 0 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .card-path {
+      color: #65778d;
+      font-family: monospace;
+      font-size: .76rem;
+
+      margin-top: 18px;
+    }
+
+    .card-link {
+      color: var(--blue);
+      display: inline-block;
+
+      margin-top: auto;
+      padding-top: 25px;
+
+      font-size: .9rem;
+    }
+
+    /* STRUCTURE */
+
+    .structure {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .structure-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .structure-row {
+      padding: 20px 0;
+
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 25px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .structure-row code {
+      color: var(--blue);
+      font-size: .8rem;
+    }
+
+    .structure-row p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* CTA */
+
+    .cta {
+      background:
+        linear-gradient(125deg, rgba(78,161,255,.15), transparent),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+
+      padding: 60px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 55px 0;
+
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-description {
+      margin-top: 15px;
+      max-width: 360px;
+    }
+
+    .copyright {
+      border-top: 1px solid var(--line);
+      padding-top: 30px;
+      margin-top: 45px;
+
+      font-size: .82rem;
+    }
+
+    @media (max-width: 900px) {
+
+      .hero,
+      .structure {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .structure-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .cta {
+        padding: 35px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container">
+
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+
+        <a class="active" href="/products/">
+          Produkte
+        </a>
+
+        <a href="/solutions/">
+          Solutions
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/pricing/">
+          Preise
+        </a>
+
+        <a href="/blog/">
+          Research
+        </a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a class="nav-button" href="/account/">
+          Account
+        </a>
+
+      </div>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        CoreCraft Genesis · Product Ecosystem
+      </div>
+
+      <h1>
+        Products built around technology.
+      </h1>
+
+      <p>
+        Der Produktbereich von CoreCraft Genesis gliedert sich
+        in sechs eigenständige Bereiche für Audio-Technologie,
+        Bitcoin Mining, Payment-Infrastruktur, Developer Tools,
+        technische Dokumentation und EngineCore.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button button-primary" href="#product-areas">
+          Produktbereiche entdecken
+        </a>
+
+        <a class="button" href="/docs/">
+          Dokumentation
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="directory-panel">
+
+      <div class="status">
+        ● PRODUCT DIRECTORY
+      </div>
+
+      <div class="directory-path">
+        /products/
+      </div>
+
+      <div class="directory-item">
+        <span>audio/</span>
+        <span>PRODUCT</span>
+      </div>
+
+      <div class="directory-item">
+        <span>bitcoin-mining/</span>
+        <span>PRODUCT</span>
+      </div>
+
+      <div class="directory-item">
+        <span>corecraft-pay/</span>
+        <span>PRODUCT</span>
+      </div>
+
+      <div class="directory-item">
+        <span>developer-tools/</span>
+        <span>PRODUCT</span>
+      </div>
+
+      <div class="directory-item">
+        <span>documentation/</span>
+        <span>PRODUCT</span>
+      </div>
+
+      <div class="directory-item">
+        <span>enginecore/</span>
+        <span>PRODUCT</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCT AREAS -->
+
+  <section class="products" id="product-areas">
+
+    <div class="container">
+
+      <div class="section-label">
+        Product Areas
+      </div>
+
+      <h2>
+        Sechs Bereiche. Ein technisches Ökosystem.
+      </h2>
+
+      <p class="lead">
+        Jeder Produktordner bildet einen eigenen Bereich
+        innerhalb von CoreCraft Genesis und erhält eine
+        eigene Produktseite, Dokumentation und technische
+        Struktur.
+      </p>
+
+
+      <div class="grid">
+
+        <!-- AUDIO -->
+
+        <a class="card" href="/products/audio/">
+
+          <span class="card-number">
+            01 · AUDIO
+          </span>
+
+          <h3>
+            Audio
+          </h3>
+
+          <p>
+            Der Audio-Bereich bündelt Audio-Technologie,
+            AudioState-Komponenten, DSP-bezogene Konzepte
+            sowie technische Ressourcen für strukturierte
+            Audio- und Signalverarbeitungsprojekte.
+          </p>
+
+          <div class="card-path">
+            /products/audio/
+          </div>
+
+          <span class="card-link">
+            Audio öffnen →
+          </span>
+
+        </a>
+
+
+        <!-- BITCOIN MINING -->
+
+        <a class="card" href="/products/bitcoin-mining/">
+
+          <span class="card-number">
+            02 · INFRASTRUCTURE
+          </span>
+
+          <h3>
+            Bitcoin Mining
+          </h3>
+
+          <p>
+            Der Bitcoin-Mining-Bereich bündelt technische
+            Ressourcen rund um Mining-Infrastruktur,
+            Mempool Intelligence, Gebührenmärkte,
+            Analyse und spezialisierte Knowledge-Produkte.
+          </p>
+
+          <div class="card-path">
+            /products/bitcoin-mining/
+          </div>
+
+          <span class="card-link">
+            Bitcoin Mining öffnen →
+          </span>
+
+        </a>
+
+
+        <!-- CORECRAFT PAY -->
+
+        <a class="card" href="/products/corecraft-pay/">
+
+          <span class="card-number">
+            03 · PAYMENTS
+          </span>
+
+          <h3>
+            CoreCraft Pay
+          </h3>
+
+          <p>
+            CoreCraft Pay bildet den Produktbereich für
+            Payment Architecture, Transaktionsmodelle,
+            Wallet-Komponenten und technische Konzepte
+            für digitale Zahlungsinfrastruktur.
+          </p>
+
+          <div class="card-path">
+            /products/corecraft-pay/
+          </div>
+
+          <span class="card-link">
+            CoreCraft Pay öffnen →
+          </span>
+
+        </a>
+
+
+        <!-- DEVELOPER TOOLS -->
+
+        <a class="card" href="/products/developer-tools/">
+
+          <span class="card-number">
+            04 · DEVELOPER
+          </span>
+
+          <h3>
+            Developer Tools
+          </h3>
+
+          <p>
+            Dieser Bereich enthält technische Werkzeuge,
+            Vorlagen und wiederverwendbare Ressourcen
+            für Entwicklung, Prüfung, Automatisierung
+            und strukturierte technische Workflows.
+          </p>
+
+          <div class="card-path">
+            /products/developer-tools/
+          </div>
+
+          <span class="card-link">
+            Developer Tools öffnen →
+          </span>
+
+        </a>
+
+
+        <!-- DOCUMENTATION -->
+
+        <a class="card" href="/products/documentation/">
+
+          <span class="card-number">
+            05 · KNOWLEDGE
+          </span>
+
+          <h3>
+            Documentation
+          </h3>
+
+          <p>
+            Der Documentation-Bereich umfasst strukturierte
+            technische Dokumentationen, Reference Packs,
+            Guides und Knowledge-Produkte für Engineering
+            und Infrastruktur.
+          </p>
+
+          <div class="card-path">
+            /products/documentation/
+          </div>
+
+          <span class="card-link">
+            Documentation öffnen →
+          </span>
+
+        </a>
+
+
+        <!-- ENGINECORE -->
+
+        <a class="card" href="/products/enginecore/">
+
+          <span class="card-number">
+            06 · RUNTIME
+          </span>
+
+          <h3>
+            EngineCore
+          </h3>
+
+          <p>
+            EngineCore bildet den Bereich für
+            deterministische Runtime-Architektur,
+            State Management, Validierung, Recovery,
+            Orchestration und nachvollziehbare
+            Systemzustände.
+          </p>
+
+          <div class="card-path">
+            /products/enginecore/
+          </div>
+
+          <span class="card-link">
+            EngineCore öffnen →
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DIRECTORY EXPLANATION -->
+
+  <section class="container">
+
+    <div class="structure">
+
+      <div>
+
+        <div class="section-label">
+          Product Structure
+        </div>
+
+        <h2>
+          Klare Produktbereiche.
+        </h2>
+
+        <p class="lead">
+          Die Produktstruktur trennt die verschiedenen
+          technischen Bereiche voneinander und schafft
+          eindeutige Einstiegspunkte für Produkte,
+          Ressourcen und Dokumentation.
+        </p>
+
+      </div>
+
+
+      <div class="structure-list">
+
+        <div class="structure-row">
+
+          <code>audio/</code>
+
+          <p>
+            Audio, AudioState und DSP-bezogene
+            technische Produkte und Ressourcen.
+          </p>
+
+        </div>
+
+
+        <div class="structure-row">
+
+          <code>bitcoin-mining/</code>
+
+          <p>
+            Bitcoin-Mining-Infrastruktur,
+            Mempool Intelligence und Mining Research.
+          </p>
+
+        </div>
+
+
+        <div class="structure-row">
+
+          <code>corecraft-pay/</code>
+
+          <p>
+            Payment-, Wallet- und
+            Transaktionsarchitektur.
+          </p>
+
+        </div>
+
+
+        <div class="structure-row">
+
+          <code>developer-tools/</code>
+
+          <p>
+            Entwicklerwerkzeuge, Automatisierung
+            und technische Hilfsmittel.
+          </p>
+
+        </div>
+
+
+        <div class="structure-row">
+
+          <code>documentation/</code>
+
+          <p>
+            Dokumentationspakete,
+            Guides und technische Referenzen.
+          </p>
+
+        </div>
+
+
+        <div class="structure-row">
+
+          <code>enginecore/</code>
+
+          <p>
+            Deterministische Runtime-,
+            State- und Systemarchitektur.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        Explore CoreCraft
+      </div>
+
+      <h2>
+        Vom Produkt zur technischen Dokumentation.
+      </h2>
+
+      <p class="lead">
+        Öffne einen Produktbereich oder wechsle direkt
+        zur zentralen Dokumentation und den verfügbaren
+        Ressourcen.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          class="button button-primary"
+          href="/docs/"
+        >
+          Dokumentation
+        </a>
+
+        <a
+          class="button"
+          href="/downloads/"
+        >
+          Downloads
+        </a>
+
+        <a
+          class="button"
+          href="/contact/"
+        >
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p class="footer-description">
+          Engineering Deterministic Systems,
+          Digital Infrastructure,
+          Blockchain Intelligence and Knowledge Products.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>Produkte</h4>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>Resources</h4>
+
+        <a href="/products/developer-tools/">
+          Developer Tools
+        </a>
+
+        <a href="/products/documentation/">
+          Documentation
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/downloads/">
+          Downloads
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

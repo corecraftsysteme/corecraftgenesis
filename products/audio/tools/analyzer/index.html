@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Audio Analyzer | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Browserbasierte Frequenzanalyse und Visualisierung kontrollierter Audiosignale."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/audio/assets/css/audio.css"
+  >
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/products/">Produkte</a>
+        <a class="active" href="/products/audio/">Audio</a>
+        <a href="/products/audio/tools/">Tools</a>
+        <a href="/products/audio/demos/">Demos</a>
+        <a href="/docs/">Docs</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+    <a href="/products/audio/">Audio</a>
+    <span>/</span>
+    Audio Analyzer
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Frequency Analysis
+      </div>
+
+      <h1>
+        Audio Analyzer
+      </h1>
+
+      <p>
+        Browserbasierte Frequenzanalyse und Visualisierung kontrollierter Audiosignale.
+      </p>
+
+      <div class="button-row">
+
+        <a class="button button-primary" href="#content">
+          Bereich öffnen
+        </a>
+
+        <a class="button" href="/products/audio/">
+          Audio-Übersicht
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <div class="status">
+        ● AUDIO MODULE READY
+      </div>
+
+      <div class="status-row">
+        <span>ROUTE</span>
+        <span>/products/audio/tools/analyzer/</span>
+      </div>
+
+      <div class="status-row">
+        <span>PRODUCT</span>
+        <span>AUDIO</span>
+      </div>
+
+      <div class="status-row">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="status-row">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container" id="content">
+    <div class="section-label">
+      Frequency Analysis
+    </div>
+
+    <h2>
+      Frequenzdaten visualisieren.
+    </h2>
+
+    <p class="lead">
+      Der Analyzer erzeugt ein kontrolliertes Testsignal
+      und stellt dessen Frequenzdaten in Echtzeit dar.
+    </p>
+
+    <div class="workspace">
+
+      <div class="visualizer">
+
+        <canvas
+          id="analyzer-canvas"
+          width="900"
+          height="300"
+        ></canvas>
+
+      </div>
+
+      <div class="controls">
+
+        <div class="status" id="analyzer-status">
+          ● IDLE
+        </div>
+
+        <div class="control-group">
+
+          <label for="analyzer-frequency">
+            Frequenz
+          </label>
+
+          <input
+            id="analyzer-frequency"
+            type="range"
+            min="40"
+            max="2000"
+            value="440"
+            step="1"
+          >
+
+          <span
+            class="control-value"
+            id="analyzer-frequency-value"
+          >
+            440 Hz
+          </span>
+
+        </div>
+
+        <button
+          class="button button-primary"
+          id="analyzer-start"
+          type="button"
+        >
+          Analyzer starten
+        </button>
+
+        <button
+          class="button button-danger"
+          id="analyzer-stop"
+          type="button"
+        >
+          Stoppen
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Audio Engineering, Signal Processing,
+          Diagnostics and Web Audio Tools.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Audio</h4>
+
+        <a href="/products/audio/">
+          Übersicht
+        </a>
+
+        <a href="/products/audio/tools/">
+          Tools
+        </a>
+
+        <a href="/products/audio/demos/">
+          Demos
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/products/">
+          Produkte
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Audio · Audio Analyzer
+    </div>
+
+  </div>
+</footer>
+
+<script type="module">
+import {
+    createAudioContext,
+    getMasterGain,
+    resumeAudioContext
+} from "/products/audio/assets/js/audio-core.js";
+
+import {
+    createAudioAnalyzer
+} from "/products/audio/assets/js/audio-analyzer.js";
+
+const canvas =
+    document.querySelector("#analyzer-canvas");
+
+const drawingContext =
+    canvas.getContext("2d");
+
+const startButton =
+    document.querySelector("#analyzer-start");
+
+const stopButton =
+    document.querySelector("#analyzer-stop");
+
+const frequencyInput =
+    document.querySelector("#analyzer-frequency");
+
+const frequencyOutput =
+    document.querySelector(
+        "#analyzer-frequency-value"
+    );
+
+const statusOutput =
+    document.querySelector("#analyzer-status");
+
+let oscillator = null;
+let gainNode = null;
+let analyzer = null;
+let animationId = null;
+
+function setStatus(value) {
+    statusOutput.textContent = `● ${value}`;
+}
+
+function drawFrequencyData() {
+    if (!analyzer) {
+        return;
+    }
+
+    const values = analyzer.getFrequencyData();
+
+    drawingContext.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    const barWidth =
+        canvas.width / values.length;
+
+    for (
+        let index = 0;
+        index < values.length;
+        index++
+    ) {
+        const value = values[index];
+
+        const height =
+            (value / 255) * canvas.height;
+
+        drawingContext.fillStyle = "#4ea1ff";
+
+        drawingContext.fillRect(
+            index * barWidth,
+            canvas.height - height,
+            Math.max(1, barWidth - 1),
+            height
+        );
+    }
+
+    animationId =
+        requestAnimationFrame(drawFrequencyData);
+}
+
+frequencyInput.addEventListener(
+    "input",
+    () => {
+        const frequency =
+            Number(frequencyInput.value);
+
+        frequencyOutput.textContent =
+            `${frequency} Hz`;
+
+        if (oscillator) {
+            oscillator.frequency.value = frequency;
+        }
+    }
+);
+
+startButton.addEventListener(
+    "click",
+    async () => {
+        if (oscillator) {
+            return;
+        }
+
+        const context = createAudioContext();
+
+        await resumeAudioContext();
+
+        oscillator = context.createOscillator();
+        gainNode = context.createGain();
+
+        oscillator.type = "sine";
+
+        oscillator.frequency.value =
+            Number(frequencyInput.value);
+
+        gainNode.gain.value = 0.1;
+
+        analyzer = createAudioAnalyzer(
+            context,
+            {
+                fftSize: 2048,
+                smoothingTimeConstant: 0.82
+            }
+        );
+
+        oscillator.connect(gainNode);
+        analyzer.connectSource(gainNode);
+        analyzer.connectOutput(getMasterGain());
+
+        oscillator.start();
+
+        setStatus("RUNNING");
+        drawFrequencyData();
+    }
+);
+
+stopButton.addEventListener(
+    "click",
+    () => {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+
+        if (oscillator) {
+            oscillator.stop();
+            oscillator.disconnect();
+            oscillator = null;
+        }
+
+        if (gainNode) {
+            gainNode.disconnect();
+            gainNode = null;
+        }
+
+        if (analyzer) {
+            analyzer.disconnectSource();
+            analyzer.disconnectOutput();
+            analyzer = null;
+        }
+
+        drawingContext.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        setStatus("STOPPED");
+    }
+);
+</script>
+</body>
+</html>

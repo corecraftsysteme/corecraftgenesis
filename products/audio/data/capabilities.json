@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "product": "audio",
+  "capabilities": [
+    {
+      "id": "state-management",
+      "name": "Audio State Management",
+      "module": "audiostate",
+      "status": "active"
+    },
+    {
+      "id": "signal-processing",
+      "name": "Digital Signal Processing",
+      "module": "dsp",
+      "status": "active"
+    },
+    {
+      "id": "workflow-control",
+      "name": "Audio Workflow Control",
+      "module": "orchestration",
+      "status": "active"
+    },
+    {
+      "id": "state-validation",
+      "name": "State Validation",
+      "module": "validation",
+      "status": "active"
+    },
+    {
+      "id": "resilience",
+      "name": "Scaling and Failover",
+      "module": "scaling",
+      "status": "active"
+    },
+    {
+      "id": "diagnostics",
+      "name": "Audio Diagnostics",
+      "module": "diagnostics",
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Signal Monitor | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Technische Zustandsanzeige für AudioContext, Abtastrate und Master-Lautstärke."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/audio/assets/css/audio.css"
+  >
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/products/">Produkte</a>
+        <a class="active" href="/products/audio/">Audio</a>
+        <a href="/products/audio/tools/">Tools</a>
+        <a href="/products/audio/demos/">Demos</a>
+        <a href="/docs/">Docs</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+    <a href="/products/audio/">Audio</a>
+    <span>/</span>
+    Signal Monitor
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Audio System Monitor
+      </div>
+
+      <h1>
+        Signal Monitor
+      </h1>
+
+      <p>
+        Technische Zustandsanzeige für AudioContext, Abtastrate und Master-Lautstärke.
+      </p>
+
+      <div class="button-row">
+
+        <a class="button button-primary" href="#content">
+          Bereich öffnen
+        </a>
+
+        <a class="button" href="/products/audio/">
+          Audio-Übersicht
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <div class="status">
+        ● AUDIO MODULE READY
+      </div>
+
+      <div class="status-row">
+        <span>ROUTE</span>
+        <span>/products/audio/tools/signal-monitor/</span>
+      </div>
+
+      <div class="status-row">
+        <span>PRODUCT</span>
+        <span>AUDIO</span>
+      </div>
+
+      <div class="status-row">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="status-row">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container" id="content">
+    <div class="section-label">
+      Audio System Monitor
+    </div>
+
+    <h2>
+      AudioContext überwachen.
+    </h2>
+
+    <p class="lead">
+      Der Signal Monitor zeigt Zustand, Abtastrate
+      und Master-Lautstärke der Audio-Umgebung.
+    </p>
+
+    <div class="panel">
+
+      <div class="status" data-audio-state>
+        IDLE
+      </div>
+
+      <div class="status-row">
+        <span>CONTEXT</span>
+        <span data-audio-context-state>
+          uninitialized
+        </span>
+      </div>
+
+      <div class="status-row">
+        <span>SAMPLE RATE</span>
+        <span data-audio-sample-rate>-</span>
+      </div>
+
+      <div class="status-row">
+        <span>MASTER VOLUME</span>
+        <span data-audio-master-volume>-</span>
+      </div>
+
+      <div
+        class="button-row"
+        style="margin-top:25px;"
+      >
+
+        <button
+          class="button"
+          data-audio-init
+          type="button"
+        >
+          Initialisieren
+        </button>
+
+        <button
+          class="button button-primary"
+          data-audio-start
+          type="button"
+        >
+          Starten
+        </button>
+
+        <button
+          class="button"
+          data-audio-suspend
+          type="button"
+        >
+          Pausieren
+        </button>
+
+        <button
+          class="button button-danger"
+          data-audio-stop
+          type="button"
+        >
+          Schließen
+        </button>
+
+      </div>
+
+      <div
+        class="control-group"
+        style="margin-top:25px;"
+      >
+
+        <label for="monitor-volume">
+          Master-Lautstärke
+        </label>
+
+        <input
+          id="monitor-volume"
+          data-audio-volume
+          type="range"
+          min="0"
+          max="1"
+          value="1"
+          step="0.01"
+        >
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Audio Engineering, Signal Processing,
+          Diagnostics and Web Audio Tools.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Audio</h4>
+
+        <a href="/products/audio/">
+          Übersicht
+        </a>
+
+        <a href="/products/audio/tools/">
+          Tools
+        </a>
+
+        <a href="/products/audio/demos/">
+          Demos
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/products/">
+          Produkte
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Audio · Signal Monitor
+    </div>
+
+  </div>
+</footer>
+
+<script
+  type="module"
+  src="/products/audio/assets/js/ui.js">
+</script>
+</body>
+</html>

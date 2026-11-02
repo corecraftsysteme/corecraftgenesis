@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EngineCore | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Deterministische Runtime-Architektur für Ausführung, State Management, Validierung, Orchestration, Recovery und Audit."
+  >
+
+  <style>
+    :root {
+      --bg: #05070a;
+      --surface: #0c1118;
+      --surface-light: #111924;
+      --line: #1d2938;
+      --text: #f4f7fb;
+      --muted: #95a2b3;
+      --blue: #4ea1ff;
+      --green: #42d392;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 70% -10%,
+          #102c4a 0,
+          transparent 28%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(5, 7, 10, .88);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -.03em;
+      font-size: 1.1rem;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      gap: 25px;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 9px 16px;
+
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .breadcrumb {
+      padding-top: 45px;
+
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #526174;
+    }
+
+    .hero {
+      min-height: 620px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+
+      gap: 70px;
+      padding: 70px 0 110px;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--blue);
+
+      text-transform: uppercase;
+      letter-spacing: .13em;
+
+      font-weight: 700;
+      font-size: .77rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      max-width: 900px;
+
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: -.065em;
+    }
+
+    h2 {
+      max-width: 900px;
+
+      margin: 12px 0 22px;
+
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 30px 0;
+
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+
+      background: var(--blue);
+      color: #001326;
+
+      font-weight: 650;
+    }
+
+    .system-panel {
+      padding: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(78,161,255,.08),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .status {
+      margin-bottom: 25px;
+
+      color: var(--green);
+      font-family: monospace;
+      font-size: .8rem;
+    }
+
+    .system-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 15px 0;
+
+      border-top: 1px solid var(--line);
+
+      font-family: monospace;
+      font-size: .82rem;
+    }
+
+    .system-item span:last-child {
+      color: var(--green);
+      text-align: right;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .capabilities {
+      background: rgba(255,255,255,.015);
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 45px;
+
+      color: var(--muted);
+      font-size: 1.07rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 250px;
+      padding: 28px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 14px;
+
+      transition: .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+
+      border-color: #3a5878;
+      background: var(--surface-light);
+    }
+
+    .card-number {
+      color: var(--blue);
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .card h3 {
+      margin: 25px 0 10px;
+      font-size: 1.22rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .cta {
+      padding: 60px;
+
+      background:
+        linear-gradient(
+          125deg,
+          rgba(78,161,255,.15),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    footer {
+      padding: 55px 0;
+
+      border-top: 1px solid var(--line);
+
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    .copyright {
+      margin-top: 45px;
+      padding-top: 30px;
+
+      border-top: 1px solid var(--line);
+
+      font-size: .82rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 35px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="active" href="/products/">Produkte</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/docs/">Docs</a>
+        <a href="/pricing/">Preise</a>
+        <a href="/blog/">Research</a>
+        <a href="/about/">Über uns</a>
+        <a class="nav-button" href="/account/">Account</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+
+    <a href="/">Home</a>
+    <span>/</span>
+
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+
+    EngineCore
+
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Runtime Architecture
+      </div>
+
+      <h1>
+        EngineCore
+      </h1>
+
+      <p>
+        Deterministische Runtime-Architektur für Ausführung, State Management, Validierung, Orchestration, Recovery und Audit.
+      </p>
+
+      <a class="button" href="#capabilities">
+        Funktionen ansehen
+      </a>
+
+    </div>
+
+    <div class="system-panel">
+
+      <div class="status">
+        ● PRODUCT AVAILABLE
+      </div>
+
+      <div class="system-item">
+        <span>PRODUCT</span>
+        <span>EngineCore</span>
+      </div>
+
+      <div class="system-item">
+        <span>ROUTE</span>
+        <span>/products/enginecore/</span>
+      </div>
+
+      <div class="system-item">
+        <span>CATEGORY</span>
+        <span>Runtime Architecture</span>
+      </div>
+
+      <div class="system-item">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="system-item">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="capabilities" id="capabilities">
+
+    <div class="container">
+
+      <div class="section-label">
+        Product Capabilities
+      </div>
+
+      <h2>
+        Technische Schwerpunkte.
+      </h2>
+
+      <p class="lead">
+        Dieser Produktbereich stellt spezialisierte
+        Funktionen und Ressourcen innerhalb des
+        CoreCraft-Genesis-Ökosystems bereit.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>Deterministic Execution</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>State Management</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>Validation Layers</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>System Orchestration</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>Recovery and Failover</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number">CAPABILITY</span>
+          <h3>Audit and Traceability</h3>
+          <p>
+            Technischer Bestandteil des Produktbereichs
+            EngineCore.
+          </p>
+        </article>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        CoreCraft Genesis
+      </div>
+
+      <h2>
+        EngineCore weiter erkunden.
+      </h2>
+
+      <p class="lead">
+        Kehre zur Produktübersicht zurück,
+        öffne die Dokumentation oder nimm Kontakt auf.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button" href="/products/">
+          Alle Produkte
+        </a>
+
+        <a class="button button-secondary" href="/docs/">
+          Dokumentation
+        </a>
+
+        <a class="button button-secondary" href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Engineering Deterministic Systems,
+          Digital Infrastructure,
+          Blockchain Intelligence and Knowledge Products.
+        </p>
+      </div>
+
+      <div>
+        <h4>Produkte</h4>
+        <a href="/products/audio/">Audio</a>
+        <a href="/products/enginecore/">EngineCore</a>
+        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
+        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <a href="/products/developer-tools/">Developer Tools</a>
+        <a href="/products/documentation/">Documentation</a>
+        <a href="/docs/">Docs</a>
+        <a href="/downloads/">Downloads</a>
+      </div>
+
+      <div>
+        <h4>CoreCraft</h4>
+        <a href="/about/">Über uns</a>
+        <a href="/contact/">Kontakt</a>
+        <a href="/support/">Support</a>
+        <a href="/legal/imprint/">Impressum</a>
+        <a href="/legal/privacy/">Datenschutz</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · EngineCore
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

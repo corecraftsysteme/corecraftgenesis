@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "product": "audio",
+  "modules": [
+    {
+      "id": "audiostate",
+      "name": "AudioState Architecture",
+      "route": "/products/audio/audiostate/",
+      "status": "active"
+    },
+    {
+      "id": "dsp",
+      "name": "Digital Signal Processing",
+      "route": "/products/audio/dsp/",
+      "status": "active"
+    },
+    {
+      "id": "orchestration",
+      "name": "Audio Orchestration",
+      "route": "/products/audio/orchestration/",
+      "status": "active"
+    },
+    {
+      "id": "validation",
+      "name": "State Validation",
+      "route": "/products/audio/validation/",
+      "status": "active"
+    },
+    {
+      "id": "scaling",
+      "name": "Scaling and Failover",
+      "route": "/products/audio/scaling/",
+      "status": "active"
+    },
+    {
+      "id": "diagnostics",
+      "name": "Audio Diagnostics",
+      "route": "/products/audio/diagnostics/",
+      "status": "active"
+    }
+  ]
+}

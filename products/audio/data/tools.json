@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "product": "audio",
+  "tools": [
+    {
+      "id": "analyzer",
+      "name": "Audio Analyzer",
+      "route": "/products/audio/tools/analyzer/",
+      "type": "analysis",
+      "status": "active"
+    },
+    {
+      "id": "oscillator",
+      "name": "Audio Oscillator",
+      "route": "/products/audio/tools/oscillator/",
+      "type": "generator",
+      "status": "active"
+    },
+    {
+      "id": "signal-monitor",
+      "name": "Signal Monitor",
+      "route": "/products/audio/tools/signal-monitor/",
+      "type": "monitor",
+      "status": "active"
+    }
+  ],
+  "demos": [
+    {
+      "id": "signal-chain",
+      "name": "Signal Chain Demo",
+      "route": "/products/audio/demos/signal-chain/",
+      "status": "active"
+    },
+    {
+      "id": "audiostate",
+      "name": "AudioState Demo",
+      "route": "/products/audio/demos/audiostate/",
+      "status": "active"
+    }
+  ]
+}

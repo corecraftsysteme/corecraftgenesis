@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Audio Orchestration | CoreCraft Genesis</title>
+
+  <meta name="description" content="Audio Orchestration koordiniert Audio-Komponenten, technische
+Abh&#228;ngigkeiten, Verarbeitungsschritte und &#220;bergaben innerhalb
+eines gemeinsamen Audio-Workflows.">
+
+  <style>
+    :root {
+      --bg: #05070a;
+      --surface: #0c1118;
+      --surface-light: #111924;
+      --line: #1d2938;
+      --text: #f4f7fb;
+      --muted: #95a2b3;
+      --blue: #4ea1ff;
+      --green: #42d392;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 70% -10%,
+          #102c4a 0,
+          transparent 28%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(5, 7, 10, .88);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -.03em;
+      font-size: 1.1rem;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      gap: 25px;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 9px 16px;
+
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .breadcrumb {
+      padding-top: 45px;
+
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--blue);
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #526174;
+    }
+
+    .hero {
+      min-height: 620px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+
+      gap: 70px;
+      padding: 70px 0 110px;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--blue);
+
+      text-transform: uppercase;
+      letter-spacing: .13em;
+
+      font-weight: 700;
+      font-size: .77rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      max-width: 900px;
+
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: -.065em;
+    }
+
+    h2 {
+      max-width: 900px;
+
+      margin: 12px 0 22px;
+
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 30px 0;
+
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 45px;
+
+      color: var(--muted);
+      font-size: 1.07rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--line);
+      border-radius: 8px;
+
+      font-size: .93rem;
+      font-weight: 650;
+
+      transition: .2s ease;
+    }
+
+    .button-primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #001326;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: #45617e;
+    }
+
+    .system-panel {
+      padding: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(78,161,255,.08),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .status {
+      margin-bottom: 25px;
+
+      color: var(--green);
+      font-family: monospace;
+      font-size: .8rem;
+    }
+
+    .system-path {
+      margin-bottom: 20px;
+
+      color: var(--muted);
+      font-family: monospace;
+      font-size: .8rem;
+    }
+
+    .system-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 15px 0;
+
+      border-top: 1px solid var(--line);
+
+      font-family: monospace;
+      font-size: .82rem;
+    }
+
+    .system-item span:last-child {
+      color: var(--green);
+      text-align: right;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .capabilities {
+      background: rgba(255,255,255,.015);
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 260px;
+      padding: 28px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 14px;
+
+      transition: .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+
+      border-color: #3a5878;
+      background: var(--surface-light);
+    }
+
+    .card-number {
+      color: var(--blue);
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .card h3 {
+      margin: 25px 0 10px;
+      font-size: 1.22rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .workflow-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .workflow-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .workflow-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 20px;
+
+      padding: 20px 0;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .workflow-row span {
+      color: var(--blue);
+      font-family: monospace;
+    }
+
+    .cta {
+      padding: 60px;
+
+      background:
+        linear-gradient(
+          125deg,
+          rgba(78,161,255,.15),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    footer {
+      padding: 55px 0;
+
+      border-top: 1px solid var(--line);
+
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-description {
+      max-width: 360px;
+      margin-top: 15px;
+    }
+
+    .copyright {
+      margin-top: 45px;
+      padding-top: 30px;
+
+      border-top: 1px solid var(--line);
+
+      font-size: .82rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .workflow-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .cta {
+        padding: 35px 25px;
+      }
+
+      .system-item {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .system-item span:last-child {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="active" href="/products/">Produkte</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/docs/">Docs</a>
+        <a href="/pricing/">Preise</a>
+        <a href="/blog/">Research</a>
+        <a href="/about/">Über uns</a>
+        <a class="nav-button" href="/account/">Account</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+
+    <a href="/">Home</a>
+    <span>/</span>
+
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+
+    <a href="/products/audio/">Audio</a>
+    <span>/</span>
+
+    Audio Orchestration
+
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Audio Orchestration
+      </div>
+
+      <h1>
+        Coordinated audio workflows.
+      </h1>
+
+      <p>
+        Audio Orchestration koordiniert Audio-Komponenten, technische
+Abh&#228;ngigkeiten, Verarbeitungsschritte und &#220;bergaben innerhalb
+eines gemeinsamen Audio-Workflows.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button button-primary" href="#capabilities">
+          Funktionen ansehen
+        </a>
+
+        <a class="button" href="#workflow">
+          Workflow öffnen
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="system-panel">
+
+      <div class="status">
+        ● ORCHESTRATION ACTIVE
+      </div>
+
+      <div class="system-path">
+        /products/audio/orchestration/
+      </div>
+
+      <div class="system-item">
+        <span>MODULE</span>
+        <span>Audio Orchestration</span>
+      </div>
+
+      <div class="system-item">
+        <span>PRODUCT</span>
+        <span>AUDIO</span>
+      </div>
+
+      <div class="system-item">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="system-item">
+        <span>VALIDATION</span>
+        <span>ENABLED</span>
+      </div>
+
+      <div class="system-item">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="capabilities" id="capabilities">
+
+    <div class="container">
+
+      <div class="section-label">
+        Audio Capability 03
+      </div>
+
+      <h2>
+        Audio Orchestration
+      </h2>
+
+      <p class="lead">
+        Der Bereich ist in klar definierte technische
+        Funktionen und Verantwortlichkeiten gegliedert.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Component Registry</h3>
+          <p>Zentrale Erfassung verf&#252;gbarer Audio-Komponenten und ihrer Verantwortlichkeiten.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Dependency Control</h3>
+          <p>Kontrollierte Verwaltung technischer Abh&#228;ngigkeiten zwischen Komponenten.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Execution Order</h3>
+          <p>Definierte Reihenfolge f&#252;r Audio- und Verarbeitungsschritte.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">04</span>
+          <h3>Handoff Contracts</h3>
+          <p>Explizite &#220;bergaberegeln zwischen Modulen und Verarbeitungsebenen.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">05</span>
+          <h3>Workflow State</h3>
+          <p>Nachvollziehbarer Gesamtzustand eines orchestrierten Audio-Workflows.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">06</span>
+          <h3>Result Coordination</h3>
+          <p>Zusammenf&#252;hrung und Pr&#252;fung technischer Teilergebnisse.</p>
+        </article>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container" id="workflow">
+
+    <div class="workflow-layout">
+
+      <div>
+
+        <div class="section-label">
+          Technical Workflow
+        </div>
+
+        <h2>
+          Strukturierter Ablauf.
+        </h2>
+
+        <p class="lead">
+          Der Workflow bildet die wichtigsten technischen
+          Schritte dieses Audio-Bereichs in einer
+          nachvollziehbaren Reihenfolge ab.
+        </p>
+
+      </div>
+
+      <div class="workflow-list">
+        <div class="workflow-row">
+          <span>01</span>
+          <strong>Komponenten registrieren</strong>
+        </div>
+        <div class="workflow-row">
+          <span>02</span>
+          <strong>Abh&#228;ngigkeiten pr&#252;fen</strong>
+        </div>
+        <div class="workflow-row">
+          <span>03</span>
+          <strong>Ausf&#252;hrungsreihenfolge bestimmen</strong>
+        </div>
+        <div class="workflow-row">
+          <span>04</span>
+          <strong>Module koordinieren</strong>
+        </div>
+        <div class="workflow-row">
+          <span>05</span>
+          <strong>Gesamtergebnis &#252;bergeben</strong>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        CoreCraft Genesis Audio
+      </div>
+
+      <h2>
+        Audio Orchestration weiter erkunden.
+      </h2>
+
+      <p class="lead">
+        Kehre zur Audio-Übersicht zurück, öffne die
+        Dokumentation oder wechsle zu einem anderen
+        Audio-Modul.
+      </p>
+
+      <div class="buttons">
+
+        <a class="button button-primary" href="/products/audio/">
+          Audio-Übersicht
+        </a>
+
+        <a class="button" href="/docs/">
+          Dokumentation
+        </a>
+
+        <a class="button" href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p class="footer-description">
+          Engineering Deterministic Systems,
+          Digital Infrastructure,
+          Blockchain Intelligence and Knowledge Products.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Audio</h4>
+
+        <a href="/products/audio/audiostate/">
+          AudioState
+        </a>
+
+        <a href="/products/audio/dsp/">
+          DSP
+        </a>
+
+        <a href="/products/audio/orchestration/">
+          Orchestration
+        </a>
+
+        <a href="/products/audio/validation/">
+          Validation
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>Resilience</h4>
+
+        <a href="/products/audio/scaling/">
+          Scaling &amp; Failover
+        </a>
+
+        <a href="/products/audio/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/audio/">
+          Audio Overview
+        </a>
+
+        <a href="/products/">
+          All Products
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/downloads/">
+          Downloads
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Audio · Audio Orchestration
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

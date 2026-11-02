@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>AudioState Demo | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Interaktive Demonstration kontrollierter AudioState-Übergänge."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/audio/assets/css/audio.css"
+  >
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/products/">Produkte</a>
+        <a class="active" href="/products/audio/">Audio</a>
+        <a href="/products/audio/tools/">Tools</a>
+        <a href="/products/audio/demos/">Demos</a>
+        <a href="/docs/">Docs</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+    <a href="/products/audio/">Audio</a>
+    <span>/</span>
+    AudioState Demo
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Deterministic State Model
+      </div>
+
+      <h1>
+        AudioState Demo
+      </h1>
+
+      <p>
+        Interaktive Demonstration kontrollierter AudioState-Übergänge.
+      </p>
+
+      <div class="button-row">
+
+        <a class="button button-primary" href="#content">
+          Bereich öffnen
+        </a>
+
+        <a class="button" href="/products/audio/">
+          Audio-Übersicht
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <div class="status">
+        ● AUDIO MODULE READY
+      </div>
+
+      <div class="status-row">
+        <span>ROUTE</span>
+        <span>/products/audio/demos/audiostate/</span>
+      </div>
+
+      <div class="status-row">
+        <span>PRODUCT</span>
+        <span>AUDIO</span>
+      </div>
+
+      <div class="status-row">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="status-row">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container" id="content">
+    <div class="section-label">
+      State Machine
+    </div>
+
+    <h2>
+      Kontrollierte Audiozustände.
+    </h2>
+
+    <p class="lead">
+      Die Demo verwendet das AudioState-Modul und zeigt
+      gültige sowie ungültige Zustandsübergänge.
+    </p>
+
+    <div class="panel">
+
+      <div class="status" id="state-output">
+        ● IDLE
+      </div>
+
+      <div class="status-row">
+        <span>CURRENT STATE</span>
+        <span id="current-state">idle</span>
+      </div>
+
+      <div class="status-row">
+        <span>ALLOWED</span>
+        <span id="allowed-states">
+          ready, error, closed
+        </span>
+      </div>
+
+      <div
+        class="button-row"
+        style="margin-top:25px;"
+      >
+
+        <button
+          class="button"
+          data-state="ready"
+          type="button"
+        >
+          Ready
+        </button>
+
+        <button
+          class="button button-primary"
+          data-state="running"
+          type="button"
+        >
+          Running
+        </button>
+
+        <button
+          class="button"
+          data-state="suspended"
+          type="button"
+        >
+          Suspended
+        </button>
+
+        <button
+          class="button button-danger"
+          data-state="error"
+          type="button"
+        >
+          Error
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Audio Engineering, Signal Processing,
+          Diagnostics and Web Audio Tools.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Audio</h4>
+
+        <a href="/products/audio/">
+          Übersicht
+        </a>
+
+        <a href="/products/audio/tools/">
+          Tools
+        </a>
+
+        <a href="/products/audio/demos/">
+          Demos
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/products/">
+          Produkte
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Audio · AudioState Demo
+    </div>
+
+  </div>
+</footer>
+
+<script type="module">
+import {
+    getAudioState,
+    setAudioState,
+    getAllowedTransitions,
+    subscribeAudioState
+} from "/products/audio/assets/js/audio-state.js";
+
+const stateOutput =
+    document.querySelector("#state-output");
+
+const currentStateOutput =
+    document.querySelector("#current-state");
+
+const allowedOutput =
+    document.querySelector("#allowed-states");
+
+function renderState() {
+    const state = getAudioState();
+
+    stateOutput.classList.remove("error");
+
+    stateOutput.textContent =
+        `● ${state.toUpperCase()}`;
+
+    currentStateOutput.textContent = state;
+
+    allowedOutput.textContent =
+        getAllowedTransitions().join(", ");
+}
+
+document
+    .querySelectorAll("[data-state]")
+    .forEach((button) => {
+        button.addEventListener(
+            "click",
+            () => {
+                try {
+                    setAudioState(
+                        button.dataset.state,
+                        "demo-transition"
+                    );
+                }
+                catch (error) {
+                    stateOutput.classList.add("error");
+
+                    stateOutput.textContent =
+                        `● INVALID: ${error.message}`;
+                }
+            }
+        );
+    });
+
+subscribeAudioState(renderState);
+renderState();
+</script>
+</body>
+</html>

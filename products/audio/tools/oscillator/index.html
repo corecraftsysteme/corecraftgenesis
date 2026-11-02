@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Audio Oscillator | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Technischer Web-Audio-Oscillator für kontrollierte Testsignale."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/audio/assets/css/audio.css"
+  >
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/products/">Produkte</a>
+        <a class="active" href="/products/audio/">Audio</a>
+        <a href="/products/audio/tools/">Tools</a>
+        <a href="/products/audio/demos/">Demos</a>
+        <a href="/docs/">Docs</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+    <a href="/products/audio/">Audio</a>
+    <span>/</span>
+    Audio Oscillator
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Signal Generator
+      </div>
+
+      <h1>
+        Audio Oscillator
+      </h1>
+
+      <p>
+        Technischer Web-Audio-Oscillator für kontrollierte Testsignale.
+      </p>
+
+      <div class="button-row">
+
+        <a class="button button-primary" href="#content">
+          Bereich öffnen
+        </a>
+
+        <a class="button" href="/products/audio/">
+          Audio-Übersicht
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <div class="status">
+        ● AUDIO MODULE READY
+      </div>
+
+      <div class="status-row">
+        <span>ROUTE</span>
+        <span>/products/audio/tools/oscillator/</span>
+      </div>
+
+      <div class="status-row">
+        <span>PRODUCT</span>
+        <span>AUDIO</span>
+      </div>
+
+      <div class="status-row">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="status-row">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container" id="content">
+    <div class="section-label">
+      Signal Generator
+    </div>
+
+    <h2>
+      Kontrolliertes Testsignal.
+    </h2>
+
+    <p class="lead">
+      Der Oscillator erzeugt ein Audiosignal mit
+      wählbarer Wellenform, Frequenz und Lautstärke.
+    </p>
+
+    <div class="workspace">
+
+      <div class="panel">
+
+        <div class="status" id="oscillator-status">
+          ● IDLE
+        </div>
+
+        <div class="status-row">
+          <span>FREQUENCY</span>
+          <span id="frequency-output">440 Hz</span>
+        </div>
+
+        <div class="status-row">
+          <span>WAVEFORM</span>
+          <span id="wave-output">SINE</span>
+        </div>
+
+        <div class="status-row">
+          <span>GAIN</span>
+          <span id="gain-output">0.10</span>
+        </div>
+
+      </div>
+
+      <div class="controls">
+
+        <div class="control-group">
+
+          <label for="wave-input">
+            Wellenform
+          </label>
+
+          <select id="wave-input">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+
+        </div>
+
+        <div class="control-group">
+
+          <label for="frequency-input">
+            Frequenz
+          </label>
+
+          <input
+            id="frequency-input"
+            type="range"
+            min="20"
+            max="2000"
+            value="440"
+            step="1"
+          >
+
+        </div>
+
+        <div class="control-group">
+
+          <label for="gain-input">
+            Lautstärke
+          </label>
+
+          <input
+            id="gain-input"
+            type="range"
+            min="0"
+            max="0.3"
+            value="0.1"
+            step="0.01"
+          >
+
+        </div>
+
+        <button
+          class="button button-primary"
+          id="oscillator-start"
+          type="button"
+        >
+          Signal starten
+        </button>
+
+        <button
+          class="button button-danger"
+          id="oscillator-stop"
+          type="button"
+        >
+          Signal stoppen
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Audio Engineering, Signal Processing,
+          Diagnostics and Web Audio Tools.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>Audio</h4>
+
+        <a href="/products/audio/">
+          Übersicht
+        </a>
+
+        <a href="/products/audio/tools/">
+          Tools
+        </a>
+
+        <a href="/products/audio/demos/">
+          Demos
+        </a>
+
+      </div>
+
+      <div>
+
+        <h4>CoreCraft</h4>
+
+        <a href="/products/">
+          Produkte
+        </a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Audio · Audio Oscillator
+    </div>
+
+  </div>
+</footer>
+
+<script type="module">
+import {
+    createAudioContext,
+    getMasterGain,
+    resumeAudioContext
+} from "/products/audio/assets/js/audio-core.js";
+
+const waveInput =
+    document.querySelector("#wave-input");
+
+const frequencyInput =
+    document.querySelector("#frequency-input");
+
+const gainInput =
+    document.querySelector("#gain-input");
+
+const frequencyOutput =
+    document.querySelector("#frequency-output");
+
+const waveOutput =
+    document.querySelector("#wave-output");
+
+const gainOutput =
+    document.querySelector("#gain-output");
+
+const statusOutput =
+    document.querySelector("#oscillator-status");
+
+const startButton =
+    document.querySelector("#oscillator-start");
+
+const stopButton =
+    document.querySelector("#oscillator-stop");
+
+let oscillator = null;
+let gainNode = null;
+
+function updateDisplay() {
+    frequencyOutput.textContent =
+        `${frequencyInput.value} Hz`;
+
+    waveOutput.textContent =
+        waveInput.value.toUpperCase();
+
+    gainOutput.textContent =
+        Number(gainInput.value).toFixed(2);
+}
+
+function stopSignal() {
+    if (oscillator) {
+        oscillator.stop();
+        oscillator.disconnect();
+        oscillator = null;
+    }
+
+    if (gainNode) {
+        gainNode.disconnect();
+        gainNode = null;
+    }
+
+    statusOutput.textContent = "● STOPPED";
+}
+
+waveInput.addEventListener(
+    "change",
+    () => {
+        updateDisplay();
+
+        if (oscillator) {
+            oscillator.type = waveInput.value;
+        }
+    }
+);
+
+frequencyInput.addEventListener(
+    "input",
+    () => {
+        updateDisplay();
+
+        if (oscillator) {
+            oscillator.frequency.value =
+                Number(frequencyInput.value);
+        }
+    }
+);
+
+gainInput.addEventListener(
+    "input",
+    () => {
+        updateDisplay();
+
+        if (gainNode) {
+            gainNode.gain.value =
+                Number(gainInput.value);
+        }
+    }
+);
+
+startButton.addEventListener(
+    "click",
+    async () => {
+        if (oscillator) {
+            return;
+        }
+
+        const context = createAudioContext();
+
+        await resumeAudioContext();
+
+        oscillator = context.createOscillator();
+        gainNode = context.createGain();
+
+        oscillator.type = waveInput.value;
+
+        oscillator.frequency.value =
+            Number(frequencyInput.value);
+
+        gainNode.gain.value =
+            Number(gainInput.value);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(getMasterGain());
+
+        oscillator.start();
+
+        statusOutput.textContent = "● RUNNING";
+    }
+);
+
+stopButton.addEventListener(
+    "click",
+    stopSignal
+);
+
+updateDisplay();
+</script>
+</body>
+</html>
