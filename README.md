@@ -83,7 +83,7 @@ Network bootstrap and discovery service supporting ecosystem infrastructure.
 
 Repository:
 
-https://github.com/corecraftsysteme/dnsseed.corecraftgenesis.ch
+https://dnsseed.corecraftgenesis.ch
 
 ---
 
