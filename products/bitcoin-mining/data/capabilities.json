@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Bitcoin Mining",
+  "capabilities": [
+    {
+      "id": "architecture",
+      "name": "Mining Architecture",
+      "route": "/products/bitcoin-mining/architecture/",
+      "description": "Structural overview of the Bitcoin Mining product area."
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware",
+      "route": "/products/bitcoin-mining/hardware/",
+      "description": "Hardware-oriented mining infrastructure documentation."
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "route": "/products/bitcoin-mining/operations/",
+      "description": "Operational concepts for structured mining environments."
+    },
+    {
+      "id": "energy",
+      "name": "Energy",
+      "route": "/products/bitcoin-mining/energy/",
+      "description": "Energy-oriented metrics and infrastructure concepts."
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring",
+      "route": "/products/bitcoin-mining/monitoring/",
+      "description": "Monitoring and observability concepts for mining systems."
+    },
+    {
+      "id": "economics",
+      "name": "Economics",
+      "route": "/products/bitcoin-mining/economics/",
+      "description": "Technical operating metrics and economic model documentation."
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "route": "/products/bitcoin-mining/developer/",
+      "description": "Developer resources for the Bitcoin Mining product area."
+    }
+  ]
+}

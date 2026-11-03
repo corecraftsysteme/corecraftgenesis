@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Bitcoin Mining",
+  "architecture": {
+    "areas": [
+      {
+        "order": 1,
+        "id": "architecture",
+        "name": "Architecture",
+        "route": "/products/bitcoin-mining/architecture/"
+      },
+      {
+        "order": 2,
+        "id": "hardware",
+        "name": "Hardware",
+        "route": "/products/bitcoin-mining/hardware/"
+      },
+      {
+        "order": 3,
+        "id": "operations",
+        "name": "Operations",
+        "route": "/products/bitcoin-mining/operations/"
+      },
+      {
+        "order": 4,
+        "id": "energy",
+        "name": "Energy",
+        "route": "/products/bitcoin-mining/energy/"
+      },
+      {
+        "order": 5,
+        "id": "monitoring",
+        "name": "Monitoring",
+        "route": "/products/bitcoin-mining/monitoring/"
+      },
+      {
+        "order": 6,
+        "id": "economics",
+        "name": "Economics",
+        "route": "/products/bitcoin-mining/economics/"
+      },
+      {
+        "order": 7,
+        "id": "developer",
+        "name": "Developer",
+        "route": "/products/bitcoin-mining/developer/"
+      }
+    ]
+  }
+}

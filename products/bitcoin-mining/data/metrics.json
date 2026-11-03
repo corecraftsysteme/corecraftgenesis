@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Bitcoin Mining",
+  "metrics": [
+    {
+      "id": "hashrate",
+      "name": "Hashrate",
+      "unit": "TH/s",
+      "category": "performance"
+    },
+    {
+      "id": "power",
+      "name": "Power Draw",
+      "unit": "W",
+      "category": "energy"
+    },
+    {
+      "id": "efficiency",
+      "name": "Efficiency",
+      "unit": "J/TH",
+      "category": "energy"
+    },
+    {
+      "id": "temperature",
+      "name": "Temperature",
+      "unit": "C",
+      "category": "hardware"
+    },
+    {
+      "id": "uptime",
+      "name": "Uptime",
+      "unit": "percent",
+      "category": "operations"
+    }
+  ]
+}

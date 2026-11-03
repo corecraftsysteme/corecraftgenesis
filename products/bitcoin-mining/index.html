@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Mining-Infrastruktur, Mempool Intelligence, Gebührenmärkte, Netzwerkbeobachtung und technische Analyseprodukte."
+    content="Mining-Infrastruktur, Hardware, Energie, Betrieb, Monitoring, Economics und technische Analyseprodukte."
   >
 
   <style>
@@ -20,6 +20,7 @@
       --text: #f4f7fb;
       --muted: #95a2b3;
       --blue: #4ea1ff;
+      --orange: #f7931a;
       --green: #42d392;
       --max: 1180px;
     }
@@ -47,7 +48,7 @@
       background:
         radial-gradient(
           circle at 70% -10%,
-          #102c4a 0,
+          rgba(247, 147, 26, .13) 0,
           transparent 28%
         ),
         var(--bg);
@@ -145,7 +146,7 @@
 
     .eyebrow,
     .section-label {
-      color: var(--blue);
+      color: var(--orange);
 
       text-transform: uppercase;
       letter-spacing: .13em;
@@ -191,13 +192,29 @@
 
       padding: 13px 20px;
 
-      border: 1px solid var(--blue);
+      border: 1px solid var(--orange);
       border-radius: 8px;
 
-      background: var(--blue);
-      color: #001326;
+      background: var(--orange);
+      color: #1b0d00;
 
       font-weight: 650;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .system-panel {
@@ -206,7 +223,7 @@
       background:
         linear-gradient(
           145deg,
-          rgba(78,161,255,.08),
+          rgba(247,147,26,.08),
           transparent
         ),
         var(--surface);
@@ -252,6 +269,29 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .mining-areas {
+      position: relative;
+    }
+
+    .mining-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 40%,
+          rgba(247,147,26,.07),
+          transparent 34%
+        );
+
+      pointer-events: none;
+    }
+
+    .mining-areas .container {
+      position: relative;
+    }
+
     .lead {
       max-width: 780px;
       margin-bottom: 45px;
@@ -267,6 +307,7 @@
     }
 
     .card {
+      display: block;
       min-height: 250px;
       padding: 28px;
 
@@ -275,18 +316,21 @@
       border: 1px solid var(--line);
       border-radius: 14px;
 
-      transition: .22s ease;
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
     }
 
     .card:hover {
       transform: translateY(-4px);
 
-      border-color: #3a5878;
+      border-color: #76552d;
       background: var(--surface-light);
     }
 
     .card-number {
-      color: var(--blue);
+      color: var(--orange);
       font-family: monospace;
       font-size: .75rem;
     }
@@ -301,31 +345,27 @@
       font-size: .93rem;
     }
 
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--orange);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
     .cta {
       padding: 60px;
 
       background:
         linear-gradient(
           125deg,
-          rgba(78,161,255,.15),
+          rgba(247,147,26,.12),
           transparent
         ),
         var(--surface);
 
       border: 1px solid var(--line);
       border-radius: 22px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
     }
 
     footer {
@@ -445,12 +485,28 @@
       </h1>
 
       <p>
-        Mining-Infrastruktur, Mempool Intelligence, Gebührenmärkte, Netzwerkbeobachtung und technische Analyseprodukte.
+        Technische Mining-Infrastruktur für Hardware,
+        Betrieb, Energie, Monitoring, technische Kennzahlen
+        und strukturierte Analyse.
       </p>
 
-      <a class="button" href="#capabilities">
-        Funktionen ansehen
-      </a>
+      <div class="buttons">
+
+        <a
+          class="button"
+          href="#mining-areas"
+        >
+          Mining-Bereiche erkunden
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#capabilities"
+        >
+          Funktionen ansehen
+        </a>
+
+      </div>
 
     </div>
 
@@ -481,6 +537,11 @@
       </div>
 
       <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
         <span>STATUS</span>
         <span>ACTIVE</span>
       </div>
@@ -489,7 +550,12 @@
 
   </section>
 
-  <section class="capabilities" id="capabilities">
+  <!-- CAPABILITIES -->
+
+  <section
+    class="capabilities"
+    id="capabilities"
+  >
 
     <div class="container">
 
@@ -502,65 +568,256 @@
       </h2>
 
       <p class="lead">
-        Dieser Produktbereich stellt spezialisierte
-        Funktionen und Ressourcen innerhalb des
-        CoreCraft-Genesis-Ökosystems bereit.
+        Der Bitcoin-Mining-Bereich verbindet technische
+        Infrastruktur, Energie, Monitoring und strukturierte
+        Betriebsinformationen innerhalb des
+        CoreCraft-Genesis-Ökosystems.
       </p>
 
       <div class="grid">
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Mempool Intelligence</h3>
-          <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
-          </p>
-        </article>
-        <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Fee Market Research</h3>
-          <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
-          </p>
-        </article>
-        <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 01
+          </span>
+
           <h3>Mining Infrastructure</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
+            Strukturierte technische Umgebung für Miner,
+            Netzwerk, Energieversorgung und Kühlung.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 02
+          </span>
+
+          <h3>Hardware Operations</h3>
+
+          <p>
+            Nachvollziehbare Geräte-, Betriebs-
+            und Wartungsstrukturen.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 03
+          </span>
+
+          <h3>Energy Monitoring</h3>
+
+          <p>
+            Leistungsaufnahme, Effizienz,
+            Versorgung und thermische Betriebswerte.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 04
+          </span>
+
           <h3>Network Monitoring</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
+            Technische Beobachtung von Mining-Systemen,
+            Zuständen und relevanten Ereignissen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 05
+          </span>
+
           <h3>Operational Audit</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
+            Kontrolle von Seiten, Daten,
+            Routen, Assets und Betriebsstrukturen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 06
+          </span>
+
           <h3>Mining Documentation</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Bitcoin Mining.
+            Strukturierte technische Informationen,
+            Messwerte und Entwicklerressourcen.
           </p>
         </article>
+
       </div>
 
     </div>
 
   </section>
+
+  <!-- MINING AREAS -->
+
+  <section
+    class="mining-areas"
+    id="mining-areas"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        Bitcoin Mining Architecture
+      </div>
+
+      <h2>
+        Mining-Bereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne die einzelnen technischen Bereiche für Architektur,
+        Hardware, Betrieb, Energie, Monitoring, Economics
+        und Entwicklung.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/architecture/"
+        >
+          <span class="card-number">AREA 01</span>
+
+          <h3>Architecture</h3>
+
+          <p>
+            Gesamtstruktur für Mining-Hardware,
+            Energie, Betrieb, Monitoring und technische Daten.
+          </p>
+
+          <div class="card-link">
+            Architecture öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/hardware/"
+        >
+          <span class="card-number">AREA 02</span>
+
+          <h3>Hardware</h3>
+
+          <p>
+            Miner, Stromversorgung, Netzwerk,
+            Kühlung und technische Betriebsumgebung.
+          </p>
+
+          <div class="card-link">
+            Hardware öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/operations/"
+        >
+          <span class="card-number">AREA 03</span>
+
+          <h3>Operations</h3>
+
+          <p>
+            Betriebsabläufe, Wartung,
+            Verfügbarkeit und kontrollierte Änderungen.
+          </p>
+
+          <div class="card-link">
+            Operations öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/energy/"
+        >
+          <span class="card-number">AREA 04</span>
+
+          <h3>Energy</h3>
+
+          <p>
+            Leistungsaufnahme, Effizienz,
+            Energieversorgung und thermische Betriebsgrößen.
+          </p>
+
+          <div class="card-link">
+            Energy öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/monitoring/"
+        >
+          <span class="card-number">AREA 05</span>
+
+          <h3>Monitoring</h3>
+
+          <p>
+            Hashrate, Leistung, Effizienz,
+            Temperatur und Verfügbarkeit.
+          </p>
+
+          <div class="card-link">
+            Monitoring öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/economics/"
+        >
+          <span class="card-number">AREA 06</span>
+
+          <h3>Economics</h3>
+
+          <p>
+            Technische Kosten-, Leistungs-
+            und Betriebsmodelle mit dokumentierten Annahmen.
+          </p>
+
+          <div class="card-link">
+            Economics öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/developer/"
+        >
+          <span class="card-number">AREA 07</span>
+
+          <h3>Developer</h3>
+
+          <p>
+            Technische Ressourcen, strukturierte Daten,
+            Generatoren und Audit-Werkzeuge.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
 
   <section class="container">
 
@@ -575,21 +832,31 @@
       </h2>
 
       <p class="lead">
-        Kehre zur Produktübersicht zurück,
-        öffne die Dokumentation oder nimm Kontakt auf.
+        Öffne weitere Produktbereiche,
+        die technische Dokumentation oder
+        nimm Kontakt auf.
       </p>
 
       <div class="buttons">
 
-        <a class="button" href="/products/">
+        <a
+          class="button"
+          href="/products/"
+        >
           Alle Produkte
         </a>
 
-        <a class="button button-secondary" href="/docs/">
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
           Dokumentation
         </a>
 
-        <a class="button button-secondary" href="/contact/">
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
           Kontakt
         </a>
 
@@ -608,6 +875,7 @@
     <div class="footer-grid">
 
       <div>
+
         <div class="brand">
           CoreCraft <span>Genesis</span>
         </div>
@@ -617,31 +885,83 @@
           Digital Infrastructure,
           Blockchain Intelligence and Knowledge Products.
         </p>
+
       </div>
 
       <div>
         <h4>Produkte</h4>
-        <a href="/products/audio/">Audio</a>
-        <a href="/products/enginecore/">EngineCore</a>
-        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
-        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
       </div>
 
       <div>
-        <h4>Resources</h4>
-        <a href="/products/developer-tools/">Developer Tools</a>
-        <a href="/products/documentation/">Documentation</a>
-        <a href="/docs/">Docs</a>
-        <a href="/downloads/">Downloads</a>
+        <h4>Bitcoin Mining</h4>
+
+        <a href="/products/bitcoin-mining/architecture/">
+          Architecture
+        </a>
+
+        <a href="/products/bitcoin-mining/hardware/">
+          Hardware
+        </a>
+
+        <a href="/products/bitcoin-mining/operations/">
+          Operations
+        </a>
+
+        <a href="/products/bitcoin-mining/energy/">
+          Energy
+        </a>
+
+        <a href="/products/bitcoin-mining/monitoring/">
+          Monitoring
+        </a>
+
+        <a href="/products/bitcoin-mining/economics/">
+          Economics
+        </a>
+
+        <a href="/products/bitcoin-mining/developer/">
+          Developer
+        </a>
       </div>
 
       <div>
         <h4>CoreCraft</h4>
-        <a href="/about/">Über uns</a>
-        <a href="/contact/">Kontakt</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/imprint/">Impressum</a>
-        <a href="/legal/privacy/">Datenschutz</a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
       </div>
 
     </div>
