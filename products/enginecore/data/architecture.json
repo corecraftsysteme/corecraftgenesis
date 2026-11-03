@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "product": "EngineCore",
+  "architecture": {
+    "layers": [
+      {
+        "order": 1,
+        "id": "architecture",
+        "name": "Architecture",
+        "route": "/products/enginecore/architecture/"
+      },
+      {
+        "order": 2,
+        "id": "runtime",
+        "name": "Runtime",
+        "route": "/products/enginecore/runtime/"
+      },
+      {
+        "order": 3,
+        "id": "modules",
+        "name": "Modules",
+        "route": "/products/enginecore/modules/"
+      },
+      {
+        "order": 4,
+        "id": "validation",
+        "name": "Validation",
+        "route": "/products/enginecore/validation/"
+      },
+      {
+        "order": 5,
+        "id": "diagnostics",
+        "name": "Diagnostics",
+        "route": "/products/enginecore/diagnostics/"
+      },
+      {
+        "order": 6,
+        "id": "developer",
+        "name": "Developer",
+        "route": "/products/enginecore/developer/"
+      },
+      {
+        "order": 7,
+        "id": "demos",
+        "name": "Demos",
+        "route": "/products/enginecore/demos/"
+      }
+    ]
+  }
+}

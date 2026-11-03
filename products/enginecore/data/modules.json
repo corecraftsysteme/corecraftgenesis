@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "product": "EngineCore",
+  "modules": [
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "route": "/products/enginecore/architecture/",
+      "description": "Structural overview of the EngineCore product."
+    },
+    {
+      "id": "runtime",
+      "name": "Runtime",
+      "route": "/products/enginecore/runtime/",
+      "description": "Runtime concepts and execution lifecycle."
+    },
+    {
+      "id": "modules",
+      "name": "Modules",
+      "route": "/products/enginecore/modules/",
+      "description": "Modular EngineCore component overview."
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "route": "/products/enginecore/validation/",
+      "description": "Validation and integrity concepts."
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics",
+      "route": "/products/enginecore/diagnostics/",
+      "description": "Observability and diagnostic information."
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "route": "/products/enginecore/developer/",
+      "description": "Developer-oriented EngineCore resources."
+    },
+    {
+      "id": "demos",
+      "name": "Demos",
+      "route": "/products/enginecore/demos/",
+      "description": "EngineCore demonstrations and examples."
+    }
+  ]
+}

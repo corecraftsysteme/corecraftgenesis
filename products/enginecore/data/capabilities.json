@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "product": "EngineCore",
+  "capabilities": [
+    {
+      "id": "modularity",
+      "name": "Modular Structure",
+      "description": "Organizes EngineCore functionality into defined product areas."
+    },
+    {
+      "id": "runtime",
+      "name": "Runtime Layer",
+      "description": "Provides a dedicated product area for runtime concepts."
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "description": "Provides a dedicated area for validation and integrity information."
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics",
+      "description": "Provides diagnostics and observability documentation."
+    },
+    {
+      "id": "developer",
+      "name": "Developer Resources",
+      "description": "Provides technical resources for development and integration."
+    },
+    {
+      "id": "demonstration",
+      "name": "Demonstrations",
+      "description": "Provides examples and demonstrations through a dedicated product route."
+    }
+  ]
+}
