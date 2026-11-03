@@ -1,0 +1,142 @@
+[
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 12373,
+    "Title": "Audio | CoreCraft Genesis",
+    "Route": "/products/audio/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 15172,
+    "Title": "AudioState Architecture | CoreCraft Genesis",
+    "Route": "/products/audio/audiostate/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/audiostate/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 14998,
+    "Title": "Digital Signal Processing | CoreCraft Genesis",
+    "Route": "/products/audio/dsp/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/dsp/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 15089,
+    "Title": "Audio Orchestration | CoreCraft Genesis",
+    "Route": "/products/audio/orchestration/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/orchestration/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 15023,
+    "Title": "State Validation | CoreCraft Genesis",
+    "Route": "/products/audio/validation/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/validation/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 15061,
+    "Title": "Scaling and Failover | CoreCraft Genesis",
+    "Route": "/products/audio/scaling/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/scaling/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 15008,
+    "Title": "Audio Diagnostics | CoreCraft Genesis",
+    "Route": "/products/audio/diagnostics/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/diagnostics/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 4784,
+    "Title": "Audio Tools | CoreCraft Genesis",
+    "Route": "/products/audio/tools/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/tools/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 8141,
+    "Title": "Audio Analyzer | CoreCraft Genesis",
+    "Route": "/products/audio/tools/analyzer/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/tools/analyzer/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 8036,
+    "Title": "Audio Oscillator | CoreCraft Genesis",
+    "Route": "/products/audio/tools/oscillator/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/tools/oscillator/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 5129,
+    "Title": "Signal Monitor | CoreCraft Genesis",
+    "Route": "/products/audio/tools/signal-monitor/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/tools/signal-monitor/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 4277,
+    "Title": "Audio Demos | CoreCraft Genesis",
+    "Route": "/products/audio/demos/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/demos/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 4152,
+    "Title": "Signal Chain Demo | CoreCraft Genesis",
+    "Route": "/products/audio/demos/signal-chain/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/demos/signal-chain/",
+    "Error": ""
+  },
+  {
+    "Status": "PASS",
+    "Http": 200,
+    "Html": true,
+    "Bytes": 5858,
+    "Title": "AudioState Demo | CoreCraft Genesis",
+    "Route": "/products/audio/demos/audiostate/",
+    "FinalUrl": "https://corecraftgenesis.ch/products/audio/demos/audiostate/",
+    "Error": ""
+  }
+]
