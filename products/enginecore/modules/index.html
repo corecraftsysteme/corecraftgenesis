@@ -1,183 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EngineCore Modules | CoreCraft Genesis</title>
+  <title>EngineCore Modules | CoreCraft Genesis</title>
 
-    <meta
-        name="description"
-        content="Overview of the modular EngineCore structure and its independently defined product areas."
-    >
+  <meta
+    name="description"
+    content="Modulare EngineCore-Komponenten mit klaren Zuständigkeiten, Routen und technischen Produktgrenzen."
+  >
 
-    <link
-        rel="stylesheet"
-        href="/products/enginecore/assets/css/enginecore.css"
-    >
+  <link
+    rel="stylesheet"
+    href="/products/enginecore/assets/css/enginecore.css"
+  >
 </head>
 
 <body data-page="modules">
 
 <header class="ec-header">
-    <div class="ec-shell">
-<nav class="ec-nav" aria-label="EngineCore Navigation">
-    <a class="ec-brand" href="/products/enginecore/">EngineCore</a>
+  <div class="ec-shell">
+      <nav class="ec-nav" aria-label="EngineCore Navigation">
 
-    <div class="ec-nav-links">
-        <a data-ec-nav href="/products/enginecore/architecture/">Architecture</a>
-        <a data-ec-nav href="/products/enginecore/runtime/">Runtime</a>
-        <a data-ec-nav href="/products/enginecore/modules/">Modules</a>
-        <a data-ec-nav href="/products/enginecore/validation/">Validation</a>
-        <a data-ec-nav href="/products/enginecore/diagnostics/">Diagnostics</a>
-        <a data-ec-nav href="/products/enginecore/developer/">Developer</a>
-        <a data-ec-nav href="/products/enginecore/demos/">Demos</a>
-    </div>
-</nav>
-    </div>
+        <a class="ec-brand" href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <div class="ec-nav-links">
+          <a data-ec-nav href="/products/enginecore/architecture/">
+            Architecture
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/runtime/">
+            Runtime
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/modules/">
+            Modules
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/validation/">
+            Validation
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/diagnostics/">
+            Diagnostics
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/developer/">
+            Developer
+          </a>
+
+          <a data-ec-nav href="/products/enginecore/demos/">
+            Demos
+          </a>
+        </div>
+
+      </nav>
+  </div>
 </header>
 
 <main>
 
-    <section class="ec-hero">
-        <div class="ec-shell">
+  <section class="ec-hero">
+    <div class="ec-shell">
 
-            <div class="ec-eyebrow">
-                EngineCore / Modules
-            </div>
+      <div class="ec-eyebrow">
+        EngineCore / Modules
+      </div>
 
-            <h1>EngineCore Modules</h1>
+      <h1>EngineCore Modules</h1>
 
-            <p class="ec-lead">
-                Explore EngineCore as a modular system composed of clearly separated technical areas.
+      <p class="ec-lead">
+        EngineCore besteht aus unabhängigen, aber aufeinander abgestimmten Produktbereichen und technischen Modulen.
+      </p>
+
+      <div class="ec-actions">
+
+        <a
+          class="ec-button"
+          href="#overview"
+        >
+          Bereich ansehen
+        </a>
+
+        <a
+          class="ec-button ec-button-secondary"
+          href="/products/enginecore/"
+        >
+          EngineCore Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ec-section" id="overview">
+    <div class="ec-shell">
+
+      <div class="ec-card">
+
+        <span class="ec-status">
+          ACTIVE ENGINECORE AREA
+        </span>
+
+        <h2>Modulare Produktstruktur</h2>
+
+        <p class="ec-lead">
+          Module können getrennt dokumentiert, validiert und erweitert werden. Gemeinsame Regeln sorgen gleichzeitig für konsistente Integration.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ec-section">
+    <div class="ec-shell">
+
+      <h2>Kernbereiche</h2>
+
+      <div class="ec-grid">
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
+
+            <h3>Runtime</h3>
+
+            <p>
+              Ausführungsorientierter Bereich für Lebenszyklus und Zustandsverwaltung.
             </p>
+          </article>
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
 
-            <div class="ec-actions">
-                <a
-                    class="ec-button"
-                    href="/products/enginecore/"
-                >
-                    EngineCore Overview
-                </a>
+            <h3>Validation</h3>
 
-                <a
-                    class="ec-button ec-button-secondary"
-                    href="/products/"
-                >
-                    All Products
-                </a>
-            </div>
+            <p>
+              Technischer Prüfbereich für Integrität und Konsistenz.
+            </p>
+          </article>
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
+
+            <h3>Diagnostics</h3>
+
+            <p>
+              Bereich für Beobachtbarkeit, Zustandsprüfung und Diagnose.
+            </p>
+          </article>
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
+
+            <h3>Developer</h3>
+
+            <p>
+              Ressourcen für Entwicklung, Erweiterung und technische Integration.
+            </p>
+          </article>
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
+
+            <h3>Data</h3>
+
+            <p>
+              Strukturierte JSON-Daten für Module, Architektur und Fähigkeiten.
+            </p>
+          </article>
+          <article class="ec-card">
+            <span class="ec-status">MODULE</span>
+
+            <h3>Demos</h3>
+
+            <p>
+              Beispiele zur Darstellung definierter EngineCore-Konzepte.
+            </p>
+          </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ec-section">
+    <div class="ec-shell">
+
+      <div class="ec-grid">
+
+        <article class="ec-card">
+
+          <h2>Grundsätze</h2>
+
+          <ul class="ec-list">
+              <li>Jedes Modul besitzt eine definierte Verantwortung</li>
+              <li>Module werden über klare Schnittstellen verbunden</li>
+              <li>Gemeinsame Regeln verhindern uneindeutige Zustände</li>
+              <li>Neue Module können kontrolliert ergänzt werden</li>
+              <li>Modulstatus und Validierung bleiben nachvollziehbar</li>
+          </ul>
+
+        </article>
+
+        <article class="ec-card">
+
+          <h2>Technische Daten</h2>
+
+          <p>
+            Der Bereich verwendet strukturierte EngineCore-Daten
+            und gemeinsame technische Assets.
+          </p>
+
+          <p>
+            <a href="/products/enginecore/data/modules.json">
+              Zugehörige JSON-Daten öffnen
+            </a>
+          </p>
+
+        </article>
+
+        <article class="ec-card">
+
+          <h2>Validierung</h2>
+
+          <p>
+            Die Seite ist Bestandteil des lokalen und veröffentlichten
+            EngineCore-Audits. Routen, Links und Assets werden vor der
+            Freigabe kontrolliert.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ec-section">
+    <div class="ec-shell">
+        <div class="ec-card">
+
+          <h2>Weitere EngineCore-Bereiche</h2>
+
+          <div class="ec-nav-links">
+            <a href="/products/enginecore/architecture/">
+              Architecture
+            </a>
+
+            <a href="/products/enginecore/runtime/">
+              Runtime
+            </a>
+
+            <a href="/products/enginecore/modules/">
+              Modules
+            </a>
+
+            <a href="/products/enginecore/validation/">
+              Validation
+            </a>
+
+            <a href="/products/enginecore/diagnostics/">
+              Diagnostics
+            </a>
+
+            <a href="/products/enginecore/developer/">
+              Developer
+            </a>
+
+            <a href="/products/enginecore/demos/">
+              Demos
+            </a>
+          </div>
 
         </div>
-    </section>
-
-    <section class="ec-section">
-        <div class="ec-shell">
-
-            <div class="ec-grid">
-
-                <article class="ec-card">
-
-                    <span class="ec-status">
-                        EngineCore
-                    </span>
-
-                    <h2>Modules</h2>
-
-                    <p>
-                        Overview of the modular EngineCore structure and its independently defined product areas.
-                    </p>
-
-                </article>
-
-                <article class="ec-card">
-
-                    <h2>Core Concepts</h2>
-
-                    <ul class="ec-list">
-                    <li>Modular component model</li>
-                    <li>Explicit module responsibilities</li>
-                    <li>Independent product areas</li>
-                    <li>Consistent integration structure</li>
-                    </ul>
-
-                </article>
-
-                <article class="ec-card">
-
-                    <h2>Product Architecture</h2>
-
-                    <p>
-                        This area is part of the shared EngineCore
-                        product structure and uses the same navigation,
-                        styling and technical assets as the other
-                        EngineCore modules.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="ec-section">
-        <div class="ec-shell">
-
-            <div class="ec-card">
-
-                <h2>EngineCore Areas</h2>
-
-                <div class="ec-nav-links">
-
-                    <a href="/products/enginecore/architecture/">
-                        Architecture
-                    </a>
-
-                    <a href="/products/enginecore/runtime/">
-                        Runtime
-                    </a>
-
-                    <a href="/products/enginecore/modules/">
-                        Modules
-                    </a>
-
-                    <a href="/products/enginecore/validation/">
-                        Validation
-                    </a>
-
-                    <a href="/products/enginecore/diagnostics/">
-                        Diagnostics
-                    </a>
-
-                    <a href="/products/enginecore/developer/">
-                        Developer
-                    </a>
-
-                    <a href="/products/enginecore/demos/">
-                        Demos
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
+    </div>
+  </section>
 
 </main>
 
 <footer class="ec-footer">
-    <div class="ec-shell">
+  <div class="ec-shell">
 
-        <p>
-            &copy;
-            <span data-ec-year></span>
-            CoreCraft Genesis.
-            EngineCore technical product environment.
-        </p>
+    <p>
+      &copy;
+      <span data-ec-year>2026</span>
+      CoreCraft Genesis · EngineCore Modules
+    </p>
 
-    </div>
+    <p>
+      <a href="/products/">Alle Produkte</a>
+      ·
+      <a href="/docs/">Dokumentation</a>
+      ·
+      <a href="/contact/">Kontakt</a>
+    </p>
+
+  </div>
 </footer>
 
 <script src="/products/enginecore/assets/js/enginecore.js"></script>

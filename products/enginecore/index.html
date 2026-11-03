@@ -267,6 +267,7 @@
     }
 
     .card {
+      display: block;
       min-height: 250px;
       padding: 28px;
 
@@ -275,7 +276,10 @@
       border: 1px solid var(--line);
       border-radius: 14px;
 
-      transition: .22s ease;
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
     }
 
     .card:hover {
@@ -299,6 +303,37 @@
     .card p {
       color: var(--muted);
       font-size: .93rem;
+    }
+
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--blue);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
+    .enginecore-areas {
+      position: relative;
+    }
+
+    .enginecore-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 50%,
+          rgba(78,161,255,.06),
+          transparent 32%
+        );
+
+      pointer-events: none;
+    }
+
+    .enginecore-areas .container {
+      position: relative;
     }
 
     .cta {
@@ -445,12 +480,22 @@
       </h1>
 
       <p>
-        Deterministische Runtime-Architektur für Ausführung, State Management, Validierung, Orchestration, Recovery und Audit.
+        Deterministische Runtime-Architektur für Ausführung,
+        State Management, Validierung, Orchestration,
+        Recovery und Audit.
       </p>
 
-      <a class="button" href="#capabilities">
-        Funktionen ansehen
-      </a>
+      <div class="buttons">
+
+        <a class="button" href="#enginecore-areas">
+          EngineCore erkunden
+        </a>
+
+        <a class="button button-secondary" href="#capabilities">
+          Funktionen
+        </a>
+
+      </div>
 
     </div>
 
@@ -481,6 +526,11 @@
       </div>
 
       <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
         <span>STATUS</span>
         <span>ACTIVE</span>
       </div>
@@ -502,65 +552,232 @@
       </h2>
 
       <p class="lead">
-        Dieser Produktbereich stellt spezialisierte
-        Funktionen und Ressourcen innerhalb des
-        CoreCraft-Genesis-Ökosystems bereit.
+        EngineCore verbindet strukturierte Runtime-Konzepte
+        mit State Management, Validierung, Orchestration,
+        Recovery und nachvollziehbaren Systemzuständen.
       </p>
 
       <div class="grid">
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 01</span>
           <h3>Deterministic Execution</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Strukturierter Produktbereich für kontrollierte
+            und nachvollziehbare Ausführung.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 02</span>
           <h3>State Management</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Zustandsorientierte Strukturen für Runtime-
+            und Systemprozesse.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 03</span>
           <h3>Validation Layers</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Technische Prüfbereiche für Integrität,
+            Konsistenz und Validierung.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 04</span>
           <h3>System Orchestration</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Strukturierte Koordination modularer
+            Systembereiche.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 05</span>
           <h3>Recovery and Failover</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Architekturkonzepte für Wiederherstellung
+            und robuste Systemzustände.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 06</span>
           <h3>Audit and Traceability</h3>
           <p>
-            Technischer Bestandteil des Produktbereichs
-            EngineCore.
+            Nachvollziehbare technische Zustände,
+            Prüfungen und Systeminformationen.
           </p>
         </article>
+
       </div>
 
     </div>
 
   </section>
+
+  <!-- =====================================================
+       ENGINECORE AREAS
+       ===================================================== -->
+
+  <section class="enginecore-areas" id="enginecore-areas">
+
+    <div class="container">
+
+      <div class="section-label">
+        EngineCore Architecture
+      </div>
+
+      <h2>
+        EngineCore Bereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne die einzelnen technischen Bereiche für Architektur,
+        Runtime, Module, Validierung, Diagnose, Entwicklung und
+        Demonstrationen.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/enginecore/architecture/"
+        >
+          <span class="card-number">AREA 01</span>
+
+          <h3>Architecture</h3>
+
+          <p>
+            Struktur, Schichten, Verantwortlichkeiten und
+            technische Grenzen der EngineCore-Architektur.
+          </p>
+
+          <div class="card-link">
+            Architecture öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/runtime/"
+        >
+          <span class="card-number">AREA 02</span>
+
+          <h3>Runtime</h3>
+
+          <p>
+            Ausführungsmodell, Lebenszyklus und
+            zustandsorientierte Runtime-Prozesse.
+          </p>
+
+          <div class="card-link">
+            Runtime öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/modules/"
+        >
+          <span class="card-number">AREA 03</span>
+
+          <h3>Modules</h3>
+
+          <p>
+            Übersicht der modularen EngineCore-Komponenten
+            und ihrer definierten Verantwortlichkeiten.
+          </p>
+
+          <div class="card-link">
+            Modules öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/validation/"
+        >
+          <span class="card-number">AREA 04</span>
+
+          <h3>Validation</h3>
+
+          <p>
+            Prüfungen für Integrität, Konsistenz und
+            kontrollierte technische Validierung.
+          </p>
+
+          <div class="card-link">
+            Validation öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/diagnostics/"
+        >
+          <span class="card-number">AREA 05</span>
+
+          <h3>Diagnostics</h3>
+
+          <p>
+            Zustandsprüfung, Beobachtbarkeit und
+            strukturierte technische Diagnose.
+          </p>
+
+          <div class="card-link">
+            Diagnostics öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/developer/"
+        >
+          <span class="card-number">AREA 06</span>
+
+          <h3>Developer</h3>
+
+          <p>
+            Technische Ressourcen, Datenstrukturen und
+            Bereiche für Entwicklung und Integration.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/enginecore/demos/"
+        >
+          <span class="card-number">AREA 07</span>
+
+          <h3>Demos</h3>
+
+          <p>
+            Beispiele und Demonstrationen zur
+            EngineCore-Architektur und Runtime.
+          </p>
+
+          <div class="card-link">
+            Demos öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       CTA
+       ===================================================== -->
 
   <section class="container">
 
@@ -575,8 +792,8 @@
       </h2>
 
       <p class="lead">
-        Kehre zur Produktübersicht zurück,
-        öffne die Dokumentation oder nimm Kontakt auf.
+        Öffne weitere Produktbereiche, die technische
+        Dokumentation oder nimm Kontakt auf.
       </p>
 
       <div class="buttons">
@@ -585,11 +802,17 @@
           Alle Produkte
         </a>
 
-        <a class="button button-secondary" href="/docs/">
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
           Dokumentation
         </a>
 
-        <a class="button button-secondary" href="/contact/">
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
           Kontakt
         </a>
 
@@ -608,6 +831,7 @@
     <div class="footer-grid">
 
       <div>
+
         <div class="brand">
           CoreCraft <span>Genesis</span>
         </div>
@@ -617,31 +841,83 @@
           Digital Infrastructure,
           Blockchain Intelligence and Knowledge Products.
         </p>
+
       </div>
 
       <div>
         <h4>Produkte</h4>
-        <a href="/products/audio/">Audio</a>
-        <a href="/products/enginecore/">EngineCore</a>
-        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
-        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
       </div>
 
       <div>
-        <h4>Resources</h4>
-        <a href="/products/developer-tools/">Developer Tools</a>
-        <a href="/products/documentation/">Documentation</a>
-        <a href="/docs/">Docs</a>
-        <a href="/downloads/">Downloads</a>
+        <h4>EngineCore</h4>
+
+        <a href="/products/enginecore/architecture/">
+          Architecture
+        </a>
+
+        <a href="/products/enginecore/runtime/">
+          Runtime
+        </a>
+
+        <a href="/products/enginecore/modules/">
+          Modules
+        </a>
+
+        <a href="/products/enginecore/validation/">
+          Validation
+        </a>
+
+        <a href="/products/enginecore/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/enginecore/developer/">
+          Developer
+        </a>
+
+        <a href="/products/enginecore/demos/">
+          Demos
+        </a>
       </div>
 
       <div>
         <h4>CoreCraft</h4>
-        <a href="/about/">Über uns</a>
-        <a href="/contact/">Kontakt</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/imprint/">Impressum</a>
-        <a href="/legal/privacy/">Datenschutz</a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
       </div>
 
     </div>
