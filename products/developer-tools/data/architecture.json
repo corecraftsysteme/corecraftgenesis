@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Developer Tools",
+  "architecture": {
+    "areas": [
+      {
+        "order": 1,
+        "id": "automation",
+        "name": "Automation",
+        "route": "/products/developer-tools/automation/"
+      },
+      {
+        "order": 2,
+        "id": "validators",
+        "name": "Validators",
+        "route": "/products/developer-tools/validators/"
+      },
+      {
+        "order": 3,
+        "id": "generators",
+        "name": "Generators",
+        "route": "/products/developer-tools/generators/"
+      },
+      {
+        "order": 4,
+        "id": "diagnostics",
+        "name": "Diagnostics",
+        "route": "/products/developer-tools/diagnostics/"
+      },
+      {
+        "order": 5,
+        "id": "data-tools",
+        "name": "Data Tools",
+        "route": "/products/developer-tools/data-tools/"
+      },
+      {
+        "order": 6,
+        "id": "web-tools",
+        "name": "Web Tools",
+        "route": "/products/developer-tools/web-tools/"
+      },
+      {
+        "order": 7,
+        "id": "developer",
+        "name": "Developer",
+        "route": "/products/developer-tools/developer/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Developer Tools",
+  "capabilities": [
+    {
+      "id": "automation",
+      "name": "Automation",
+      "route": "/products/developer-tools/automation/",
+      "description": "Automation workflows and repeatable engineering processes."
+    },
+    {
+      "id": "validators",
+      "name": "Validators",
+      "route": "/products/developer-tools/validators/",
+      "description": "Validation tools for files, data, routes and technical structures."
+    },
+    {
+      "id": "generators",
+      "name": "Generators",
+      "route": "/products/developer-tools/generators/",
+      "description": "Deterministic generators for repeatable project artifacts."
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics",
+      "route": "/products/developer-tools/diagnostics/",
+      "description": "Diagnostic utilities for technical states and failures."
+    },
+    {
+      "id": "data-tools",
+      "name": "Data Tools",
+      "route": "/products/developer-tools/data-tools/",
+      "description": "Structured-data utilities and validation resources."
+    },
+    {
+      "id": "web-tools",
+      "name": "Web Tools",
+      "route": "/products/developer-tools/web-tools/",
+      "description": "Utilities for static sites, links, routes and publishing checks."
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "route": "/products/developer-tools/developer/",
+      "description": "Technical resources for extending the Developer Tools platform."
+    }
+  ]
+}

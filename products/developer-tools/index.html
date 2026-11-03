@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Werkzeuge, Vorlagen und technische Ressourcen für Entwicklung, Automatisierung, Validierung und Audit."
+    content="Werkzeuge und technische Ressourcen für Automatisierung, Validierung, Generierung, Diagnose, Datenverarbeitung und Webentwicklung."
   >
 
   <style>
@@ -184,6 +184,12 @@
       font-size: 1.15rem;
     }
 
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -198,6 +204,16 @@
       color: #001326;
 
       font-weight: 650;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
     }
 
     .system-panel {
@@ -252,6 +268,29 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .tool-areas {
+      position: relative;
+    }
+
+    .tool-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 45%,
+          rgba(78,161,255,.07),
+          transparent 34%
+        );
+
+      pointer-events: none;
+    }
+
+    .tool-areas .container {
+      position: relative;
+    }
+
     .lead {
       max-width: 780px;
       margin-bottom: 45px;
@@ -267,6 +306,7 @@
     }
 
     .card {
+      display: block;
       min-height: 250px;
       padding: 28px;
 
@@ -275,7 +315,10 @@
       border: 1px solid var(--line);
       border-radius: 14px;
 
-      transition: .22s ease;
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
     }
 
     .card:hover {
@@ -301,6 +344,14 @@
       font-size: .93rem;
     }
 
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--blue);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
     .cta {
       padding: 60px;
 
@@ -314,18 +365,6 @@
 
       border: 1px solid var(--line);
       border-radius: 22px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
     }
 
     footer {
@@ -445,12 +484,28 @@
       </h1>
 
       <p>
-        Werkzeuge, Vorlagen und technische Ressourcen für Entwicklung, Automatisierung, Validierung und Audit.
+        Werkzeuge und technische Ressourcen für Automatisierung,
+        Validierung, Generierung, Diagnose, Datenverarbeitung
+        und Webentwicklung.
       </p>
 
-      <a class="button" href="#capabilities">
-        Funktionen ansehen
-      </a>
+      <div class="buttons">
+
+        <a
+          class="button"
+          href="#tool-areas"
+        >
+          Tool-Bereiche erkunden
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#capabilities"
+        >
+          Funktionen ansehen
+        </a>
+
+      </div>
 
     </div>
 
@@ -481,6 +536,11 @@
       </div>
 
       <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
         <span>STATUS</span>
         <span>ACTIVE</span>
       </div>
@@ -489,7 +549,12 @@
 
   </section>
 
-  <section class="capabilities" id="capabilities">
+  <!-- CAPABILITIES -->
+
+  <section
+    class="capabilities"
+    id="capabilities"
+  >
 
     <div class="container">
 
@@ -502,65 +567,269 @@
       </h2>
 
       <p class="lead">
-        Dieser Produktbereich stellt spezialisierte
-        Funktionen und Ressourcen innerhalb des
-        CoreCraft-Genesis-Ökosystems bereit.
+        Developer Tools bündelt wiederholbare Abläufe,
+        Validierungswerkzeuge, Generatoren und Audits
+        innerhalb des CoreCraft-Genesis-Ökosystems.
       </p>
 
       <div class="grid">
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 01
+          </span>
+
           <h3>PowerShell Automation</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Wiederholbare Datei-, Build-, Prüf-
+            und Veröffentlichungsabläufe.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 02
+          </span>
+
           <h3>Schema Validation</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Prüfung strukturierter Daten,
+            Dateien und technischer Erwartungen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 03
+          </span>
+
           <h3>Build Workflows</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Kontrollierte Abläufe für Entwicklung,
+            Prüfung und Produktionsfreigabe.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Project Templates</h3>
+          <span class="card-number">
+            CAPABILITY 04
+          </span>
+
+          <h3>Project Generators</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Deterministische Erzeugung von Seiten,
+            Assets, Daten und Projektstrukturen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 05
+          </span>
+
           <h3>Integrity Audits</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Prüfung von Links, Routen,
+            Dateien, Assets und Projektzuständen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Developer Guides</h3>
+          <span class="card-number">
+            CAPABILITY 06
+          </span>
+
+          <h3>Developer Resources</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Developer Tools.
+            Gemeinsame Standards, strukturierte Daten
+            und technische Dokumentation.
           </p>
         </article>
+
       </div>
 
     </div>
 
   </section>
+
+  <!-- TOOL AREAS -->
+
+  <section
+    class="tool-areas"
+    id="tool-areas"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        Developer Tools Architecture
+      </div>
+
+      <h2>
+        Tool-Bereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne die technischen Bereiche für Automatisierung,
+        Validierung, Generierung, Diagnose, Datenverarbeitung,
+        Webprüfung und Entwicklung.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/developer-tools/automation/"
+        >
+          <span class="card-number">
+            AREA 01
+          </span>
+
+          <h3>Automation</h3>
+
+          <p>
+            Wiederholbare Entwicklungs-, Build-,
+            Prüf- und Release-Abläufe.
+          </p>
+
+          <div class="card-link">
+            Automation öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/validators/"
+        >
+          <span class="card-number">
+            AREA 02
+          </span>
+
+          <h3>Validators</h3>
+
+          <p>
+            Validierungswerkzeuge für Dateien,
+            Daten, Routen und Projektstrukturen.
+          </p>
+
+          <div class="card-link">
+            Validators öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/generators/"
+        >
+          <span class="card-number">
+            AREA 03
+          </span>
+
+          <h3>Generators</h3>
+
+          <p>
+            Deterministische Generatoren für Seiten,
+            Assets, Daten und Projektartefakte.
+          </p>
+
+          <div class="card-link">
+            Generators öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/diagnostics/"
+        >
+          <span class="card-number">
+            AREA 04
+          </span>
+
+          <h3>Diagnostics</h3>
+
+          <p>
+            Diagnosewerkzeuge für Syntax,
+            Laufzeit, Dateien, Routen und Zustände.
+          </p>
+
+          <div class="card-link">
+            Diagnostics öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/data-tools/"
+        >
+          <span class="card-number">
+            AREA 05
+          </span>
+
+          <h3>Data Tools</h3>
+
+          <p>
+            Werkzeuge für JSON, strukturierte Daten,
+            Transformation und Datenqualität.
+          </p>
+
+          <div class="card-link">
+            Data Tools öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/web-tools/"
+        >
+          <span class="card-number">
+            AREA 06
+          </span>
+
+          <h3>Web Tools</h3>
+
+          <p>
+            Prüfwerkzeuge für HTML-Seiten,
+            interne Links, Routen und Assets.
+          </p>
+
+          <div class="card-link">
+            Web Tools öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/developer-tools/developer/"
+        >
+          <span class="card-number">
+            AREA 07
+          </span>
+
+          <h3>Developer</h3>
+
+          <p>
+            Technische Ressourcen für Erweiterung,
+            Integration und Produktionsworkflows.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
 
   <section class="container">
 
@@ -575,21 +844,31 @@
       </h2>
 
       <p class="lead">
-        Kehre zur Produktübersicht zurück,
-        öffne die Dokumentation oder nimm Kontakt auf.
+        Öffne weitere Produktbereiche,
+        die technische Dokumentation oder
+        nimm Kontakt auf.
       </p>
 
       <div class="buttons">
 
-        <a class="button" href="/products/">
+        <a
+          class="button"
+          href="/products/"
+        >
           Alle Produkte
         </a>
 
-        <a class="button button-secondary" href="/docs/">
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
           Dokumentation
         </a>
 
-        <a class="button button-secondary" href="/contact/">
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
           Kontakt
         </a>
 
@@ -608,6 +887,7 @@
     <div class="footer-grid">
 
       <div>
+
         <div class="brand">
           CoreCraft <span>Genesis</span>
         </div>
@@ -617,31 +897,83 @@
           Digital Infrastructure,
           Blockchain Intelligence and Knowledge Products.
         </p>
+
       </div>
 
       <div>
         <h4>Produkte</h4>
-        <a href="/products/audio/">Audio</a>
-        <a href="/products/enginecore/">EngineCore</a>
-        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
-        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
       </div>
 
       <div>
-        <h4>Resources</h4>
-        <a href="/products/developer-tools/">Developer Tools</a>
-        <a href="/products/documentation/">Documentation</a>
-        <a href="/docs/">Docs</a>
-        <a href="/downloads/">Downloads</a>
+        <h4>Developer Tools</h4>
+
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a href="/products/developer-tools/validators/">
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a href="/products/developer-tools/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/developer-tools/data-tools/">
+          Data Tools
+        </a>
+
+        <a href="/products/developer-tools/web-tools/">
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
       </div>
 
       <div>
         <h4>CoreCraft</h4>
-        <a href="/about/">Über uns</a>
-        <a href="/contact/">Kontakt</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/imprint/">Impressum</a>
-        <a href="/legal/privacy/">Datenschutz</a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
       </div>
 
     </div>

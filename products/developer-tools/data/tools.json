@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Developer Tools",
+  "tools": [
+    {
+      "id": "automation-runner",
+      "name": "Automation Runner",
+      "category": "automation",
+      "status": "documented"
+    },
+    {
+      "id": "structure-validator",
+      "name": "Structure Validator",
+      "category": "validators",
+      "status": "documented"
+    },
+    {
+      "id": "page-generator",
+      "name": "Page Generator",
+      "category": "generators",
+      "status": "documented"
+    },
+    {
+      "id": "diagnostic-audit",
+      "name": "Diagnostic Audit",
+      "category": "diagnostics",
+      "status": "documented"
+    },
+    {
+      "id": "json-validator",
+      "name": "JSON Validator",
+      "category": "data-tools",
+      "status": "documented"
+    },
+    {
+      "id": "link-audit",
+      "name": "Site Link Audit",
+      "category": "web-tools",
+      "status": "documented"
+    }
+  ]
+}
