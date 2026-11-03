@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "product": "CoreCraft Pay",
+  "capabilities": [
+    {
+      "id": "architecture",
+      "name": "Payment Architecture",
+      "route": "/products/corecraft-pay/architecture/",
+      "description": "Structural product area for CoreCraft Pay architecture."
+    },
+    {
+      "id": "payments",
+      "name": "Payments",
+      "route": "/products/corecraft-pay/payments/",
+      "description": "Product area for payment-oriented workflows and concepts."
+    },
+    {
+      "id": "checkout",
+      "name": "Checkout",
+      "route": "/products/corecraft-pay/checkout/",
+      "description": "Product area for checkout-oriented user flows."
+    },
+    {
+      "id": "integrations",
+      "name": "Integrations",
+      "route": "/products/corecraft-pay/integrations/",
+      "description": "Product area for integration-oriented documentation."
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "route": "/products/corecraft-pay/security/",
+      "description": "Product area for security architecture and operational controls."
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "route": "/products/corecraft-pay/developer/",
+      "description": "Developer resources for the CoreCraft Pay product area."
+    },
+    {
+      "id": "demos",
+      "name": "Demos",
+      "route": "/products/corecraft-pay/demos/",
+      "description": "Demonstrations and examples for CoreCraft Pay."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "product": "CoreCraft Pay",
+  "architecture": {
+    "areas": [
+      {
+        "order": 1,
+        "id": "architecture",
+        "name": "Architecture",
+        "route": "/products/corecraft-pay/architecture/"
+      },
+      {
+        "order": 2,
+        "id": "payments",
+        "name": "Payments",
+        "route": "/products/corecraft-pay/payments/"
+      },
+      {
+        "order": 3,
+        "id": "checkout",
+        "name": "Checkout",
+        "route": "/products/corecraft-pay/checkout/"
+      },
+      {
+        "order": 4,
+        "id": "integrations",
+        "name": "Integrations",
+        "route": "/products/corecraft-pay/integrations/"
+      },
+      {
+        "order": 5,
+        "id": "security",
+        "name": "Security",
+        "route": "/products/corecraft-pay/security/"
+      },
+      {
+        "order": 6,
+        "id": "developer",
+        "name": "Developer",
+        "route": "/products/corecraft-pay/developer/"
+      },
+      {
+        "order": 7,
+        "id": "demos",
+        "name": "Demos",
+        "route": "/products/corecraft-pay/demos/"
+      }
+    ]
+  }
+}

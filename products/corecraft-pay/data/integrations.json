@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "product": "CoreCraft Pay",
+  "integrations": [
+    {
+      "id": "web-checkout",
+      "name": "Web Checkout",
+      "category": "checkout",
+      "status": "documented"
+    },
+    {
+      "id": "payment-interface",
+      "name": "Payment Interface",
+      "category": "payments",
+      "status": "documented"
+    },
+    {
+      "id": "developer-interface",
+      "name": "Developer Interface",
+      "category": "developer",
+      "status": "documented"
+    },
+    {
+      "id": "event-model",
+      "name": "Event Model",
+      "category": "integration",
+      "status": "documented"
+    }
+  ]
+}
