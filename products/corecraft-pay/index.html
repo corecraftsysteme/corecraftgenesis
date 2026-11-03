@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Payment Architecture, Transaktionsmodelle, Wallet-Komponenten und digitale Zahlungsinfrastruktur."
+    content="Payment Architecture, Transaktionsmodelle, Checkout, Integrationen, Sicherheit und digitale Zahlungsinfrastruktur."
   >
 
   <style>
@@ -200,6 +200,10 @@
       font-weight: 650;
     }
 
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
     .system-panel {
       padding: 35px;
 
@@ -252,6 +256,29 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .product-areas {
+      position: relative;
+    }
+
+    .product-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 50%,
+          rgba(78,161,255,.06),
+          transparent 32%
+        );
+
+      pointer-events: none;
+    }
+
+    .product-areas .container {
+      position: relative;
+    }
+
     .lead {
       max-width: 780px;
       margin-bottom: 45px;
@@ -267,6 +294,7 @@
     }
 
     .card {
+      display: block;
       min-height: 250px;
       padding: 28px;
 
@@ -275,7 +303,10 @@
       border: 1px solid var(--line);
       border-radius: 14px;
 
-      transition: .22s ease;
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
     }
 
     .card:hover {
@@ -299,6 +330,14 @@
     .card p {
       color: var(--muted);
       font-size: .93rem;
+    }
+
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--blue);
+      font-size: .85rem;
+      font-weight: 650;
     }
 
     .cta {
@@ -445,12 +484,25 @@
       </h1>
 
       <p>
-        Payment Architecture, Transaktionsmodelle, Wallet-Komponenten und digitale Zahlungsinfrastruktur.
+        Payment Architecture, Transaktionsmodelle, Checkout,
+        Integrationen, Sicherheitsarchitektur und digitale
+        Zahlungsinfrastruktur.
       </p>
 
-      <a class="button" href="#capabilities">
-        Funktionen ansehen
-      </a>
+      <div class="buttons">
+
+        <a class="button" href="#product-areas">
+          CoreCraft Pay erkunden
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#capabilities"
+        >
+          Funktionen ansehen
+        </a>
+
+      </div>
 
     </div>
 
@@ -481,6 +533,11 @@
       </div>
 
       <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
         <span>STATUS</span>
         <span>ACTIVE</span>
       </div>
@@ -489,7 +546,14 @@
 
   </section>
 
-  <section class="capabilities" id="capabilities">
+  <!-- =====================================================
+       CAPABILITIES
+       ===================================================== -->
+
+  <section
+    class="capabilities"
+    id="capabilities"
+  >
 
     <div class="container">
 
@@ -502,65 +566,276 @@
       </h2>
 
       <p class="lead">
-        Dieser Produktbereich stellt spezialisierte
-        Funktionen und Ressourcen innerhalb des
-        CoreCraft-Genesis-Ökosystems bereit.
+        CoreCraft Pay strukturiert Zahlungsabläufe,
+        Checkout-Prozesse, Integrationen und technische
+        Kontrollen innerhalb des CoreCraft-Genesis-Ökosystems.
       </p>
 
       <div class="grid">
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 01</span>
+
           <h3>Payment Architecture</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Modulare Architektur für Zahlungsprozesse,
+            Statusmodelle und technische Produktbereiche.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 02</span>
+
           <h3>Transaction Models</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Strukturierte Modelle für nachvollziehbare
+            Zahlungszustände und Übergänge.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Wallet Components</h3>
+          <span class="card-number">CAPABILITY 03</span>
+
+          <h3>Checkout</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Klar definierte Abläufe von Auswahl und Prüfung
+            bis zum abschließenden Ergebnis.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 04</span>
+
           <h3>Validation</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Technische Prüfungen für Struktur, Daten,
+            Zustände und definierte Anforderungen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 05</span>
+
           <h3>System Integration</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Dokumentierte Integrationspunkte für technische
+            Systeme und Produktoberflächen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">CAPABILITY 06</span>
+
           <h3>Payment Audit</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            CoreCraft Pay.
+            Nachvollziehbare Prüfung von Seiten,
+            Routen, Daten und technischen Referenzen.
           </p>
         </article>
+
       </div>
 
     </div>
 
   </section>
+
+  <!-- =====================================================
+       CORECRAFT PAY AREAS
+       ===================================================== -->
+
+  <section
+    class="product-areas"
+    id="product-areas"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        CoreCraft Pay Architecture
+      </div>
+
+      <h2>
+        CoreCraft-Pay-Bereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne die technischen Bereiche für Architektur,
+        Payments, Checkout, Integrationen, Sicherheit,
+        Entwicklung und Demonstrationen.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/architecture/"
+        >
+          <span class="card-number">
+            AREA 01
+          </span>
+
+          <h3>
+            Architecture
+          </h3>
+
+          <p>
+            Architekturmodell, technische Bereiche,
+            Verantwortlichkeiten und definierte Grenzen.
+          </p>
+
+          <div class="card-link">
+            Architecture öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/payments/"
+        >
+          <span class="card-number">
+            AREA 02
+          </span>
+
+          <h3>
+            Payments
+          </h3>
+
+          <p>
+            Strukturierte Zahlungsabläufe,
+            Statusmodelle und kontrollierte Verarbeitung.
+          </p>
+
+          <div class="card-link">
+            Payments öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/checkout/"
+        >
+          <span class="card-number">
+            AREA 03
+          </span>
+
+          <h3>
+            Checkout
+          </h3>
+
+          <p>
+            Auswahl, Prüfung, Bestätigung,
+            Verarbeitung und eindeutige Ergebnisdarstellung.
+          </p>
+
+          <div class="card-link">
+            Checkout öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/integrations/"
+        >
+          <span class="card-number">
+            AREA 04
+          </span>
+
+          <h3>
+            Integrations
+          </h3>
+
+          <p>
+            Dokumentierte Integrationsmodelle,
+            technische Ereignisse und Schnittstellen.
+          </p>
+
+          <div class="card-link">
+            Integrations öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/security/"
+        >
+          <span class="card-number">
+            AREA 05
+          </span>
+
+          <h3>
+            Security
+          </h3>
+
+          <p>
+            Sicherheitsarchitektur,
+            technische Grenzen und kontrollierte
+            Schutzmaßnahmen.
+          </p>
+
+          <div class="card-link">
+            Security öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/developer/"
+        >
+          <span class="card-number">
+            AREA 06
+          </span>
+
+          <h3>
+            Developer
+          </h3>
+
+          <p>
+            Technische Ressourcen für Entwicklung,
+            Integration und strukturierte Erweiterungen.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/corecraft-pay/demos/"
+        >
+          <span class="card-number">
+            AREA 07
+          </span>
+
+          <h3>
+            Demos
+          </h3>
+
+          <p>
+            Demonstrationen für Checkout,
+            Zahlungszustände, Integrationen und Audits.
+          </p>
+
+          <div class="card-link">
+            Demos öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       CTA
+       ===================================================== -->
 
   <section class="container">
 
@@ -575,21 +850,31 @@
       </h2>
 
       <p class="lead">
-        Kehre zur Produktübersicht zurück,
-        öffne die Dokumentation oder nimm Kontakt auf.
+        Öffne weitere Produktbereiche,
+        die technische Dokumentation oder
+        nimm Kontakt auf.
       </p>
 
       <div class="buttons">
 
-        <a class="button" href="/products/">
+        <a
+          class="button"
+          href="/products/"
+        >
           Alle Produkte
         </a>
 
-        <a class="button button-secondary" href="/docs/">
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
           Dokumentation
         </a>
 
-        <a class="button button-secondary" href="/contact/">
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
           Kontakt
         </a>
 
@@ -608,6 +893,7 @@
     <div class="footer-grid">
 
       <div>
+
         <div class="brand">
           CoreCraft <span>Genesis</span>
         </div>
@@ -617,31 +903,83 @@
           Digital Infrastructure,
           Blockchain Intelligence and Knowledge Products.
         </p>
+
       </div>
 
       <div>
         <h4>Produkte</h4>
-        <a href="/products/audio/">Audio</a>
-        <a href="/products/enginecore/">EngineCore</a>
-        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
-        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
       </div>
 
       <div>
-        <h4>Resources</h4>
-        <a href="/products/developer-tools/">Developer Tools</a>
-        <a href="/products/documentation/">Documentation</a>
-        <a href="/docs/">Docs</a>
-        <a href="/downloads/">Downloads</a>
+        <h4>CoreCraft Pay</h4>
+
+        <a href="/products/corecraft-pay/architecture/">
+          Architecture
+        </a>
+
+        <a href="/products/corecraft-pay/payments/">
+          Payments
+        </a>
+
+        <a href="/products/corecraft-pay/checkout/">
+          Checkout
+        </a>
+
+        <a href="/products/corecraft-pay/integrations/">
+          Integrations
+        </a>
+
+        <a href="/products/corecraft-pay/security/">
+          Security
+        </a>
+
+        <a href="/products/corecraft-pay/developer/">
+          Developer
+        </a>
+
+        <a href="/products/corecraft-pay/demos/">
+          Demos
+        </a>
       </div>
 
       <div>
         <h4>CoreCraft</h4>
-        <a href="/about/">Über uns</a>
-        <a href="/contact/">Kontakt</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/imprint/">Impressum</a>
-        <a href="/legal/privacy/">Datenschutz</a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
       </div>
 
     </div>
