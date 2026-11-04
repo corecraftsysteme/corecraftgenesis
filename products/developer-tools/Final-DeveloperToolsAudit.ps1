@@ -35,11 +35,12 @@ $ExpectedPages = @(
     "index.html"
     "automation\index.html"
     "validators\index.html"
+    "validators\json\index.html"
     "generators\index.html"
     "diagnostics\index.html"
     "data-tools\index.html"
-    "developer\index.html"
     "web-tools\index.html"
+    "developer\index.html"
 )
 
 $ExpectedAssets = @(
@@ -55,11 +56,12 @@ $ExpectedRoutes = @(
     "/products/developer-tools/"
     "/products/developer-tools/automation/"
     "/products/developer-tools/validators/"
+    "/products/developer-tools/validators/json/"
     "/products/developer-tools/generators/"
     "/products/developer-tools/diagnostics/"
     "/products/developer-tools/data-tools/"
-    "/products/developer-tools/developer/"
     "/products/developer-tools/web-tools/"
+    "/products/developer-tools/developer/"
 )
 
 # ============================================================
