@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Technische Dokumentationen, Reference Packs, Engineering Guides, Berichte und strukturierte Knowledge-Produkte."
+    content="Technische Dokumentationen, Engineering Guides, Referenzen, Standards, Releases und strukturierte Knowledge-Produkte von CoreCraft Genesis."
   >
 
   <style>
@@ -184,6 +184,12 @@
       font-size: 1.15rem;
     }
 
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -198,6 +204,16 @@
       color: #001326;
 
       font-weight: 650;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
     }
 
     .system-panel {
@@ -252,6 +268,29 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .documentation-areas {
+      position: relative;
+    }
+
+    .documentation-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 45%,
+          rgba(78,161,255,.07),
+          transparent 34%
+        );
+
+      pointer-events: none;
+    }
+
+    .documentation-areas .container {
+      position: relative;
+    }
+
     .lead {
       max-width: 780px;
       margin-bottom: 45px;
@@ -267,6 +306,7 @@
     }
 
     .card {
+      display: block;
       min-height: 250px;
       padding: 28px;
 
@@ -275,7 +315,10 @@
       border: 1px solid var(--line);
       border-radius: 14px;
 
-      transition: .22s ease;
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
     }
 
     .card:hover {
@@ -301,6 +344,14 @@
       font-size: .93rem;
     }
 
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--blue);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
     .cta {
       padding: 60px;
 
@@ -314,18 +365,6 @@
 
       border: 1px solid var(--line);
       border-radius: 22px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
     }
 
     footer {
@@ -445,12 +484,28 @@
       </h1>
 
       <p>
-        Technische Dokumentationen, Reference Packs, Engineering Guides, Berichte und strukturierte Knowledge-Produkte.
+        Technische Dokumentationen, Engineering Guides,
+        Referenzen, Standards, Release-Informationen
+        und strukturierte Knowledge-Produkte.
       </p>
 
-      <a class="button" href="#capabilities">
-        Funktionen ansehen
-      </a>
+      <div class="buttons">
+
+        <a
+          class="button"
+          href="#documentation-areas"
+        >
+          Dokumentation erkunden
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#capabilities"
+        >
+          Schwerpunkte ansehen
+        </a>
+
+      </div>
 
     </div>
 
@@ -481,6 +536,11 @@
       </div>
 
       <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
         <span>STATUS</span>
         <span>ACTIVE</span>
       </div>
@@ -489,7 +549,12 @@
 
   </section>
 
-  <section class="capabilities" id="capabilities">
+  <!-- CAPABILITIES -->
+
+  <section
+    class="capabilities"
+    id="capabilities"
+  >
 
     <div class="container">
 
@@ -502,65 +567,270 @@
       </h2>
 
       <p class="lead">
-        Dieser Produktbereich stellt spezialisierte
-        Funktionen und Ressourcen innerhalb des
-        CoreCraft-Genesis-Ökosystems bereit.
+        Documentation verbindet technische Referenzen,
+        praktische Anleitungen, Architekturwissen,
+        Qualitätsstandards und nachvollziehbare
+        Release-Informationen.
       </p>
 
       <div class="grid">
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 01
+          </span>
+
           <h3>Technical References</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Strukturierte Referenzen für Befehle,
+            Dateien, Routen, Daten und technische Zustände.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 02
+          </span>
+
           <h3>Engineering Guides</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Wiederholbare Schritt-für-Schritt-Anleitungen
+            für Entwicklung, Prüfung und Veröffentlichung.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
+          <span class="card-number">
+            CAPABILITY 03
+          </span>
+
           <h3>Architecture Reports</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Dokumentation technischer Systeme,
+            Strukturen und gemeinsamer Komponenten.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Governance Documents</h3>
+          <span class="card-number">
+            CAPABILITY 04
+          </span>
+
+          <h3>Documentation Standards</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Gemeinsame Anforderungen für Struktur,
+            Sprache, Benennung und Datenqualität.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Knowledge Packs</h3>
+          <span class="card-number">
+            CAPABILITY 05
+          </span>
+
+          <h3>Release Documentation</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Nachvollziehbare Änderungen,
+            Commit-Referenzen und Release-Prüfungen.
           </p>
         </article>
+
         <article class="card">
-          <span class="card-number">CAPABILITY</span>
-          <h3>Download Resources</h3>
+          <span class="card-number">
+            CAPABILITY 06
+          </span>
+
+          <h3>Knowledge Resources</h3>
+
           <p>
-            Technischer Bestandteil des Produktbereichs
-            Documentation.
+            Strukturierte technische Informationen
+            und wiederverwendbare Wissensressourcen.
           </p>
         </article>
+
       </div>
 
     </div>
 
   </section>
+
+  <!-- DOCUMENTATION AREAS -->
+
+  <section
+    class="documentation-areas"
+    id="documentation-areas"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        Documentation Architecture
+      </div>
+
+      <h2>
+        Dokumentationsbereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne den passenden Bereich für Einstieg,
+        Architektur, praktische Anleitungen, technische
+        Referenzen, Standards, Releases oder Entwicklung.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/documentation/getting-started/"
+        >
+          <span class="card-number">
+            AREA 01
+          </span>
+
+          <h3>Getting Started</h3>
+
+          <p>
+            Einstieg, Orientierung und erste Schritte
+            innerhalb der CoreCraft-Genesis-Dokumentation.
+          </p>
+
+          <div class="card-link">
+            Getting Started öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/architecture/"
+        >
+          <span class="card-number">
+            AREA 02
+          </span>
+
+          <h3>Architecture</h3>
+
+          <p>
+            Informationsarchitektur, Dokumentationsstruktur,
+            gemeinsame Ressourcen und technische Ebenen.
+          </p>
+
+          <div class="card-link">
+            Architecture öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/guides/"
+        >
+          <span class="card-number">
+            AREA 03
+          </span>
+
+          <h3>Guides</h3>
+
+          <p>
+            Praktische Schritt-für-Schritt-Anleitungen
+            für technische und operative Abläufe.
+          </p>
+
+          <div class="card-link">
+            Guides öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/reference/"
+        >
+          <span class="card-number">
+            AREA 04
+          </span>
+
+          <h3>Reference</h3>
+
+          <p>
+            Technische Referenzen für Befehle,
+            Dateien, Daten, Routen und Statuswerte.
+          </p>
+
+          <div class="card-link">
+            Reference öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/standards/"
+        >
+          <span class="card-number">
+            AREA 05
+          </span>
+
+          <h3>Standards</h3>
+
+          <p>
+            Gemeinsame Regeln für Struktur,
+            Sprache, Benennung, Qualität und Audits.
+          </p>
+
+          <div class="card-link">
+            Standards öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/releases/"
+        >
+          <span class="card-number">
+            AREA 06
+          </span>
+
+          <h3>Releases</h3>
+
+          <p>
+            Release-Informationen, Änderungen,
+            Commit-Referenzen und Freigabestatus.
+          </p>
+
+          <div class="card-link">
+            Releases öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/documentation/developer/"
+        >
+          <span class="card-number">
+            AREA 07
+          </span>
+
+          <h3>Developer</h3>
+
+          <p>
+            Technische Ressourcen für Generatoren,
+            Assets, Daten, Audits und Erweiterungen.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
 
   <section class="container">
 
@@ -575,21 +845,31 @@
       </h2>
 
       <p class="lead">
-        Kehre zur Produktübersicht zurück,
-        öffne die Dokumentation oder nimm Kontakt auf.
+        Öffne weitere Produktbereiche,
+        die zentrale Dokumentation oder
+        nimm Kontakt auf.
       </p>
 
       <div class="buttons">
 
-        <a class="button" href="/products/">
+        <a
+          class="button"
+          href="/products/"
+        >
           Alle Produkte
         </a>
 
-        <a class="button button-secondary" href="/docs/">
-          Dokumentation
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
+          Docs
         </a>
 
-        <a class="button button-secondary" href="/contact/">
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
           Kontakt
         </a>
 
@@ -608,6 +888,7 @@
     <div class="footer-grid">
 
       <div>
+
         <div class="brand">
           CoreCraft <span>Genesis</span>
         </div>
@@ -617,31 +898,95 @@
           Digital Infrastructure,
           Blockchain Intelligence and Knowledge Products.
         </p>
+
       </div>
 
       <div>
         <h4>Produkte</h4>
-        <a href="/products/audio/">Audio</a>
-        <a href="/products/enginecore/">EngineCore</a>
-        <a href="/products/corecraft-pay/">CoreCraft Pay</a>
-        <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
+
+        <a href="/products/developer-tools/">
+          Developer Tools
+        </a>
       </div>
 
       <div>
-        <h4>Resources</h4>
-        <a href="/products/developer-tools/">Developer Tools</a>
-        <a href="/products/documentation/">Documentation</a>
-        <a href="/docs/">Docs</a>
-        <a href="/downloads/">Downloads</a>
+        <h4>Documentation</h4>
+
+        <a href="/products/documentation/getting-started/">
+          Getting Started
+        </a>
+
+        <a href="/products/documentation/architecture/">
+          Architecture
+        </a>
+
+        <a href="/products/documentation/guides/">
+          Guides
+        </a>
+
+        <a href="/products/documentation/reference/">
+          Reference
+        </a>
+
+        <a href="/products/documentation/standards/">
+          Standards
+        </a>
+
+        <a href="/products/documentation/releases/">
+          Releases
+        </a>
+
+        <a href="/products/documentation/developer/">
+          Developer
+        </a>
       </div>
 
       <div>
         <h4>CoreCraft</h4>
-        <a href="/about/">Über uns</a>
-        <a href="/contact/">Kontakt</a>
-        <a href="/support/">Support</a>
-        <a href="/legal/imprint/">Impressum</a>
-        <a href="/legal/privacy/">Datenschutz</a>
+
+        <a href="/docs/">
+          Docs
+        </a>
+
+        <a href="/downloads/">
+          Downloads
+        </a>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
       </div>
 
     </div>

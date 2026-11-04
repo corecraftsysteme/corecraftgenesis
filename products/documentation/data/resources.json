@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Documentation",
+  "resources": [
+    {
+      "id": "quick-start",
+      "name": "Quick Start",
+      "category": "getting-started",
+      "status": "documented"
+    },
+    {
+      "id": "architecture-overview",
+      "name": "Architecture Overview",
+      "category": "architecture",
+      "status": "documented"
+    },
+    {
+      "id": "technical-guides",
+      "name": "Technical Guides",
+      "category": "guides",
+      "status": "documented"
+    },
+    {
+      "id": "reference-library",
+      "name": "Reference Library",
+      "category": "reference",
+      "status": "documented"
+    },
+    {
+      "id": "documentation-standards",
+      "name": "Documentation Standards",
+      "category": "standards",
+      "status": "documented"
+    },
+    {
+      "id": "release-notes",
+      "name": "Release Notes",
+      "category": "releases",
+      "status": "documented"
+    }
+  ]
+}

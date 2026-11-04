@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Documentation",
+  "architecture": {
+    "areas": [
+      {
+        "order": 1,
+        "id": "getting-started",
+        "name": "Getting Started",
+        "route": "/products/documentation/getting-started/"
+      },
+      {
+        "order": 2,
+        "id": "architecture",
+        "name": "Architecture",
+        "route": "/products/documentation/architecture/"
+      },
+      {
+        "order": 3,
+        "id": "guides",
+        "name": "Guides",
+        "route": "/products/documentation/guides/"
+      },
+      {
+        "order": 4,
+        "id": "reference",
+        "name": "Reference",
+        "route": "/products/documentation/reference/"
+      },
+      {
+        "order": 5,
+        "id": "standards",
+        "name": "Standards",
+        "route": "/products/documentation/standards/"
+      },
+      {
+        "order": 6,
+        "id": "releases",
+        "name": "Releases",
+        "route": "/products/documentation/releases/"
+      },
+      {
+        "order": 7,
+        "id": "developer",
+        "name": "Developer",
+        "route": "/products/documentation/developer/"
+      }
+    ]
+  }
+}

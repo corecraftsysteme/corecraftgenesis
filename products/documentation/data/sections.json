@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "product": "Documentation",
+  "sections": [
+    {
+      "id": "getting-started",
+      "name": "Getting Started",
+      "route": "/products/documentation/getting-started/",
+      "description": "Entry point and orientation for CoreCraft Genesis documentation."
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "route": "/products/documentation/architecture/",
+      "description": "Documentation architecture and structural organization."
+    },
+    {
+      "id": "guides",
+      "name": "Guides",
+      "route": "/products/documentation/guides/",
+      "description": "Practical guides and repeatable technical procedures."
+    },
+    {
+      "id": "reference",
+      "name": "Reference",
+      "route": "/products/documentation/reference/",
+      "description": "Structured technical reference material."
+    },
+    {
+      "id": "standards",
+      "name": "Standards",
+      "route": "/products/documentation/standards/",
+      "description": "Documentation standards, formats and quality requirements."
+    },
+    {
+      "id": "releases",
+      "name": "Releases",
+      "route": "/products/documentation/releases/",
+      "description": "Release information, version history and publication status."
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "route": "/products/documentation/developer/",
+      "description": "Resources for maintaining and extending the documentation platform."
+    }
+  ]
+}
