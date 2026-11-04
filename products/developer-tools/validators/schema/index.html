@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON Schema Validator | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Lokaler JSON Schema Validator zum Prüfen strukturierter JSON-Daten gegen grundlegende Schema-Regeln."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/developer-tools/assets/css/developer-tools.css"
+  >
+
+  <style>
+    .schema-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .schema-button {
+      min-height: 42px;
+      padding: .65rem .9rem;
+
+      cursor: pointer;
+
+      background: var(--dev-surface);
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      font-weight: 650;
+    }
+
+    .schema-button:hover,
+    .schema-button:focus-visible {
+      border-color: var(--dev-blue);
+    }
+
+    .schema-primary {
+      background: var(--dev-blue);
+      color: #001326;
+      border-color: var(--dev-blue);
+    }
+
+    .schema-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .schema-panel {
+      min-width: 0;
+    }
+
+    .schema-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      margin-bottom: .65rem;
+
+      color: var(--dev-muted);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .78rem;
+    }
+
+    .schema-textarea {
+      width: 100%;
+      min-height: 500px;
+      resize: vertical;
+
+      display: block;
+      padding: 1.25rem;
+
+      background: #030609;
+      color: #d9ecff;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+
+      outline: none;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .86rem;
+      line-height: 1.55;
+
+      tab-size: 2;
+    }
+
+    .schema-textarea:focus {
+      border-color: var(--dev-blue);
+    }
+
+    .schema-status {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .schema-status[data-state="pass"] {
+      color: var(--dev-green);
+
+      background: rgba(66, 211, 146, .07);
+      border-color: rgba(66, 211, 146, .45);
+    }
+
+    .schema-status[data-state="fail"] {
+      color: #ff8d8d;
+
+      background: rgba(255, 90, 90, .07);
+      border-color: rgba(255, 90, 90, .45);
+    }
+
+    .schema-results {
+      margin-top: 1rem;
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .schema-results h3 {
+      margin-top: 0;
+    }
+
+    .schema-error-list {
+      display: grid;
+      gap: .65rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .schema-error {
+      padding: .85rem;
+
+      color: #ffb7b7;
+      background: rgba(255, 90, 90, .07);
+
+      border: 1px solid rgba(255, 90, 90, .25);
+      border-radius: 8px;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .8rem;
+
+      overflow-wrap: anywhere;
+    }
+
+    .schema-empty {
+      color: var(--dev-muted);
+    }
+
+    .schema-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .schema-stat {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .schema-stat-label {
+      margin-bottom: .4rem;
+
+      color: var(--dev-muted);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .72rem;
+    }
+
+    .schema-stat-value {
+      color: var(--dev-text);
+      font-weight: 700;
+
+      overflow-wrap: anywhere;
+    }
+
+    .schema-note {
+      margin-top: 1rem;
+
+      color: var(--dev-muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 900px) {
+      .schema-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .schema-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .schema-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="schema-validator">
+
+<header class="dev-header">
+  <div class="dev-shell">
+
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
+
+      <div class="dev-nav-links">
+
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/validators/"
+        >
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a href="/products/developer-tools/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/developer-tools/data-tools/">
+          Data Tools
+        </a>
+
+        <a href="/products/developer-tools/web-tools/">
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dev-hero">
+    <div class="dev-shell">
+
+      <div class="dev-eyebrow">
+        Developer Tools / Validators
+      </div>
+
+      <h1>
+        JSON Schema Validator
+      </h1>
+
+      <p class="dev-lead">
+        JSON-Daten gegen grundlegende Schema-Regeln
+        direkt im Browser prüfen.
+      </p>
+
+      <div class="dev-actions">
+
+        <a
+          class="dev-button"
+          href="#validator"
+        >
+          Schema Validator öffnen
+        </a>
+
+        <a
+          class="dev-button dev-button-secondary"
+          href="/products/developer-tools/validators/"
+        >
+          Validators Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section
+    class="dev-section"
+    id="validator"
+  >
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Interactive Developer Tool
+      </div>
+
+      <h2>
+        Datenstruktur validieren.
+      </h2>
+
+      <p class="dev-lead">
+        Füge links die zu prüfenden JSON-Daten und rechts
+        das zugehörige JSON Schema ein.
+      </p>
+
+      <div class="schema-toolbar">
+
+        <button
+          class="schema-button schema-primary"
+          id="validateButton"
+          type="button"
+        >
+          Gegen Schema prüfen
+        </button>
+
+        <button
+          class="schema-button"
+          id="exampleButton"
+          type="button"
+        >
+          Beispiel laden
+        </button>
+
+        <button
+          class="schema-button"
+          id="formatButton"
+          type="button"
+        >
+          Beide formatieren
+        </button>
+
+        <button
+          class="schema-button"
+          id="clearButton"
+          type="button"
+        >
+          Leeren
+        </button>
+
+      </div>
+
+      <div
+        class="schema-status"
+        id="status"
+        data-state="neutral"
+        role="status"
+        aria-live="polite"
+      >
+        Bereit. JSON-Daten und Schema einfügen.
+      </div>
+
+      <div class="schema-layout">
+
+        <div class="schema-panel">
+
+          <div class="schema-label">
+            <span>JSON INSTANCE</span>
+
+            <span id="instanceCharacters">
+              0 Zeichen
+            </span>
+          </div>
+
+          <textarea
+            class="schema-textarea"
+            id="instanceInput"
+            spellcheck="false"
+            autocomplete="off"
+            aria-label="Zu prüfende JSON-Daten"
+            placeholder='{
+  "name": "CoreCraft Genesis",
+  "active": true
+}'
+          ></textarea>
+
+        </div>
+
+        <div class="schema-panel">
+
+          <div class="schema-label">
+            <span>JSON SCHEMA</span>
+
+            <span id="schemaCharacters">
+              0 Zeichen
+            </span>
+          </div>
+
+          <textarea
+            class="schema-textarea"
+            id="schemaInput"
+            spellcheck="false"
+            autocomplete="off"
+            aria-label="JSON Schema"
+            placeholder='{
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}'
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <div class="schema-stats">
+
+        <div class="schema-stat">
+
+          <div class="schema-stat-label">
+            RESULT
+          </div>
+
+          <div
+            class="schema-stat-value"
+            id="resultValue"
+          >
+            —
+          </div>
+
+        </div>
+
+        <div class="schema-stat">
+
+          <div class="schema-stat-label">
+            ERRORS
+          </div>
+
+          <div
+            class="schema-stat-value"
+            id="errorValue"
+          >
+            0
+          </div>
+
+        </div>
+
+        <div class="schema-stat">
+
+          <div class="schema-stat-label">
+            INSTANCE TYPE
+          </div>
+
+          <div
+            class="schema-stat-value"
+            id="instanceTypeValue"
+          >
+            —
+          </div>
+
+        </div>
+
+        <div class="schema-stat">
+
+          <div class="schema-stat-label">
+            SCHEMA KEYWORDS
+          </div>
+
+          <div
+            class="schema-stat-value"
+            id="keywordValue"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="schema-results">
+
+        <h3>
+          Validierungsergebnis
+        </h3>
+
+        <ul
+          class="schema-error-list"
+          id="errorList"
+        >
+          <li class="schema-empty">
+            Noch keine Validierung durchgeführt.
+          </li>
+        </ul>
+
+      </div>
+
+      <p class="schema-note">
+        Unterstützte Regeln: type, required, properties,
+        additionalProperties, items, enum, const, minimum,
+        maximum, exclusiveMinimum, exclusiveMaximum,
+        minLength, maxLength, pattern, minItems, maxItems,
+        uniqueItems, minProperties und maxProperties.
+      </p>
+
+      <p class="schema-note">
+        Die Verarbeitung erfolgt vollständig clientseitig.
+        Diese kompakte Implementierung unterstützt nicht den
+        vollständigen JSON-Schema-Standard.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STRUCTURE
+          </span>
+
+          <h3>
+            Object Validation
+          </h3>
+
+          <p>
+            Pflichtfelder, Eigenschaften und zusätzliche
+            Felder von JSON-Objekten prüfen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            TYPES
+          </span>
+
+          <h3>
+            Type Validation
+          </h3>
+
+          <p>
+            Objekte, Arrays, Strings, Zahlen,
+            Ganzzahlen, Boolean und Null prüfen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            CONSTRAINTS
+          </span>
+
+          <h3>
+            Value Constraints
+          </h3>
+
+          <p>
+            Längen, Zahlenbereiche, Muster,
+            Aufzählungen und konstante Werte prüfen.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="dev-footer">
+  <div class="dev-shell">
+
+    <p>
+      &copy;
+      <span data-dev-year>2026</span>
+      CoreCraft Genesis · JSON Schema Validator
+    </p>
+
+    <p>
+      <a href="/products/developer-tools/">
+        Developer Tools
+      </a>
+
+      ·
+
+      <a href="/products/developer-tools/validators/">
+        Validators
+      </a>
+
+      ·
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+    </p>
+
+  </div>
+</footer>
+
+<script src="/products/developer-tools/assets/js/developer-tools.js"></script>
+<script src="/products/developer-tools/assets/js/ui.js"></script>
+
+<script>
+"use strict";
+
+(() => {
+    const instanceInput =
+        document.getElementById("instanceInput");
+
+    const schemaInput =
+        document.getElementById("schemaInput");
+
+    const validateButton =
+        document.getElementById("validateButton");
+
+    const exampleButton =
+        document.getElementById("exampleButton");
+
+    const formatButton =
+        document.getElementById("formatButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const status =
+        document.getElementById("status");
+
+    const errorList =
+        document.getElementById("errorList");
+
+    const resultValue =
+        document.getElementById("resultValue");
+
+    const errorValue =
+        document.getElementById("errorValue");
+
+    const instanceTypeValue =
+        document.getElementById("instanceTypeValue");
+
+    const keywordValue =
+        document.getElementById("keywordValue");
+
+    const instanceCharacters =
+        document.getElementById("instanceCharacters");
+
+    const schemaCharacters =
+        document.getElementById("schemaCharacters");
+
+    function setStatus(state, message) {
+        status.dataset.state = state;
+        status.textContent = message;
+    }
+
+    function updateCharacterCounts() {
+        instanceCharacters.textContent =
+            `${instanceInput.value.length} Zeichen`;
+
+        schemaCharacters.textContent =
+            `${schemaInput.value.length} Zeichen`;
+    }
+
+    function jsonType(value) {
+        if (value === null) {
+            return "null";
+        }
+
+        if (Array.isArray(value)) {
+            return "array";
+        }
+
+        if (
+            typeof value === "number" &&
+            Number.isInteger(value)
+        ) {
+            return "integer";
+        }
+
+        return typeof value;
+    }
+
+    function displayType(value) {
+        const type = jsonType(value);
+
+        return type.toUpperCase();
+    }
+
+    function valuesEqual(left, right) {
+        return JSON.stringify(left) ===
+            JSON.stringify(right);
+    }
+
+    function addError(errors, path, message) {
+        errors.push({
+            path,
+            message
+        });
+    }
+
+    function validateType(
+        value,
+        expectedType
+    ) {
+        const actualType =
+            jsonType(value);
+
+        if (Array.isArray(expectedType)) {
+            return expectedType.some(
+                (type) =>
+                    validateType(value, type)
+            );
+        }
+
+        if (expectedType === "number") {
+            return (
+                typeof value === "number" &&
+                Number.isFinite(value)
+            );
+        }
+
+        if (expectedType === "integer") {
+            return (
+                typeof value === "number" &&
+                Number.isInteger(value)
+            );
+        }
+
+        if (expectedType === "object") {
+            return (
+                value !== null &&
+                typeof value === "object" &&
+                !Array.isArray(value)
+            );
+        }
+
+        return actualType === expectedType;
+    }
+
+    function validateValue(
+        value,
+        schema,
+        path,
+        errors
+    ) {
+        if (
+            typeof schema === "boolean"
+        ) {
+            if (!schema) {
+                addError(
+                    errors,
+                    path,
+                    "Boolean-Schema false lehnt den Wert ab."
+                );
+            }
+
+            return;
+        }
+
+        if (
+            schema === null ||
+            typeof schema !== "object" ||
+            Array.isArray(schema)
+        ) {
+            addError(
+                errors,
+                path,
+                "Schema muss ein Objekt oder Boolean sein."
+            );
+
+            return;
+        }
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                schema,
+                "type"
+            )
+        ) {
+            if (
+                !validateType(
+                    value,
+                    schema.type
+                )
+            ) {
+                const expected =
+                    Array.isArray(schema.type)
+                        ? schema.type.join(" | ")
+                        : schema.type;
+
+                addError(
+                    errors,
+                    path,
+                    `Typfehler: erwartet ${expected}, erhalten ${jsonType(value)}.`
+                );
+
+                return;
+            }
+        }
+
+        if (
+            Array.isArray(schema.enum) &&
+            !schema.enum.some(
+                (allowed) =>
+                    valuesEqual(value, allowed)
+            )
+        ) {
+            addError(
+                errors,
+                path,
+                "Wert ist nicht in enum enthalten."
+            );
+        }
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                schema,
+                "const"
+            ) &&
+            !valuesEqual(
+                value,
+                schema.const
+            )
+        ) {
+            addError(
+                errors,
+                path,
+                "Wert entspricht nicht const."
+            );
+        }
+
+        if (typeof value === "string") {
+            if (
+                Number.isInteger(schema.minLength) &&
+                value.length < schema.minLength
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `String ist kürzer als minLength ${schema.minLength}.`
+                );
+            }
+
+            if (
+                Number.isInteger(schema.maxLength) &&
+                value.length > schema.maxLength
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `String ist länger als maxLength ${schema.maxLength}.`
+                );
+            }
+
+            if (
+                typeof schema.pattern === "string"
+            ) {
+                try {
+                    const expression =
+                        new RegExp(schema.pattern, "u");
+
+                    if (!expression.test(value)) {
+                        addError(
+                            errors,
+                            path,
+                            `String entspricht nicht pattern ${schema.pattern}.`
+                        );
+                    }
+                }
+                catch {
+                    addError(
+                        errors,
+                        path,
+                        "Schema enthält einen ungültigen regulären Ausdruck."
+                    );
+                }
+            }
+        }
+
+        if (
+            typeof value === "number" &&
+            Number.isFinite(value)
+        ) {
+            if (
+                typeof schema.minimum === "number" &&
+                value < schema.minimum
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Wert liegt unter minimum ${schema.minimum}.`
+                );
+            }
+
+            if (
+                typeof schema.maximum === "number" &&
+                value > schema.maximum
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Wert liegt über maximum ${schema.maximum}.`
+                );
+            }
+
+            if (
+                typeof schema.exclusiveMinimum ===
+                    "number" &&
+                value <= schema.exclusiveMinimum
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Wert muss größer als ${schema.exclusiveMinimum} sein.`
+                );
+            }
+
+            if (
+                typeof schema.exclusiveMaximum ===
+                    "number" &&
+                value >= schema.exclusiveMaximum
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Wert muss kleiner als ${schema.exclusiveMaximum} sein.`
+                );
+            }
+        }
+
+        if (Array.isArray(value)) {
+            if (
+                Number.isInteger(schema.minItems) &&
+                value.length < schema.minItems
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Array enthält weniger als minItems ${schema.minItems}.`
+                );
+            }
+
+            if (
+                Number.isInteger(schema.maxItems) &&
+                value.length > schema.maxItems
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Array enthält mehr als maxItems ${schema.maxItems}.`
+                );
+            }
+
+            if (schema.uniqueItems === true) {
+                const serialized =
+                    value.map((item) =>
+                        JSON.stringify(item)
+                    );
+
+                if (
+                    new Set(serialized).size !==
+                    serialized.length
+                ) {
+                    addError(
+                        errors,
+                        path,
+                        "Array enthält doppelte Werte."
+                    );
+                }
+            }
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    schema,
+                    "items"
+                )
+            ) {
+                value.forEach(
+                    (item, index) => {
+                        validateValue(
+                            item,
+                            schema.items,
+                            `${path}[${index}]`,
+                            errors
+                        );
+                    }
+                );
+            }
+        }
+
+        if (
+            value !== null &&
+            typeof value === "object" &&
+            !Array.isArray(value)
+        ) {
+            const keys =
+                Object.keys(value);
+
+            if (
+                Number.isInteger(
+                    schema.minProperties
+                ) &&
+                keys.length < schema.minProperties
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Objekt enthält weniger als minProperties ${schema.minProperties}.`
+                );
+            }
+
+            if (
+                Number.isInteger(
+                    schema.maxProperties
+                ) &&
+                keys.length > schema.maxProperties
+            ) {
+                addError(
+                    errors,
+                    path,
+                    `Objekt enthält mehr als maxProperties ${schema.maxProperties}.`
+                );
+            }
+
+            if (Array.isArray(schema.required)) {
+                schema.required.forEach(
+                    (property) => {
+                        if (
+                            !Object.prototype
+                                .hasOwnProperty
+                                .call(value, property)
+                        ) {
+                            addError(
+                                errors,
+                                path,
+                                `Pflichtfeld fehlt: ${property}.`
+                            );
+                        }
+                    }
+                );
+            }
+
+            const properties =
+                schema.properties &&
+                typeof schema.properties === "object" &&
+                !Array.isArray(schema.properties)
+                    ? schema.properties
+                    : {};
+
+            Object.entries(properties).forEach(
+                ([property, propertySchema]) => {
+                    if (
+                        Object.prototype
+                            .hasOwnProperty
+                            .call(value, property)
+                    ) {
+                        validateValue(
+                            value[property],
+                            propertySchema,
+                            `${path}.${property}`,
+                            errors
+                        );
+                    }
+                }
+            );
+
+            const knownProperties =
+                new Set(Object.keys(properties));
+
+            keys.forEach((key) => {
+                if (knownProperties.has(key)) {
+                    return;
+                }
+
+                if (
+                    schema.additionalProperties ===
+                    false
+                ) {
+                    addError(
+                        errors,
+                        `${path}.${key}`,
+                        "Zusätzliche Eigenschaft ist nicht erlaubt."
+                    );
+
+                    return;
+                }
+
+                if (
+                    schema.additionalProperties &&
+                    typeof schema.additionalProperties ===
+                        "object"
+                ) {
+                    validateValue(
+                        value[key],
+                        schema.additionalProperties,
+                        `${path}.${key}`,
+                        errors
+                    );
+                }
+            });
+        }
+    }
+
+    function renderErrors(errors) {
+        errorList.innerHTML = "";
+
+        if (errors.length === 0) {
+            const item =
+                document.createElement("li");
+
+            item.className = "schema-empty";
+            item.textContent =
+                "Keine Schema-Verletzungen gefunden.";
+
+            errorList.appendChild(item);
+
+            return;
+        }
+
+        errors.forEach((error) => {
+            const item =
+                document.createElement("li");
+
+            item.className = "schema-error";
+            item.textContent =
+                `${error.path}: ${error.message}`;
+
+            errorList.appendChild(item);
+        });
+    }
+
+    function validateDocuments() {
+        let instance;
+        let schema;
+
+        try {
+            if (!instanceInput.value.trim()) {
+                throw new Error(
+                    "JSON Instance ist leer."
+                );
+            }
+
+            instance =
+                JSON.parse(instanceInput.value);
+        }
+        catch (error) {
+            setStatus(
+                "fail",
+                `Instance-Fehler: ${
+                    error instanceof Error
+                        ? error.message
+                        : String(error)
+                }`
+            );
+
+            resultValue.textContent = "INVALID";
+            errorValue.textContent = "1";
+
+            renderErrors([
+                {
+                    path: "$",
+                    message:
+                        "JSON Instance konnte nicht gelesen werden."
+                }
+            ]);
+
+            return;
+        }
+
+        try {
+            if (!schemaInput.value.trim()) {
+                throw new Error(
+                    "JSON Schema ist leer."
+                );
+            }
+
+            schema =
+                JSON.parse(schemaInput.value);
+        }
+        catch (error) {
+            setStatus(
+                "fail",
+                `Schema-Fehler: ${
+                    error instanceof Error
+                        ? error.message
+                        : String(error)
+                }`
+            );
+
+            resultValue.textContent = "INVALID";
+            errorValue.textContent = "1";
+
+            renderErrors([
+                {
+                    path: "$schema",
+                    message:
+                        "JSON Schema konnte nicht gelesen werden."
+                }
+            ]);
+
+            return;
+        }
+
+        const errors = [];
+
+        validateValue(
+            instance,
+            schema,
+            "$",
+            errors
+        );
+
+        instanceTypeValue.textContent =
+            displayType(instance);
+
+        keywordValue.textContent =
+            String(
+                schema !== null &&
+                typeof schema === "object" &&
+                !Array.isArray(schema)
+                    ? Object.keys(schema).length
+                    : 0
+            );
+
+        errorValue.textContent =
+            String(errors.length);
+
+        renderErrors(errors);
+
+        if (errors.length === 0) {
+            resultValue.textContent = "PASS";
+
+            setStatus(
+                "pass",
+                "JSON Instance erfüllt die unterstützten Schema-Regeln."
+            );
+        }
+        else {
+            resultValue.textContent = "FAIL";
+
+            setStatus(
+                "fail",
+                `${errors.length} Schema-Verletzung(en) gefunden.`
+            );
+        }
+    }
+
+    function loadExample() {
+        instanceInput.value =
+`{
+  "name": "CoreCraft Genesis",
+  "version": 1,
+  "active": true,
+  "modules": [
+    "validators",
+    "diagnostics",
+    "data-tools"
+  ]
+}`;
+
+        schemaInput.value =
+`{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "active"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}`;
+
+        updateCharacterCounts();
+
+        setStatus(
+            "neutral",
+            "Beispiel geladen. Validierung kann gestartet werden."
+        );
+
+        resultValue.textContent = "—";
+        errorValue.textContent = "0";
+        instanceTypeValue.textContent = "—";
+        keywordValue.textContent = "0";
+
+        renderErrors([]);
+    }
+
+    function formatDocuments() {
+        try {
+            const instance =
+                JSON.parse(instanceInput.value);
+
+            const schema =
+                JSON.parse(schemaInput.value);
+
+            instanceInput.value =
+                JSON.stringify(
+                    instance,
+                    null,
+                    2
+                );
+
+            schemaInput.value =
+                JSON.stringify(
+                    schema,
+                    null,
+                    2
+                );
+
+            updateCharacterCounts();
+
+            setStatus(
+                "pass",
+                "JSON Instance und Schema wurden formatiert."
+            );
+        }
+        catch (error) {
+            setStatus(
+                "fail",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+    }
+
+    function clearAll() {
+        instanceInput.value = "";
+        schemaInput.value = "";
+
+        resultValue.textContent = "—";
+        errorValue.textContent = "0";
+        instanceTypeValue.textContent = "—";
+        keywordValue.textContent = "0";
+
+        updateCharacterCounts();
+
+        errorList.innerHTML =
+            '<li class="schema-empty">Noch keine Validierung durchgeführt.</li>';
+
+        setStatus(
+            "neutral",
+            "Bereit. JSON-Daten und Schema einfügen."
+        );
+
+        instanceInput.focus();
+    }
+
+    function insertTab(event, target) {
+        if (event.key !== "Tab") {
+            return;
+        }
+
+        event.preventDefault();
+
+        const start =
+            target.selectionStart;
+
+        const end =
+            target.selectionEnd;
+
+        target.value =
+            target.value.substring(0, start) +
+            "  " +
+            target.value.substring(end);
+
+        target.selectionStart =
+            target.selectionEnd =
+                start + 2;
+
+        updateCharacterCounts();
+    }
+
+    validateButton.addEventListener(
+        "click",
+        validateDocuments
+    );
+
+    exampleButton.addEventListener(
+        "click",
+        loadExample
+    );
+
+    formatButton.addEventListener(
+        "click",
+        formatDocuments
+    );
+
+    clearButton.addEventListener(
+        "click",
+        clearAll
+    );
+
+    instanceInput.addEventListener(
+        "input",
+        updateCharacterCounts
+    );
+
+    schemaInput.addEventListener(
+        "input",
+        updateCharacterCounts
+    );
+
+    instanceInput.addEventListener(
+        "keydown",
+        (event) => {
+            insertTab(event, instanceInput);
+        }
+    );
+
+    schemaInput.addEventListener(
+        "keydown",
+        (event) => {
+            insertTab(event, schemaInput);
+        }
+    );
+
+    updateCharacterCounts();
+})();
+</script>
+
+</body>
+</html>

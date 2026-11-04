@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>File Validator | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Lokaler File Validator zur Prüfung von Dateiname, Erweiterung, MIME-Typ, Größe, Textinhalt und JSON-Syntax."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/developer-tools/assets/css/developer-tools.css"
+  >
+
+  <style>
+    .file-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .file-button {
+      min-height: 42px;
+      padding: .65rem .9rem;
+
+      cursor: pointer;
+
+      background: var(--dev-surface);
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      font-weight: 650;
+    }
+
+    .file-button:hover,
+    .file-button:focus-visible {
+      border-color: var(--dev-blue);
+    }
+
+    .file-primary {
+      background: var(--dev-blue);
+      color: #001326;
+      border-color: var(--dev-blue);
+    }
+
+    .file-input {
+      width: 100%;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .file-drop-zone {
+      padding: 2rem;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(78, 161, 255, .08),
+          transparent
+        ),
+        var(--dev-surface);
+
+      border: 1px dashed #456482;
+      border-radius: var(--dev-radius);
+
+      transition:
+        border-color .2s ease,
+        background .2s ease;
+    }
+
+    .file-drop-zone[data-active="true"] {
+      border-color: var(--dev-blue);
+      background: rgba(78, 161, 255, .12);
+    }
+
+    .file-drop-zone p {
+      color: var(--dev-muted);
+    }
+
+    .file-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .file-option {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .file-option label {
+      display: block;
+      margin-bottom: .5rem;
+
+      color: var(--dev-muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .file-field {
+      width: 100%;
+      min-height: 42px;
+
+      padding: .65rem .75rem;
+
+      background: #030609;
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+    }
+
+    .file-status {
+      margin: 1rem 0;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .file-status[data-state="pass"] {
+      color: var(--dev-green);
+
+      background: rgba(66, 211, 146, .07);
+      border-color: rgba(66, 211, 146, .45);
+    }
+
+    .file-status[data-state="fail"] {
+      color: #ff8d8d;
+
+      background: rgba(255, 90, 90, .07);
+      border-color: rgba(255, 90, 90, .45);
+    }
+
+    .file-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .file-stats {
+      display: grid;
+      gap: .5rem;
+    }
+
+    .file-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      padding: .75rem 0;
+
+      border-bottom: 1px solid var(--dev-line);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .8rem;
+    }
+
+    .file-stat span:first-child {
+      color: var(--dev-muted);
+    }
+
+    .file-stat span:last-child {
+      max-width: 60%;
+
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .file-results {
+      display: grid;
+      gap: .65rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .file-result {
+      padding: .85rem;
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .8rem;
+    }
+
+    .file-result[data-state="pass"] {
+      color: var(--dev-green);
+
+      background: rgba(66, 211, 146, .06);
+      border-color: rgba(66, 211, 146, .25);
+    }
+
+    .file-result[data-state="fail"] {
+      color: #ffb7b7;
+
+      background: rgba(255, 90, 90, .06);
+      border-color: rgba(255, 90, 90, .25);
+    }
+
+    .file-result[data-state="info"] {
+      color: var(--dev-muted);
+    }
+
+    .file-preview {
+      width: 100%;
+      min-height: 300px;
+      resize: vertical;
+
+      margin-top: 1rem;
+      padding: 1rem;
+
+      background: #030609;
+      color: #d9ecff;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    .file-note {
+      margin-top: 1rem;
+
+      color: var(--dev-muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 900px) {
+      .file-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .file-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="file-validator">
+
+<header class="dev-header">
+  <div class="dev-shell">
+
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
+
+      <div class="dev-nav-links">
+
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/validators/"
+        >
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a href="/products/developer-tools/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/developer-tools/data-tools/">
+          Data Tools
+        </a>
+
+        <a href="/products/developer-tools/web-tools/">
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dev-hero">
+    <div class="dev-shell">
+
+      <div class="dev-eyebrow">
+        Developer Tools / Validators
+      </div>
+
+      <h1>
+        File Validator
+      </h1>
+
+      <p class="dev-lead">
+        Lokale Dateien anhand von Dateiname,
+        Erweiterung, MIME-Typ, Größe und Inhalt prüfen.
+      </p>
+
+      <div class="dev-actions">
+
+        <a
+          class="dev-button"
+          href="#validator"
+        >
+          File Validator öffnen
+        </a>
+
+        <a
+          class="dev-button dev-button-secondary"
+          href="/products/developer-tools/validators/"
+        >
+          Validators Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section
+    class="dev-section"
+    id="validator"
+  >
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Interactive Developer Tool
+      </div>
+
+      <h2>
+        Datei prüfen.
+      </h2>
+
+      <p class="dev-lead">
+        Wähle eine lokale Datei aus und definiere
+        optionale Anforderungen für Dateiname,
+        Erweiterung und maximale Größe.
+      </p>
+
+      <div
+        class="file-drop-zone"
+        id="dropZone"
+        data-active="false"
+      >
+        <span class="dev-status">
+          LOCAL FILE
+        </span>
+
+        <h3>
+          Datei auswählen oder hier ablegen
+        </h3>
+
+        <p>
+          Es wird nur die ausdrücklich ausgewählte Datei gelesen.
+        </p>
+
+        <input
+          class="file-input"
+          id="fileInput"
+          type="file"
+        >
+      </div>
+
+      <div class="file-options">
+
+        <div class="file-option">
+
+          <label for="expectedName">
+            Erwarteter Dateiname
+          </label>
+
+          <input
+            class="file-field"
+            id="expectedName"
+            type="text"
+            placeholder="Beispiel: config.json"
+          >
+
+        </div>
+
+        <div class="file-option">
+
+          <label for="expectedExtensions">
+            Erlaubte Erweiterungen
+          </label>
+
+          <input
+            class="file-field"
+            id="expectedExtensions"
+            type="text"
+            placeholder=".json, .txt, .md"
+          >
+
+        </div>
+
+        <div class="file-option">
+
+          <label for="maxSize">
+            Maximale Größe in KiB
+          </label>
+
+          <input
+            class="file-field"
+            id="maxSize"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="1024"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="file-toolbar">
+
+        <button
+          class="file-button file-primary"
+          id="validateButton"
+          type="button"
+        >
+          Datei validieren
+        </button>
+
+        <button
+          class="file-button"
+          id="copyButton"
+          type="button"
+        >
+          Ergebnis kopieren
+        </button>
+
+        <button
+          class="file-button"
+          id="clearButton"
+          type="button"
+        >
+          Leeren
+        </button>
+
+      </div>
+
+      <div
+        class="file-status"
+        id="status"
+        data-state="neutral"
+        role="status"
+        aria-live="polite"
+      >
+        Bereit. Datei auswählen.
+      </div>
+
+      <div class="file-layout">
+
+        <aside class="dev-card">
+
+          <span class="dev-status">
+            FILE METADATA
+          </span>
+
+          <h3>
+            Dateiinformationen
+          </h3>
+
+          <div class="file-stats">
+
+            <div class="file-stat">
+              <span>NAME</span>
+              <span id="nameValue">—</span>
+            </div>
+
+            <div class="file-stat">
+              <span>EXTENSION</span>
+              <span id="extensionValue">—</span>
+            </div>
+
+            <div class="file-stat">
+              <span>MIME TYPE</span>
+              <span id="mimeValue">—</span>
+            </div>
+
+            <div class="file-stat">
+              <span>BYTES</span>
+              <span id="bytesValue">0</span>
+            </div>
+
+            <div class="file-stat">
+              <span>SIZE</span>
+              <span id="sizeValue">0 B</span>
+            </div>
+
+            <div class="file-stat">
+              <span>LAST MODIFIED</span>
+              <span id="modifiedValue">—</span>
+            </div>
+
+            <div class="file-stat">
+              <span>CONTENT</span>
+              <span id="contentValue">—</span>
+            </div>
+
+          </div>
+
+        </aside>
+
+        <div class="dev-card">
+
+          <span class="dev-status">
+            VALIDATION RESULT
+          </span>
+
+          <h3>
+            Prüfungen
+          </h3>
+
+          <ul
+            class="file-results"
+            id="resultList"
+          >
+            <li
+              class="file-result"
+              data-state="info"
+            >
+              Noch keine Validierung durchgeführt.
+            </li>
+          </ul>
+
+          <textarea
+            class="file-preview"
+            id="preview"
+            readonly
+            aria-label="Dateivorschau"
+            placeholder="Für unterstützte Textdateien erscheint hier eine Vorschau."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <p class="file-note">
+        Textvorschauen sind auf 100.000 Zeichen begrenzt.
+        Binärdateien werden nicht als Text dargestellt.
+      </p>
+
+      <p class="file-note">
+        Der Browser kann nicht prüfen, ob eine Datei an einem
+        bestimmten lokalen Pfad existiert. Er verarbeitet nur
+        ausdrücklich ausgewählte Dateien.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            METADATA
+          </span>
+
+          <h3>
+            Dateimetadaten
+          </h3>
+
+          <p>
+            Dateiname, Erweiterung, MIME-Typ,
+            Größe und Änderungszeit werden angezeigt.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            RULES
+          </span>
+
+          <h3>
+            Validierungsregeln
+          </h3>
+
+          <p>
+            Erwarteter Dateiname, erlaubte Erweiterungen
+            und maximale Dateigröße können geprüft werden.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            CONTENT
+          </span>
+
+          <h3>
+            Inhaltsprüfung
+          </h3>
+
+          <p>
+            Textdateien werden auf Lesbarkeit geprüft.
+            JSON-Dateien erhalten zusätzlich eine Syntaxprüfung.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="dev-footer">
+  <div class="dev-shell">
+
+    <p>
+      &copy;
+      <span data-dev-year>2026</span>
+      CoreCraft Genesis · File Validator
+    </p>
+
+    <p>
+      <a href="/products/developer-tools/">
+        Developer Tools
+      </a>
+
+      ·
+
+      <a href="/products/developer-tools/validators/">
+        Validators
+      </a>
+
+      ·
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+    </p>
+
+  </div>
+</footer>
+
+<script src="/products/developer-tools/assets/js/developer-tools.js"></script>
+<script src="/products/developer-tools/assets/js/ui.js"></script>
+
+<script>
+"use strict";
+
+(() => {
+    const fileInput =
+        document.getElementById("fileInput");
+
+    const dropZone =
+        document.getElementById("dropZone");
+
+    const expectedName =
+        document.getElementById("expectedName");
+
+    const expectedExtensions =
+        document.getElementById("expectedExtensions");
+
+    const maxSize =
+        document.getElementById("maxSize");
+
+    const validateButton =
+        document.getElementById("validateButton");
+
+    const copyButton =
+        document.getElementById("copyButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const status =
+        document.getElementById("status");
+
+    const resultList =
+        document.getElementById("resultList");
+
+    const preview =
+        document.getElementById("preview");
+
+    const nameValue =
+        document.getElementById("nameValue");
+
+    const extensionValue =
+        document.getElementById("extensionValue");
+
+    const mimeValue =
+        document.getElementById("mimeValue");
+
+    const bytesValue =
+        document.getElementById("bytesValue");
+
+    const sizeValue =
+        document.getElementById("sizeValue");
+
+    const modifiedValue =
+        document.getElementById("modifiedValue");
+
+    const contentValue =
+        document.getElementById("contentValue");
+
+    let selectedFile = null;
+    let currentReport = "";
+
+    const textExtensions = new Set([
+        ".txt",
+        ".md",
+        ".json",
+        ".csv",
+        ".xml",
+        ".html",
+        ".htm",
+        ".css",
+        ".js",
+        ".mjs",
+        ".ts",
+        ".tsx",
+        ".jsx",
+        ".yml",
+        ".yaml",
+        ".ini",
+        ".conf",
+        ".config",
+        ".log",
+        ".ps1",
+        ".sh",
+        ".sql"
+    ]);
+
+    function setStatus(state, message) {
+        status.dataset.state = state;
+        status.textContent = message;
+    }
+
+    function getExtension(name) {
+        const index =
+            name.lastIndexOf(".");
+
+        if (
+            index <= 0 ||
+            index === name.length - 1
+        ) {
+            return "";
+        }
+
+        return name
+            .slice(index)
+            .toLowerCase();
+    }
+
+    function formatSize(bytes) {
+        if (bytes < 1024) {
+            return `${bytes} B`;
+        }
+
+        if (bytes < 1024 * 1024) {
+            return `${(
+                bytes / 1024
+            ).toFixed(2)} KiB`;
+        }
+
+        if (bytes < 1024 * 1024 * 1024) {
+            return `${(
+                bytes / (1024 * 1024)
+            ).toFixed(2)} MiB`;
+        }
+
+        return `${(
+            bytes / (1024 * 1024 * 1024)
+        ).toFixed(2)} GiB`;
+    }
+
+    function isTextFile(file, extension) {
+        return (
+            file.type.startsWith("text/") ||
+            file.type === "application/json" ||
+            file.type === "application/xml" ||
+            file.type === "application/javascript" ||
+            textExtensions.has(extension)
+        );
+    }
+
+    function createResult(
+        results,
+        state,
+        label,
+        message
+    ) {
+        results.push({
+            state,
+            label,
+            message
+        });
+    }
+
+    function renderResults(results) {
+        resultList.innerHTML = "";
+
+        results.forEach((result) => {
+            const item =
+                document.createElement("li");
+
+            item.className = "file-result";
+            item.dataset.state = result.state;
+
+            item.textContent =
+                `[${result.state.toUpperCase()}] ` +
+                `${result.label}: ${result.message}`;
+
+            resultList.appendChild(item);
+        });
+    }
+
+    function updateMetadata(file) {
+        const extension =
+            getExtension(file.name);
+
+        nameValue.textContent =
+            file.name;
+
+        extensionValue.textContent =
+            extension || "NONE";
+
+        mimeValue.textContent =
+            file.type || "UNKNOWN";
+
+        bytesValue.textContent =
+            String(file.size);
+
+        sizeValue.textContent =
+            formatSize(file.size);
+
+        modifiedValue.textContent =
+            file.lastModified
+                ? new Date(
+                    file.lastModified
+                ).toLocaleString("de-CH")
+                : "UNKNOWN";
+    }
+
+    async function readTextPreview(
+        file,
+        extension
+    ) {
+        if (!isTextFile(file, extension)) {
+            preview.value = "";
+            contentValue.textContent = "BINARY";
+
+            return {
+                readable: false,
+                text: ""
+            };
+        }
+
+        const text =
+            await file.text();
+
+        preview.value =
+            text.slice(0, 100000);
+
+        if (text.length > 100000) {
+            preview.value +=
+                "\n\n[Preview auf 100.000 Zeichen begrenzt]";
+        }
+
+        contentValue.textContent = "TEXT";
+
+        return {
+            readable: true,
+            text
+        };
+    }
+
+    function parseExtensions() {
+        return expectedExtensions.value
+            .split(",")
+            .map((value) =>
+                value.trim().toLowerCase()
+            )
+            .filter(Boolean)
+            .map((value) =>
+                value.startsWith(".")
+                    ? value
+                    : `.${value}`
+            );
+    }
+
+    async function validateFile() {
+        if (!selectedFile) {
+            setStatus(
+                "fail",
+                "Bitte zuerst eine Datei auswählen."
+            );
+
+            return;
+        }
+
+        const file =
+            selectedFile;
+
+        const extension =
+            getExtension(file.name);
+
+        const results = [];
+
+        updateMetadata(file);
+
+        createResult(
+            results,
+            "pass",
+            "Datei",
+            "Datei wurde erfolgreich ausgewählt."
+        );
+
+        if (file.size > 0) {
+            createResult(
+                results,
+                "pass",
+                "Dateigröße",
+                `${formatSize(file.size)}`
+            );
+        }
+        else {
+            createResult(
+                results,
+                "fail",
+                "Dateigröße",
+                "Datei ist leer."
+            );
+        }
+
+        const requiredName =
+            expectedName.value.trim();
+
+        if (requiredName) {
+            if (file.name === requiredName) {
+                createResult(
+                    results,
+                    "pass",
+                    "Dateiname",
+                    `Entspricht ${requiredName}.`
+                );
+            }
+            else {
+                createResult(
+                    results,
+                    "fail",
+                    "Dateiname",
+                    `Erwartet ${requiredName}, erhalten ${file.name}.`
+                );
+            }
+        }
+        else {
+            createResult(
+                results,
+                "info",
+                "Dateiname",
+                "Keine Namensregel definiert."
+            );
+        }
+
+        const allowedExtensions =
+            parseExtensions();
+
+        if (allowedExtensions.length > 0) {
+            if (
+                allowedExtensions.includes(
+                    extension
+                )
+            ) {
+                createResult(
+                    results,
+                    "pass",
+                    "Erweiterung",
+                    `${extension} ist erlaubt.`
+                );
+            }
+            else {
+                createResult(
+                    results,
+                    "fail",
+                    "Erweiterung",
+                    `${extension || "NONE"} ist nicht erlaubt.`
+                );
+            }
+        }
+        else {
+            createResult(
+                results,
+                "info",
+                "Erweiterung",
+                "Keine Erweiterungsregel definiert."
+            );
+        }
+
+        const maxKiB =
+            Number(maxSize.value);
+
+        if (
+            maxSize.value.trim() &&
+            Number.isFinite(maxKiB) &&
+            maxKiB >= 0
+        ) {
+            const maximumBytes =
+                maxKiB * 1024;
+
+            if (file.size <= maximumBytes) {
+                createResult(
+                    results,
+                    "pass",
+                    "Maximale Größe",
+                    `Datei liegt innerhalb von ${maxKiB} KiB.`
+                );
+            }
+            else {
+                createResult(
+                    results,
+                    "fail",
+                    "Maximale Größe",
+                    `Datei überschreitet ${maxKiB} KiB.`
+                );
+            }
+        }
+        else {
+            createResult(
+                results,
+                "info",
+                "Maximale Größe",
+                "Keine Größenregel definiert."
+            );
+        }
+
+        try {
+            const textResult =
+                await readTextPreview(
+                    file,
+                    extension
+                );
+
+            if (textResult.readable) {
+                createResult(
+                    results,
+                    "pass",
+                    "Textinhalt",
+                    "Datei konnte als Text gelesen werden."
+                );
+
+                if (extension === ".json") {
+                    try {
+                        JSON.parse(
+                            textResult.text
+                        );
+
+                        createResult(
+                            results,
+                            "pass",
+                            "JSON-Syntax",
+                            "Datei enthält gültiges JSON."
+                        );
+                    }
+                    catch (error) {
+                        createResult(
+                            results,
+                            "fail",
+                            "JSON-Syntax",
+                            error instanceof Error
+                                ? error.message
+                                : String(error)
+                        );
+                    }
+                }
+            }
+            else {
+                createResult(
+                    results,
+                    "info",
+                    "Inhalt",
+                    "Binärdatei wird nicht als Text dargestellt."
+                );
+            }
+        }
+        catch (error) {
+            preview.value = "";
+            contentValue.textContent = "ERROR";
+
+            createResult(
+                results,
+                "fail",
+                "Inhalt",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+
+        renderResults(results);
+
+        const failures =
+            results.filter(
+                (result) =>
+                    result.state === "fail"
+            );
+
+        currentReport = [
+            `File Validator Report`,
+            `Name: ${file.name}`,
+            `Extension: ${extension || "NONE"}`,
+            `MIME: ${file.type || "UNKNOWN"}`,
+            `Bytes: ${file.size}`,
+            "",
+            ...results.map(
+                (result) =>
+                    `[${result.state.toUpperCase()}] ` +
+                    `${result.label}: ${result.message}`
+            )
+        ].join("\n");
+
+        if (failures.length === 0) {
+            setStatus(
+                "pass",
+                "Dateiprüfung bestanden."
+            );
+        }
+        else {
+            setStatus(
+                "fail",
+                `${failures.length} Dateiprüfung(en) fehlgeschlagen.`
+            );
+        }
+    }
+
+    async function copyReport() {
+        if (!currentReport) {
+            setStatus(
+                "fail",
+                "Noch kein Prüfbericht vorhanden."
+            );
+
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(
+                currentReport
+            );
+
+            setStatus(
+                "pass",
+                "Prüfbericht wurde kopiert."
+            );
+        }
+        catch {
+            setStatus(
+                "fail",
+                "Zwischenablage konnte nicht verwendet werden."
+            );
+        }
+    }
+
+    function selectFile(file) {
+        selectedFile = file || null;
+        currentReport = "";
+        preview.value = "";
+
+        if (!selectedFile) {
+            setStatus(
+                "neutral",
+                "Bereit. Datei auswählen."
+            );
+
+            return;
+        }
+
+        updateMetadata(selectedFile);
+
+        setStatus(
+            "neutral",
+            `Datei ausgewählt: ${selectedFile.name}`
+        );
+    }
+
+    function clearAll() {
+        selectedFile = null;
+        currentReport = "";
+
+        fileInput.value = "";
+        expectedName.value = "";
+        expectedExtensions.value = "";
+        maxSize.value = "";
+        preview.value = "";
+
+        nameValue.textContent = "—";
+        extensionValue.textContent = "—";
+        mimeValue.textContent = "—";
+        bytesValue.textContent = "0";
+        sizeValue.textContent = "0 B";
+        modifiedValue.textContent = "—";
+        contentValue.textContent = "—";
+
+        resultList.innerHTML =
+            '<li class="file-result" data-state="info">' +
+            'Noch keine Validierung durchgeführt.' +
+            '</li>';
+
+        setStatus(
+            "neutral",
+            "Bereit. Datei auswählen."
+        );
+    }
+
+    fileInput.addEventListener(
+        "change",
+        () => {
+            selectFile(
+                fileInput.files?.[0]
+            );
+        }
+    );
+
+    validateButton.addEventListener(
+        "click",
+        validateFile
+    );
+
+    copyButton.addEventListener(
+        "click",
+        copyReport
+    );
+
+    clearButton.addEventListener(
+        "click",
+        clearAll
+    );
+
+    [
+        "dragenter",
+        "dragover"
+    ].forEach((eventName) => {
+        dropZone.addEventListener(
+            eventName,
+            (event) => {
+                event.preventDefault();
+                dropZone.dataset.active = "true";
+            }
+        );
+    });
+
+    [
+        "dragleave",
+        "drop"
+    ].forEach((eventName) => {
+        dropZone.addEventListener(
+            eventName,
+            (event) => {
+                event.preventDefault();
+                dropZone.dataset.active = "false";
+            }
+        );
+    });
+
+    dropZone.addEventListener(
+        "drop",
+        (event) => {
+            const file =
+                event.dataTransfer?.files?.[0];
+
+            if (file) {
+                selectFile(file);
+            }
+        }
+    );
+})();
+</script>
+
+</body>
+</html>

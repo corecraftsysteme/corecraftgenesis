@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,7 +9,7 @@
 
   <meta
     name="description"
-    content="Validierungswerkzeuge für Dateien, strukturierte Daten, Routen und technische Projektzustände."
+    content="Interaktive Validierungswerkzeuge für Dateien, JSON, Schemas, Routen, Assets und technische Projektzustände."
   >
 
   <link
@@ -21,27 +22,78 @@
 
 <header class="dev-header">
   <div class="dev-shell">
-<nav class="dev-nav" aria-label="Developer Tools Navigation">
 
-  <a class="dev-brand" href="/products/developer-tools/">
-    Developer <span>Tools</span>
-  </a>
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
 
-  <div class="dev-nav-links">
-    <a data-dev-nav href="/products/developer-tools/automation/">Automation</a>
-    <a data-dev-nav href="/products/developer-tools/validators/">Validators</a>
-    <a data-dev-nav href="/products/developer-tools/generators/">Generators</a>
-    <a data-dev-nav href="/products/developer-tools/diagnostics/">Diagnostics</a>
-    <a data-dev-nav href="/products/developer-tools/data-tools/">Data Tools</a>
-    <a data-dev-nav href="/products/developer-tools/web-tools/">Web Tools</a>
-    <a data-dev-nav href="/products/developer-tools/developer/">Developer</a>
-  </div>
+      <div class="dev-nav-links">
 
-</nav>
+        <a
+          data-dev-nav
+          href="/products/developer-tools/automation/"
+        >
+          Automation
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/validators/"
+        >
+          Validators
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/generators/"
+        >
+          Generators
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/diagnostics/"
+        >
+          Diagnostics
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/data-tools/"
+        >
+          Data Tools
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/web-tools/"
+        >
+          Web Tools
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/developer/"
+        >
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
   </div>
 </header>
 
 <main>
+
+  <!-- HERO -->
 
   <section class="dev-hero">
     <div class="dev-shell">
@@ -50,19 +102,23 @@
         Developer Tools / Validators
       </div>
 
-      <h1>Developer Tools Validators</h1>
+      <h1>
+        Developer Tools Validators
+      </h1>
 
       <p class="dev-lead">
-        Validators prüfen technische Erwartungen, bevor Dateien, Daten oder Seiten veröffentlicht werden.
+        Interaktive Prüfwerkzeuge für Dateien,
+        JSON-Daten, Schemas und technische
+        Projektstrukturen.
       </p>
 
       <div class="dev-actions">
 
         <a
           class="dev-button"
-          href="#overview"
+          href="#interactive-tools"
         >
-          Bereich ansehen
+          Validatoren öffnen
         </a>
 
         <a
@@ -77,7 +133,12 @@
     </div>
   </section>
 
-  <section class="dev-section" id="overview">
+  <!-- OVERVIEW -->
+
+  <section
+    class="dev-section"
+    id="overview"
+  >
     <div class="dev-shell">
 
       <div class="dev-panel">
@@ -86,10 +147,15 @@
           ACTIVE DEVELOPER TOOLS AREA
         </span>
 
-        <h2>Validierung vor Freigabe</h2>
+        <h2>
+          Validierung vor Freigabe
+        </h2>
 
         <p class="dev-lead">
-          Eine Validierung sollte klar zeigen, was geprüft wurde, welches Ergebnis erwartet wurde und warum ein Zustand bestanden oder fehlgeschlagen ist.
+          Technische Validierung macht sichtbar,
+          was geprüft wurde, welches Ergebnis erwartet
+          wird und warum ein Zustand bestanden oder
+          fehlgeschlagen ist.
         </p>
 
       </div>
@@ -97,93 +163,325 @@
     </div>
   </section>
 
-  <section class="dev-section">
+  <!-- INTERACTIVE VALIDATORS -->
+
+  <section
+    class="dev-section"
+    id="interactive-tools"
+  >
     <div class="dev-shell">
 
       <div class="dev-label">
-        Technical Components
+        Interactive Validators
       </div>
 
-      <h2>Kernbereiche</h2>
+      <h2>
+        Verfügbare Validatoren
+      </h2>
+
+      <p class="dev-lead">
+        Die aktiven Browser-Werkzeuge können direkt
+        geöffnet und ohne zusätzliche Installation
+        verwendet werden.
+      </p>
 
       <div class="dev-grid">
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
 
-          <h3>File Validator</h3>
+        <!-- FILE VALIDATOR -->
 
-          <p>
-            Existenz, Größe und erwartete Dateien prüfen.
-          </p>
         <a
-  class="dev-card"
-  href="/products/developer-tools/validators/json/"
->
-  <span class="dev-status">
-    INTERACTIVE TOOL
-  </span>
-
-  <h3>JSON Validator</h3>
-
-  <p>
-    JSON-Syntax direkt im Browser prüfen,
-    Daten formatieren, minimieren und analysieren.
-  </p>
-
-  <p style="margin-top:18px;color:var(--dev-blue);font-weight:700;">
-    JSON Validator öffnen →
-  </p>
-</a>
-        <article class="dev-card">
+          class="dev-card"
+          href="/products/developer-tools/validators/file/"
+        >
           <span class="dev-status">
-            DEVELOPER TOOL
+            INTERACTIVE TOOL
           </span>
 
-          <h3>Route Validator</h3>
+          <h3>
+            File Validator
+          </h3>
 
           <p>
-            Erwartete lokale und veröffentlichte Routen prüfen.
+            Lokale Dateien anhand von Name,
+            Erweiterung, Größe, Typ und Inhalt prüfen.
           </p>
-        </article>
-        <article class="dev-card">
+
+          <p
+            style="
+              margin-top:18px;
+              color:var(--dev-blue);
+              font-weight:700;
+            "
+          >
+            File Validator öffnen →
+          </p>
+        </a>
+
+        <!-- JSON VALIDATOR -->
+
+        <a
+          class="dev-card"
+          href="/products/developer-tools/validators/json/"
+        >
           <span class="dev-status">
-            DEVELOPER TOOL
+            INTERACTIVE TOOL
           </span>
 
-          <h3>Asset Validator</h3>
+          <h3>
+            JSON Validator
+          </h3>
 
           <p>
-            CSS-, JavaScript- und weitere lokale Referenzen kontrollieren.
+            JSON-Syntax direkt im Browser prüfen,
+            Daten formatieren, minimieren
+            und analysieren.
           </p>
-        </article>
-        <article class="dev-card">
+
+          <p
+            style="
+              margin-top:18px;
+              color:var(--dev-blue);
+              font-weight:700;
+            "
+          >
+            JSON Validator öffnen →
+          </p>
+        </a>
+
+        <!-- SCHEMA VALIDATOR -->
+
+        <a
+          class="dev-card"
+          href="/products/developer-tools/validators/schema/"
+        >
           <span class="dev-status">
-            DEVELOPER TOOL
+            INTERACTIVE TOOL
           </span>
 
-          <h3>Structure Validator</h3>
+          <h3>
+            JSON Schema Validator
+          </h3>
 
           <p>
-            Erwartete Verzeichnis- und Projektstrukturen überprüfen.
+            JSON-Daten gegen grundlegende
+            Schema-Regeln direkt im Browser prüfen.
           </p>
-        </article>
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
 
-          <h3>Result Validator</h3>
-
-          <p>
-            PASS- und FAIL-Ergebnisse konsistent zusammenführen.
+          <p
+            style="
+              margin-top:18px;
+              color:var(--dev-blue);
+              font-weight:700;
+            "
+          >
+            Schema Validator öffnen →
           </p>
-        </article>
+        </a>
+
       </div>
 
     </div>
   </section>
+
+  <!-- VALIDATION CAPABILITIES -->
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Validation Capabilities
+      </div>
+
+      <h2>
+        Technische Prüfbereiche
+      </h2>
+
+      <p class="dev-lead">
+        Die Validator-Suite verbindet konkrete Browser-Tools
+        mit weiteren technischen Prüfbereichen.
+      </p>
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            FILE
+          </span>
+
+          <h3>
+            File Validation
+          </h3>
+
+          <p>
+            Dateiname, Erweiterung, Größe,
+            Typ und lesbaren Inhalt untersuchen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            JSON
+          </span>
+
+          <h3>
+            JSON Validation
+          </h3>
+
+          <p>
+            JSON-Syntax und strukturierte
+            Dateneingaben kontrollieren.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            SCHEMA
+          </span>
+
+          <h3>
+            Schema Validation
+          </h3>
+
+          <p>
+            JSON-Daten gegen definierte
+            Strukturen und Regeln prüfen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            ROUTES
+          </span>
+
+          <h3>
+            Route Validation
+          </h3>
+
+          <p>
+            Erwartete lokale und veröffentlichte
+            Routen systematisch kontrollieren.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            ASSETS
+          </span>
+
+          <h3>
+            Asset Validation
+          </h3>
+
+          <p>
+            CSS-, JavaScript- und weitere
+            lokale Referenzen kontrollieren.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STRUCTURE
+          </span>
+
+          <h3>
+            Structure Validation
+          </h3>
+
+          <p>
+            Erwartete Verzeichnis- und
+            Projektstrukturen überprüfen.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Validation Workflow
+      </div>
+
+      <h2>
+        Von der Eingabe zum Ergebnis
+      </h2>
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 01
+          </span>
+
+          <h3>
+            Eingabe
+          </h3>
+
+          <p>
+            Daten oder Dateien werden dem jeweiligen
+            Validator als kontrollierte Eingabe übergeben.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 02
+          </span>
+
+          <h3>
+            Prüfung
+          </h3>
+
+          <p>
+            Das Werkzeug führt seine definierten
+            Validierungsregeln aus.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 03
+          </span>
+
+          <h3>
+            Ergebnis
+          </h3>
+
+          <p>
+            PASS-, FAIL- und Detailinformationen
+            werden nachvollziehbar ausgegeben.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
 
   <section class="dev-section">
     <div class="dev-shell">
@@ -196,14 +494,32 @@
             PRINCIPLES
           </span>
 
-          <h2>Technische Grundsätze</h2>
+          <h2>
+            Technische Grundsätze
+          </h2>
 
           <ul class="dev-list">
-              <li>Prüfbedingungen vor der Ausführung definieren</li>
-              <li>Fehler mit konkretem Ziel und Ursache melden</li>
-              <li>Struktur und Inhalt getrennt validieren</li>
-              <li>Validierung reproduzierbar halten</li>
-              <li>Finales Ergebnis eindeutig ausgeben</li>
+
+            <li>
+              Prüfbedingungen vor der Ausführung definieren
+            </li>
+
+            <li>
+              Fehler mit konkreter Ursache ausgeben
+            </li>
+
+            <li>
+              Struktur und Inhalt getrennt behandeln
+            </li>
+
+            <li>
+              Validierung reproduzierbar gestalten
+            </li>
+
+            <li>
+              PASS- und FAIL-Ergebnisse klar unterscheiden
+            </li>
+
           </ul>
 
         </article>
@@ -214,15 +530,19 @@
             STRUCTURED DATA
           </span>
 
-          <h2>Datenquelle</h2>
+          <h2>
+            Datenquelle
+          </h2>
 
           <p>
-            Dieser Bereich verwendet gemeinsame,
+            Der Validator-Bereich verwendet gemeinsame,
             lokal validierte Developer-Tools-Daten.
           </p>
 
           <p>
-            <a href="/products/developer-tools/data/capabilities.json">
+            <a
+              href="/products/developer-tools/data/capabilities.json"
+            >
               capabilities.json öffnen
             </a>
           </p>
@@ -235,12 +555,14 @@
             AUDIT
           </span>
 
-          <h2>Qualitätssicherung</h2>
+          <h2>
+            Qualitätssicherung
+          </h2>
 
           <p>
-            Seiten, JSON-Dateien, interne Links,
-            Routen und Asset-Verweise werden vor
-            einer Veröffentlichung validiert.
+            Tool-Seiten, interne Links, Routen,
+            JSON-Dateien und Asset-Verweise werden
+            durch den Developer-Tools-Audit geprüft.
           </p>
 
         </article>
@@ -249,6 +571,8 @@
 
     </div>
   </section>
+
+  <!-- RELATED AREAS -->
 
   <section class="dev-section">
     <div class="dev-shell">
@@ -259,16 +583,40 @@
           DEVELOPER TOOLS
         </span>
 
-        <h2>Weitere Tool-Bereiche</h2>
+        <h2>
+          Weitere Tool-Bereiche
+        </h2>
 
         <div class="dev-nav-links">
-          <a href="/products/developer-tools/automation/">Automation</a>
-          <a href="/products/developer-tools/validators/">Validators</a>
-          <a href="/products/developer-tools/generators/">Generators</a>
-          <a href="/products/developer-tools/diagnostics/">Diagnostics</a>
-          <a href="/products/developer-tools/data-tools/">Data Tools</a>
-          <a href="/products/developer-tools/web-tools/">Web Tools</a>
-          <a href="/products/developer-tools/developer/">Developer</a>
+
+          <a href="/products/developer-tools/automation/">
+            Automation
+          </a>
+
+          <a href="/products/developer-tools/validators/">
+            Validators
+          </a>
+
+          <a href="/products/developer-tools/generators/">
+            Generators
+          </a>
+
+          <a href="/products/developer-tools/diagnostics/">
+            Diagnostics
+          </a>
+
+          <a href="/products/developer-tools/data-tools/">
+            Data Tools
+          </a>
+
+          <a href="/products/developer-tools/web-tools/">
+            Web Tools
+          </a>
+
+          <a href="/products/developer-tools/developer/">
+            Developer
+          </a>
+
         </div>
 
       </div>
@@ -288,11 +636,21 @@
     </p>
 
     <p>
-      <a href="/products/">Alle Produkte</a>
+      <a href="/products/">
+        Alle Produkte
+      </a>
+
       ·
-      <a href="/docs/">Dokumentation</a>
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+
       ·
-      <a href="/contact/">Kontakt</a>
+
+      <a href="/contact/">
+        Kontakt
+      </a>
     </p>
 
   </div>
