@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Route Checker | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Browserbasierter Route Checker für HTTP-Status, Weiterleitungen, Antwortzeiten und erreichbare Webrouten."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/developer-tools/assets/css/developer-tools.css"
+  >
+
+  <style>
+    .route-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .route-button {
+      min-height: 42px;
+      padding: .65rem .9rem;
+
+      cursor: pointer;
+
+      background: var(--dev-surface);
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      font-weight: 650;
+    }
+
+    .route-button:hover,
+    .route-button:focus-visible {
+      border-color: var(--dev-blue);
+    }
+
+    .route-primary {
+      background: var(--dev-blue);
+      color: #001326;
+      border-color: var(--dev-blue);
+    }
+
+    .route-input {
+      width: 100%;
+      min-height: 300px;
+      resize: vertical;
+
+      display: block;
+      padding: 1.25rem;
+
+      background: #030609;
+      color: #d9ecff;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+
+      outline: none;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .87rem;
+      line-height: 1.55;
+    }
+
+    .route-input:focus {
+      border-color: var(--dev-blue);
+    }
+
+    .route-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      margin: 1rem 0;
+    }
+
+    .route-option {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .route-option label {
+      display: block;
+      margin-bottom: .5rem;
+
+      color: var(--dev-muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .route-field {
+      width: 100%;
+      min-height: 42px;
+
+      padding: .65rem .8rem;
+
+      background: #030609;
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+    }
+
+    .route-status {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .route-status[data-state="pass"] {
+      color: var(--dev-green);
+      background: rgba(66, 211, 146, .07);
+      border-color: rgba(66, 211, 146, .45);
+    }
+
+    .route-status[data-state="fail"] {
+      color: #ff8d8d;
+      background: rgba(255, 90, 90, .07);
+      border-color: rgba(255, 90, 90, .45);
+    }
+
+    .route-stats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+
+      margin-bottom: 1rem;
+    }
+
+    .route-stat {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .route-stat-label {
+      margin-bottom: .35rem;
+
+      color: var(--dev-muted);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .7rem;
+    }
+
+    .route-stat-value {
+      color: var(--dev-text);
+      font-weight: 700;
+    }
+
+    .route-results {
+      display: grid;
+      gap: .75rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .route-result {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .route-result[data-state="pass"] {
+      border-color: rgba(66, 211, 146, .4);
+    }
+
+    .route-result[data-state="fail"] {
+      border-color: rgba(255, 90, 90, .4);
+    }
+
+    .route-result[data-state="blocked"] {
+      border-color: rgba(255, 190, 80, .4);
+    }
+
+    .route-result-head {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      margin-bottom: .5rem;
+    }
+
+    .route-url {
+      color: var(--dev-blue);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .82rem;
+
+      overflow-wrap: anywhere;
+    }
+
+    .route-code {
+      color: var(--dev-green);
+      font-weight: 700;
+    }
+
+    .route-code[data-state="fail"] {
+      color: #ff8d8d;
+    }
+
+    .route-detail {
+      color: var(--dev-muted);
+      font-size: .84rem;
+
+      overflow-wrap: anywhere;
+    }
+
+    .route-note {
+      margin-top: 1rem;
+
+      color: var(--dev-muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 900px) {
+      .route-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .route-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .route-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="route-checker">
+
+<header class="dev-header">
+  <div class="dev-shell">
+
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
+
+      <div class="dev-nav-links">
+
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a href="/products/developer-tools/validators/">
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a href="/products/developer-tools/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a href="/products/developer-tools/data-tools/">
+          Data Tools
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/web-tools/"
+        >
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dev-hero">
+    <div class="dev-shell">
+
+      <div class="dev-eyebrow">
+        Developer Tools / Web Tools
+      </div>
+
+      <h1>
+        Route Checker
+      </h1>
+
+      <p class="dev-lead">
+        Webrouten auf HTTP-Status, Erreichbarkeit,
+        Weiterleitungen und Antwortzeiten prüfen.
+      </p>
+
+      <div class="dev-actions">
+
+        <a
+          class="dev-button"
+          href="#checker"
+        >
+          Route Checker öffnen
+        </a>
+
+        <a
+          class="dev-button dev-button-secondary"
+          href="/products/developer-tools/web-tools/"
+        >
+          Web Tools Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section
+    class="dev-section"
+    id="checker"
+  >
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Interactive Developer Tool
+      </div>
+
+      <h2>
+        Routen prüfen.
+      </h2>
+
+      <p class="dev-lead">
+        Trage eine vollständige Adresse oder relative Routen ein.
+        Jede Zeile wird separat geprüft.
+      </p>
+
+      <div class="route-options">
+
+        <div class="route-option">
+
+          <label for="baseUrl">
+            Basisadresse für relative Routen
+          </label>
+
+          <input
+            class="route-field"
+            id="baseUrl"
+            type="url"
+            value="https://corecraftgenesis.ch/"
+            placeholder="https://example.com/"
+          >
+
+        </div>
+
+        <div class="route-option">
+
+          <label for="timeoutValue">
+            Zeitlimit je Route in Sekunden
+          </label>
+
+          <input
+            class="route-field"
+            id="timeoutValue"
+            type="number"
+            min="1"
+            max="60"
+            step="1"
+            value="15"
+          >
+
+        </div>
+
+      </div>
+
+      <textarea
+        class="route-input"
+        id="routeInput"
+        spellcheck="false"
+        autocomplete="off"
+        aria-label="Zu prüfende Routen"
+        placeholder="/products/developer-tools/
+/products/developer-tools/validators/
+/products/developer-tools/data-tools/
+https://corecraftgenesis.ch/products/documentation/"
+      ></textarea>
+
+      <div class="route-toolbar">
+
+        <button
+          class="route-button route-primary"
+          id="checkButton"
+          type="button"
+        >
+          Routen prüfen
+        </button>
+
+        <button
+          class="route-button"
+          id="exampleButton"
+          type="button"
+        >
+          Beispiele laden
+        </button>
+
+        <button
+          class="route-button"
+          id="copyButton"
+          type="button"
+        >
+          Bericht kopieren
+        </button>
+
+        <button
+          class="route-button"
+          id="clearButton"
+          type="button"
+        >
+          Leeren
+        </button>
+
+      </div>
+
+      <div
+        class="route-status"
+        id="status"
+        data-state="neutral"
+        role="status"
+        aria-live="polite"
+      >
+        Bereit. Routen eingeben.
+      </div>
+
+      <div class="route-stats">
+
+        <div class="route-stat">
+          <div class="route-stat-label">
+            ROUTES
+          </div>
+
+          <div
+            class="route-stat-value"
+            id="totalValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="route-stat">
+          <div class="route-stat-label">
+            PASS
+          </div>
+
+          <div
+            class="route-stat-value"
+            id="passValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="route-stat">
+          <div class="route-stat-label">
+            FAIL
+          </div>
+
+          <div
+            class="route-stat-value"
+            id="failValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="route-stat">
+          <div class="route-stat-label">
+            BLOCKED
+          </div>
+
+          <div
+            class="route-stat-value"
+            id="blockedValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="route-stat">
+          <div class="route-stat-label">
+            AVERAGE TIME
+          </div>
+
+          <div
+            class="route-stat-value"
+            id="averageValue"
+          >
+            0 ms
+          </div>
+        </div>
+
+      </div>
+
+      <ul
+        class="route-results"
+        id="resultList"
+      >
+        <li
+          class="route-result"
+          data-state="info"
+        >
+          Noch keine Prüfung durchgeführt.
+        </li>
+      </ul>
+
+      <p class="route-note">
+        Browser-Prüfungen fremder Domains können durch
+        Cross-Origin-Regeln blockiert werden. Ein BLOCKED-Ergebnis
+        ist deshalb kein sicherer Nachweis, dass eine Route offline ist.
+      </p>
+
+      <p class="route-note">
+        Für einen verbindlichen Produktionscheck sollte zusätzlich
+        ein serverseitiger oder PowerShell-basierter HTTP-Audit
+        durchgeführt werden.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            HTTP
+          </span>
+
+          <h3>
+            Statusprüfung
+          </h3>
+
+          <p>
+            Erfolgreiche und fehlerhafte HTTP-Antworten
+            werden anhand des Rückgabestatus eingeordnet.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            REDIRECT
+          </span>
+
+          <h3>
+            Weiterleitungen
+          </h3>
+
+          <p>
+            Die endgültige Antwortadresse wird nach
+            automatischen Weiterleitungen angezeigt.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            TIMING
+          </span>
+
+          <h3>
+            Antwortzeit
+          </h3>
+
+          <p>
+            Die Dauer jeder Browser-Anfrage wird
+            in Millisekunden protokolliert.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="dev-footer">
+  <div class="dev-shell">
+
+    <p>
+      &copy;
+      <span data-dev-year>2026</span>
+      CoreCraft Genesis · Route Checker
+    </p>
+
+    <p>
+      <a href="/products/developer-tools/">
+        Developer Tools
+      </a>
+
+      ·
+
+      <a href="/products/developer-tools/web-tools/">
+        Web Tools
+      </a>
+
+      ·
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+    </p>
+
+  </div>
+</footer>
+
+<script src="/products/developer-tools/assets/js/developer-tools.js"></script>
+<script src="/products/developer-tools/assets/js/ui.js"></script>
+
+<script>
+"use strict";
+
+(() => {
+    const routeInput =
+        document.getElementById("routeInput");
+
+    const baseUrl =
+        document.getElementById("baseUrl");
+
+    const timeoutValue =
+        document.getElementById("timeoutValue");
+
+    const checkButton =
+        document.getElementById("checkButton");
+
+    const exampleButton =
+        document.getElementById("exampleButton");
+
+    const copyButton =
+        document.getElementById("copyButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const status =
+        document.getElementById("status");
+
+    const resultList =
+        document.getElementById("resultList");
+
+    const totalValue =
+        document.getElementById("totalValue");
+
+    const passValue =
+        document.getElementById("passValue");
+
+    const failValue =
+        document.getElementById("failValue");
+
+    const blockedValue =
+        document.getElementById("blockedValue");
+
+    const averageValue =
+        document.getElementById("averageValue");
+
+    let currentReport = "";
+
+    function setStatus(state, message) {
+        status.dataset.state = state;
+        status.textContent = message;
+    }
+
+    function getRoutes() {
+        return Array.from(
+            new Set(
+                routeInput.value
+                    .split(/\r?\n/)
+                    .map((value) => value.trim())
+                    .filter(Boolean)
+            )
+        );
+    }
+
+    function normalizeUrl(route) {
+        try {
+            return new URL(route).href;
+        }
+        catch {
+            const base =
+                baseUrl.value.trim();
+
+            if (!base) {
+                throw new Error(
+                    `Relative Route ohne Basisadresse: ${route}`
+                );
+            }
+
+            return new URL(route, base).href;
+        }
+    }
+
+    async function checkRoute(route) {
+        let url;
+
+        try {
+            url = normalizeUrl(route);
+        }
+        catch (error) {
+            return {
+                route,
+                url: route,
+                finalUrl: "",
+                state: "fail",
+                code: "INVALID",
+                duration: 0,
+                redirected: false,
+                message:
+                    error instanceof Error
+                        ? error.message
+                        : String(error)
+            };
+        }
+
+        const seconds =
+            Number(timeoutValue.value);
+
+        const timeout =
+            Number.isFinite(seconds) &&
+            seconds > 0
+                ? seconds * 1000
+                : 15000;
+
+        const controller =
+            new AbortController();
+
+        const timer =
+            window.setTimeout(
+                () => controller.abort(),
+                timeout
+            );
+
+        const started =
+            performance.now();
+
+        try {
+            const response =
+                await fetch(
+                    url,
+                    {
+                        method: "GET",
+                        redirect: "follow",
+                        credentials: "omit",
+                        cache: "no-store",
+                        signal: controller.signal
+                    }
+                );
+
+            const duration =
+                Math.round(
+                    performance.now() - started
+                );
+
+            return {
+                route,
+                url,
+                finalUrl: response.url || url,
+                state:
+                    response.ok
+                        ? "pass"
+                        : "fail",
+                code: String(response.status),
+                duration,
+                redirected:
+                    response.redirected ||
+                    Boolean(
+                        response.url &&
+                        response.url !== url
+                    ),
+                message:
+                    response.statusText ||
+                    (
+                        response.ok
+                            ? "HTTP request successful"
+                            : "HTTP request failed"
+                    )
+            };
+        }
+        catch (error) {
+            const duration =
+                Math.round(
+                    performance.now() - started
+                );
+
+            const aborted =
+                error instanceof DOMException &&
+                error.name === "AbortError";
+
+            return {
+                route,
+                url,
+                finalUrl: "",
+                state:
+                    aborted
+                        ? "fail"
+                        : "blocked",
+                code:
+                    aborted
+                        ? "TIMEOUT"
+                        : "BLOCKED",
+                duration,
+                redirected: false,
+                message:
+                    aborted
+                        ? `Zeitlimit von ${timeout} ms überschritten.`
+                        : (
+                            error instanceof Error
+                                ? error.message
+                                : String(error)
+                        )
+            };
+        }
+        finally {
+            window.clearTimeout(timer);
+        }
+    }
+
+    function renderResults(results) {
+        resultList.innerHTML = "";
+
+        results.forEach((result) => {
+            const item =
+                document.createElement("li");
+
+            item.className = "route-result";
+            item.dataset.state = result.state;
+
+            const head =
+                document.createElement("div");
+
+            head.className = "route-result-head";
+
+            const url =
+                document.createElement("span");
+
+            url.className = "route-url";
+            url.textContent = result.url;
+
+            const code =
+                document.createElement("span");
+
+            code.className = "route-code";
+            code.dataset.state =
+                result.state === "pass"
+                    ? "pass"
+                    : "fail";
+
+            code.textContent =
+                `${result.code} · ${result.duration} ms`;
+
+            const details =
+                document.createElement("div");
+
+            details.className = "route-detail";
+
+            const redirectText =
+                result.redirected
+                    ? ` · Redirect → ${result.finalUrl}`
+                    : "";
+
+            details.textContent =
+                `${result.message}${redirectText}`;
+
+            head.append(url, code);
+            item.append(head, details);
+
+            resultList.appendChild(item);
+        });
+    }
+
+    async function runCheck() {
+        const routes =
+            getRoutes();
+
+        if (routes.length === 0) {
+            setStatus(
+                "fail",
+                "Bitte mindestens eine Route eingeben."
+            );
+
+            return;
+        }
+
+        checkButton.disabled = true;
+
+        setStatus(
+            "neutral",
+            `${routes.length} Route(n) werden geprüft.`
+        );
+
+        resultList.innerHTML = "";
+
+        const results = [];
+
+        for (const route of routes) {
+            const result =
+                await checkRoute(route);
+
+            results.push(result);
+
+            renderResults(results);
+        }
+
+        const passed =
+            results.filter(
+                (result) =>
+                    result.state === "pass"
+            );
+
+        const failed =
+            results.filter(
+                (result) =>
+                    result.state === "fail"
+            );
+
+        const blocked =
+            results.filter(
+                (result) =>
+                    result.state === "blocked"
+            );
+
+        const measured =
+            results.filter(
+                (result) =>
+                    result.duration > 0
+            );
+
+        const average =
+            measured.length > 0
+                ? Math.round(
+                    measured.reduce(
+                        (sum, result) =>
+                            sum + result.duration,
+                        0
+                    ) / measured.length
+                )
+                : 0;
+
+        totalValue.textContent =
+            String(results.length);
+
+        passValue.textContent =
+            String(passed.length);
+
+        failValue.textContent =
+            String(failed.length);
+
+        blockedValue.textContent =
+            String(blocked.length);
+
+        averageValue.textContent =
+            `${average} ms`;
+
+        currentReport = [
+            "Route Checker Report",
+            `Routes: ${results.length}`,
+            `Pass: ${passed.length}`,
+            `Fail: ${failed.length}`,
+            `Blocked: ${blocked.length}`,
+            `Average: ${average} ms`,
+            "",
+            ...results.map(
+                (result) =>
+                    `[${result.state.toUpperCase()}] ` +
+                    `${result.code} ${result.url} ` +
+                    `(${result.duration} ms) ` +
+                    `${result.message}` +
+                    (
+                        result.redirected
+                            ? ` -> ${result.finalUrl}`
+                            : ""
+                    )
+            )
+        ].join("\n");
+
+        if (
+            failed.length === 0 &&
+            blocked.length === 0
+        ) {
+            setStatus(
+                "pass",
+                "Alle Routen wurden erfolgreich geprüft."
+            );
+        }
+        else {
+            setStatus(
+                "fail",
+                `${failed.length} fehlgeschlagen, ` +
+                `${blocked.length} durch Browser-Regeln blockiert.`
+            );
+        }
+
+        checkButton.disabled = false;
+    }
+
+    function loadExample() {
+        routeInput.value =
+`/products/developer-tools/
+/products/developer-tools/validators/
+/products/developer-tools/validators/json/
+/products/developer-tools/validators/schema/
+/products/developer-tools/validators/file/
+/products/developer-tools/diagnostics/sha256/
+/products/developer-tools/data-tools/json-formatter/
+/products/developer-tools/data-tools/data-inspector/`;
+
+        setStatus(
+            "neutral",
+            "Beispielrouten geladen."
+        );
+    }
+
+    async function copyReport() {
+        if (!currentReport) {
+            setStatus(
+                "fail",
+                "Noch kein Prüfbericht vorhanden."
+            );
+
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(
+                currentReport
+            );
+
+            setStatus(
+                "pass",
+                "Routenbericht wurde kopiert."
+            );
+        }
+        catch {
+            setStatus(
+                "fail",
+                "Zwischenablage konnte nicht verwendet werden."
+            );
+        }
+    }
+
+    function clearAll() {
+        routeInput.value = "";
+
+        currentReport = "";
+
+        totalValue.textContent = "0";
+        passValue.textContent = "0";
+        failValue.textContent = "0";
+        blockedValue.textContent = "0";
+        averageValue.textContent = "0 ms";
+
+        resultList.innerHTML =
+            '<li class="route-result" data-state="info">' +
+            'Noch keine Prüfung durchgeführt.' +
+            '</li>';
+
+        setStatus(
+            "neutral",
+            "Bereit. Routen eingeben."
+        );
+
+        routeInput.focus();
+    }
+
+    checkButton.addEventListener(
+        "click",
+        runCheck
+    );
+
+    exampleButton.addEventListener(
+        "click",
+        loadExample
+    );
+
+    copyButton.addEventListener(
+        "click",
+        copyReport
+    );
+
+    clearButton.addEventListener(
+        "click",
+        clearAll
+    );
+})();
+</script>
+
+</body>
+</html>

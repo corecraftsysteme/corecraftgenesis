@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data Inspector | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Lokaler Data Inspector zur Analyse von JSON-Strukturen, Datentypen, Pfaden, Schlüsseln und Verschachtelungstiefen."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/developer-tools/assets/css/developer-tools.css"
+  >
+
+  <style>
+    .inspector-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .inspector-button {
+      min-height: 42px;
+      padding: .65rem .9rem;
+
+      cursor: pointer;
+
+      background: var(--dev-surface);
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      font-weight: 650;
+    }
+
+    .inspector-button:hover,
+    .inspector-button:focus-visible {
+      border-color: var(--dev-blue);
+    }
+
+    .inspector-primary {
+      background: var(--dev-blue);
+      color: #001326;
+      border-color: var(--dev-blue);
+    }
+
+    .inspector-search {
+      min-height: 42px;
+      min-width: 220px;
+      flex: 1;
+
+      padding: .65rem .8rem;
+
+      background: #030609;
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+    }
+
+    .inspector-search:focus {
+      outline: none;
+      border-color: var(--dev-blue);
+    }
+
+    .inspector-status {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .inspector-status[data-state="pass"] {
+      color: var(--dev-green);
+      background: rgba(66, 211, 146, .07);
+      border-color: rgba(66, 211, 146, .45);
+    }
+
+    .inspector-status[data-state="fail"] {
+      color: #ff8d8d;
+      background: rgba(255, 90, 90, .07);
+      border-color: rgba(255, 90, 90, .45);
+    }
+
+    .inspector-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .inspector-textarea {
+      width: 100%;
+      min-height: 620px;
+      resize: vertical;
+
+      display: block;
+      padding: 1.25rem;
+
+      background: #030609;
+      color: #d9ecff;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+
+      outline: none;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .86rem;
+      line-height: 1.55;
+
+      tab-size: 2;
+    }
+
+    .inspector-textarea:focus {
+      border-color: var(--dev-blue);
+    }
+
+    .inspector-output {
+      min-height: 620px;
+      max-height: 820px;
+      overflow: auto;
+
+      padding: 1rem;
+
+      background: #030609;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .inspector-empty {
+      color: var(--dev-muted);
+    }
+
+    .tree-list {
+      display: grid;
+      gap: .45rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .8rem;
+    }
+
+    .tree-node {
+      padding: .65rem .75rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+    }
+
+    .tree-node[data-visible="false"] {
+      display: none;
+    }
+
+    .tree-path {
+      color: var(--dev-blue);
+      overflow-wrap: anywhere;
+    }
+
+    .tree-type {
+      margin-left: .5rem;
+      color: var(--dev-green);
+    }
+
+    .tree-value {
+      display: block;
+
+      margin-top: .3rem;
+
+      color: var(--dev-muted);
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .inspector-stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .inspector-stat {
+      min-width: 0;
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .inspector-stat-label {
+      margin-bottom: .4rem;
+
+      color: var(--dev-muted);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .7rem;
+    }
+
+    .inspector-stat-value {
+      color: var(--dev-text);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .inspector-note {
+      margin-top: 1rem;
+
+      color: var(--dev-muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 1080px) {
+      .inspector-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .inspector-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .inspector-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="data-inspector">
+
+<header class="dev-header">
+  <div class="dev-shell">
+
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
+
+      <div class="dev-nav-links">
+
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a href="/products/developer-tools/validators/">
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a href="/products/developer-tools/diagnostics/">
+          Diagnostics
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/data-tools/"
+        >
+          Data Tools
+        </a>
+
+        <a href="/products/developer-tools/web-tools/">
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dev-hero">
+    <div class="dev-shell">
+
+      <div class="dev-eyebrow">
+        Developer Tools / Data Tools
+      </div>
+
+      <h1>
+        Data Inspector
+      </h1>
+
+      <p class="dev-lead">
+        JSON-Strukturen analysieren, Datentypen zählen,
+        Pfade durchsuchen und Verschachtelungen sichtbar machen.
+      </p>
+
+      <div class="dev-actions">
+
+        <a
+          class="dev-button"
+          href="#inspector"
+        >
+          Inspector öffnen
+        </a>
+
+        <a
+          class="dev-button dev-button-secondary"
+          href="/products/developer-tools/data-tools/"
+        >
+          Data Tools Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section
+    class="dev-section"
+    id="inspector"
+  >
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Interactive Developer Tool
+      </div>
+
+      <h2>
+        Datenstruktur untersuchen.
+      </h2>
+
+      <p class="dev-lead">
+        Füge JSON ein. Das Tool erzeugt daraus eine
+        durchsuchbare Pfadansicht und berechnet technische
+        Strukturstatistiken.
+      </p>
+
+      <div class="inspector-toolbar">
+
+        <button
+          class="inspector-button inspector-primary"
+          id="inspectButton"
+          type="button"
+        >
+          Daten analysieren
+        </button>
+
+        <button
+          class="inspector-button"
+          id="exampleButton"
+          type="button"
+        >
+          Beispiel laden
+        </button>
+
+        <button
+          class="inspector-button"
+          id="formatButton"
+          type="button"
+        >
+          JSON formatieren
+        </button>
+
+        <button
+          class="inspector-button"
+          id="copyButton"
+          type="button"
+        >
+          Bericht kopieren
+        </button>
+
+        <button
+          class="inspector-button"
+          id="clearButton"
+          type="button"
+        >
+          Leeren
+        </button>
+
+        <input
+          class="inspector-search"
+          id="searchInput"
+          type="search"
+          placeholder="Pfad, Schlüssel, Typ oder Wert suchen"
+          aria-label="Analyseergebnisse durchsuchen"
+        >
+
+      </div>
+
+      <div
+        class="inspector-status"
+        id="status"
+        data-state="neutral"
+        role="status"
+        aria-live="polite"
+      >
+        Bereit. JSON-Daten in das Eingabefeld einfügen.
+      </div>
+
+      <div class="inspector-layout">
+
+        <div>
+
+          <div class="dev-label">
+            JSON Input
+          </div>
+
+          <textarea
+            class="inspector-textarea"
+            id="jsonInput"
+            spellcheck="false"
+            autocomplete="off"
+            aria-label="JSON Eingabe"
+            placeholder='{
+  "product": "CoreCraft Genesis",
+  "active": true,
+  "tools": [
+    "validator",
+    "formatter",
+    "inspector"
+  ]
+}'
+          ></textarea>
+
+        </div>
+
+        <div>
+
+          <div class="dev-label">
+            Data Paths
+          </div>
+
+          <div
+            class="inspector-output"
+            id="output"
+          >
+            <p class="inspector-empty">
+              Noch keine Daten analysiert.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="inspector-stats">
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            ROOT TYPE
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="rootTypeValue"
+          >
+            —
+          </div>
+        </div>
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            TOTAL NODES
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="nodeValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            OBJECTS
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="objectValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            ARRAYS
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="arrayValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            PRIMITIVES
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="primitiveValue"
+          >
+            0
+          </div>
+        </div>
+
+        <div class="inspector-stat">
+          <div class="inspector-stat-label">
+            MAX DEPTH
+          </div>
+
+          <div
+            class="inspector-stat-value"
+            id="depthValue"
+          >
+            0
+          </div>
+        </div>
+
+      </div>
+
+      <p class="inspector-note">
+        Die Analyse erfolgt clientseitig im Browser.
+        Daten werden für diese Prüfung nicht an einen Server übertragen.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            PATHS
+          </span>
+
+          <h3>
+            Datenpfade
+          </h3>
+
+          <p>
+            Verschachtelte Objekt- und Arraywerte werden
+            mit eindeutigen Pfaden ausgegeben.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            TYPES
+          </span>
+
+          <h3>
+            Typanalyse
+          </h3>
+
+          <p>
+            Objekte, Arrays, Strings, Zahlen,
+            Boolean-Werte und Null werden erkannt.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            SEARCH
+          </span>
+
+          <h3>
+            Struktur durchsuchen
+          </h3>
+
+          <p>
+            Ergebnisse können nach Pfad,
+            Schlüssel, Typ oder Wert gefiltert werden.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="dev-footer">
+  <div class="dev-shell">
+
+    <p>
+      &copy;
+      <span data-dev-year>2026</span>
+      CoreCraft Genesis · Data Inspector
+    </p>
+
+    <p>
+      <a href="/products/developer-tools/">
+        Developer Tools
+      </a>
+
+      ·
+
+      <a href="/products/developer-tools/data-tools/">
+        Data Tools
+      </a>
+
+      ·
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+    </p>
+
+  </div>
+</footer>
+
+<script src="/products/developer-tools/assets/js/developer-tools.js"></script>
+<script src="/products/developer-tools/assets/js/ui.js"></script>
+
+<script>
+"use strict";
+
+(() => {
+    const input =
+        document.getElementById("jsonInput");
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const inspectButton =
+        document.getElementById("inspectButton");
+
+    const exampleButton =
+        document.getElementById("exampleButton");
+
+    const formatButton =
+        document.getElementById("formatButton");
+
+    const copyButton =
+        document.getElementById("copyButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const rootTypeValue =
+        document.getElementById("rootTypeValue");
+
+    const nodeValue =
+        document.getElementById("nodeValue");
+
+    const objectValue =
+        document.getElementById("objectValue");
+
+    const arrayValue =
+        document.getElementById("arrayValue");
+
+    const primitiveValue =
+        document.getElementById("primitiveValue");
+
+    const depthValue =
+        document.getElementById("depthValue");
+
+    let currentRows = [];
+    let currentReport = "";
+
+    function setStatus(state, message) {
+        status.dataset.state = state;
+        status.textContent = message;
+    }
+
+    function getType(value) {
+        if (value === null) {
+            return "null";
+        }
+
+        if (Array.isArray(value)) {
+            return "array";
+        }
+
+        if (
+            typeof value === "number" &&
+            Number.isInteger(value)
+        ) {
+            return "integer";
+        }
+
+        return typeof value;
+    }
+
+    function createPreview(value, type) {
+        if (type === "object") {
+            return `{${Object.keys(value).length} properties}`;
+        }
+
+        if (type === "array") {
+            return `[${value.length} items]`;
+        }
+
+        if (type === "string") {
+            const shortened =
+                value.length > 180
+                    ? `${value.slice(0, 180)}…`
+                    : value;
+
+            return JSON.stringify(shortened);
+        }
+
+        return JSON.stringify(value);
+    }
+
+    function inspectValue(
+        value,
+        path,
+        depth,
+        rows,
+        stats
+    ) {
+        const type =
+            getType(value);
+
+        rows.push({
+            path,
+            type,
+            value: createPreview(value, type),
+            depth
+        });
+
+        stats.nodes += 1;
+        stats.maxDepth =
+            Math.max(stats.maxDepth, depth);
+
+        if (type === "object") {
+            stats.objects += 1;
+
+            Object.entries(value).forEach(
+                ([key, child]) => {
+                    const safeKey =
+                        /^[A-Za-z_$][\w$]*$/.test(key);
+
+                    const childPath =
+                        safeKey
+                            ? `${path}.${key}`
+                            : `${path}[${JSON.stringify(key)}]`;
+
+                    inspectValue(
+                        child,
+                        childPath,
+                        depth + 1,
+                        rows,
+                        stats
+                    );
+                }
+            );
+
+            return;
+        }
+
+        if (type === "array") {
+            stats.arrays += 1;
+
+            value.forEach((child, index) => {
+                inspectValue(
+                    child,
+                    `${path}[${index}]`,
+                    depth + 1,
+                    rows,
+                    stats
+                );
+            });
+
+            return;
+        }
+
+        stats.primitives += 1;
+    }
+
+    function renderRows(rows) {
+        output.innerHTML = "";
+
+        if (rows.length === 0) {
+            output.innerHTML =
+                '<p class="inspector-empty">' +
+                'Keine passenden Ergebnisse gefunden.' +
+                '</p>';
+
+            return;
+        }
+
+        const list =
+            document.createElement("ul");
+
+        list.className = "tree-list";
+
+        rows.forEach((row) => {
+            const item =
+                document.createElement("li");
+
+            item.className = "tree-node";
+
+            item.dataset.search =
+                `${row.path} ${row.type} ${row.value}`
+                    .toLowerCase();
+
+            const path =
+                document.createElement("span");
+
+            path.className = "tree-path";
+            path.textContent = row.path;
+
+            const type =
+                document.createElement("span");
+
+            type.className = "tree-type";
+            type.textContent =
+                `[${row.type.toUpperCase()}]`;
+
+            const value =
+                document.createElement("span");
+
+            value.className = "tree-value";
+            value.textContent = row.value;
+
+            item.append(
+                path,
+                type,
+                value
+            );
+
+            list.appendChild(item);
+        });
+
+        output.appendChild(list);
+    }
+
+    function resetStats() {
+        rootTypeValue.textContent = "—";
+        nodeValue.textContent = "0";
+        objectValue.textContent = "0";
+        arrayValue.textContent = "0";
+        primitiveValue.textContent = "0";
+        depthValue.textContent = "0";
+    }
+
+    function inspectData() {
+        try {
+            const text =
+                input.value.trim();
+
+            if (!text) {
+                throw new Error(
+                    "Bitte JSON-Daten eingeben."
+                );
+            }
+
+            const data =
+                JSON.parse(text);
+
+            const rows = [];
+
+            const stats = {
+                nodes: 0,
+                objects: 0,
+                arrays: 0,
+                primitives: 0,
+                maxDepth: 0
+            };
+
+            inspectValue(
+                data,
+                "$",
+                0,
+                rows,
+                stats
+            );
+
+            currentRows = rows;
+
+            rootTypeValue.textContent =
+                getType(data).toUpperCase();
+
+            nodeValue.textContent =
+                String(stats.nodes);
+
+            objectValue.textContent =
+                String(stats.objects);
+
+            arrayValue.textContent =
+                String(stats.arrays);
+
+            primitiveValue.textContent =
+                String(stats.primitives);
+
+            depthValue.textContent =
+                String(stats.maxDepth);
+
+            renderRows(rows);
+
+            searchInput.value = "";
+
+            currentReport = [
+                "Data Inspector Report",
+                `Root Type: ${getType(data).toUpperCase()}`,
+                `Total Nodes: ${stats.nodes}`,
+                `Objects: ${stats.objects}`,
+                `Arrays: ${stats.arrays}`,
+                `Primitives: ${stats.primitives}`,
+                `Max Depth: ${stats.maxDepth}`,
+                "",
+                ...rows.map(
+                    (row) =>
+                        `${row.path} [${row.type.toUpperCase()}] ${row.value}`
+                )
+            ].join("\n");
+
+            setStatus(
+                "pass",
+                `${stats.nodes} Datenknoten erfolgreich analysiert.`
+            );
+        }
+        catch (error) {
+            currentRows = [];
+            currentReport = "";
+
+            resetStats();
+
+            output.innerHTML =
+                '<p class="inspector-empty">' +
+                'Die Daten konnten nicht analysiert werden.' +
+                '</p>';
+
+            setStatus(
+                "fail",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+    }
+
+    function filterRows() {
+        const query =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+        if (!query) {
+            renderRows(currentRows);
+
+            return;
+        }
+
+        const filtered =
+            currentRows.filter((row) =>
+                `${row.path} ${row.type} ${row.value}`
+                    .toLowerCase()
+                    .includes(query)
+            );
+
+        renderRows(filtered);
+
+        setStatus(
+            "pass",
+            `${filtered.length} passende Datenpfade gefunden.`
+        );
+    }
+
+    function loadExample() {
+        input.value =
+`{
+  "product": {
+    "name": "CoreCraft Genesis",
+    "active": true,
+    "version": 1
+  },
+  "developerTools": {
+    "validators": [
+      "json",
+      "schema",
+      "file"
+    ],
+    "diagnostics": {
+      "sha256": true
+    },
+    "dataTools": {
+      "formatter": true,
+      "inspector": true
+    }
+  },
+  "release": null
+}`;
+
+        inspectData();
+    }
+
+    function formatJson() {
+        try {
+            const data =
+                JSON.parse(input.value);
+
+            input.value =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+
+            setStatus(
+                "pass",
+                "JSON-Daten wurden formatiert."
+            );
+        }
+        catch (error) {
+            setStatus(
+                "fail",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+    }
+
+    async function copyReport() {
+        if (!currentReport) {
+            setStatus(
+                "fail",
+                "Noch kein Analysebericht vorhanden."
+            );
+
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(
+                currentReport
+            );
+
+            setStatus(
+                "pass",
+                "Analysebericht wurde kopiert."
+            );
+        }
+        catch {
+            setStatus(
+                "fail",
+                "Zwischenablage konnte nicht verwendet werden."
+            );
+        }
+    }
+
+    function clearAll() {
+        input.value = "";
+        searchInput.value = "";
+
+        currentRows = [];
+        currentReport = "";
+
+        resetStats();
+
+        output.innerHTML =
+            '<p class="inspector-empty">' +
+            'Noch keine Daten analysiert.' +
+            '</p>';
+
+        setStatus(
+            "neutral",
+            "Bereit. JSON-Daten in das Eingabefeld einfügen."
+        );
+
+        input.focus();
+    }
+
+    function insertTab(event) {
+        if (event.key !== "Tab") {
+            return;
+        }
+
+        event.preventDefault();
+
+        const start =
+            input.selectionStart;
+
+        const end =
+            input.selectionEnd;
+
+        input.value =
+            input.value.substring(0, start) +
+            "  " +
+            input.value.substring(end);
+
+        input.selectionStart =
+            input.selectionEnd =
+                start + 2;
+    }
+
+    inspectButton.addEventListener(
+        "click",
+        inspectData
+    );
+
+    exampleButton.addEventListener(
+        "click",
+        loadExample
+    );
+
+    formatButton.addEventListener(
+        "click",
+        formatJson
+    );
+
+    copyButton.addEventListener(
+        "click",
+        copyReport
+    );
+
+    clearButton.addEventListener(
+        "click",
+        clearAll
+    );
+
+    searchInput.addEventListener(
+        "input",
+        filterRows
+    );
+
+    input.addEventListener(
+        "keydown",
+        (event) => {
+            insertTab(event);
+
+            if (
+                (event.ctrlKey || event.metaKey) &&
+                event.key === "Enter"
+            ) {
+                event.preventDefault();
+                inspectData();
+            }
+        }
+    );
+})();
+</script>
+
+</body>
+</html>

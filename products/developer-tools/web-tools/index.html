@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Werkzeuge für statische Websites, Links, Routen, Assets und Produktionsprüfungen."
+    content="Interaktive Web Tools für Routen, Links, HTML-Seiten, Assets und technische Produktionsprüfungen."
   >
 
   <link
@@ -21,27 +21,78 @@
 
 <header class="dev-header">
   <div class="dev-shell">
-<nav class="dev-nav" aria-label="Developer Tools Navigation">
 
-  <a class="dev-brand" href="/products/developer-tools/">
-    Developer <span>Tools</span>
-  </a>
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
 
-  <div class="dev-nav-links">
-    <a data-dev-nav href="/products/developer-tools/automation/">Automation</a>
-    <a data-dev-nav href="/products/developer-tools/validators/">Validators</a>
-    <a data-dev-nav href="/products/developer-tools/generators/">Generators</a>
-    <a data-dev-nav href="/products/developer-tools/diagnostics/">Diagnostics</a>
-    <a data-dev-nav href="/products/developer-tools/data-tools/">Data Tools</a>
-    <a data-dev-nav href="/products/developer-tools/web-tools/">Web Tools</a>
-    <a data-dev-nav href="/products/developer-tools/developer/">Developer</a>
-  </div>
+      <div class="dev-nav-links">
 
-</nav>
+        <a
+          data-dev-nav
+          href="/products/developer-tools/automation/"
+        >
+          Automation
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/validators/"
+        >
+          Validators
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/generators/"
+        >
+          Generators
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/diagnostics/"
+        >
+          Diagnostics
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/data-tools/"
+        >
+          Data Tools
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/web-tools/"
+        >
+          Web Tools
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/developer/"
+        >
+          Developer
+        </a>
+
+      </div>
+    </nav>
+
   </div>
 </header>
 
 <main>
+
+  <!-- HERO -->
 
   <section class="dev-hero">
     <div class="dev-shell">
@@ -50,19 +101,23 @@
         Developer Tools / Web Tools
       </div>
 
-      <h1>Developer Tools Web Tools</h1>
+      <h1>
+        Developer Tools Web Tools
+      </h1>
 
       <p class="dev-lead">
-        Web Tools bündeln technische Prüfungen für statische Seiten, interne Navigation und veröffentlichbare Webstrukturen.
+        Interaktive Werkzeuge für Webrouten,
+        Links, HTML-Strukturen, lokale Assets
+        und technische Produktionsprüfungen.
       </p>
 
       <div class="dev-actions">
 
         <a
           class="dev-button"
-          href="#overview"
+          href="#interactive-tools"
         >
-          Bereich ansehen
+          Web Tools öffnen
         </a>
 
         <a
@@ -77,7 +132,12 @@
     </div>
   </section>
 
-  <section class="dev-section" id="overview">
+  <!-- OVERVIEW -->
+
+  <section
+    class="dev-section"
+    id="overview"
+  >
     <div class="dev-shell">
 
       <div class="dev-panel">
@@ -86,10 +146,15 @@
           ACTIVE DEVELOPER TOOLS AREA
         </span>
 
-        <h2>Webseiten systematisch prüfen</h2>
+        <h2>
+          Webstrukturen systematisch prüfen
+        </h2>
 
         <p class="dev-lead">
-          Eine veröffentlichbare Website benötigt gültige Seiten, funktionierende interne Links, vorhandene Assets und nachvollziehbare Produktionsprüfungen.
+          Eine veröffentlichbare Website benötigt
+          erreichbare Routen, funktionierende Links,
+          vorhandene Assets und nachvollziehbare
+          Produktionsprüfungen.
         </p>
 
       </div>
@@ -97,86 +162,294 @@
     </div>
   </section>
 
-  <section class="dev-section">
+  <!-- INTERACTIVE TOOLS -->
+
+  <section
+    class="dev-section"
+    id="interactive-tools"
+  >
     <div class="dev-shell">
 
       <div class="dev-label">
-        Technical Components
+        Interactive Web Tools
       </div>
 
-      <h2>Kernbereiche</h2>
+      <h2>
+        Verfügbare Tools
+      </h2>
+
+      <p class="dev-lead">
+        Browserbasierte Werkzeuge für die direkte
+        Analyse und Prüfung technischer Webstrukturen.
+      </p>
 
       <div class="dev-grid">
-        <article class="dev-card">
+
+        <!-- ROUTE CHECKER -->
+
+        <a
+          class="dev-card"
+          href="/products/developer-tools/web-tools/route-checker/"
+        >
           <span class="dev-status">
-            DEVELOPER TOOL
+            INTERACTIVE TOOL
           </span>
 
-          <h3>Link Audit</h3>
+          <h3>
+            Route Checker
+          </h3>
 
           <p>
-            Interne Links über mehrere HTML-Seiten hinweg prüfen.
+            Webrouten auf HTTP-Status,
+            Antwortzeiten und Weiterleitungen prüfen.
           </p>
-        </article>
-        <article class="dev-card">
+
+          <p
+            style="
+              margin-top:18px;
+              color:var(--dev-blue);
+              font-weight:700;
+            "
+          >
+            Route Checker öffnen →
+          </p>
+        </a>
+
+        <!-- LINK CHECKER -->
+
+        <a
+          class="dev-card"
+          href="/products/developer-tools/web-tools/link-checker/"
+        >
           <span class="dev-status">
-            DEVELOPER TOOL
+            INTERACTIVE TOOL
           </span>
 
-          <h3>Asset Audit</h3>
+          <h3>
+            Link Checker
+          </h3>
 
           <p>
-            Lokale CSS-, JavaScript- und Medienreferenzen kontrollieren.
+            Links aus HTML oder Webseiten extrahieren,
+            klassifizieren und per HTTP prüfen.
           </p>
-        </article>
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
 
-          <h3>Route Audit</h3>
-
-          <p>
-            Erwartete Seiten und Produktadressen validieren.
+          <p
+            style="
+              margin-top:18px;
+              color:var(--dev-blue);
+              font-weight:700;
+            "
+          >
+            Link Checker öffnen →
           </p>
-        </article>
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
+        </a>
 
-          <h3>HTML Inventory</h3>
-
-          <p>
-            HTML-Seiten inventarisieren und leere Dateien erkennen.
-          </p>
-        </article>
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
-
-          <h3>Production Validation</h3>
-
-          <p>
-            Site-Audits mit Git- und Datenprüfungen kombinieren.
-          </p>
-        </article>
-        <article class="dev-card">
-          <span class="dev-status">
-            DEVELOPER TOOL
-          </span>
-
-          <h3>Live Audit</h3>
-
-          <p>
-            Veröffentlichte Seiten per HTTP kontrollieren.
-          </p>
-        </article>
       </div>
 
     </div>
   </section>
+
+  <!-- WEB CAPABILITIES -->
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Web Capabilities
+      </div>
+
+      <h2>
+        Technische Prüfbereiche
+      </h2>
+
+      <p class="dev-lead">
+        Die Web-Tools-Suite verbindet interaktive
+        Browser-Werkzeuge mit reproduzierbaren
+        Prüfverfahren für Websites.
+      </p>
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            ROUTES
+          </span>
+
+          <h3>
+            Route Audit
+          </h3>
+
+          <p>
+            Erwartete Seiten und öffentliche
+            Routen kontrollieren.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            LINKS
+          </span>
+
+          <h3>
+            Link Audit
+          </h3>
+
+          <p>
+            Interne und externe Links erfassen,
+            klassifizieren und prüfen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            ASSETS
+          </span>
+
+          <h3>
+            Asset Audit
+          </h3>
+
+          <p>
+            CSS-, JavaScript- und weitere
+            lokale Referenzen kontrollieren.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            HTML
+          </span>
+
+          <h3>
+            HTML Inventory
+          </h3>
+
+          <p>
+            HTML-Seiten inventarisieren und
+            leere Dateien erkennen.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            PRODUCTION
+          </span>
+
+          <h3>
+            Production Validation
+          </h3>
+
+          <p>
+            Website-Prüfungen mit Git-,
+            Daten- und Build-Kontrollen verbinden.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            LIVE
+          </span>
+
+          <h3>
+            Live Audit
+          </h3>
+
+          <p>
+            Veröffentlichte Seiten und
+            Produktrouten nach dem Deployment prüfen.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Web Validation Workflow
+      </div>
+
+      <h2>
+        Vom lokalen Build zur Live-Prüfung
+      </h2>
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 01
+          </span>
+
+          <h3>
+            Struktur
+          </h3>
+
+          <p>
+            Seiten, Links, Assets und erwartete
+            Routen werden zunächst inventarisiert.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 02
+          </span>
+
+          <h3>
+            Prüfung
+          </h3>
+
+          <p>
+            Referenzen und Routen werden
+            systematisch kontrolliert.
+          </p>
+
+        </article>
+
+        <article class="dev-card">
+
+          <span class="dev-status">
+            STEP 03
+          </span>
+
+          <h3>
+            Produktion
+          </h3>
+
+          <p>
+            Nach dem Deployment werden die
+            veröffentlichten Routen erneut geprüft.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
 
   <section class="dev-section">
     <div class="dev-shell">
@@ -189,14 +462,32 @@
             PRINCIPLES
           </span>
 
-          <h2>Technische Grundsätze</h2>
+          <h2>
+            Technische Grundsätze
+          </h2>
 
           <ul class="dev-list">
-              <li>Interne Links vor jedem Release prüfen</li>
-              <li>Lokale Assets vollständig validieren</li>
-              <li>Leere HTML-Dateien als Fehler behandeln</li>
-              <li>Lokale und öffentliche Prüfung trennen</li>
-              <li>Produktionsfreigabe erst nach vollständigem PASS</li>
+
+            <li>
+              Interne Links vor jedem Release prüfen
+            </li>
+
+            <li>
+              Lokale Assets vollständig validieren
+            </li>
+
+            <li>
+              Leere HTML-Dateien als Fehler behandeln
+            </li>
+
+            <li>
+              Lokale und öffentliche Prüfung trennen
+            </li>
+
+            <li>
+              Produktionsfreigabe erst nach vollständigem PASS
+            </li>
+
           </ul>
 
         </article>
@@ -207,7 +498,9 @@
             STRUCTURED DATA
           </span>
 
-          <h2>Datenquelle</h2>
+          <h2>
+            Datenquelle
+          </h2>
 
           <p>
             Dieser Bereich verwendet gemeinsame,
@@ -215,7 +508,9 @@
           </p>
 
           <p>
-            <a href="/products/developer-tools/data/tools.json">
+            <a
+              href="/products/developer-tools/data/tools.json"
+            >
               tools.json öffnen
             </a>
           </p>
@@ -228,12 +523,14 @@
             AUDIT
           </span>
 
-          <h2>Qualitätssicherung</h2>
+          <h2>
+            Qualitätssicherung
+          </h2>
 
           <p>
-            Seiten, JSON-Dateien, interne Links,
-            Routen und Asset-Verweise werden vor
-            einer Veröffentlichung validiert.
+            Web-Tool-Seiten, interne Links,
+            Routen, JSON-Dateien und Asset-Verweise
+            werden durch den Developer-Tools-Audit geprüft.
           </p>
 
         </article>
@@ -242,6 +539,8 @@
 
     </div>
   </section>
+
+  <!-- RELATED AREAS -->
 
   <section class="dev-section">
     <div class="dev-shell">
@@ -252,16 +551,40 @@
           DEVELOPER TOOLS
         </span>
 
-        <h2>Weitere Tool-Bereiche</h2>
+        <h2>
+          Weitere Tool-Bereiche
+        </h2>
 
         <div class="dev-nav-links">
-          <a href="/products/developer-tools/automation/">Automation</a>
-          <a href="/products/developer-tools/validators/">Validators</a>
-          <a href="/products/developer-tools/generators/">Generators</a>
-          <a href="/products/developer-tools/diagnostics/">Diagnostics</a>
-          <a href="/products/developer-tools/data-tools/">Data Tools</a>
-          <a href="/products/developer-tools/web-tools/">Web Tools</a>
-          <a href="/products/developer-tools/developer/">Developer</a>
+
+          <a href="/products/developer-tools/automation/">
+            Automation
+          </a>
+
+          <a href="/products/developer-tools/validators/">
+            Validators
+          </a>
+
+          <a href="/products/developer-tools/generators/">
+            Generators
+          </a>
+
+          <a href="/products/developer-tools/diagnostics/">
+            Diagnostics
+          </a>
+
+          <a href="/products/developer-tools/data-tools/">
+            Data Tools
+          </a>
+
+          <a href="/products/developer-tools/web-tools/">
+            Web Tools
+          </a>
+
+          <a href="/products/developer-tools/developer/">
+            Developer
+          </a>
+
         </div>
 
       </div>
@@ -281,11 +604,21 @@
     </p>
 
     <p>
-      <a href="/products/">Alle Produkte</a>
+      <a href="/products/">
+        Alle Produkte
+      </a>
+
       ·
-      <a href="/docs/">Dokumentation</a>
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+
       ·
-      <a href="/contact/">Kontakt</a>
+
+      <a href="/contact/">
+        Kontakt
+      </a>
     </p>
 
   </div>

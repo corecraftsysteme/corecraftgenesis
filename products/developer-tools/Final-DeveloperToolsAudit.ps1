@@ -41,9 +41,13 @@ $ExpectedPages = @(
     "generators\index.html"
     "diagnostics\index.html"
     "diagnostics\sha256\index.html"
+    "diagnostics\manifest-inspector\index.html"
     "data-tools\index.html"
     "data-tools\json-formatter\index.html"
+    "data-tools\data-inspector\index.html"
     "web-tools\index.html"
+    "web-tools\route-checker\index.html"
+    "web-tools\link-checker\index.html"
     "developer\index.html"
 )
 
@@ -66,9 +70,13 @@ $ExpectedRoutes = @(
     "/products/developer-tools/generators/"
     "/products/developer-tools/diagnostics/"
     "/products/developer-tools/diagnostics/sha256/"
+    "/products/developer-tools/diagnostics/manifest-inspector/"
     "/products/developer-tools/data-tools/"
     "/products/developer-tools/data-tools/json-formatter/"
+    "/products/developer-tools/data-tools/data-inspector/"
     "/products/developer-tools/web-tools/"
+    "/products/developer-tools/web-tools/route-checker/"
+    "/products/developer-tools/web-tools/link-checker/"
     "/products/developer-tools/developer/"
 )
 

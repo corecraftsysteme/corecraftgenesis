@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Manifest Inspector | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Browserbasierter Inspector für Web-App-Manifeste mit JSON-Prüfung, Mitgliederanalyse, URL-Auflösung und Icon-Inventar."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/developer-tools/assets/css/developer-tools.css"
+  >
+
+  <style>
+    .manifest-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .manifest-button {
+      min-height: 42px;
+      padding: .65rem .9rem;
+
+      cursor: pointer;
+
+      background: var(--dev-surface);
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      font-weight: 650;
+    }
+
+    .manifest-button:hover,
+    .manifest-button:focus-visible {
+      border-color: var(--dev-blue);
+    }
+
+    .manifest-primary {
+      background: var(--dev-blue);
+      color: #001326;
+      border-color: var(--dev-blue);
+    }
+
+    .manifest-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .75fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .manifest-textarea {
+      width: 100%;
+      min-height: 600px;
+      resize: vertical;
+
+      padding: 1.25rem;
+
+      background: #030609;
+      color: #d9ecff;
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+
+      outline: none;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .86rem;
+      line-height: 1.55;
+      tab-size: 2;
+    }
+
+    .manifest-textarea:focus {
+      border-color: var(--dev-blue);
+    }
+
+    .manifest-field {
+      width: 100%;
+      min-height: 42px;
+
+      margin-bottom: 1rem;
+      padding: .7rem .8rem;
+
+      background: #030609;
+      color: var(--dev-text);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font: inherit;
+      outline: none;
+    }
+
+    .manifest-field:focus {
+      border-color: var(--dev-blue);
+    }
+
+    .manifest-file {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: .85rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+    }
+
+    .manifest-status {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      color: var(--dev-muted);
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .manifest-status[data-state="pass"] {
+      color: var(--dev-green);
+      background: rgba(66, 211, 146, .07);
+      border-color: rgba(66, 211, 146, .45);
+    }
+
+    .manifest-status[data-state="fail"] {
+      color: #ff8d8d;
+      background: rgba(255, 90, 90, .07);
+      border-color: rgba(255, 90, 90, .45);
+    }
+
+    .manifest-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .manifest-stat {
+      padding: 1rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: var(--dev-radius);
+    }
+
+    .manifest-stat-label {
+      margin-bottom: .35rem;
+
+      color: var(--dev-muted);
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .7rem;
+    }
+
+    .manifest-stat-value {
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .manifest-results {
+      display: grid;
+      gap: .65rem;
+
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .manifest-result {
+      padding: .85rem;
+
+      background: var(--dev-surface);
+
+      border: 1px solid var(--dev-line);
+      border-radius: 8px;
+
+      font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+      font-size: .8rem;
+
+      overflow-wrap: anywhere;
+    }
+
+    .manifest-result[data-state="pass"] {
+      color: var(--dev-green);
+      border-color: rgba(66, 211, 146, .3);
+    }
+
+    .manifest-result[data-state="warning"] {
+      color: #ffd080;
+      border-color: rgba(255, 190, 80, .35);
+    }
+
+    .manifest-result[data-state="fail"] {
+      color: #ff9d9d;
+      border-color: rgba(255, 90, 90, .4);
+    }
+
+    .manifest-table {
+      width: 100%;
+      margin-top: 1rem;
+
+      border-collapse: collapse;
+
+      font-size: .82rem;
+    }
+
+    .manifest-table th,
+    .manifest-table td {
+      padding: .7rem;
+
+      text-align: left;
+      vertical-align: top;
+
+      border-bottom: 1px solid var(--dev-line);
+
+      overflow-wrap: anywhere;
+    }
+
+    .manifest-table th {
+      color: var(--dev-muted);
+    }
+
+    .manifest-note {
+      margin-top: 1rem;
+
+      color: var(--dev-muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 950px) {
+      .manifest-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .manifest-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .manifest-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="manifest-inspector">
+
+<header class="dev-header">
+  <div class="dev-shell">
+
+    <nav
+      class="dev-nav"
+      aria-label="Developer Tools Navigation"
+    >
+      <a
+        class="dev-brand"
+        href="/products/developer-tools/"
+      >
+        Developer <span>Tools</span>
+      </a>
+
+      <div class="dev-nav-links">
+        <a href="/products/developer-tools/automation/">
+          Automation
+        </a>
+
+        <a href="/products/developer-tools/validators/">
+          Validators
+        </a>
+
+        <a href="/products/developer-tools/generators/">
+          Generators
+        </a>
+
+        <a
+          data-dev-nav
+          href="/products/developer-tools/diagnostics/"
+        >
+          Diagnostics
+        </a>
+
+        <a href="/products/developer-tools/data-tools/">
+          Data Tools
+        </a>
+
+        <a href="/products/developer-tools/web-tools/">
+          Web Tools
+        </a>
+
+        <a href="/products/developer-tools/developer/">
+          Developer
+        </a>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="dev-hero">
+    <div class="dev-shell">
+
+      <div class="dev-eyebrow">
+        Developer Tools / Diagnostics
+      </div>
+
+      <h1>
+        Manifest Inspector
+      </h1>
+
+      <p class="dev-lead">
+        Web-App-Manifeste analysieren, Mitglieder prüfen,
+        Symboldefinitionen inventarisieren und relative
+        Adressen auflösen.
+      </p>
+
+      <div class="dev-actions">
+        <a
+          class="dev-button"
+          href="#inspector"
+        >
+          Inspector öffnen
+        </a>
+
+        <a
+          class="dev-button dev-button-secondary"
+          href="/products/developer-tools/diagnostics/"
+        >
+          Diagnostics Übersicht
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section
+    class="dev-section"
+    id="inspector"
+  >
+    <div class="dev-shell">
+
+      <div class="dev-label">
+        Interactive Developer Tool
+      </div>
+
+      <h2>
+        Manifest untersuchen.
+      </h2>
+
+      <p class="dev-lead">
+        Füge ein Web-App-Manifest ein oder wähle eine lokale
+        JSON- beziehungsweise Webmanifest-Datei aus.
+      </p>
+
+      <div class="manifest-toolbar">
+
+        <button
+          class="manifest-button manifest-primary"
+          id="inspectButton"
+          type="button"
+        >
+          Manifest analysieren
+        </button>
+
+        <button
+          class="manifest-button"
+          id="exampleButton"
+          type="button"
+        >
+          Beispiel laden
+        </button>
+
+        <button
+          class="manifest-button"
+          id="formatButton"
+          type="button"
+        >
+          JSON formatieren
+        </button>
+
+        <button
+          class="manifest-button"
+          id="copyButton"
+          type="button"
+        >
+          Bericht kopieren
+        </button>
+
+        <button
+          class="manifest-button"
+          id="clearButton"
+          type="button"
+        >
+          Leeren
+        </button>
+
+      </div>
+
+      <div
+        class="manifest-status"
+        id="status"
+        data-state="neutral"
+        role="status"
+        aria-live="polite"
+      >
+        Bereit. Manifest einfügen oder Datei auswählen.
+      </div>
+
+      <div class="manifest-layout">
+
+        <div>
+
+          <label for="baseUrl">
+            Basisadresse für relative Manifest-URLs
+          </label>
+
+          <input
+            class="manifest-field"
+            id="baseUrl"
+            type="url"
+            value="https://corecraftgenesis.ch/"
+            placeholder="https://example.com/"
+          >
+
+          <input
+            class="manifest-file"
+            id="fileInput"
+            type="file"
+            accept=".json,.webmanifest,application/json,application/manifest+json"
+          >
+
+          <textarea
+            class="manifest-textarea"
+            id="manifestInput"
+            spellcheck="false"
+            autocomplete="off"
+            aria-label="Web-App-Manifest"
+            placeholder='{
+  "name": "CoreCraft Genesis",
+  "short_name": "CoreCraft",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": []
+}'
+          ></textarea>
+
+        </div>
+
+        <aside>
+
+          <div class="dev-card">
+
+            <span class="dev-status">
+              MANIFEST SUMMARY
+            </span>
+
+            <h3>
+              Übersicht
+            </h3>
+
+            <div class="manifest-stats">
+
+              <div class="manifest-stat">
+                <div class="manifest-stat-label">MEMBERS</div>
+                <div class="manifest-stat-value" id="memberValue">0</div>
+              </div>
+
+              <div class="manifest-stat">
+                <div class="manifest-stat-label">ICONS</div>
+                <div class="manifest-stat-value" id="iconValue">0</div>
+              </div>
+
+              <div class="manifest-stat">
+                <div class="manifest-stat-label">WARNINGS</div>
+                <div class="manifest-stat-value" id="warningValue">0</div>
+              </div>
+
+              <div class="manifest-stat">
+                <div class="manifest-stat-label">FAILURES</div>
+                <div class="manifest-stat-value" id="failureValue">0</div>
+              </div>
+
+            </div>
+
+            <ul
+              class="manifest-results"
+              id="resultList"
+            >
+              <li
+                class="manifest-result"
+                data-state="warning"
+              >
+                Noch keine Analyse durchgeführt.
+              </li>
+            </ul>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+      <div class="dev-card" style="margin-top:1rem;">
+
+        <span class="dev-status">
+          ICON INVENTORY
+        </span>
+
+        <h3>
+          Manifest-Symbole
+        </h3>
+
+        <table class="manifest-table">
+          <thead>
+            <tr>
+              <th>Quelle</th>
+              <th>Größe</th>
+              <th>Typ</th>
+              <th>Zweck</th>
+            </tr>
+          </thead>
+
+          <tbody id="iconTable">
+            <tr>
+              <td colspan="4">
+                Noch keine Symbole analysiert.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <p class="manifest-note">
+        Die Prüfung erfolgt clientseitig. Sie bewertet Struktur
+        und häufig verwendete Manifest-Mitglieder, ersetzt aber
+        keine vollständige Browser- oder Installierbarkeitsprüfung.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <div class="dev-shell">
+
+      <div class="dev-grid">
+
+        <article class="dev-card">
+          <span class="dev-status">MEMBERS</span>
+          <h3>Manifest Members</h3>
+          <p>
+            Name, Kurzname, Startadresse, Anzeigeart,
+            Gültigkeitsbereich und Farben werden untersucht.
+          </p>
+        </article>
+
+        <article class="dev-card">
+          <span class="dev-status">ICONS</span>
+          <h3>Icon Inventory</h3>
+          <p>
+            Symbolquellen, Größen, MIME-Typen und
+            Verwendungszwecke werden inventarisiert.
+          </p>
+        </article>
+
+        <article class="dev-card">
+          <span class="dev-status">URLS</span>
+          <h3>URL Resolution</h3>
+          <p>
+            Relative Start-, Gültigkeitsbereich- und
+            Symboladressen werden gegen die Basisadresse aufgelöst.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="dev-footer">
+  <div class="dev-shell">
+
+    <p>
+      &copy;
+      <span data-dev-year>2026</span>
+      CoreCraft Genesis · Manifest Inspector
+    </p>
+
+    <p>
+      <a href="/products/developer-tools/">
+        Developer Tools
+      </a>
+      ·
+      <a href="/products/developer-tools/diagnostics/">
+        Diagnostics
+      </a>
+      ·
+      <a href="/docs/">
+        Dokumentation
+      </a>
+    </p>
+
+  </div>
+</footer>
+
+<script src="/products/developer-tools/assets/js/developer-tools.js"></script>
+<script src="/products/developer-tools/assets/js/ui.js"></script>
+
+<script>
+"use strict";
+
+(() => {
+    const manifestInput =
+        document.getElementById("manifestInput");
+
+    const baseUrl =
+        document.getElementById("baseUrl");
+
+    const fileInput =
+        document.getElementById("fileInput");
+
+    const inspectButton =
+        document.getElementById("inspectButton");
+
+    const exampleButton =
+        document.getElementById("exampleButton");
+
+    const formatButton =
+        document.getElementById("formatButton");
+
+    const copyButton =
+        document.getElementById("copyButton");
+
+    const clearButton =
+        document.getElementById("clearButton");
+
+    const status =
+        document.getElementById("status");
+
+    const memberValue =
+        document.getElementById("memberValue");
+
+    const iconValue =
+        document.getElementById("iconValue");
+
+    const warningValue =
+        document.getElementById("warningValue");
+
+    const failureValue =
+        document.getElementById("failureValue");
+
+    const resultList =
+        document.getElementById("resultList");
+
+    const iconTable =
+        document.getElementById("iconTable");
+
+    let currentReport = "";
+
+    const recognizedMembers = new Set([
+        "id",
+        "name",
+        "short_name",
+        "description",
+        "start_url",
+        "scope",
+        "display",
+        "display_override",
+        "orientation",
+        "theme_color",
+        "background_color",
+        "lang",
+        "dir",
+        "icons",
+        "screenshots",
+        "categories",
+        "shortcuts",
+        "related_applications",
+        "prefer_related_applications",
+        "file_handlers",
+        "protocol_handlers",
+        "share_target"
+    ]);
+
+    const displayModes = new Set([
+        "browser",
+        "minimal-ui",
+        "standalone",
+        "fullscreen",
+        "window-controls-overlay"
+    ]);
+
+    function setStatus(state, message) {
+        status.dataset.state = state;
+        status.textContent = message;
+    }
+
+    function addResult(
+        results,
+        state,
+        label,
+        message
+    ) {
+        results.push({
+            state,
+            label,
+            message
+        });
+    }
+
+    function resolveUrl(value) {
+        if (
+            typeof value !== "string" ||
+            !value.trim()
+        ) {
+            return "";
+        }
+
+        return new URL(
+            value,
+            baseUrl.value.trim()
+        ).href;
+    }
+
+    function renderResults(results) {
+        resultList.innerHTML = "";
+
+        results.forEach((result) => {
+            const item =
+                document.createElement("li");
+
+            item.className =
+                "manifest-result";
+
+            item.dataset.state =
+                result.state;
+
+            item.textContent =
+                `[${result.state.toUpperCase()}] ` +
+                `${result.label}: ${result.message}`;
+
+            resultList.appendChild(item);
+        });
+    }
+
+    function renderIcons(icons) {
+        iconTable.innerHTML = "";
+
+        if (icons.length === 0) {
+            iconTable.innerHTML =
+                '<tr><td colspan="4">' +
+                'Keine Symbole definiert.' +
+                '</td></tr>';
+
+            return;
+        }
+
+        icons.forEach((icon) => {
+            const row =
+                document.createElement("tr");
+
+            const source =
+                document.createElement("td");
+
+            const sizes =
+                document.createElement("td");
+
+            const type =
+                document.createElement("td");
+
+            const purpose =
+                document.createElement("td");
+
+            try {
+                source.textContent =
+                    resolveUrl(icon.src) ||
+                    "(fehlend)";
+            }
+            catch {
+                source.textContent =
+                    icon.src || "(ungültig)";
+            }
+
+            sizes.textContent =
+                icon.sizes || "—";
+
+            type.textContent =
+                icon.type || "—";
+
+            purpose.textContent =
+                icon.purpose || "any";
+
+            row.append(
+                source,
+                sizes,
+                type,
+                purpose
+            );
+
+            iconTable.appendChild(row);
+        });
+    }
+
+    function inspectManifest() {
+        try {
+            const text =
+                manifestInput.value.trim();
+
+            if (!text) {
+                throw new Error(
+                    "Bitte ein Manifest einfügen."
+                );
+            }
+
+            const manifest =
+                JSON.parse(text);
+
+            if (
+                manifest === null ||
+                typeof manifest !== "object" ||
+                Array.isArray(manifest)
+            ) {
+                throw new Error(
+                    "Das Manifest muss ein JSON-Objekt sein."
+                );
+            }
+
+            new URL(baseUrl.value.trim());
+
+            const results = [];
+
+            if (
+                typeof manifest.name === "string" &&
+                manifest.name.trim()
+            ) {
+                addResult(
+                    results,
+                    "pass",
+                    "name",
+                    manifest.name
+                );
+            }
+            else {
+                addResult(
+                    results,
+                    "warning",
+                    "name",
+                    "Kein vollständiger App-Name vorhanden."
+                );
+            }
+
+            if (
+                typeof manifest.short_name === "string" &&
+                manifest.short_name.trim()
+            ) {
+                addResult(
+                    results,
+                    "pass",
+                    "short_name",
+                    manifest.short_name
+                );
+            }
+            else {
+                addResult(
+                    results,
+                    "warning",
+                    "short_name",
+                    "Kein Kurzname vorhanden."
+                );
+            }
+
+            for (
+                const member of [
+                    "start_url",
+                    "scope",
+                    "id"
+                ]
+            ) {
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        manifest,
+                        member
+                    )
+                ) {
+                    try {
+                        addResult(
+                            results,
+                            "pass",
+                            member,
+                            resolveUrl(manifest[member])
+                        );
+                    }
+                    catch {
+                        addResult(
+                            results,
+                            "fail",
+                            member,
+                            "Adresse ist ungültig."
+                        );
+                    }
+                }
+                else if (member === "start_url") {
+                    addResult(
+                        results,
+                        "warning",
+                        member,
+                        "Keine Startadresse definiert."
+                    );
+                }
+            }
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    manifest,
+                    "display"
+                )
+            ) {
+                if (
+                    displayModes.has(
+                        manifest.display
+                    )
+                ) {
+                    addResult(
+                        results,
+                        "pass",
+                        "display",
+                        manifest.display
+                    );
+                }
+                else {
+                    addResult(
+                        results,
+                        "warning",
+                        "display",
+                        `Unbekannter Wert: ${manifest.display}`
+                    );
+                }
+            }
+            else {
+                addResult(
+                    results,
+                    "warning",
+                    "display",
+                    "Kein Anzeigemodus definiert."
+                );
+            }
+
+            for (
+                const colorMember of [
+                    "theme_color",
+                    "background_color"
+                ]
+            ) {
+                if (
+                    typeof manifest[colorMember] ===
+                        "string"
+                ) {
+                    addResult(
+                        results,
+                        "pass",
+                        colorMember,
+                        manifest[colorMember]
+                    );
+                }
+                else {
+                    addResult(
+                        results,
+                        "warning",
+                        colorMember,
+                        "Nicht definiert."
+                    );
+                }
+            }
+
+            const icons =
+                Array.isArray(manifest.icons)
+                    ? manifest.icons
+                    : [];
+
+            if (icons.length > 0) {
+                icons.forEach((icon, index) => {
+                    if (
+                        !icon ||
+                        typeof icon !== "object" ||
+                        typeof icon.src !== "string" ||
+                        !icon.src.trim()
+                    ) {
+                        addResult(
+                            results,
+                            "fail",
+                            `icons[${index}]`,
+                            "Symbolquelle fehlt."
+                        );
+
+                        return;
+                    }
+
+                    try {
+                        addResult(
+                            results,
+                            "pass",
+                            `icons[${index}]`,
+                            resolveUrl(icon.src)
+                        );
+                    }
+                    catch {
+                        addResult(
+                            results,
+                            "fail",
+                            `icons[${index}]`,
+                            "Symboladresse ist ungültig."
+                        );
+                    }
+                });
+            }
+            else {
+                addResult(
+                    results,
+                    "warning",
+                    "icons",
+                    "Keine Symbole definiert."
+                );
+            }
+
+            const unknownMembers =
+                Object.keys(manifest).filter(
+                    (member) =>
+                        !recognizedMembers.has(member) &&
+                        !member.startsWith("$")
+                );
+
+            if (unknownMembers.length > 0) {
+                addResult(
+                    results,
+                    "warning",
+                    "members",
+                    `Nicht zugeordnete Mitglieder: ${unknownMembers.join(", ")}`
+                );
+            }
+
+            const warnings =
+                results.filter(
+                    (result) =>
+                        result.state === "warning"
+                );
+
+            const failures =
+                results.filter(
+                    (result) =>
+                        result.state === "fail"
+                );
+
+            memberValue.textContent =
+                String(
+                    Object.keys(manifest).length
+                );
+
+            iconValue.textContent =
+                String(icons.length);
+
+            warningValue.textContent =
+                String(warnings.length);
+
+            failureValue.textContent =
+                String(failures.length);
+
+            renderResults(results);
+            renderIcons(icons);
+
+            currentReport = [
+                "Manifest Inspector Report",
+                `Members: ${Object.keys(manifest).length}`,
+                `Icons: ${icons.length}`,
+                `Warnings: ${warnings.length}`,
+                `Failures: ${failures.length}`,
+                "",
+                ...results.map(
+                    (result) =>
+                        `[${result.state.toUpperCase()}] ` +
+                        `${result.label}: ${result.message}`
+                )
+            ].join("\n");
+
+            if (failures.length === 0) {
+                setStatus(
+                    "pass",
+                    `Manifest analysiert. ${warnings.length} Warnung(en).`
+                );
+            }
+            else {
+                setStatus(
+                    "fail",
+                    `${failures.length} Fehler und ` +
+                    `${warnings.length} Warnung(en) gefunden.`
+                );
+            }
+        }
+        catch (error) {
+            currentReport = "";
+
+            memberValue.textContent = "0";
+            iconValue.textContent = "0";
+            warningValue.textContent = "0";
+            failureValue.textContent = "1";
+
+            renderResults([
+                {
+                    state: "fail",
+                    label: "Manifest",
+                    message:
+                        error instanceof Error
+                            ? error.message
+                            : String(error)
+                }
+            ]);
+
+            renderIcons([]);
+
+            setStatus(
+                "fail",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+    }
+
+    function loadExample() {
+        manifestInput.value =
+`{
+  "id": "/",
+  "name": "CoreCraft Genesis",
+  "short_name": "CoreCraft",
+  "description": "Developer tools and technical products.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#05070a",
+  "background_color": "#05070a",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}`;
+
+        setStatus(
+            "neutral",
+            "Beispielmanifest geladen."
+        );
+    }
+
+    function formatManifest() {
+        try {
+            manifestInput.value =
+                JSON.stringify(
+                    JSON.parse(
+                        manifestInput.value
+                    ),
+                    null,
+                    2
+                );
+
+            setStatus(
+                "pass",
+                "Manifest wurde formatiert."
+            );
+        }
+        catch (error) {
+            setStatus(
+                "fail",
+                error instanceof Error
+                    ? error.message
+                    : String(error)
+            );
+        }
+    }
+
+    async function copyReport() {
+        if (!currentReport) {
+            setStatus(
+                "fail",
+                "Noch kein Manifestbericht vorhanden."
+            );
+
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(
+                currentReport
+            );
+
+            setStatus(
+                "pass",
+                "Manifestbericht wurde kopiert."
+            );
+        }
+        catch {
+            setStatus(
+                "fail",
+                "Zwischenablage konnte nicht verwendet werden."
+            );
+        }
+    }
+
+    function clearAll() {
+        manifestInput.value = "";
+        fileInput.value = "";
+
+        currentReport = "";
+
+        memberValue.textContent = "0";
+        iconValue.textContent = "0";
+        warningValue.textContent = "0";
+        failureValue.textContent = "0";
+
+        resultList.innerHTML =
+            '<li class="manifest-result" data-state="warning">' +
+            'Noch keine Analyse durchgeführt.' +
+            '</li>';
+
+        renderIcons([]);
+
+        setStatus(
+            "neutral",
+            "Bereit. Manifest einfügen oder Datei auswählen."
+        );
+
+        manifestInput.focus();
+    }
+
+    fileInput.addEventListener(
+        "change",
+        async () => {
+            const file =
+                fileInput.files?.[0];
+
+            if (!file) {
+                return;
+            }
+
+            try {
+                manifestInput.value =
+                    await file.text();
+
+                setStatus(
+                    "neutral",
+                    `Datei geladen: ${file.name}`
+                );
+            }
+            catch (error) {
+                setStatus(
+                    "fail",
+                    error instanceof Error
+                        ? error.message
+                        : String(error)
+                );
+            }
+        }
+    );
+
+    inspectButton.addEventListener(
+        "click",
+        inspectManifest
+    );
+
+    exampleButton.addEventListener(
+        "click",
+        loadExample
+    );
+
+    formatButton.addEventListener(
+        "click",
+        formatManifest
+    );
+
+    copyButton.addEventListener(
+        "click",
+        copyReport
+    );
+
+    clearButton.addEventListener(
+        "click",
+        clearAll
+    );
+})();
+</script>
+
+</body>
+</html>
