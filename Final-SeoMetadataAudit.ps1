@@ -422,11 +422,16 @@ $Pages = @(
             -Root $RepositoryRoot `
             -Path $_.FullName
 
-        -not (
-            $Relative -like ".git\*" -or
-            $Relative -like ".github\*" -or
-            $Relative -like ".vscode\*"
-        )
+-not (
+    $Relative -like ".git\*" -or
+    $Relative -like ".github\*" -or
+    $Relative -like ".vscode\*" -or
+    $Relative -like "node_modules\*" -or
+    $Relative -like "playwright-report\*" -or
+    $Relative -like "test-results\*" -or
+    $Relative -like "blob-report\*" -or
+    $Relative -like "tests\*"
+)
     } |
     Sort-Object FullName
 )

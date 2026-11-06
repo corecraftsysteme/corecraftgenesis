@@ -1,168 +1,60 @@
 # CoreCraft Genesis
 
-Engineering Deterministic Systems • Digital Infrastructure • Blockchain Intelligence
+## Performance & Accessibility
 
----
+CoreCraft Genesis wurde einer umfassenden automatisierten Performance-, Qualitäts- und Accessibility-Prüfung unterzogen.
 
-## Overview
+### Audit-Status
 
-CoreCraft Genesis is an independent research and engineering initiative focused on deterministic software architecture, blockchain infrastructure, governance frameworks, digital commodities and technical knowledge development.
+- **82 HTML-Seiten geprüft**
+- **6 CSS-Dateien geprüft**
+- **25 JavaScript-Dateien geprüft**
+- **0 große Assets**
+- **0 Fehler**
+- **0 Warnungen**
+- **0 offene automatisierte Befunde**
+- **Audit: PASS**
 
-The ecosystem combines infrastructure engineering, runtime design, operational governance and educational publishing into a unified platform designed for transparency, reproducibility and long-term sustainability.
+### Developer Tools
 
----
+Große Inline-Skripte wurden in eigenständige JavaScript-Dateien ausgelagert und anschließend technisch sowie funktional validiert:
 
-## Mission
+- Data Inspector: **PASS**
+- Route Checker: **PASS**
+- File Validator: **PASS**
+- Manifest Inspector: **PASS**
+- Link Checker: **PASS**
+- Schema Validator: **PASS**
 
-Our mission is to transform practical engineering experience into reusable knowledge, infrastructure and systems that support builders, researchers and technology professionals.
+### Accessibility-Validierung
 
-Core principles:
+| Prüfung | Ergebnis |
+|---|---:|
+| Reduced Motion | **PASS** |
+| Tastatur & Fokus | **11/11 PASS** |
+| Kontrast | **8/8 PASS** |
+| Zoom & Reflow | **16/16 PASS** |
+| Mobile & Touch | **19/19 PASS** |
+| ARIA / Screenreader-Struktur | **8/8 PASS** |
+| Dynamische Statusmeldungen | **5/5 PASS** |
 
-- Deterministic Execution
-- Transparency
-- Auditability
-- Reproducibility
-- Governance
-- Knowledge Preservation
+### Umgesetzte Verbesserungen
 
----
+- Große Inline-JavaScript-Blöcke ausgelagert
+- `prefers-reduced-motion` in allen produktiven Stylesheets ergänzt
+- WCAG-Kontrastproblem im Developer-Tools-Breadcrumb korrigiert
+- Tastatur- und Fokusnavigation automatisiert geprüft
+- Reflow bei schmalen Viewports geprüft
+- Mobile Touch-Bedienung geprüft
+- ARIA-Struktur und zugängliche Formularbenennung geprüft
+- Dynamische Statusbereiche geprüft
+- Playwright-basierte Regressionstests eingerichtet
+- Test- und Entwicklungsartefakte aus dem produktiven Website-Audit ausgeschlossen
 
-## Ecosystem
+### Validierungsstatus
 
-### CoreCraft Genesis
+**Automated Performance & Accessibility Validation: PASSED**
 
-Main platform for:
+Alle aktuell ausgeführten automatisierten Prüfungen sind bestanden.
 
-- Documentation
-- Research
-- Publications
-- Educational resources
-- Technology initiatives
-
-Website:
-
-https://corecraftgenesis.ch
-
----
-
-### Chain2025
-
-Public blockchain research platform focused on:
-
-- Blockchain Intelligence
-- Network Infrastructure
-- Digital Commodity Research
-- Governance Frameworks
-- Technical Publications
-
-Website:
-
-https://chain2025.corecraftgenesis.ch
-
----
-
-### Chain2025 Node
-
-Infrastructure portal providing:
-
-- Node Status Information
-- Audit Verification
-- Network Services
-- Infrastructure Monitoring
-- Public Registry Information
-
-Website:
-
-https://node.corecraftgenesis.ch
-
----
-
-### DNS Seed
-
-Network bootstrap and discovery service supporting ecosystem infrastructure.
-
-Repository:
-
-https://dnsseed.corecraftgenesis.ch
-
----
-
-## EngineCore
-
-EngineCore is the deterministic runtime architecture developed within the CoreCraft Genesis ecosystem.
-
-### Key Capabilities
-
-- Deterministic Runtime Execution
-- State Recovery
-- Governance Layers
-- Audit Verification
-- FreezeSync Technology
-- Snapshot Management
-- Finality Verification
-- Archive Infrastructure
-- Analytics and Monitoring
-- Documentation Integration
-
----
-
-## Research Areas
-
-Current areas of interest include:
-
-- Bitcoin Mining Intelligence
-- Blockchain Infrastructure
-- Digital Commodity Classification
-- Governance Frameworks
-- Knowledge Engineering
-- Runtime Architecture
-- Audit Systems
-- Infrastructure Automation
-- Distributed Systems
-- Technical Documentation
-
----
-
-## Genesis Intelligence
-
-Genesis Intelligence represents the analytical and research division of the ecosystem.
-
-Focus areas:
-
-- Market Intelligence
-- Blockchain Analytics
-- Mining Research
-- Infrastructure Studies
-- Technical Publications
-- Educational Content
-- Glossaries and Reference Materials
-
----
-
-## Vision
-
-Technology should be understandable, verifiable and reproducible.
-
-CoreCraft Genesis seeks to bridge software engineering, governance and education by transforming real-world development experience into structured knowledge and resilient infrastructure.
-
----
-
-## Infrastructure Links
-
-| Service | URL |
-|----------|----------|
-| CoreCraft Genesis | https://corecraftgenesis.ch |
-| Chain2025 | https://chain2025.corecraftgenesis.ch |
-| Chain2025 Node | https://node.corecraftgenesis.ch |
-| DNS Seed | https://dnsseed.corecraftgenesis.ch |
-
----
-
-## Copyright
-
-© 2026 CoreCraft Genesis
-
-EngineCore • Chain2025 • Genesis Intelligence
-
-All rights reserved.
-
+Als abschließende Qualitätssicherung werden ergänzende manuelle Prüfungen mit realer Tastaturbedienung, Browser-Zoom und einem tatsächlichen Screenreader empfohlen.

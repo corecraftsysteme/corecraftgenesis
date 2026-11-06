@@ -462,7 +462,7 @@ footer {
   gap: 40px;
 }
 
-footer h4 {
+footer .footer-title {
   margin-bottom: 14px;
   color: white;
 }
@@ -523,5 +523,20 @@ footer a:hover {
 
   .status-row span:last-child {
     text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
 }

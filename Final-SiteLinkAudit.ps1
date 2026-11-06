@@ -61,13 +61,36 @@ Write-Host "[PASS] Repository-Root vorhanden." -ForegroundColor Green
 # HTML INVENTUR
 # ============================================================
 
+$ExcludedTopLevelDirectories = @(
+    ".git"
+    ".github"
+    ".vscode"
+    "node_modules"
+    "playwright-report"
+    "test-results"
+    "blob-report"
+    "tests"
+)
+
 $HtmlFiles = @(
     Get-ChildItem `
         -LiteralPath $Root `
         -Filter "*.html" `
         -File `
         -Recurse `
-        -ErrorAction Stop
+        -ErrorAction Stop |
+    Where-Object {
+        $RelativePath = [IO.Path]::GetRelativePath(
+            $Root,
+            $_.FullName
+        )
+
+        $TopLevelDirectory = (
+            $RelativePath -split '[\\/]'
+        )[0]
+
+        $TopLevelDirectory -notin $ExcludedTopLevelDirectories
+    }
 )
 
 $EmptyHtmlFiles = @(
