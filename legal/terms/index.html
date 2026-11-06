@@ -194,6 +194,48 @@
                 transition-delay: 0ms !important;
             }
         }
+    
+        /* Mobile overflow protection */
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        main,
+        header,
+        footer,
+        .container {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        p,
+        li,
+        a,
+        h1,
+        h2,
+        strong {
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 

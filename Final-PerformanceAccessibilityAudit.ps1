@@ -76,6 +76,14 @@ function Test-ExcludedRelativePath {
         "vendor\",
         "dist\",
         "build\"
+        "playwright-report",
+"test-results",
+"blob-report",
+"node_modules",
+".git",
+".github",
+".vscode",
+"tests"
     )
 
     foreach ($Prefix in $ExcludedPrefixes) {
