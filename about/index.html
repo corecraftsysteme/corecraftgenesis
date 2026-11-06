@@ -1,81 +1,540 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>about | CoreCraft Genesis</title>
+    <title>Über CoreCraft Genesis | Engineering & digitale Produkte</title>
 
-    <meta name="description" content="Erfahren Sie mehr über CoreCraft Genesis, unsere technische Ausrichtung, digitalen Produkte und systematische Entwicklungsarbeit.">
+    <meta
+        name="description"
+        content="Erfahren Sie mehr über CoreCraft Genesis, unsere technische Ausrichtung, digitalen Produkte, Qualitätsprinzipien und systematische Entwicklungsarbeit."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/about/"
+    >
 
     <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
-        }
-
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
-
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
-
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
             text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: var(--text);
+        }
+
+        main {
+            display: block;
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.15rem;
+        }
+
+        .lead {
+            max-width: 760px;
+            margin: 0;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
             border-radius: 8px;
-            font-weight: 650;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        .button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-intro {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .card p {
+            margin-bottom: 0;
+            color: var(--muted);
+        }
+
+        .principle-number {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .82rem;
+        }
+
+        .statement {
+            max-width: 850px;
+            font-size: clamp(1.5rem, 3vw, 2.4rem);
+            line-height: 1.4;
+            letter-spacing: -.02em;
+        }
+
+        .status {
+            margin-top: 32px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface-light);
+        }
+
+        .status strong {
+            color: var(--green);
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
         }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/about/">
 </head>
 
 <body>
 
+<header>
+    <div class="container nav">
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <a class="nav-link" href="/products/">
+            Produkte
+        </a>
+    </div>
+</header>
+
 <main>
 
-    <div class="label">
-        CoreCraft Genesis
-    </div>
+    <section class="hero">
+        <div class="container">
 
-    <h1>about</h1>
+            <div class="label">
+                Über CoreCraft Genesis
+            </div>
 
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
+            <h1>
+                Technologie systematisch entwickeln.
+            </h1>
 
-    <a href="/">
-        Zur Startseite
-    </a>
+            <p class="lead">
+                CoreCraft Genesis ist ein wachsendes digitales Ökosystem
+                für technische Produkte, Developer Tools, Dokumentation
+                und systematisch entwickelte digitale Lösungen.
+            </p>
+
+            <div class="actions">
+                <a class="button button-primary" href="/products/">
+                    Produkte entdecken
+                </a>
+
+                <a class="button button-secondary" href="/contact/">
+                    Kontakt
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Mission
+            </div>
+
+            <h2>
+                Aus Ideen werden belastbare Systeme.
+            </h2>
+
+            <p class="section-intro">
+                Unser Ziel ist es, technische Ideen nicht bei Konzepten
+                stehen zu lassen. CoreCraft Genesis entwickelt Strukturen,
+                Werkzeuge und digitale Produkte Schritt für Schritt weiter,
+                bis sie nachvollziehbar, testbar und praktisch einsetzbar sind.
+            </p>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Was wir entwickeln
+            </div>
+
+            <h2>
+                Ein wachsendes technisches Ökosystem.
+            </h2>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="principle-number">01</span>
+                    <h3>Developer Tools</h3>
+                    <p>
+                        Validatoren, Diagnosewerkzeuge, Datenwerkzeuge
+                        und technische Hilfsmittel für nachvollziehbare
+                        Entwicklungsabläufe.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="principle-number">02</span>
+                    <h3>Technische Systeme</h3>
+                    <p>
+                        Architektur, Runtime-Konzepte und strukturierte
+                        technische Komponenten für anspruchsvolle
+                        digitale Anwendungen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="principle-number">03</span>
+                    <h3>Dokumentation</h3>
+                    <p>
+                        Technisches Wissen wird strukturiert dokumentiert,
+                        geprüft und so aufbereitet, dass Systeme auch später
+                        nachvollziehbar bleiben.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Engineering-Prinzipien
+            </div>
+
+            <h2>
+                Qualität entsteht durch Wiederholbarkeit.
+            </h2>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="principle-number">01</span>
+                    <h3>Modular</h3>
+                    <p>
+                        Komponenten sollen klar getrennt,
+                        verständlich und wiederverwendbar sein.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="principle-number">02</span>
+                    <h3>Testbar</h3>
+                    <p>
+                        Funktionen werden nicht nur implementiert,
+                        sondern mit Audits und automatisierten Tests
+                        überprüft.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="principle-number">03</span>
+                    <h3>Nachvollziehbar</h3>
+                    <p>
+                        Änderungen, Strukturen und technische Entscheidungen
+                        sollen reproduzierbar und langfristig überprüfbar bleiben.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Qualität & Barrierefreiheit
+            </div>
+
+            <h2>
+                Gute Technik muss für Menschen funktionieren.
+            </h2>
+
+            <p class="section-intro">
+                Performance, verständliche Bedienung, Tastaturnavigation,
+                mobile Nutzung, ausreichender Kontrast und eine sinnvolle
+                Struktur für assistive Technologien gehören deshalb zum
+                Entwicklungsprozess.
+            </p>
+
+            <div class="status">
+                <strong>Quality Baseline:</strong>
+                Automatisierte Performance-, Accessibility-, Link-,
+                SEO- und Browserprüfungen sind Bestandteil des
+                CoreCraft-Genesis-Qualitätsprozesses.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Vision
+            </div>
+
+            <h2>
+                Schritt für Schritt statt kurzfristiger Komplexität.
+            </h2>
+
+            <p class="statement">
+                CoreCraft Genesis soll zu einer Plattform wachsen,
+                auf der technische Produkte nach gemeinsamen Standards
+                entwickelt, geprüft, dokumentiert und zuverlässig
+                veröffentlicht werden können.
+            </p>
+
+            <div class="actions">
+                <a class="button button-primary" href="/products/">
+                    Zum Produkt-Ökosystem
+                </a>
+
+                <a class="button button-secondary" href="/docs/">
+                    Dokumentation
+                </a>
+            </div>
+
+        </div>
+    </section>
 
 </main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/products/">Produkte</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/imprint/">Impressum</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
