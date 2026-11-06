@@ -1,81 +1,555 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>contact | CoreCraft Genesis</title>
+    <title>Kontakt | CoreCraft Genesis</title>
 
-    <meta name="description" content="Kontaktieren Sie CoreCraft Genesis für Fragen zu Produkten, Dokumentation, technischen Lösungen, Lizenzen oder Support.">
+    <meta
+        name="description"
+        content="Kontaktieren Sie CoreCraft Genesis für Fragen zu Produkten, technischen Lösungen, Dokumentation, Lizenzen oder Support."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/contact/"
+    >
 
     <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
-        }
-
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
-
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
-
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
             text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text);
+        }
+
+        main {
+            display: block;
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.15rem;
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 760px;
+            color: var(--muted);
+        }
+
+        .lead {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            padding: 30px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .82rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
             border-radius: 8px;
-            font-weight: 650;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        .notice {
+            max-width: 850px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-light);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
         }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/contact/">
 </head>
 
 <body>
 
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="/about/">Über uns</a>
+            <a href="/products/">Produkte</a>
+            <a href="/support/">Support</a>
+        </nav>
+
+    </div>
+</header>
+
 <main>
 
-    <div class="label">
-        CoreCraft Genesis
-    </div>
+    <section class="hero">
+        <div class="container">
 
-    <h1>contact</h1>
+            <div class="label">
+                Kontakt
+            </div>
 
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
+            <h1>
+                Lassen Sie uns über Ihre Anfrage sprechen.
+            </h1>
 
-    <a href="/">
-        Zur Startseite
-    </a>
+            <p class="lead">
+                Sie haben eine Frage zu CoreCraft Genesis, einem Produkt,
+                einer technischen Lösung, Dokumentation, Lizenzierung oder
+                benötigen Unterstützung? Wählen Sie den Bereich, der am
+                besten zu Ihrer Anfrage passt.
+            </p>
+
+            <div class="actions">
+                <a class="button button-primary" href="/support/">
+                    Support öffnen
+                </a>
+
+                <a class="button button-secondary" href="/products/">
+                    Produkte ansehen
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Anfragebereiche
+            </div>
+
+            <h2>
+                Der richtige Einstieg für Ihr Anliegen.
+            </h2>
+
+            <p class="section-intro">
+                CoreCraft Genesis umfasst verschiedene technische Produkte
+                und Themenbereiche. Eine klare Zuordnung hilft dabei,
+                Anfragen strukturiert weiterzubearbeiten.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">PRODUCT</span>
+
+                    <h3>Produkte & Lösungen</h3>
+
+                    <p>
+                        Fragen zu verfügbaren Produkten, Funktionen,
+                        Einsatzmöglichkeiten oder technischen Lösungen.
+                    </p>
+
+                    <a class="card-link" href="/products/">
+                        Produktübersicht öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">SUPPORT</span>
+
+                    <h3>Technischer Support</h3>
+
+                    <p>
+                        Unterstützung bei der Nutzung eines Tools,
+                        technischen Problemen oder unerwartetem Verhalten.
+                    </p>
+
+                    <a class="card-link" href="/support/">
+                        Zum Support
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">DOCS</span>
+
+                    <h3>Dokumentation</h3>
+
+                    <p>
+                        Fragen zu technischen Informationen,
+                        Anleitungen, Architektur oder vorhandener
+                        Dokumentation.
+                    </p>
+
+                    <a class="card-link" href="/docs/">
+                        Dokumentation öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">BUSINESS</span>
+
+                    <h3>Lizenzierung & Zusammenarbeit</h3>
+
+                    <p>
+                        Allgemeine Anfragen zu Lizenzierung,
+                        Zusammenarbeit oder einer möglichen Nutzung
+                        von CoreCraft-Genesis-Produkten.
+                    </p>
+
+                    <a class="card-link" href="/pricing/">
+                        Pricing ansehen
+                    </a>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Technische Anfragen
+            </div>
+
+            <h2>
+                Gute Informationen beschleunigen die Analyse.
+            </h2>
+
+            <p class="section-intro">
+                Bei technischen Problemen helfen eine kurze Beschreibung
+                des Verhaltens, der betroffene Produktbereich und
+                nachvollziehbare Schritte dabei, eine Anfrage schneller
+                einzuordnen.
+            </p>
+
+            <div class="notice">
+                <strong>Empfehlung:</strong>
+                Notieren Sie bei technischen Anfragen den verwendeten
+                Produktbereich, das beobachtete Verhalten und relevante
+                Fehlermeldungen.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Self-Service
+            </div>
+
+            <h2>
+                Viele Antworten sind bereits verfügbar.
+            </h2>
+
+            <p class="section-intro">
+                Bevor eine Supportanfrage erforderlich ist, können
+                Dokumentation, Developer Tools und bestehende Produktseiten
+                bei der Analyse technischer Fragen helfen.
+            </p>
+
+            <div class="actions">
+
+                <a class="button button-primary" href="/docs/">
+                    Dokumentation
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/products/developer-tools/"
+                >
+                    Developer Tools
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                CoreCraft Genesis
+            </div>
+
+            <h2>
+                Mehr über das Projekt erfahren.
+            </h2>
+
+            <p class="section-intro">
+                Erfahren Sie mehr über die technische Ausrichtung,
+                Qualitätsprinzipien und langfristige Vision von
+                CoreCraft Genesis.
+            </p>
+
+            <div class="actions">
+                <a class="button button-primary" href="/about/">
+                    Über CoreCraft Genesis
+                </a>
+            </div>
+
+        </div>
+    </section>
 
 </main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/about/">Über uns</a>
+            <a href="/products/">Produkte</a>
+            <a href="/support/">Support</a>
+            <a href="/legal/imprint/">Impressum</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
