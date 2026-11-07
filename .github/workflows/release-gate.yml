@@ -31,8 +31,35 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: "24"
           cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify runtime
+        shell: pwsh
+        run: |
+          Write-Host "=== Node.js ==="
+          node --version
+
+          Write-Host "=== npm ==="
+          npm --version
+
+          Write-Host "=== Python ==="
+          python --version
+
+          if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+              throw "Node.js is not available."
+          }
+
+          if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
+              throw "Python is not available."
+          }
+
+          Write-Host "[PASS] Runtime environment available."
 
       - name: Install Node dependencies
         shell: pwsh
@@ -47,7 +74,14 @@ jobs:
       - name: Site Link Audit
         shell: pwsh
         run: |
-          $Script = Join-Path $env:GITHUB_WORKSPACE "Final-SiteLinkAudit.ps1"
+          $Script = Join-Path `
+              $env:GITHUB_WORKSPACE `
+              "Final-SiteLinkAudit.ps1"
+
+          if (-not (Test-Path -LiteralPath $Script)) {
+              throw "Final-SiteLinkAudit.ps1 not found."
+          }
+
           $Command = Get-Command $Script
 
           if ($Command.Parameters.ContainsKey("RepositoryRoot")) {
@@ -64,7 +98,14 @@ jobs:
       - name: SEO Metadata Audit
         shell: pwsh
         run: |
-          $Script = Join-Path $env:GITHUB_WORKSPACE "Final-SeoMetadataAudit.ps1"
+          $Script = Join-Path `
+              $env:GITHUB_WORKSPACE `
+              "Final-SeoMetadataAudit.ps1"
+
+          if (-not (Test-Path -LiteralPath $Script)) {
+              throw "Final-SeoMetadataAudit.ps1 not found."
+          }
+
           $Command = Get-Command $Script
 
           if ($Command.Parameters.ContainsKey("RepositoryRoot")) {
@@ -81,7 +122,14 @@ jobs:
       - name: Performance and Accessibility Audit
         shell: pwsh
         run: |
-          $Script = Join-Path $env:GITHUB_WORKSPACE "Final-PerformanceAccessibilityAudit.ps1"
+          $Script = Join-Path `
+              $env:GITHUB_WORKSPACE `
+              "Final-PerformanceAccessibilityAudit.ps1"
+
+          if (-not (Test-Path -LiteralPath $Script)) {
+              throw "Final-PerformanceAccessibilityAudit.ps1 not found."
+          }
+
           $Command = Get-Command $Script
 
           if ($Command.Parameters.ContainsKey("RepositoryRoot")) {
@@ -95,20 +143,21 @@ jobs:
               exit $LASTEXITCODE
           }
 
-      - name: Start local website server
+      - name: Start and verify local website server
         shell: pwsh
         run: |
           $Process = Start-Process `
               -FilePath "python" `
-              -ArgumentList "-m", "http.server", "4173", "--bind", "127.0.0.1" `
+              -ArgumentList `
+                  "-m", `
+                  "http.server", `
+                  "4173", `
+                  "--bind", `
+                  "127.0.0.1" `
               -WorkingDirectory $env:GITHUB_WORKSPACE `
               -PassThru
 
-          "WEBSITE_SERVER_PID=$($Process.Id)" |
-              Out-File `
-                  -FilePath $env:GITHUB_ENV `
-                  -Encoding utf8 `
-                  -Append
+          Write-Host "Python server PID: $($Process.Id)"
 
           $Ready = $false
 
@@ -119,29 +168,66 @@ jobs:
                       -UseBasicParsing `
                       -TimeoutSec 2
 
-                  if ($Response.StatusCode -lt 400) {
+                  if ($Response.StatusCode -eq 200) {
                       $Ready = $true
+                      Write-Host "[PASS] Local website server reachable."
                       break
                   }
               }
               catch {
+                  Write-Host `
+                      "Waiting for local server ($Attempt/30)..."
+
                   Start-Sleep -Seconds 1
               }
           }
 
           if (-not $Ready) {
-              throw "Local website server did not become ready on port 4173."
+              if (-not $Process.HasExited) {
+                  Stop-Process `
+                      -Id $Process.Id `
+                      -Force `
+                      -ErrorAction SilentlyContinue
+              }
+
+              throw `
+                  "Local website server failed to start on port 4173."
           }
+
+          "WEBSITE_SERVER_PID=$($Process.Id)" |
+              Out-File `
+                  -FilePath $env:GITHUB_ENV `
+                  -Encoding utf8 `
+                  -Append
 
       - name: Run Playwright acceptance tests
         shell: pwsh
         run: |
           npx playwright test `
-            --config ".\playwright.config.js" `
-            --workers=1
+              --config ".\playwright.config.js" `
+              --workers=1
+
+      - name: Stop local website server
+        if: always()
+        shell: pwsh
+        run: |
+          if ($env:WEBSITE_SERVER_PID) {
+              $ServerProcess = Get-Process `
+                  -Id $env:WEBSITE_SERVER_PID `
+                  -ErrorAction SilentlyContinue
+
+              if ($ServerProcess) {
+                  Stop-Process `
+                      -Id $env:WEBSITE_SERVER_PID `
+                      -Force
+
+                  Write-Host `
+                      "[PASS] Local website server stopped."
+              }
+          }
 
       - name: Upload Playwright report
-        if: always()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v5
         with:
           name: playwright-report
@@ -150,7 +236,7 @@ jobs:
           retention-days: 14
 
       - name: Upload audit reports
-        if: always()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v5
         with:
           name: audit-reports
