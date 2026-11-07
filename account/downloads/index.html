@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Account Downloads | CoreCraft Genesis</title>
+
+    <meta
+        name="description"
+        content="Accountbezogener Download-Bereich von CoreCraft Genesis mit Informationen zu zukünftigen persönlichen Ressourcen, Produktzugriff und öffentlichen Downloads."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/account/downloads/"
+    >
+
+    <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-2: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --line-hover: #2d4258;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: 0;
+            left: 16px;
+            z-index: 100;
+            padding: 10px 14px;
+            background: var(--blue);
+            color: #001326;
+            border-radius: 0 0 8px 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transform: translateY(-120%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 32px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover,
+        .breadcrumb a:focus-visible {
+            color: var(--text);
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            max-width: 920px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        strong {
+            color: var(--text);
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 800px;
+        }
+
+        .lead {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .notice {
+            max-width: 900px;
+            margin-top: 34px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-2);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 38px;
+        }
+
+        .card {
+            display: flex;
+            min-width: 0;
+            padding: 28px;
+            flex-direction: column;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+        }
+
+        .card-label {
+            margin-bottom: 14px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: .8rem;
+            letter-spacing: .04em;
+        }
+
+        .status {
+            display: inline-block;
+            width: fit-content;
+            margin-top: 14px;
+            padding: 6px 9px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: .78rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 18px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .steps {
+            display: grid;
+            gap: 16px;
+            margin: 34px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .steps li {
+            padding: 22px 24px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            border-color: transparent;
+            background: var(--blue);
+            color: #001326;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-inline: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#content">
+    Direkt zum Inhalt
+</a>
+
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav
+            class="nav-links"
+            aria-label="Hauptnavigation"
+        >
+            <a href="/account/">Account</a>
+            <a href="/account/products/">Account Products</a>
+            <a href="/products/">Produkte</a>
+            <a href="/downloads/">Downloads</a>
+            <a href="/support/">Support</a>
+        </nav>
+
+    </div>
+</header>
+
+<main id="content">
+
+    <section class="hero">
+        <div class="container">
+
+            <nav
+                class="breadcrumb"
+                aria-label="Brotkrümelnavigation"
+            >
+                <a href="/">Startseite</a>
+                /
+                <a href="/account/">Account</a>
+                /
+                Downloads
+            </nav>
+
+            <div class="label">
+                Account / Downloads
+            </div>
+
+            <h1>
+                Persönliche Downloads transparent vorbereiten.
+            </h1>
+
+            <p class="lead">
+                Dieser Bereich bildet die Grundlage für zukünftige
+                accountbezogene Downloads und freigegebene
+                Produktressourcen von CoreCraft Genesis.
+            </p>
+
+            <div class="notice">
+                <strong>Aktueller Status:</strong>
+                Persönliche Downloads sind derzeit nicht aktiviert.
+                Es werden keine Dateien, Zugriffsrechte oder
+                Download-Berechtigungen angezeigt, die einem Account
+                nicht tatsächlich zugeordnet wurden.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Download Status
+            </div>
+
+            <h2>
+                Accountbezogene Bereitstellung ist vorbereitet.
+            </h2>
+
+            <p class="section-intro">
+                Dieser Bereich wird erst dann persönliche Ressourcen
+                anzeigen, wenn dafür eine reale technische
+                Bereitstellung und eindeutige Zugriffszuordnung existiert.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">
+                        PERSONAL DOWNLOADS
+                    </span>
+
+                    <h3>Persönliche Downloads</h3>
+
+                    <p>
+                        Dateien, die später ausdrücklich einem
+                        persönlichen Account zugeordnet werden.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        PRODUCT RESOURCES
+                    </span>
+
+                    <h3>Produktressourcen</h3>
+
+                    <p>
+                        Accountbezogene Produktdateien werden erst
+                        nach tatsächlicher Freigabe bereitgestellt.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        ACCESS
+                    </span>
+
+                    <h3>Download-Berechtigungen</h3>
+
+                    <p>
+                        Der Account weist derzeit keine individuellen
+                        Download-Berechtigungen aus.
+                    </p>
+
+                    <span class="status">
+                        Nicht aktiviert
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        HISTORY
+                    </span>
+
+                    <h3>Download-Verlauf</h3>
+
+                    <p>
+                        Ein persönlicher Download-Verlauf ist derzeit
+                        nicht Bestandteil des Account-Bereichs.
+                    </p>
+
+                    <span class="status">
+                        Nicht aktiviert
+                    </span>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Public Downloads
+            </div>
+
+            <h2>
+                Öffentliche Ressourcen bleiben separat verfügbar.
+            </h2>
+
+            <p class="section-intro">
+                Öffentlich bereitgestellte Ressourcen benötigen keine
+                persönliche Download-Zuordnung. Verfügbare Inhalte
+                werden weiterhin über den allgemeinen Download-Bereich
+                veröffentlicht.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/downloads/"
+                >
+                    Öffentliche Downloads
+                </a>
+
+                <a
+                    class="button"
+                    href="/products/"
+                >
+                    Produkte
+                </a>
+
+                <a
+                    class="button"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Future Delivery
+            </div>
+
+            <h2>
+                Zukünftige Bereitstellung folgt klaren Zuständen.
+            </h2>
+
+            <p class="section-intro">
+                Accountbezogene Downloads können später schrittweise
+                ergänzt werden, ohne öffentliche und persönliche
+                Ressourcen miteinander zu vermischen.
+            </p>
+
+            <ol class="steps">
+
+                <li>
+                    <strong>Produktzuordnung</strong><br>
+                    Ein Produkt muss dem Account tatsächlich
+                    zugeordnet sein.
+                </li>
+
+                <li>
+                    <strong>Zugriffsprüfung</strong><br>
+                    Eine Ressource wird nur bei vorhandener
+                    Berechtigung angeboten.
+                </li>
+
+                <li>
+                    <strong>Ressourcenzuordnung</strong><br>
+                    Die bereitgestellte Datei wird eindeutig einem
+                    Produkt oder einer Freigabe zugeordnet.
+                </li>
+
+                <li>
+                    <strong>Download</strong><br>
+                    Erst danach wird eine tatsächlich verfügbare
+                    Ressource als persönlicher Download angezeigt.
+                </li>
+
+            </ol>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Security
+            </div>
+
+            <h2>
+                Downloads und Zugangsinformationen schützen.
+            </h2>
+
+            <p class="section-intro">
+                Persönliche Ressourcen sollen erst über dafür
+                vorgesehene und abgesicherte Account-Funktionen
+                bereitgestellt werden.
+            </p>
+
+            <div class="notice">
+                <strong>Sicherheitshinweis:</strong>
+                Vertrauliche Zugangsdaten, Passwörter, private
+                Schlüssel oder Zugangstoken sollten nicht über
+                Kontakt- oder Supportbereiche übermittelt werden.
+            </div>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/legal/privacy/"
+                >
+                    Datenschutz
+                </a>
+
+                <a
+                    class="button"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Product Access
+            </div>
+
+            <h2>
+                Produktzugriff und Downloads getrennt verwalten.
+            </h2>
+
+            <p class="section-intro">
+                Die Produktzuordnung beschreibt, worauf ein Account
+                zugreifen kann. Der Download-Bereich beschreibt
+                anschließend nur die tatsächlich bereitgestellten
+                Ressourcen.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/account/products/"
+                >
+                    Account Products
+                </a>
+
+                <a
+                    class="button"
+                    href="/pricing/"
+                >
+                    Pricing & Licensing
+                </a>
+
+                <a
+                    class="button"
+                    href="/legal/licenses/"
+                >
+                    Lizenzinformationen
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Account Resources
+            </div>
+
+            <h2>
+                Weitere Account-Ressourcen.
+            </h2>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/account/"
+                >
+                    Account Übersicht
+                </a>
+
+                <a
+                    class="button"
+                    href="/account/products/"
+                >
+                    Account Products
+                </a>
+
+                <a
+                    class="button"
+                    href="/downloads/"
+                >
+                    Öffentliche Downloads
+                </a>
+
+                <a
+                    class="button"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+                <a
+                    class="button"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/account/">Account</a>
+            <a href="/account/products/">Account Products</a>
+            <a href="/products/">Produkte</a>
+            <a href="/downloads/">Downloads</a>
+            <a href="/docs/">Dokumentation</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/">Legal</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
