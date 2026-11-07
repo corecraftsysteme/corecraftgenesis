@@ -1,8 +1,8 @@
 live-audio-audit.json
-
 node_modules/
 playwright-report/
 test-results/
 blob-report/
 performance-accessibility-audit.json
 seo-metadata-audit.json
+live-seo-audit.json
