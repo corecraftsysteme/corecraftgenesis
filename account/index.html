@@ -4,78 +4,964 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>account | CoreCraft Genesis</title>
+    <title>Account & Access | CoreCraft Genesis</title>
 
-    <meta name="description" content="Verwalten Sie Ihr CoreCraft-Genesis-Konto, persönliche Einstellungen, Zugänge und zugehörige digitale Produktinformationen.">
+    <meta
+        name="description"
+        content="Account- und Zugriffsbereich von CoreCraft Genesis mit Informationen zu Produkten, Downloads, Lizenzierung, Sicherheit und zukünftigen Kontofunktionen."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/account/"
+    >
 
     <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --line-hover: #2d4258;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
-        }
-
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
-
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
-
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
             text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        main {
+            display: block;
+            min-width: 0;
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            max-width: 930px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        strong {
+            color: var(--text);
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 800px;
+        }
+
+        .lead {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            display: flex;
+            min-width: 0;
+            padding: 30px;
+            flex-direction: column;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: .82rem;
+            letter-spacing: .04em;
+        }
+
+        .status {
+            display: inline-block;
+            width: fit-content;
+            margin-top: 14px;
+            padding: 6px 9px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: .78rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 18px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .notice {
+            max-width: 900px;
+            margin-top: 38px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-light);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
             border-radius: 8px;
-            font-weight: 650;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        .steps {
+            display: grid;
+            gap: 16px;
+            margin: 38px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .steps li {
+            padding: 22px 24px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+        }
+
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
         }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/account/">
 </head>
 
 <body>
 
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav
+            class="nav-links"
+            aria-label="Hauptnavigation"
+        >
+            <a href="/products/">Produkte</a>
+            <a href="/shop/">Shop</a>
+            <a href="/downloads/">Downloads</a>
+            <a href="/docs/">Dokumentation</a>
+            <a href="/support/">Support</a>
+        </nav>
+
+    </div>
+</header>
+
 <main>
 
-    <div class="label">
-        CoreCraft Genesis
-    </div>
+    <section class="hero">
+        <div class="container">
 
-    <h1>account</h1>
+            <div class="label">
+                Account & Access
+            </div>
 
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
+            <h1>
+                Account-Funktionen transparent vorbereiten.
+            </h1>
 
-    <a href="/">
-        Zur Startseite
-    </a>
+            <p class="lead">
+                Dieser Bereich bildet die Grundlage für zukünftige
+                Konto-, Zugriffs- und produktbezogene Funktionen von
+                CoreCraft Genesis. Funktionen werden erst angezeigt,
+                wenn sie tatsächlich verfügbar sind.
+            </p>
+
+            <div class="notice">
+                <strong>Aktueller Status:</strong>
+                Der persönliche Account-Bereich befindet sich in
+                Vorbereitung. Derzeit stehen hier noch keine Anmeldung,
+                Registrierung oder persönlichen Kontofunktionen zur
+                Verfügung.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Planned Account Areas
+            </div>
+
+            <h2>
+                Eine klare Grundlage für zukünftige Kontofunktionen.
+            </h2>
+
+            <p class="section-intro">
+                Die Account-Struktur wird so vorbereitet, dass
+                zukünftige Funktionen eindeutig voneinander getrennt
+                und nachvollziehbar ergänzt werden können.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">
+                        ACCOUNT
+                    </span>
+
+                    <h3>Kontoverwaltung</h3>
+
+                    <p>
+                        Zukünftiger Bereich für persönliche
+                        Kontoinformationen und Einstellungen.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        ACCESS
+                    </span>
+
+                    <h3>Product Access</h3>
+
+                    <p>
+                        Vorgesehener Bereich für spätere
+                        produktbezogene Zugriffs- und
+                        Berechtigungsinformationen.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        DOWNLOADS
+                    </span>
+
+                    <h3>Persönliche Ressourcen</h3>
+
+                    <p>
+                        Zukünftige Zuordnung freigegebener Ressourcen
+                        zu einem persönlichen Account, sofern diese
+                        Funktion später benötigt wird.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        LICENSING
+                    </span>
+
+                    <h3>Produkt- und Lizenzzuordnung</h3>
+
+                    <p>
+                        Vorgesehene Struktur für spätere
+                        produktbezogene Lizenz- und
+                        Zugriffsinformationen.
+                    </p>
+
+                    <span class="status">
+                        In Vorbereitung
+                    </span>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Available Now
+            </div>
+
+            <h2>
+                Bereits verfügbare Bereiche direkt öffnen.
+            </h2>
+
+            <p class="section-intro">
+                Viele technische Informationen und Ressourcen sind
+                bereits ohne persönlichen Account über die öffentlichen
+                Bereiche von CoreCraft Genesis erreichbar.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">
+                        PRODUCTS
+                    </span>
+
+                    <h3>Produkte</h3>
+
+                    <p>
+                        Technische Produktbereiche, Systeme und
+                        verfügbare Ressourcen entdecken.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/products/"
+                    >
+                        Produkte öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        DOWNLOADS
+                    </span>
+
+                    <h3>Downloads</h3>
+
+                    <p>
+                        Veröffentlichte Ressourcen und zukünftige
+                        Downloadmöglichkeiten zentral finden.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/downloads/"
+                    >
+                        Downloads öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        DOCUMENTATION
+                    </span>
+
+                    <h3>Dokumentation</h3>
+
+                    <p>
+                        Technische Dokumentation, Guides,
+                        Architekturinformationen und Referenzen.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/docs/"
+                    >
+                        Dokumentation öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        SUPPORT
+                    </span>
+
+                    <h3>Technische Ressourcen</h3>
+
+                    <p>
+                        Dokumentation, Diagnosewerkzeuge und weitere
+                        technische Orientierung.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/support/"
+                    >
+                        Support öffnen
+                    </a>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Security & Privacy
+            </div>
+
+            <h2>
+                Zugangsdaten und persönliche Informationen schützen.
+            </h2>
+
+            <p class="section-intro">
+                Sicherheitsrelevante Informationen sollten nur über
+                dafür vorgesehene Funktionen verarbeitet werden.
+            </p>
+
+            <div class="notice">
+                <strong>Sicherheitshinweis:</strong>
+                Übermitteln Sie keine Passwörter, privaten Schlüssel,
+                Zugangstoken oder andere vertrauliche Zugangsdaten über
+                Kontakt- oder Supportbereiche.
+            </div>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/legal/privacy/"
+                >
+                    Datenschutz
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Licensing
+            </div>
+
+            <h2>
+                Produktzugang und Lizenzierung getrennt betrachten.
+            </h2>
+
+            <p class="section-intro">
+                Die Verfügbarkeit eines Produkts, persönliche
+                Zugriffsrechte und die jeweils geltenden
+                Lizenzbedingungen sind unterschiedliche Informationen.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/pricing/"
+                >
+                    Pricing & Licensing
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/legal/licenses/"
+                >
+                    Lizenzinformationen
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Future Architecture
+            </div>
+
+            <h2>
+                Funktionen werden erst mit realer Infrastruktur aktiviert.
+            </h2>
+
+            <p class="section-intro">
+                Der Account-Bereich ist für eine schrittweise
+                Erweiterung vorbereitet. Neue Funktionen sollen erst
+                dann erscheinen, wenn die dazugehörige technische
+                Infrastruktur tatsächlich verfügbar ist.
+            </p>
+
+            <ol class="steps">
+
+                <li>
+                    <strong>Authentifizierung</strong><br>
+                    Sichere Anmeldung und Kontozugriff.
+                </li>
+
+                <li>
+                    <strong>Profil</strong><br>
+                    Verwaltung persönlicher Kontoinformationen.
+                </li>
+
+                <li>
+                    <strong>Produktzugriff</strong><br>
+                    Zuordnung tatsächlich verfügbarer Produkte und Rechte.
+                </li>
+
+                <li>
+                    <strong>Lizenzen und Downloads</strong><br>
+                    Accountbezogene Bereitstellung zugelassener Ressourcen.
+                </li>
+
+                <li>
+                    <strong>Commerce-Integration</strong><br>
+                    Spätere Verbindung zu realen Bestell-,
+                    Zahlungs- und Bereitstellungsprozessen.
+                </li>
+
+            </ol>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                FAQ
+            </div>
+
+            <h2>
+                Häufige Fragen zum Account-Bereich.
+            </h2>
+
+            <p class="section-intro">
+                Der aktuelle Status und die wichtigsten öffentlich
+                verfügbaren Alternativen auf einen Blick.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">
+                        ACCOUNT
+                    </span>
+
+                    <h3>
+                        Ist ein persönlicher Account bereits verfügbar?
+                    </h3>
+
+                    <p>
+                        Nein. Der persönliche Account-Bereich befindet
+                        sich derzeit in Vorbereitung.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        REGISTRATION
+                    </span>
+
+                    <h3>
+                        Muss ich mich derzeit registrieren?
+                    </h3>
+
+                    <p>
+                        Nein. Aktuell ist keine Registrierung für die
+                        öffentlich verfügbaren Bereiche dieser Website
+                        erforderlich.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        DOWNLOADS
+                    </span>
+
+                    <h3>
+                        Wo finde ich verfügbare Ressourcen?
+                    </h3>
+
+                    <p>
+                        Veröffentlichte Ressourcen werden im
+                        Download-Bereich oder beim jeweiligen Produkt
+                        eingeordnet.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/downloads/"
+                    >
+                        Downloads öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        ACCESS
+                    </span>
+
+                    <h3>
+                        Wie funktionieren spätere Produktzugänge?
+                    </h3>
+
+                    <p>
+                        Produktbezogene Zugriffsmechanismen werden erst
+                        beschrieben, wenn die entsprechenden Funktionen
+                        tatsächlich implementiert sind.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        LICENSES
+                    </span>
+
+                    <h3>
+                        Wo finde ich Lizenzinformationen?
+                    </h3>
+
+                    <p>
+                        Allgemeine Lizenzinformationen befinden sich im
+                        zentralen Lizenzbereich. Produktspezifische
+                        Bedingungen werden dem jeweiligen Angebot
+                        zugeordnet.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/legal/licenses/"
+                    >
+                        Lizenzinformationen öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">
+                        SUPPORT
+                    </span>
+
+                    <h3>
+                        Wo finde ich technische Informationen?
+                    </h3>
+
+                    <p>
+                        Dokumentation, Produktinformationen und
+                        technische Ressourcen stehen über die
+                        entsprechenden öffentlichen Bereiche zur
+                        Verfügung.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/support/"
+                    >
+                        Support öffnen
+                    </a>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Orientierung
+            </div>
+
+            <h2>
+                Direkt zu den verfügbaren Ressourcen.
+            </h2>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/products/"
+                >
+                    Produkte
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/downloads/"
+                >
+                    Downloads
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
 
 </main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/products/">Produkte</a>
+            <a href="/shop/">Shop</a>
+            <a href="/downloads/">Downloads</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/">Legal</a>
+            <a href="/legal/imprint/">Impressum</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+            <a href="/legal/licenses/">Lizenzen</a>
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
