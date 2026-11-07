@@ -4,78 +4,689 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>pricing | CoreCraft Genesis</title>
+    <title>Pricing & Licensing | CoreCraft Genesis</title>
 
-    <meta name="description" content="Preise und Leistungsübersicht für CoreCraft-Genesis-Produkte, technische Pakete, Dokumentationen und digitale Lösungen.">
+    <meta
+        name="description"
+        content="Informationen zu Produktmodellen, Lizenzierung, Verfügbarkeit und zukünftigen Preisangaben für CoreCraft Genesis."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/pricing/"
+    >
 
     <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
-        }
-
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
-
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
-
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
             text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        main {
+            display: block;
+            min-width: 0;
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 800px;
+            color: var(--muted);
+        }
+
+        .lead {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            min-width: 0;
+            padding: 30px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .card:hover {
+            border-color: #2d4258;
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .82rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 7px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .8rem;
+        }
+
+        .notice {
+            max-width: 880px;
+            margin-top: 38px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-light);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
             border-radius: 8px;
-            font-weight: 650;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
         }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/pricing/">
 </head>
 
 <body>
 
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="/products/">Produkte</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/docs/">Dokumentation</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+        </nav>
+
+    </div>
+</header>
+
 <main>
 
-    <div class="label">
-        CoreCraft Genesis
-    </div>
+    <section class="hero">
+        <div class="container">
 
-    <h1>pricing</h1>
+            <div class="label">
+                Pricing & Licensing
+            </div>
 
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
+            <h1>
+                Produktmodelle und Lizenzierung transparent einordnen.
+            </h1>
 
-    <a href="/">
-        Zur Startseite
-    </a>
+            <p class="lead">
+                CoreCraft Genesis umfasst technische Produkte,
+                Dokumentationen und Developer Tools mit unterschiedlichen
+                Einsatzbereichen. Preis-, Lizenz- und Verfügbarkeitsangaben
+                werden dem jeweiligen Angebot eindeutig zugeordnet.
+            </p>
+
+            <div class="actions">
+                <a class="button button-primary" href="/products/">
+                    Produkte ansehen
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/legal/licenses/"
+                >
+                    Lizenzinformationen
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Produktmodelle
+            </div>
+
+            <h2>
+                Unterschiedliche Produkte. Klare Zuordnung.
+            </h2>
+
+            <p class="section-intro">
+                Die Plattform verbindet verschiedene Arten technischer
+                Inhalte und Werkzeuge. Nicht jeder Bereich folgt deshalb
+                demselben Bereitstellungs- oder Lizenzmodell.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">SOFTWARE</span>
+
+                    <h3>Technische Produkte</h3>
+
+                    <p>
+                        Softwareorientierte Produktbereiche können eigene
+                        Funktionen, Dokumentationen und Lizenzbedingungen
+                        besitzen.
+                    </p>
+
+                    <a class="card-link" href="/products/">
+                        Produktübersicht öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">TOOLS</span>
+
+                    <h3>Developer Tools</h3>
+
+                    <p>
+                        Werkzeuge für Validierung, Diagnose, Datenprüfung
+                        sowie Link- und Routenanalysen.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/products/developer-tools/"
+                    >
+                        Developer Tools öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">DOCUMENTATION</span>
+
+                    <h3>Dokumentation</h3>
+
+                    <p>
+                        Technische Grundlagen, Architekturinformationen,
+                        Referenzen und weiterführende Dokumentationen.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/docs/"
+                    >
+                        Dokumentation öffnen
+                    </a>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">SOLUTIONS</span>
+
+                    <h3>Technische Lösungen</h3>
+
+                    <p>
+                        Zusammengefasste technische Ansätze und
+                        Einsatzbereiche innerhalb des
+                        CoreCraft-Genesis-Ökosystems.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/solutions/"
+                    >
+                        Solutions ansehen
+                    </a>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Pricing
+            </div>
+
+            <h2>
+                Preise dort, wo sie konkret gelten.
+            </h2>
+
+            <p class="section-intro">
+                Preisangaben werden nicht pauschal über unterschiedliche
+                Produktarten hinweg zusammengefasst. Wenn für ein konkretes
+                Angebot ein Preis gilt, soll dieser direkt beim betreffenden
+                Produkt oder Angebot ausgewiesen werden.
+            </p>
+
+            <div class="notice">
+                <strong>Aktueller Stand:</strong>
+                Diese Übersichtsseite veröffentlicht bewusst keine
+                pauschalen Preise, Abonnements oder Kaufversprechen für
+                Angebote, für die noch kein konkretes Preismodell
+                ausgewiesen ist.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Licensing
+            </div>
+
+            <h2>
+                Lizenzbedingungen gehören zum jeweiligen Produkt.
+            </h2>
+
+            <p class="section-intro">
+                Software, Dokumentationen, Open-Source-Komponenten und
+                Ressourcen Dritter können unterschiedlichen
+                Lizenzbedingungen unterliegen.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">PRODUCT</span>
+
+                    <h3>Produktspezifische Lizenzen</h3>
+
+                    <p>
+                        Enthält ein Produkt eigene Lizenzbedingungen,
+                        gelten diese für das betreffende Produkt.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">OPEN SOURCE</span>
+
+                    <h3>Open-Source-Komponenten</h3>
+
+                    <p>
+                        Für eingebundene Open-Source-Komponenten gelten
+                        die Lizenzbedingungen der jeweiligen Projekte
+                        und Rechteinhaber.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">THIRD PARTY</span>
+
+                    <h3>Drittanbieter-Komponenten</h3>
+
+                    <p>
+                        Bibliotheken, Schriftarten, Frameworks und andere
+                        Ressourcen Dritter können eigenen Bedingungen
+                        unterliegen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">LEGAL</span>
+
+                    <h3>Lizenzübersicht</h3>
+
+                    <p>
+                        Die allgemeine rechtliche Einordnung befindet
+                        sich im zentralen Lizenzbereich.
+                    </p>
+
+                    <a
+                        class="card-link"
+                        href="/legal/licenses/"
+                    >
+                        Lizenzinformationen öffnen
+                    </a>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Verfügbarkeit
+            </div>
+
+            <h2>
+                Produktstatus klar vom Preismodell trennen.
+            </h2>
+
+            <p class="section-intro">
+                CoreCraft Genesis wird schrittweise weiterentwickelt.
+                Produktinformationen, technische Ressourcen und
+                Dokumentationen können bereits verfügbar sein, ohne
+                dass damit automatisch ein kommerzielles Angebot
+                verbunden ist.
+            </p>
+
+            <div class="notice">
+                <strong>Grundsatz:</strong>
+                Konkrete Preis- oder Erwerbsinformationen werden erst
+                dann ausgewiesen, wenn sie für das jeweilige Angebot
+                tatsächlich festgelegt sind.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Orientierung
+            </div>
+
+            <h2>
+                Direkt zum passenden Bereich.
+            </h2>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/products/"
+                >
+                    Produkte
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/solutions/"
+                >
+                    Solutions
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/contact/"
+                >
+                    Kontakt
+                </a>
+
+            </div>
+
+        </div>
+    </section>
 
 </main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/products/">Produkte</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/">Legal</a>
+            <a href="/legal/imprint/">Impressum</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+            <a href="/legal/licenses/">Lizenzen</a>
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
