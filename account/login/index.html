@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Account-Zugang | CoreCraft Genesis</title>
+
+    <meta
+        name="description"
+        content="Zugangsbereich für zukünftige sichere Account-Funktionen von CoreCraft Genesis."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/account/login/"
+    >
+
+    <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-2: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --max-width: 1050px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: 0;
+            z-index: 100;
+            padding: 10px 14px;
+            background: var(--blue);
+            color: #001326;
+            border-radius: 0 0 8px 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transform: translateY(-120%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            text-decoration: none;
+            font-weight: 750;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links,
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        section {
+            padding: 68px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero {
+            padding: 100px 0 80px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.12;
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            margin: 18px 0;
+            font-size: clamp(2.7rem, 7vw, 5.2rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 12px 0 18px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            letter-spacing: -.03em;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 1.15rem;
+        }
+
+        p {
+            color: var(--muted);
+        }
+
+        .lead {
+            max-width: 700px;
+            font-size: 1.1rem;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .8rem;
+        }
+
+        .notice {
+            max-width: 780px;
+            margin-top: 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface-2);
+            color: var(--muted);
+        }
+
+        .notice strong {
+            color: var(--text);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .card {
+            min-width: 0;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--green);
+            font-family: monospace;
+            font-size: .78rem;
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 11px 16px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            border-color: transparent;
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .actions {
+            margin-top: 26px;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 36px 0;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 720px) {
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 72px 0 60px;
+            }
+
+            section {
+                padding: 54px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-inline: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3rem);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#content">
+    Direkt zum Inhalt
+</a>
+
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="/account/">Account</a>
+            <a href="/account/products/">Products</a>
+            <a href="/account/downloads/">Downloads</a>
+            <a href="/support/">Support</a>
+        </nav>
+
+    </div>
+</header>
+
+<main id="content">
+
+    <section class="hero">
+        <div class="container">
+
+            <nav
+                class="breadcrumb"
+                aria-label="Brotkrümelnavigation"
+            >
+                <a href="/">Startseite</a>
+                /
+                <a href="/account/">Account</a>
+                /
+                Login
+            </nav>
+
+            <div class="label">
+                Account / Login
+            </div>
+
+            <h1>
+                Account-Zugang
+            </h1>
+
+            <p class="lead">
+                Der Login-Bereich ist derzeit nicht aktiviert.
+            </p>
+
+            <span class="status">
+                Nicht verfügbar
+            </span>
+
+            <div class="notice">
+                <strong>Hinweis:</strong>
+                Eine Anmeldung ist aktuell nicht möglich.
+                Es werden keine Zugangsdaten verarbeitet.
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="label">
+                Authentication
+            </div>
+
+            <h2>
+                Sicherer Zugang
+            </h2>
+
+            <p class="lead">
+                Die Anmeldung wird aktiviert, sobald die erforderliche
+                Account- und Sicherheitsinfrastruktur verfügbar ist.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">IDENTITY</span>
+                    <h3>Identität</h3>
+                    <p>
+                        Sichere Prüfung des Accounts.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">SESSION</span>
+                    <h3>Sitzung</h3>
+                    <p>
+                        Verwaltung authentifizierter Sitzungen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">ACCESS</span>
+                    <h3>Zugriff</h3>
+                    <p>
+                        Prüfung von Produkt- und Ressourcenrechten.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">SECURITY</span>
+                    <h3>Sicherheit</h3>
+                    <p>
+                        Schutz von Zugangsdaten und Account-Ressourcen.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="label">
+                Current Status
+            </div>
+
+            <h2>
+                Noch keine Anmeldung verfügbar
+            </h2>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">PASSWORD</span>
+                    <h3>Passwort</h3>
+                    <span class="status">Nicht aktiviert</span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">REGISTRATION</span>
+                    <h3>Registrierung</h3>
+                    <span class="status">Nicht aktiviert</span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">RECOVERY</span>
+                    <h3>Wiederherstellung</h3>
+                    <span class="status">In Vorbereitung</span>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">SESSION</span>
+                    <h3>Account-Sitzung</h3>
+                    <span class="status">Nicht aktiviert</span>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="label">
+                Security
+            </div>
+
+            <h2>
+                Zugangsdaten schützen
+            </h2>
+
+            <div class="notice">
+                Keine Passwörter, privaten Schlüssel oder Zugangstoken
+                über Kontakt- oder Supportbereiche übermitteln.
+            </div>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/legal/privacy/"
+                >
+                    Datenschutz
+                </a>
+
+                <a
+                    class="button"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="label">
+                Account
+            </div>
+
+            <h2>
+                Weitere Account-Bereiche
+            </h2>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/account/"
+                >
+                    Übersicht
+                </a>
+
+                <a
+                    class="button"
+                    href="/account/products/"
+                >
+                    Products
+                </a>
+
+                <a
+                    class="button"
+                    href="/account/downloads/"
+                >
+                    Downloads
+                </a>
+
+                <a
+                    class="button"
+                    href="/support/"
+                >
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/account/">Account</a>
+            <a href="/products/">Produkte</a>
+            <a href="/docs/">Dokumentation</a>
+            <a href="/support/">Support</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
