@@ -8,7 +8,7 @@
 
     <meta
         name="description"
-        content="Technische Lösungsbereiche von CoreCraft Genesis für Runtime-Systeme, Payments, Developer Tools, Dokumentation, Audio und Bitcoin Mining."
+        content="Solutions von CoreCraft Genesis für Automation, Business, Entwickler und technische Infrastruktur."
     >
 
     <link
@@ -26,6 +26,7 @@
             --blue: #4ea1ff;
             --green: #57d38c;
             --line: #1d2a38;
+            --line-hover: #2d4258;
             --max-width: 1120px;
         }
 
@@ -55,6 +56,10 @@
 
         a {
             color: inherit;
+        }
+
+        img {
+            max-width: 100%;
         }
 
         .container {
@@ -106,6 +111,10 @@
             color: var(--text);
         }
 
+        .nav-links a[aria-current="page"] {
+            color: var(--text);
+        }
+
         main {
             display: block;
             min-width: 0;
@@ -146,8 +155,8 @@
         }
 
         h3 {
-            margin-top: 0;
-            font-size: 1.25rem;
+            margin: 0;
+            font-size: 1.3rem;
         }
 
         p,
@@ -180,36 +189,39 @@
         }
 
         .card {
+            position: relative;
             min-width: 0;
             padding: 30px;
             border: 1px solid var(--line);
             border-radius: 12px;
             background: var(--surface);
+            transition:
+                border-color .18s ease,
+                background .18s ease,
+                transform .18s ease;
         }
 
         .card:hover {
-            border-color: #2d4258;
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+            transform: translateY(-2px);
         }
 
         .card-label {
             display: block;
             margin-bottom: 18px;
             color: var(--green);
-            font-family: monospace;
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                monospace;
             font-size: .82rem;
             letter-spacing: .04em;
         }
 
-        .card-link {
-            display: inline-block;
-            margin-top: 14px;
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .card-link:hover {
-            text-decoration: underline;
+        .card p {
+            margin-bottom: 0;
         }
 
         .detail-list {
@@ -221,6 +233,48 @@
             margin-top: 6px;
         }
 
+        .card-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .solution-card {
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .solution-card .card-link {
+            margin-top: auto;
+            padding-top: 24px;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .approach-card {
+            min-width: 0;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .approach-card .card-label {
+            margin-bottom: 14px;
+        }
+
         .notice {
             max-width: 880px;
             margin-top: 38px;
@@ -228,6 +282,7 @@
             border: 1px solid var(--line);
             border-radius: 12px;
             background: var(--surface-light);
+            color: var(--muted);
         }
 
         .notice strong {
@@ -260,6 +315,11 @@
             color: var(--text);
         }
 
+        .button-secondary:hover {
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+        }
+
         a:focus-visible,
         .button:focus-visible {
             outline: 3px solid var(--blue);
@@ -279,6 +339,12 @@
             gap: 18px;
         }
 
+        @media (max-width: 900px) {
+            .approach-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 780px) {
             .hero {
                 padding: 80px 0 70px;
@@ -288,8 +354,13 @@
                 padding: 65px 0;
             }
 
-            .grid {
+            .grid,
+            .approach-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .solution-card {
+                min-height: 0;
             }
 
             .nav {
@@ -313,6 +384,11 @@
             .nav-links,
             .footer-links {
                 width: 100%;
+            }
+
+            .card,
+            .approach-card {
+                padding: 24px;
             }
         }
 
@@ -344,7 +420,7 @@
 
         <nav class="nav-links" aria-label="Hauptnavigation">
             <a href="/products/">Produkte</a>
-            <a href="/solutions/">Solutions</a>
+            <a href="/solutions/" aria-current="page">Solutions</a>
             <a href="/docs/">Dokumentation</a>
             <a href="/support/">Support</a>
             <a href="/contact/">Kontakt</a>
@@ -363,26 +439,194 @@
             </div>
 
             <h1>
-                Technische Systeme nach Problemfeldern entdecken.
+                Technische Lösungen nach Aufgabenbereich.
             </h1>
 
             <p class="lead">
-                CoreCraft Genesis bündelt technische Produkte,
-                Werkzeuge und Dokumentationen in klar abgegrenzten
-                Lösungsbereichen. Diese Übersicht verbindet
-                Systemarchitektur, Entwicklung, Validierung,
-                Dokumentation und spezialisierte technische Domänen.
+                CoreCraft Genesis verbindet technische Produkte,
+                Werkzeuge und Dokumentation mit klar strukturierten
+                Lösungsbereichen für Automation, Business,
+                Entwicklung und Infrastruktur.
             </p>
 
             <div class="actions">
 
-                <a class="button button-primary" href="/products/">
-                    Produkte entdecken
+                <a
+                    class="button button-primary"
+                    href="#solution-areas"
+                >
+                    Solutions entdecken
                 </a>
 
-                <a class="button button-secondary" href="/docs/">
-                    Dokumentation öffnen
+                <a
+                    class="button button-secondary"
+                    href="/products/"
+                >
+                    Produkte
                 </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="solution-areas">
+        <div class="container">
+
+            <div class="section-label">
+                Solution Areas
+            </div>
+
+            <h2>
+                Vier Bereiche. Ein technischer Ansatz.
+            </h2>
+
+            <p class="section-intro">
+                Die Solution Areas strukturieren CoreCraft Genesis
+                nach konkreten technischen und betrieblichen
+                Aufgabenfeldern.
+            </p>
+
+            <div class="grid">
+
+                <article class="card solution-card">
+
+                    <span class="card-label">
+                        AUTOMATION
+                    </span>
+
+                    <h3>
+                        Automation
+                    </h3>
+
+                    <p>
+                        Wiederholbare technische Abläufe,
+                        Prüfprozesse und automatisierte Workflows
+                        für strukturierte Systemumgebungen.
+                    </p>
+
+                    <ul class="detail-list">
+                        <li>Workflow Automation</li>
+                        <li>Validation</li>
+                        <li>Automated Checks</li>
+                        <li>Release Processes</li>
+                        <li>System Operations</li>
+                    </ul>
+
+                    <a
+                        class="card-link"
+                        href="/solutions/automation/"
+                    >
+                        Automation öffnen
+                    </a>
+
+                </article>
+
+                <article class="card solution-card">
+
+                    <span class="card-label">
+                        BUSINESS
+                    </span>
+
+                    <h3>
+                        Business
+                    </h3>
+
+                    <p>
+                        Technische Strukturen für digitale Produkte,
+                        Zahlungsprozesse, Dokumentation und
+                        nachvollziehbare Geschäftsabläufe.
+                    </p>
+
+                    <ul class="detail-list">
+                        <li>Digital Products</li>
+                        <li>Payments</li>
+                        <li>Documentation</li>
+                        <li>Operational Structures</li>
+                        <li>Technical Workflows</li>
+                    </ul>
+
+                    <a
+                        class="card-link"
+                        href="/solutions/business/"
+                    >
+                        Business öffnen
+                    </a>
+
+                </article>
+
+                <article class="card solution-card">
+
+                    <span class="card-label">
+                        DEVELOPERS
+                    </span>
+
+                    <h3>
+                        Developers
+                    </h3>
+
+                    <p>
+                        Werkzeuge, technische Ressourcen und
+                        Validierung für Entwicklung, Analyse
+                        und reproduzierbare Qualitätssicherung.
+                    </p>
+
+                    <ul class="detail-list">
+                        <li>Developer Tools</li>
+                        <li>Validators</li>
+                        <li>Diagnostics</li>
+                        <li>Web Tools</li>
+                        <li>Technical Documentation</li>
+                    </ul>
+
+                    <a
+                        class="card-link"
+                        href="/solutions/developers/"
+                    >
+                        Developers öffnen
+                    </a>
+
+                </article>
+
+                <article class="card solution-card">
+
+                    <span class="card-label">
+                        INFRASTRUCTURE
+                    </span>
+
+                    <h3>
+                        Infrastructure
+                    </h3>
+
+                    <p>
+                        Technische Grundlagen für Betrieb,
+                        Systemarchitektur, Infrastruktur,
+                        Überwachung und zuverlässige Bereitstellung.
+                    </p>
+
+                    <ul class="detail-list">
+                        <li>System Architecture</li>
+                        <li>Runtime Infrastructure</li>
+                        <li>Monitoring</li>
+                        <li>Deployment</li>
+                        <li>Technical Operations</li>
+                    </ul>
+
+                    <a
+                        class="card-link"
+                        href="/solutions/infrastructure/"
+                    >
+                        Infrastructure öffnen
+                    </a>
+
+                </article>
 
             </div>
 
@@ -393,38 +637,35 @@
         <div class="container">
 
             <div class="section-label">
-                Solution Areas
+                Technology Areas
             </div>
 
             <h2>
-                Vom technischen Problem zum passenden Systembereich.
+                Solutions mit den passenden Systemen verbinden.
             </h2>
 
             <p class="section-intro">
-                Die Lösungsbereiche ordnen vorhandene Produkte und
-                technische Ressourcen nach ihrem jeweiligen Schwerpunkt.
-                Sie stellen keine pauschalen Beratungsangebote dar.
+                Die produktbezogenen Bereiche stellen konkrete
+                technische Ressourcen innerhalb der CoreCraft
+                Genesis Plattform bereit.
             </p>
 
             <div class="grid">
 
                 <article class="card">
-                    <span class="card-label">RUNTIME</span>
 
-                    <h3>Engineering & Runtime</h3>
+                    <span class="card-label">
+                        RUNTIME
+                    </span>
+
+                    <h3>
+                        EngineCore
+                    </h3>
 
                     <p>
-                        Technische Strukturen für Runtime-Architektur,
-                        Module, Validierung und Systemdiagnose.
+                        Runtime-Architektur, Module,
+                        Systemvalidierung und technische Diagnose.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>Architecture</li>
-                        <li>Runtime</li>
-                        <li>Modules</li>
-                        <li>Validation</li>
-                        <li>Diagnostics</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -432,25 +673,24 @@
                     >
                         EngineCore öffnen
                     </a>
+
                 </article>
 
                 <article class="card">
-                    <span class="card-label">PAYMENTS</span>
 
-                    <h3>Payments & Transaction Architecture</h3>
+                    <span class="card-label">
+                        PAYMENTS
+                    </span>
+
+                    <h3>
+                        CoreCraft Pay
+                    </h3>
 
                     <p>
-                        Technische Strukturen rund um Payments,
-                        Checkout, Integrationen und Sicherheitsaspekte.
+                        Technische Strukturen für Payments,
+                        Checkout, Integrationen und
+                        transaktionsbezogene Abläufe.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>Architecture</li>
-                        <li>Payments</li>
-                        <li>Checkout</li>
-                        <li>Integrations</li>
-                        <li>Security</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -458,25 +698,24 @@
                     >
                         CoreCraft Pay öffnen
                     </a>
+
                 </article>
 
                 <article class="card">
-                    <span class="card-label">DEVELOPER</span>
 
-                    <h3>Developer & Validation</h3>
+                    <span class="card-label">
+                        DEVELOPER
+                    </span>
+
+                    <h3>
+                        Developer Tools
+                    </h3>
 
                     <p>
-                        Werkzeuge zur Prüfung, Validierung,
-                        Diagnose und strukturierten technischen Analyse.
+                        Werkzeuge für Validierung,
+                        Diagnose, Datenprüfung und
+                        technische Analyse.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>Validators</li>
-                        <li>Data Tools</li>
-                        <li>Web Tools</li>
-                        <li>Diagnostics</li>
-                        <li>Automation</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -484,25 +723,24 @@
                     >
                         Developer Tools öffnen
                     </a>
+
                 </article>
 
                 <article class="card">
-                    <span class="card-label">DOCUMENTATION</span>
 
-                    <h3>Technical Documentation</h3>
+                    <span class="card-label">
+                        DOCUMENTATION
+                    </span>
+
+                    <h3>
+                        Technical Documentation
+                    </h3>
 
                     <p>
-                        Strukturierte technische Informationen für
-                        Architektur, Einstieg, Referenz und Standards.
+                        Strukturierte Informationen für
+                        Architektur, Einstieg, Referenz
+                        und technische Standards.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>Getting Started</li>
-                        <li>Architecture</li>
-                        <li>Guides</li>
-                        <li>Reference</li>
-                        <li>Standards</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -510,26 +748,24 @@
                     >
                         Documentation öffnen
                     </a>
+
                 </article>
 
                 <article class="card">
-                    <span class="card-label">AUDIO</span>
 
-                    <h3>Audio Systems</h3>
+                    <span class="card-label">
+                        AUDIO
+                    </span>
+
+                    <h3>
+                        Audio Systems
+                    </h3>
 
                     <p>
-                        Technische Bereiche für digitale
-                        Audioverarbeitung, Orchestrierung,
-                        Analyse und Systemwerkzeuge.
+                        Technische Systeme für digitale
+                        Audioverarbeitung, Analyse,
+                        Orchestrierung und Validierung.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>DSP</li>
-                        <li>Orchestration</li>
-                        <li>Validation</li>
-                        <li>Diagnostics</li>
-                        <li>Audio Tools</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -537,26 +773,24 @@
                     >
                         Audio öffnen
                     </a>
+
                 </article>
 
                 <article class="card">
-                    <span class="card-label">MINING</span>
 
-                    <h3>Bitcoin Mining Systems</h3>
+                    <span class="card-label">
+                        MINING
+                    </span>
+
+                    <h3>
+                        Bitcoin Mining Systems
+                    </h3>
 
                     <p>
-                        Technische Einordnung von Architektur,
-                        Energie, Betrieb, Überwachung und
-                        wirtschaftlichen Zusammenhängen.
+                        Technische Einordnung von Hardware,
+                        Energie, Betrieb, Architektur
+                        und Monitoring.
                     </p>
-
-                    <ul class="detail-list">
-                        <li>Architecture</li>
-                        <li>Hardware</li>
-                        <li>Energy</li>
-                        <li>Operations</li>
-                        <li>Monitoring</li>
-                    </ul>
 
                     <a
                         class="card-link"
@@ -564,6 +798,7 @@
                     >
                         Bitcoin Mining öffnen
                     </a>
+
                 </article>
 
             </div>
@@ -583,56 +818,79 @@
             </h2>
 
             <p class="section-intro">
-                Die technischen Bereiche von CoreCraft Genesis folgen
-                einem strukturierten Ansatz: Systeme werden in klar
-                definierte Komponenten, technische Verantwortlichkeiten
-                und überprüfbare Schnittstellen gegliedert.
+                CoreCraft Genesis strukturiert technische Systeme
+                in nachvollziehbare Komponenten, überprüfbare
+                Schnittstellen und dokumentierte Zustände.
             </p>
 
-            <div class="grid">
+            <div class="approach-grid">
 
-                <article class="card">
-                    <span class="card-label">01</span>
+                <article class="approach-card">
 
-                    <h3>Architecture</h3>
+                    <span class="card-label">
+                        01
+                    </span>
+
+                    <h3>
+                        Architecture
+                    </h3>
 
                     <p>
-                        Technische Strukturen und Systemgrenzen
-                        nachvollziehbar definieren.
+                        Systemgrenzen, Komponenten und
+                        Verantwortlichkeiten definieren.
                     </p>
+
                 </article>
 
-                <article class="card">
-                    <span class="card-label">02</span>
+                <article class="approach-card">
 
-                    <h3>Validation</h3>
+                    <span class="card-label">
+                        02
+                    </span>
+
+                    <h3>
+                        Validation
+                    </h3>
 
                     <p>
                         Daten, Dateien, Routen und technische
                         Annahmen systematisch überprüfen.
                     </p>
+
                 </article>
 
-                <article class="card">
-                    <span class="card-label">03</span>
+                <article class="approach-card">
 
-                    <h3>Diagnostics</h3>
+                    <span class="card-label">
+                        03
+                    </span>
+
+                    <h3>
+                        Diagnostics
+                    </h3>
 
                     <p>
-                        Technische Zustände und mögliche Fehlerquellen
-                        strukturiert eingrenzen.
+                        Zustände und mögliche Fehlerquellen
+                        nachvollziehbar eingrenzen.
                     </p>
+
                 </article>
 
-                <article class="card">
-                    <span class="card-label">04</span>
+                <article class="approach-card">
 
-                    <h3>Documentation</h3>
+                    <span class="card-label">
+                        04
+                    </span>
+
+                    <h3>
+                        Documentation
+                    </h3>
 
                     <p>
-                        Entscheidungen, Schnittstellen und technische
-                        Zusammenhänge nachvollziehbar dokumentieren.
+                        Architektur, Entscheidungen und
+                        technische Zusammenhänge dokumentieren.
                     </p>
+
                 </article>
 
             </div>
@@ -644,17 +902,17 @@
         <div class="container">
 
             <div class="section-label">
-                Developer Tools
+                Technical Resources
             </div>
 
             <h2>
-                Technische Prüfung als eigener Lösungsbereich.
+                Von der Lösung zur technischen Umsetzung.
             </h2>
 
             <p class="section-intro">
-                Für Validierung und Diagnose stehen spezialisierte
-                Werkzeuge zur Verfügung. Sie unterstützen bei der
-                strukturierten Untersuchung technischer Ressourcen.
+                Für Entwicklung, Prüfung und technische
+                Nachvollziehbarkeit stehen ergänzende
+                Produkt- und Dokumentationsbereiche zur Verfügung.
             </p>
 
             <div class="actions">
@@ -682,47 +940,9 @@
 
                 <a
                     class="button button-secondary"
-                    href="/products/developer-tools/web-tools/"
-                >
-                    Web Tools
-                </a>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-
-            <div class="section-label">
-                Documentation
-            </div>
-
-            <h2>
-                Technische Systeme nachvollziehbar machen.
-            </h2>
-
-            <p class="section-intro">
-                Dokumentation bildet die Verbindung zwischen
-                Architektur, Implementierung, Validierung und
-                langfristiger technischer Nachvollziehbarkeit.
-            </p>
-
-            <div class="actions">
-
-                <a
-                    class="button button-primary"
                     href="/docs/"
                 >
-                    Dokumentation öffnen
-                </a>
-
-                <a
-                    class="button button-secondary"
-                    href="/products/documentation/"
-                >
-                    Documentation Product
+                    Dokumentation
                 </a>
 
             </div>
@@ -738,21 +958,22 @@
             </div>
 
             <h2>
-                Direkt zum passenden technischen Bereich.
+                Den passenden Bereich auswählen.
             </h2>
 
             <p class="section-intro">
-                Solutions dient als technische Orientierung innerhalb
-                von CoreCraft Genesis. Konkrete Funktionen und
-                verfügbare Ressourcen befinden sich in den jeweiligen
-                Produkt- und Dokumentationsbereichen.
+                Solutions dient als Einstieg nach Aufgabenbereich.
+                Konkrete Funktionen, Werkzeuge und technische
+                Ressourcen befinden sich in den zugehörigen
+                Solution-, Produkt- und Dokumentationsbereichen.
             </p>
 
             <div class="notice">
                 <strong>Aktueller Stand:</strong>
-                Diese Seite beschreibt technische Lösungsbereiche und
-                vorhandene Ressourcen. Sie stellt kein pauschales
-                Beratungs- oder Dienstleistungsversprechen dar.
+                Die Solution-Bereiche strukturieren vorhandene
+                technische Inhalte und Ressourcen. Sie stellen
+                kein pauschales Beratungs- oder
+                Dienstleistungsversprechen dar.
             </div>
 
             <div class="actions">
@@ -801,6 +1022,7 @@
 
         <div class="footer-links">
             <a href="/products/">Produkte</a>
+            <a href="/solutions/">Solutions</a>
             <a href="/pricing/">Pricing</a>
             <a href="/support/">Support</a>
             <a href="/contact/">Kontakt</a>

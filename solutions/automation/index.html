@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Automation Solutions | CoreCraft Genesis</title>
+
+    <meta
+        name="description"
+        content="Technische Lösungen von CoreCraft Genesis für automatisierte Workflows, Validierung, Prüfprozesse und wiederholbare Systemabläufe."
+    >
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/solutions/automation/"
+    >
+
+    <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --line: #1d2a38;
+            --line-hover: #2d4258;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        .nav-links a[aria-current="page"] {
+            color: var(--text);
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            max-width: 920px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        p {
+            color: var(--muted);
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 800px;
+        }
+
+        .lead {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            min-width: 0;
+            padding: 30px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+            transition:
+                border-color .18s ease,
+                background .18s ease,
+                transform .18s ease;
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+            transform: translateY(-2px);
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                monospace;
+            font-size: .82rem;
+            letter-spacing: .04em;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+        }
+
+        .notice {
+            max-width: 880px;
+            margin-top: 38px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-light);
+            color: var(--muted);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 18px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+
+            .card {
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="/products/">Produkte</a>
+            <a href="/solutions/" aria-current="page">Solutions</a>
+            <a href="/docs/">Dokumentation</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="container">
+
+            <div class="label">
+                AUTOMATION
+            </div>
+
+            <h1>
+                Wiederholbare Abläufe statt manueller Routine.
+            </h1>
+
+            <p class="lead">
+                Automation verbindet technische Workflows, Validierung und kontrollierte Abläufe zu nachvollziehbaren Systemprozessen.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="#areas"
+                >
+                    Bereiche entdecken
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/solutions/"
+                >
+                    Alle Solutions
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="areas">
+        <div class="container">
+
+            <div class="section-label">
+                Automation Areas
+            </div>
+
+            <h2>
+                Technische Schwerpunkte.
+            </h2>
+
+            <p class="section-intro">
+                Der Bereich Automation ordnet technische
+                Aufgaben in klar abgegrenzte und nachvollziehbare
+                Systembereiche.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">WORKFLOWS</span>
+                    <h3>Workflow Automation</h3>
+                    <p>Wiederholbare technische Abläufe für definierte Prozesse und Systemzustände.</p>
+                </article>
+                <article class="card">
+                    <span class="card-label">VALIDATION</span>
+                    <h3>Automated Validation</h3>
+                    <p>Strukturierte Prüfungen für Dateien, Daten, Routen und technische Ressourcen.</p>
+                </article>
+                <article class="card">
+                    <span class="card-label">RELEASE</span>
+                    <h3>Release Processes</h3>
+                    <p>Prüfbare Abläufe vor Veröffentlichung, Deployment und technischen Änderungen.</p>
+                </article>
+                <article class="card">
+                    <span class="card-label">OPERATIONS</span>
+                    <h3>System Operations</h3>
+                    <p>Automatisierbare technische Routineprozesse für reproduzierbare Betriebsabläufe.</p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Engineering
+            </div>
+
+            <h2>
+                Strukturierte technische Umsetzung.
+            </h2>
+
+            <p class="section-intro">
+                CoreCraft Genesis verbindet Architektur,
+                Implementierung, Validierung und Dokumentation,
+                damit technische Änderungen nachvollziehbar
+                und überprüfbar bleiben.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">01</span>
+                    <h3>Architecture</h3>
+                    <p>
+                        Systemgrenzen, Komponenten und
+                        Schnittstellen klar definieren.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">02</span>
+                    <h3>Implementation</h3>
+                    <p>
+                        Technische Ressourcen auf Grundlage
+                        definierter Anforderungen umsetzen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">03</span>
+                    <h3>Validation</h3>
+                    <p>
+                        Ergebnisse und technische Annahmen
+                        systematisch prüfen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">04</span>
+                    <h3>Documentation</h3>
+                    <p>
+                        Entscheidungen und Systemzustände
+                        nachvollziehbar dokumentieren.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <div class="section-label">
+                Resources
+            </div>
+
+            <h2>
+                Weitere technische Ressourcen.
+            </h2>
+
+            <p class="section-intro">
+                Ergänzende Produkte, Entwicklerwerkzeuge und
+                Dokumentationen unterstützen die technische
+                Umsetzung innerhalb von CoreCraft Genesis.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="/products/"
+                >
+                    Produkte
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/products/developer-tools/"
+                >
+                    Developer Tools
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/docs/"
+                >
+                    Dokumentation
+                </a>
+
+            </div>
+
+            <div class="notice">
+                <strong>Hinweis:</strong>
+                Dieser Bereich beschreibt technische Lösungsfelder
+                und vorhandene Ressourcen. Er stellt kein pauschales
+                Beratungs- oder Dienstleistungsversprechen dar.
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/products/">Produkte</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/">Legal</a>
+            <a href="/legal/imprint/">Impressum</a>
+            <a href="/legal/privacy/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>

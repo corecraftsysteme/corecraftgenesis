@@ -1,0 +1,25 @@
+{
+  "product": {
+    "name": "CoreCraft Genesis",
+    "active": true,
+    "version": 1
+  },
+  "developerTools": {
+    "validators": [
+      "json",
+      "schema",
+      "file"
+    ],
+    "diagnostics": {
+      "sha256": true
+    },
+    "dataTools": {
+      "formatter": true,
+      "inspector": true
+    }
+  },
+  "release": {
+    "status": "development",
+    "ready": false
+  }
+}

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bitcoin Mining Architecture | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Architekturmodell und technische Bereiche einer strukturierten Bitcoin-Mining-Umgebung."
+  >
+
+  <link
+    rel="stylesheet"
+    href="/products/bitcoin-mining/assets/css/bitcoin-mining.css"
+  >
+
+  <link
+    rel="canonical"
+    href="<a href="https://corecraftgenesis.ch/products/bitcoin-mining/architecture/" ...>
+
+  <style>
+    .architecture-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .architecture-hardware {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.10);
+      border: 1px solid rgba(56, 189, 248, 0.30);
+    }
+
+    .architecture-energy {
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.10);
+      border: 1px solid rgba(250, 204, 21, 0.30);
+    }
+
+    .architecture-operations {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.10);
+      border: 1px solid rgba(167, 139, 250, 0.30);
+    }
+
+    .architecture-network {
+      color: #fb923c;
+      background: rgba(249, 115, 22, 0.10);
+      border: 1px solid rgba(249, 115, 22, 0.30);
+    }
+
+    .architecture-monitoring {
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.10);
+      border: 1px solid rgba(74, 222, 128, 0.30);
+    }
+
+    .architecture-economics {
+      color: #f472b6;
+      background: rgba(244, 114, 182, 0.10);
+      border: 1px solid rgba(244, 114, 182, 0.30);
+    }
+
+    .architecture-audit {
+      color: #94a3b8;
+      background: rgba(148, 163, 184, 0.10);
+      border: 1px solid rgba(148, 163, 184, 0.30);
+    }
+
+    .architecture-data {
+      color: #22d3ee;
+      background: rgba(34, 211, 238, 0.10);
+      border: 1px solid rgba(34, 211, 238, 0.30);
+    }
+
+    .architecture-card-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .architecture-flow {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .architecture-flow-node {
+      padding: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .architecture-flow-node strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .architecture-flow-node span {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    .architecture-flow-proxy {
+      border-color: rgba(249, 115, 22, 0.55);
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .architecture-flow-arrow {
+      color: #fb923c;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .mining-page-navigation {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .mining-page-navigation a {
+      display: block;
+      padding: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .mining-page-navigation a:hover {
+      border-color: #f7931a;
+    }
+
+    .mining-page-navigation small {
+      display: block;
+      margin-bottom: 6px;
+      opacity: 0.65;
+    }
+
+    .mining-page-navigation strong {
+      display: block;
+    }
+
+    .mining-page-next {
+      text-align: right;
+    }
+
+    @media (max-width: 800px) {
+      .architecture-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-flow-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+      }
+
+      .mining-page-navigation {
+        grid-template-columns: 1fr;
+      }
+
+      .mining-page-next {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+
+<body data-page="architecture">
+
+<header class="mining-header">
+  <div class="mining-shell">
+
+    <nav
+      class="mining-nav"
+      aria-label="Bitcoin Mining Navigation"
+    >
+
+      <a
+        class="mining-brand"
+        href="/products/bitcoin-mining/"
+      >
+        Bitcoin <span>Mining</span>
+      </a>
+
+      <div class="mining-nav-links">
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/architecture/"
+        >
+          Architecture
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/hardware/"
+        >
+          Hardware
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/operations/"
+        >
+          Operations
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/energy/"
+        >
+          Energy
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/monitoring/"
+        >
+          Monitoring
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/economics/"
+        >
+          Economics
+        </a>
+
+        <a
+          data-mining-nav
+          href="/products/bitcoin-mining/developer/"
+        >
+          Developer
+        </a>
+
+      </div>
+
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="mining-hero">
+    <div class="mining-shell">
+
+      <div class="mining-eyebrow">
+        Bitcoin Mining / Architecture
+      </div>
+
+      <h1>Bitcoin Mining Architecture</h1>
+
+      <p class="mining-lead">
+        Struktur für Hardware, Energie, Betrieb, Netzwerk,
+        Monitoring und technische Mining-Daten.
+      </p>
+
+      <div class="mining-actions">
+
+        <a
+          class="mining-button"
+          href="#overview"
+        >
+          Bereich ansehen
+        </a>
+
+        <a
+          class="mining-button mining-button-secondary"
+          href="/products/bitcoin-mining/"
+        >
+          Mining Übersicht
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ARCHITECTURE OVERVIEW -->
+
+  <section
+    class="mining-section"
+    id="overview"
+  >
+
+    <div class="mining-shell">
+
+      <div class="mining-label">
+        Technical Components
+      </div>
+
+      <h2>Kernbereiche</h2>
+
+      <p class="mining-lead">
+        Die Mining-Architektur verbindet Hardware, Energie,
+        Betrieb, Netzwerk, Monitoring und wirtschaftliche
+        Komponenten zu einer modularen technischen Struktur.
+      </p>
+
+
+      <div class="mining-grid">
+
+        <!-- HARDWARE -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-hardware">
+            HARDWARE
+          </span>
+
+          <h3>Hardware Layer</h3>
+
+          <p>
+            ASIC-Miner und physische Komponenten bilden
+            die technische Basis der Mining-Infrastruktur.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/hardware/"
+          >
+            Hardware öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- ENERGY -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-energy">
+            ENERGY
+          </span>
+
+          <h3>Energy Layer</h3>
+
+          <p>
+            Energieversorgung und technische Energiekomponenten
+            bilden eine zentrale Betriebsebene der Mining-Umgebung.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/energy/"
+          >
+            Energy öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- OPERATIONS -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-operations">
+            OPERATIONS
+          </span>
+
+          <h3>Operations Layer</h3>
+
+          <p>
+            Dieser Bereich umfasst technische und operative
+            Strukturen für den laufenden Mining-Betrieb.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/operations/"
+          >
+            Operations öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- FARM PROXY -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-network">
+            NETWORK
+          </span>
+
+          <h3>Farm Proxy &amp; Hashrate Routing</h3>
+
+          <p>
+            Zentrale Proxy-Schicht zwischen ASIC-Minern
+            und Mining-Pools für Hashrate-Routing,
+            gebündelte Verbindungen und Pool-Konfiguration.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/architecture/farm-proxy/"
+          >
+            Farm Proxy Architecture öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- MONITORING -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-monitoring">
+            MONITORING
+          </span>
+
+          <h3>Monitoring Layer</h3>
+
+          <p>
+            Überwachung technischer Mining-Systeme,
+            Betriebszustände und relevanter Messwerte.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/monitoring/"
+          >
+            Monitoring öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- ECONOMICS -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-economics">
+            ECONOMICS
+          </span>
+
+          <h3>Economics Layer</h3>
+
+          <p>
+            Wirtschaftliche Betrachtung von Mining-Betrieb,
+            Kostenstrukturen und technischen Einflussfaktoren.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/economics/"
+          >
+            Economics öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- AUDIT -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-audit">
+            AUDIT
+          </span>
+
+          <h3>Audit Layer</h3>
+
+          <p>
+            Prüfung von Seiten, Daten, internen Links,
+            Assets und öffentlichen Mining-Routen.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HASHRATE NETWORK -->
+
+  <section class="mining-section">
+
+    <div class="mining-shell">
+
+      <div class="mining-label">
+        Network Architecture
+      </div>
+
+      <h2>Hashrate-Verbindung</h2>
+
+      <p class="mining-lead">
+        Die Farm-Proxy-Schicht bildet die Verbindung zwischen
+        Mining-Hardware und externer Pool-Infrastruktur.
+      </p>
+
+      <div class="architecture-flow">
+
+        <div class="architecture-flow-node">
+          <strong>ASIC Miner</strong>
+          <span>SHA-256 Mining Hardware</span>
+        </div>
+
+        <div
+          class="architecture-flow-arrow"
+          aria-hidden="true"
+        >
+          →
+        </div>
+
+        <div class="architecture-flow-node architecture-flow-proxy">
+          <strong>Farm Proxy</strong>
+          <span>Routing &amp; Aggregation</span>
+        </div>
+
+        <div
+          class="architecture-flow-arrow"
+          aria-hidden="true"
+        >
+          →
+        </div>
+
+        <div class="architecture-flow-node">
+          <strong>Mining Pools</strong>
+          <span>Pool Infrastructure</span>
+        </div>
+
+      </div>
+
+      <div class="mining-actions">
+
+        <a
+          class="mining-button"
+          href="/products/bitcoin-mining/architecture/farm-proxy/"
+        >
+          Farm Proxy Details
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DATA AND VALIDATION -->
+
+  <section class="mining-section">
+
+    <div class="mining-shell">
+
+      <div class="mining-label">
+        Data &amp; Validation
+      </div>
+
+      <h2>Daten und Prüfung</h2>
+
+
+      <div class="mining-grid">
+
+        <!-- DATA -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-data">
+            DATA
+          </span>
+
+          <h3>Strukturierte Daten</h3>
+
+          <p>
+            Zugehörige technische Daten stehen als
+            validierte JSON-Datei zur Verfügung.
+          </p>
+
+          <a
+            class="architecture-card-link"
+            href="/products/bitcoin-mining/data/architecture.json"
+          >
+            architecture.json öffnen →
+          </a>
+
+        </article>
+
+
+        <!-- VALIDATION -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-monitoring">
+            VALIDATION
+          </span>
+
+          <h3>Lokale Prüfung</h3>
+
+          <p>
+            Seiten, interne Links, Routen, JSON-Dateien
+            und Asset-Verweise werden vor der
+            Veröffentlichung geprüft.
+          </p>
+
+        </article>
+
+
+        <!-- LIVE -->
+
+        <article class="mining-card">
+
+          <span class="architecture-type architecture-energy">
+            LIVE
+          </span>
+
+          <h3>Deployment-Prüfung</h3>
+
+          <p>
+            Nach der Veröffentlichung werden die
+            öffentlichen Mining-Routen separat per HTTP geprüft.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RELATED AREAS -->
+
+  <section class="mining-section">
+
+    <div class="mining-shell">
+
+      <div class="mining-card">
+
+        <div class="mining-label">
+          Navigation
+        </div>
+
+        <h2>Weitere Mining-Bereiche</h2>
+
+        <div class="mining-nav-links">
+
+          <a href="/products/bitcoin-mining/architecture/">
+            Architecture
+          </a>
+
+          <a href="/products/bitcoin-mining/hardware/">
+            Hardware
+          </a>
+
+          <a href="/products/bitcoin-mining/operations/">
+            Operations
+          </a>
+
+          <a href="/products/bitcoin-mining/energy/">
+            Energy
+          </a>
+
+          <a href="/products/bitcoin-mining/monitoring/">
+            Monitoring
+          </a>
+
+          <a href="/products/bitcoin-mining/economics/">
+            Economics
+          </a>
+
+          <a href="/products/bitcoin-mining/developer/">
+            Developer
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PREVIOUS / NEXT -->
+
+  <section class="mining-section">
+
+    <div class="mining-shell">
+
+      <div class="mining-label">
+        Continue
+      </div>
+
+      <h2>Weiter durch Bitcoin Mining</h2>
+
+      <div class="mining-page-navigation">
+
+        <a
+          class="mining-page-previous"
+          href="/products/bitcoin-mining/"
+        >
+          <small>← Zurück</small>
+          <strong>Bitcoin Mining Übersicht</strong>
+        </a>
+
+        <a
+          class="mining-page-next"
+          href="/products/bitcoin-mining/hardware/"
+        >
+          <small>Weiter →</small>
+          <strong>Hardware</strong>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="mining-footer">
+
+  <div class="mining-shell">
+
+    <p>
+      &copy;
+      <span data-mining-year>2026</span>
+      CoreCraft Genesis · Bitcoin Mining Architecture
+    </p>
+
+    <p>
+
+      <a href="/products/">
+        Alle Produkte
+      </a>
+
+      ·
+
+      <a href="/docs/">
+        Dokumentation
+      </a>
+
+      ·
+
+      <a href="/contact/">
+        Kontakt
+      </a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script src="/products/bitcoin-mining/assets/js/bitcoin-mining.js"></script>
+<script src="/products/bitcoin-mining/assets/js/ui.js"></script>
+
+</body>
+</html>

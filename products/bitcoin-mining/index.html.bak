@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bitcoin Mining | CoreCraft Genesis</title>
+
+  <meta
+    name="description"
+    content="Mining-Infrastruktur, Hardware, Energie, Betrieb, Monitoring, Economics und technische Analyseprodukte."
+  >
+
+  <style>
+    :root {
+      --bg: #05070a;
+      --surface: #0c1118;
+      --surface-light: #111924;
+      --line: #1d2938;
+      --text: #f4f7fb;
+      --muted: #95a2b3;
+      --blue: #4ea1ff;
+      --orange: #f7931a;
+      --green: #42d392;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 70% -10%,
+          rgba(247, 147, 26, .13) 0,
+          transparent 28%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(5, 7, 10, .88);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -.03em;
+      font-size: 1.1rem;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      gap: 25px;
+
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 9px 16px;
+
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .breadcrumb {
+      padding-top: 45px;
+
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #526174;
+    }
+
+    .hero {
+      min-height: 620px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+
+      gap: 70px;
+      padding: 70px 0 110px;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--orange);
+
+      text-transform: uppercase;
+      letter-spacing: .13em;
+
+      font-weight: 700;
+      font-size: .77rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      max-width: 900px;
+
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: -.065em;
+    }
+
+    h2 {
+      max-width: 900px;
+
+      margin: 12px 0 22px;
+
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 30px 0;
+
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--orange);
+      border-radius: 8px;
+
+      background: var(--orange);
+      color: #1b0d00;
+
+      font-weight: 650;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .system-panel {
+      padding: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(247,147,26,.08),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .status {
+      margin-bottom: 25px;
+
+      color: var(--green);
+      font-family: monospace;
+      font-size: .8rem;
+    }
+
+    .system-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 15px 0;
+
+      border-top: 1px solid var(--line);
+
+      font-family: monospace;
+      font-size: .82rem;
+    }
+
+    .system-item span:last-child {
+      color: var(--green);
+      text-align: right;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .capabilities {
+      background: rgba(255,255,255,.015);
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mining-areas {
+      position: relative;
+    }
+
+    .mining-areas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 10% 40%,
+          rgba(247,147,26,.07),
+          transparent 34%
+        );
+
+      pointer-events: none;
+    }
+
+    .mining-areas .container {
+      position: relative;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 45px;
+
+      color: var(--muted);
+      font-size: 1.07rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      display: block;
+      min-height: 250px;
+      padding: 28px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 14px;
+
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        background .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+
+      border-color: #76552d;
+      background: var(--surface-light);
+    }
+
+    .card-number {
+      color: var(--orange);
+      font-family: monospace;
+      font-size: .75rem;
+    }
+
+    .card h3 {
+      margin: 25px 0 10px;
+      font-size: 1.22rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .card-link {
+      margin-top: 22px;
+
+      color: var(--orange);
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
+    .cta {
+      padding: 60px;
+
+      background:
+        linear-gradient(
+          125deg,
+          rgba(247,147,26,.12),
+          transparent
+        ),
+        var(--surface);
+
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    footer {
+      padding: 55px 0;
+
+      border-top: 1px solid var(--line);
+
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    .copyright {
+      margin-top: 45px;
+      padding-top: 30px;
+
+      border-top: 1px solid var(--line);
+
+      font-size: .82rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 35px 25px;
+      }
+    }
+  </style>
+  <link rel="canonical" href="https://corecraftgenesis.ch/products/bitcoin-mining/">
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+
+      <a class="brand" href="/">
+        CoreCraft <span>Genesis</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="active" href="/products/">Produkte</a>
+        <a href="/solutions/">Solutions</a>
+        <a href="/docs/">Docs</a>
+        <a href="/pricing/">Preise</a>
+        <a href="/blog/">Research</a>
+        <a href="/about/">Über uns</a>
+        <a class="nav-button" href="/account/">Account</a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="container breadcrumb">
+
+    <a href="/">Home</a>
+    <span>/</span>
+
+    <a href="/products/">Produkte</a>
+    <span>/</span>
+
+    Bitcoin Mining
+
+  </div>
+
+  <section class="container hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Mining Infrastructure
+      </div>
+
+      <h1>
+        Bitcoin Mining
+      </h1>
+
+      <p>
+        Technische Mining-Infrastruktur für Hardware,
+        Betrieb, Energie, Monitoring, technische Kennzahlen
+        und strukturierte Analyse.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          class="button"
+          href="#mining-areas"
+        >
+          Mining-Bereiche erkunden
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#capabilities"
+        >
+          Funktionen ansehen
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="system-panel">
+
+      <div class="status">
+        ● PRODUCT AVAILABLE
+      </div>
+
+      <div class="system-item">
+        <span>PRODUCT</span>
+        <span>Bitcoin Mining</span>
+      </div>
+
+      <div class="system-item">
+        <span>ROUTE</span>
+        <span>/products/bitcoin-mining/</span>
+      </div>
+
+      <div class="system-item">
+        <span>CATEGORY</span>
+        <span>Mining Infrastructure</span>
+      </div>
+
+      <div class="system-item">
+        <span>STRUCTURE</span>
+        <span>MODULAR</span>
+      </div>
+
+      <div class="system-item">
+        <span>AREAS</span>
+        <span>7</span>
+      </div>
+
+      <div class="system-item">
+        <span>STATUS</span>
+        <span>ACTIVE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CAPABILITIES -->
+
+  <section
+    class="capabilities"
+    id="capabilities"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        Product Capabilities
+      </div>
+
+      <h2>
+        Technische Schwerpunkte.
+      </h2>
+
+      <p class="lead">
+        Der Bitcoin-Mining-Bereich verbindet technische
+        Infrastruktur, Energie, Monitoring und strukturierte
+        Betriebsinformationen innerhalb des
+        CoreCraft-Genesis-Ökosystems.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 01
+          </span>
+
+          <h3>Mining Infrastructure</h3>
+
+          <p>
+            Strukturierte technische Umgebung für Miner,
+            Netzwerk, Energieversorgung und Kühlung.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 02
+          </span>
+
+          <h3>Hardware Operations</h3>
+
+          <p>
+            Nachvollziehbare Geräte-, Betriebs-
+            und Wartungsstrukturen.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 03
+          </span>
+
+          <h3>Energy Monitoring</h3>
+
+          <p>
+            Leistungsaufnahme, Effizienz,
+            Versorgung und thermische Betriebswerte.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 04
+          </span>
+
+          <h3>Network Monitoring</h3>
+
+          <p>
+            Technische Beobachtung von Mining-Systemen,
+            Zuständen und relevanten Ereignissen.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 05
+          </span>
+
+          <h3>Operational Audit</h3>
+
+          <p>
+            Kontrolle von Seiten, Daten,
+            Routen, Assets und Betriebsstrukturen.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-number">
+            CAPABILITY 06
+          </span>
+
+          <h3>Mining Documentation</h3>
+
+          <p>
+            Strukturierte technische Informationen,
+            Messwerte und Entwicklerressourcen.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MINING AREAS -->
+
+  <section
+    class="mining-areas"
+    id="mining-areas"
+  >
+
+    <div class="container">
+
+      <div class="section-label">
+        Bitcoin Mining Architecture
+      </div>
+
+      <h2>
+        Mining-Bereiche.
+      </h2>
+
+      <p class="lead">
+        Öffne die einzelnen technischen Bereiche für Architektur,
+        Hardware, Betrieb, Energie, Monitoring, Economics
+        und Entwicklung.
+      </p>
+
+      <div class="grid">
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/architecture/"
+        >
+          <span class="card-number">AREA 01</span>
+
+          <h3>Architecture</h3>
+
+          <p>
+            Gesamtstruktur für Mining-Hardware,
+            Energie, Betrieb, Monitoring und technische Daten.
+          </p>
+
+          <div class="card-link">
+            Architecture öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/hardware/"
+        >
+          <span class="card-number">AREA 02</span>
+
+          <h3>Hardware</h3>
+
+          <p>
+            Miner, Stromversorgung, Netzwerk,
+            Kühlung und technische Betriebsumgebung.
+          </p>
+
+          <div class="card-link">
+            Hardware öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/operations/"
+        >
+          <span class="card-number">AREA 03</span>
+
+          <h3>Operations</h3>
+
+          <p>
+            Betriebsabläufe, Wartung,
+            Verfügbarkeit und kontrollierte Änderungen.
+          </p>
+
+          <div class="card-link">
+            Operations öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/energy/"
+        >
+          <span class="card-number">AREA 04</span>
+
+          <h3>Energy</h3>
+
+          <p>
+            Leistungsaufnahme, Effizienz,
+            Energieversorgung und thermische Betriebsgrößen.
+          </p>
+
+          <div class="card-link">
+            Energy öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/monitoring/"
+        >
+          <span class="card-number">AREA 05</span>
+
+          <h3>Monitoring</h3>
+
+          <p>
+            Hashrate, Leistung, Effizienz,
+            Temperatur und Verfügbarkeit.
+          </p>
+
+          <div class="card-link">
+            Monitoring öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/economics/"
+        >
+          <span class="card-number">AREA 06</span>
+
+          <h3>Economics</h3>
+
+          <p>
+            Technische Kosten-, Leistungs-
+            und Betriebsmodelle mit dokumentierten Annahmen.
+          </p>
+
+          <div class="card-link">
+            Economics öffnen →
+          </div>
+        </a>
+
+        <a
+          class="card"
+          href="/products/bitcoin-mining/developer/"
+        >
+          <span class="card-number">AREA 07</span>
+
+          <h3>Developer</h3>
+
+          <p>
+            Technische Ressourcen, strukturierte Daten,
+            Generatoren und Audit-Werkzeuge.
+          </p>
+
+          <div class="card-link">
+            Developer öffnen →
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="container">
+
+    <div class="cta">
+
+      <div class="section-label">
+        CoreCraft Genesis
+      </div>
+
+      <h2>
+        Bitcoin Mining weiter erkunden.
+      </h2>
+
+      <p class="lead">
+        Öffne weitere Produktbereiche,
+        die technische Dokumentation oder
+        nimm Kontakt auf.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          class="button"
+          href="/products/"
+        >
+          Alle Produkte
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="/docs/"
+        >
+          Dokumentation
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="/contact/"
+        >
+          Kontakt
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          CoreCraft <span>Genesis</span>
+        </div>
+
+        <p style="margin-top:15px;max-width:360px;">
+          Engineering Deterministic Systems,
+          Digital Infrastructure,
+          Blockchain Intelligence and Knowledge Products.
+        </p>
+
+      </div>
+
+      <div>
+        <p class="footer-title">Produkte</p>
+
+        <a href="/products/audio/">
+          Audio
+        </a>
+
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/products/corecraft-pay/">
+          CoreCraft Pay
+        </a>
+
+        <a href="/products/bitcoin-mining/">
+          Bitcoin Mining
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-title">Bitcoin Mining</p>
+
+        <a href="/products/bitcoin-mining/architecture/">
+          Architecture
+        </a>
+
+        <a href="/products/bitcoin-mining/hardware/">
+          Hardware
+        </a>
+
+        <a href="/products/bitcoin-mining/operations/">
+          Operations
+        </a>
+
+        <a href="/products/bitcoin-mining/energy/">
+          Energy
+        </a>
+
+        <a href="/products/bitcoin-mining/monitoring/">
+          Monitoring
+        </a>
+
+        <a href="/products/bitcoin-mining/economics/">
+          Economics
+        </a>
+
+        <a href="/products/bitcoin-mining/developer/">
+          Developer
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-title">CoreCraft</p>
+
+        <a href="/about/">
+          Über uns
+        </a>
+
+        <a href="/contact/">
+          Kontakt
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+
+        <a href="/legal/imprint/">
+          Impressum
+        </a>
+
+        <a href="/legal/privacy/">
+          Datenschutz
+        </a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 CoreCraft Genesis · Bitcoin Mining
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
