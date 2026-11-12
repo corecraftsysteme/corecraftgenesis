@@ -4,78 +4,816 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>referral | CoreCraft Genesis</title>
+    <title>Referral Program | CoreCraft Genesis</title>
 
-    <meta name="description" content="Das CoreCraft-Genesis-Empfehlungsprogramm bietet Informationen zu Teilnahme, Weiterempfehlungen und verfügbaren Vorteilen.">
+    <meta
+        name="description"
+        content="Das CoreCraft Genesis Referral Program verbindet Empfehlungen, digitale Infrastruktur und das CoreCraft-Ökosystem in einem klaren, transparenten Programm."
+    >
+
+    <meta name="theme-color" content="#05070a">
+    <meta name="color-scheme" content="dark">
+
+    <link rel="canonical" href="https://corecraftgenesis.ch/referral/">
 
     <style>
+        :root {
+            --bg: #05070a;
+            --bg-soft: #090d13;
+            --surface: rgba(255, 255, 255, 0.035);
+            --surface-hover: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.09);
+            --border-strong: rgba(78, 161, 255, 0.28);
+
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --muted-light: #c2ccd8;
+
+            --blue: #4ea1ff;
+            --blue-light: #87c1ff;
+            --cyan: #4de8ff;
+
+            --max-width: 1180px;
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
-        }
+            min-height: 100vh;
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
 
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
+            background:
+                radial-gradient(
+                    circle at 70% 15%,
+                    rgba(78, 161, 255, 0.13),
+                    transparent 28rem
+                ),
+                radial-gradient(
+                    circle at 15% 65%,
+                    rgba(77, 232, 255, 0.055),
+                    transparent 24rem
+                ),
+                var(--bg);
 
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
-
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        /* Navigation */
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(5, 7, 10, 0.72);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            width: min(calc(100% - 40px), var(--max-width));
+            min-height: 72px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
             text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-mark {
+            width: 29px;
+            height: 29px;
             border-radius: 8px;
-            font-weight: 650;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--cyan)
+                );
+
+            box-shadow: 0 0 30px rgba(78, 161, 255, 0.18);
+        }
+
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+            inset: 7px;
+
+            border-radius: 4px;
+            background: #07101a;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 160ms ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Layout */
+
+        main {
+            overflow: hidden;
+        }
+
+        .container {
+            width: min(calc(100% - 40px), var(--max-width));
+            margin-inline: auto;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 88vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 150px 0 90px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 25px;
+
+            color: var(--blue-light);
+
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.74rem;
+            font-weight: 750;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+            background: var(--blue);
+
+            box-shadow:
+                0 0 0 5px rgba(78, 161, 255, 0.1),
+                0 0 20px rgba(78, 161, 255, 0.8);
+        }
+
+        h1 {
+            margin: 0;
+
+            max-width: 850px;
+
+            font-size: clamp(3.5rem, 8vw, 7.2rem);
+            line-height: 0.9;
+            letter-spacing: -0.065em;
+            font-weight: 750;
+        }
+
+        .gradient-text {
+            color: transparent;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 0%,
+                    #a7cffb 55%,
+                    var(--cyan) 100%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 680px;
+
+            margin: 30px 0 0;
+
+            color: var(--muted);
+
+            font-size: clamp(1rem, 1.5vw, 1.18rem);
+            line-height: 1.8;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 38px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            min-height: 50px;
+            padding: 0 20px;
+
+            border: 1px solid transparent;
+            border-radius: 10px;
+
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 680;
+
+            transition:
+                transform 160ms ease,
+                border-color 160ms ease,
+                background 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #001326;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    #72bcff
+                );
+
+            box-shadow:
+                0 10px 35px rgba(78, 161, 255, 0.16);
+        }
+
+        .button-secondary {
+            color: var(--muted-light);
+            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Status panel */
+
+        .hero-panel {
+            position: relative;
+
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.24);
+        }
+
+        .hero-panel::before {
+            content: "";
+
+            position: absolute;
+            top: -1px;
+            left: 30px;
+
+            width: 80px;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--blue),
+                    transparent
+                );
+        }
+
+        .panel-label {
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.69rem;
+            font-weight: 700;
+        }
+
+        .panel-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin: 14px 0 35px;
+
+            font-size: 1.25rem;
+            font-weight: 670;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+            background: #5ef1b5;
+
+            box-shadow: 0 0 16px rgba(94, 241, 181, 0.7);
+        }
+
+        .metric {
+            padding: 18px 0;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .metric span {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .metric strong {
+            font-size: 0.88rem;
+            font-weight: 630;
+        }
+
+        /* Information */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin-bottom: 50px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 18px;
+
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -0.045em;
+            line-height: 1.05;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            min-height: 250px;
+            padding: 28px;
+
+            position: relative;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: var(--surface);
+
+            transition:
+                border-color 180ms ease,
+                background 180ms ease,
+                transform 180ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-strong);
+            background: var(--surface-hover);
+        }
+
+        .card-number {
+            display: block;
+            margin-bottom: 48px;
+
+            color: var(--blue);
+            font-size: 0.72rem;
+            font-weight: 750;
+            letter-spacing: 0.1em;
+        }
+
+        .card h3 {
+            margin: 0 0 13px;
+
+            font-size: 1.15rem;
+            letter-spacing: -0.015em;
+        }
+
+        .card p {
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+
+        .cta {
+            margin: 40px 0 100px;
+            padding: 60px;
+
+            border: 1px solid var(--border);
+            border-radius: 28px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(78, 161, 255, 0.13),
+                    transparent 60%
+                ),
+                var(--surface);
+        }
+
+        .cta h2 {
+            margin: 0;
+
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            letter-spacing: -0.05em;
+        }
+
+        .cta p {
+            max-width: 600px;
+
+            margin: 20px auto 30px;
+
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            width: min(calc(100% - 40px), var(--max-width));
+            min-height: 110px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 55px;
+            }
+
+            .hero-panel {
+                max-width: 560px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .nav-inner,
+            .container,
+            .footer-inner {
+                width: min(calc(100% - 28px), var(--max-width));
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 130px;
+                padding-bottom: 60px;
+            }
+
+            h1 {
+                font-size: clamp(3.2rem, 17vw, 5rem);
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .cta {
+                padding: 45px 22px;
+                margin-bottom: 60px;
+            }
+
+            .footer-inner {
+                padding: 28px 0;
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/referral/">
 </head>
 
 <body>
 
+<header class="nav">
+    <div class="nav-inner">
+        <a href="/" class="brand" aria-label="CoreCraft Genesis Startseite">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>CoreCraft Genesis</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="#program">Programm</a>
+            <a href="#principles">Prinzipien</a>
+            <a href="/">Ökosystem</a>
+        </nav>
+    </div>
+</header>
+
 <main>
 
-    <div class="label">
-        CoreCraft Genesis
+    <section class="hero" id="program">
+        <div class="container hero-grid">
+
+            <div>
+                <div class="eyebrow">
+                    CoreCraft Genesis / Referral
+                </div>
+
+                <h1>
+                    Build.<br>
+                    Connect.<br>
+                    <span class="gradient-text">Refer.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Das CoreCraft Genesis Referral Program schafft einen
+                    direkten Zugang zur Weiterempfehlung unseres digitalen
+                    Ökosystems. Klar strukturiert, transparent und auf
+                    langfristige Verbindungen ausgerichtet.
+                </p>
+
+                <div class="actions">
+                    <a href="#principles" class="button button-primary">
+                        Programm entdecken
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="/" class="button button-secondary">
+                        CoreCraft Genesis
+                    </a>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Programmstatus">
+
+                <div class="panel-label">
+                    Referral Network
+                </div>
+
+                <div class="panel-status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    CoreCraft Ecosystem
+                </div>
+
+                <div class="metric">
+                    <span>Modell</span>
+                    <strong>Referral</strong>
+                </div>
+
+                <div class="metric">
+                    <span>Netzwerk</span>
+                    <strong>CoreCraft Genesis</strong>
+                </div>
+
+                <div class="metric">
+                    <span>Struktur</span>
+                    <strong>Transparent</strong>
+                </div>
+
+                <div class="metric">
+                    <span>Fokus</span>
+                    <strong>Long-term Value</strong>
+                </div>
+
+            </aside>
+
+        </div>
+    </section>
+
+    <section class="section" id="principles">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Program Principles</div>
+
+                <h2>
+                    Empfehlungen als Teil des Ökosystems.
+                </h2>
+
+                <p>
+                    Das Referral-Konzept verbindet Menschen, Produkte und
+                    technische Lösungen innerhalb der CoreCraft-Genesis-
+                    Infrastruktur.
+                </p>
+            </div>
+
+            <div class="cards">
+
+                <article class="card">
+                    <span class="card-number">01 / DISCOVER</span>
+
+                    <h3>Entdecken</h3>
+
+                    <p>
+                        Produkte, technische Ressourcen und Lösungen aus dem
+                        CoreCraft-Genesis-Ökosystem kennenlernen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-number">02 / CONNECT</span>
+
+                    <h3>Verbinden</h3>
+
+                    <p>
+                        Relevante Inhalte mit Menschen und Communities teilen,
+                        für die diese Lösungen einen echten Nutzen bieten.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-number">03 / GROW</span>
+
+                    <h3>Wachsen</h3>
+
+                    <p>
+                        Ein nachhaltiges Netzwerk aufbauen und zur Entwicklung
+                        eines offenen technischen Ökosystems beitragen.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="cta">
+
+            <div class="eyebrow">
+                CoreCraft Genesis
+            </div>
+
+            <h2>
+                Explore the ecosystem.
+            </h2>
+
+            <p>
+                Entdecke die CoreCraft-Genesis-Plattform, technische
+                Ressourcen, Produkte und Infrastruktur.
+            </p>
+
+            <a href="/" class="button button-primary">
+                Zur Plattform
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </section>
     </div>
 
-    <h1>referral</h1>
-
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
-
-    <a href="/">
-        Zur Startseite
-    </a>
-
 </main>
+
+<footer>
+    <div class="footer-inner">
+
+        <div>
+            © CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/impressum/">Impressum</a>
+            <a href="/datenschutz/">Datenschutz</a>
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>

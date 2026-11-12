@@ -4,78 +4,2050 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>terms | CoreCraft Genesis</title>
+    <title>Bitcoin Mining Farm Proxy & Hashrate Routing | CoreCraft Genesis</title>
 
-    <meta name="description" content="Bedingungen des CoreCraft-Genesis-Empfehlungsprogramms mit Regeln, Voraussetzungen und wichtigen Teilnahmeinformationen.">
+    <meta
+        name="description"
+        content="CoreCraft Genesis Farm Proxy ist eine unabhängige Oberfläche für Bitcoin-Mining-Infrastruktur, Hashrate-Routing, Pool-Endpunkte, Worker-Überwachung und Betriebsstatus."
+    >
+
+    <meta name="author" content="CoreCraft Genesis">
+    <meta name="theme-color" content="#070809">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow">
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/products/bitcoin-mining/farm-proxy/"
+    >
 
     <style>
+        :root {
+            --background: #070809;
+            --background-soft: #0c0e10;
+            --surface: rgba(255, 255, 255, 0.035);
+            --surface-strong: rgba(255, 255, 255, 0.055);
+            --surface-hover: rgba(255, 255, 255, 0.075);
+
+            --border: rgba(255, 255, 255, 0.09);
+            --border-strong: rgba(255, 145, 50, 0.32);
+
+            --text: #f7f7f4;
+            --text-soft: #c6c8ca;
+            --muted: #92979d;
+
+            --orange: #ff9132;
+            --orange-light: #ffb067;
+            --orange-dark: #b84c00;
+            --amber: #ffc247;
+            --green: #58dea0;
+            --red: #ff6b6b;
+            --blue: #62a8ff;
+
+            --shadow:
+                0 28px 90px rgba(0, 0, 0, 0.32);
+
+            --max-width: 1240px;
+            --radius-large: 26px;
+            --radius: 18px;
+            --radius-small: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            color-scheme: dark;
+        }
+
         body {
             margin: 0;
-            font-family: Inter, system-ui, sans-serif;
-            background: #05070a;
-            color: #f4f7fb;
+            min-height: 100vh;
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 78% 8%,
+                    rgba(255, 145, 50, 0.12),
+                    transparent 29rem
+                ),
+                radial-gradient(
+                    circle at 12% 50%,
+                    rgba(255, 194, 71, 0.045),
+                    transparent 27rem
+                ),
+                var(--background);
+
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        main {
-            width: min(90%, 1000px);
-            margin: auto;
-            padding: 120px 0;
-        }
+        body::before {
+            content: "";
 
-        .label {
-            color: #4ea1ff;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            font-size: .8rem;
-            font-weight: 700;
-        }
+            position: fixed;
+            inset: 0;
+            z-index: -1;
 
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin: 20px 0;
-        }
+            pointer-events: none;
 
-        p {
-            color: #95a2b3;
-            max-width: 700px;
-            font-size: 1.05rem;
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 58px 58px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.7),
+                    transparent 78%
+                );
         }
 
         a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 18px;
-            background: #4ea1ff;
-            color: #001326;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(255, 145, 50, 0.55);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(calc(100% - 40px), var(--max-width));
+            margin-inline: auto;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 1000;
+
+            padding: 11px 15px;
+            border-radius: 9px;
+
+            color: #1a0b00;
+            background: var(--orange);
+
+            font-weight: 750;
             text-decoration: none;
-            border-radius: 8px;
+
+            transform: translateY(-150%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+
+        .navigation {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+
+            background: rgba(7, 8, 9, 0.78);
+            backdrop-filter: blur(22px);
+        }
+
+        .navigation-inner {
+            min-height: 74px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+
+            position: relative;
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--orange),
+                    var(--amber)
+                );
+
+            box-shadow:
+                0 0 34px rgba(255, 145, 50, 0.18);
+        }
+
+        .brand-mark::before,
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+        }
+
+        .brand-mark::before {
+            inset: 7px;
+
+            border-radius: 5px;
+            background: #15100c;
+        }
+
+        .brand-mark::after {
+            top: 50%;
+            left: 50%;
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 2px;
+            background: var(--orange);
+
+            transform:
+                translate(-50%, -50%)
+                rotate(45deg);
+        }
+
+        .brand-copy {
+            display: grid;
+            gap: 1px;
+        }
+
+        .brand-name {
+            font-size: 0.94rem;
+            font-weight: 780;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-product {
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            font-weight: 650;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .navigation-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .navigation-links a {
+            color: var(--muted);
+
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+
+            transition: color 160ms ease;
+        }
+
+        .navigation-links a:hover {
+            color: var(--text);
+        }
+
+        .navigation-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 9px 12px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            color: var(--text-soft);
+            background: rgba(255, 255, 255, 0.025);
+
+            font-size: 0.76rem;
             font-weight: 650;
         }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+            background: var(--amber);
+
+            box-shadow:
+                0 0 14px rgba(255, 194, 71, 0.65);
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 154px 0 90px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(340px, 0.85fr);
+
+            align-items: center;
+            gap: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 24px;
+
+            color: var(--orange-light);
+
+            font-size: 0.72rem;
+            font-weight: 780;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+            background: var(--orange);
+
+            box-shadow:
+                0 0 0 5px rgba(255, 145, 50, 0.1),
+                0 0 20px rgba(255, 145, 50, 0.68);
+        }
+
+        h1 {
+            max-width: 850px;
+            margin: 0;
+
+            font-size: clamp(3.4rem, 7.7vw, 7rem);
+            font-weight: 790;
+            line-height: 0.91;
+            letter-spacing: -0.066em;
+        }
+
+        .gradient-text {
+            color: transparent;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 0%,
+                    #ffd4ac 48%,
+                    var(--orange) 100%
+                );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 690px;
+            margin: 31px 0 0;
+
+            color: var(--muted);
+
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            line-height: 1.78;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin-top: 38px;
+        }
+
+        .button {
+            min-height: 50px;
+            padding: 0 20px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            border: 1px solid transparent;
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            font-size: 0.9rem;
+            font-weight: 720;
+            text-decoration: none;
+
+            transition:
+                transform 160ms ease,
+                border-color 160ms ease,
+                background 160ms ease,
+                color 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #1c0b00;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--orange),
+                    var(--amber)
+                );
+
+            box-shadow:
+                0 14px 40px rgba(255, 145, 50, 0.17);
+        }
+
+        .button-secondary {
+            color: var(--text-soft);
+
+            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.028);
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.055);
+        }
+
+        .hero-note {
+            margin-top: 24px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            color: var(--muted);
+
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        .hero-note-icon {
+            flex: 0 0 auto;
+
+            width: 17px;
+            height: 17px;
+            margin-top: 1px;
+
+            display: inline-grid;
+            place-items: center;
+
+            border: 1px solid rgba(255, 194, 71, 0.3);
+            border-radius: 50%;
+
+            color: var(--amber);
+            font-size: 0.65rem;
+            font-weight: 800;
+        }
+
+        /* Proxy panel */
+
+        .proxy-panel {
+            position: relative;
+            overflow: hidden;
+
+            padding: 27px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.06),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .proxy-panel::before {
+            content: "";
+
+            position: absolute;
+            top: -80px;
+            right: -80px;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 145, 50, 0.22),
+                    transparent 67%
+                );
+
+            pointer-events: none;
+        }
+
+        .panel-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding-bottom: 23px;
+        }
+
+        .panel-label {
+            color: var(--muted);
+
+            font-size: 0.68rem;
+            font-weight: 750;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .panel-title {
+            margin: 8px 0 0;
+
+            font-size: 1.25rem;
+            font-weight: 730;
+            letter-spacing: -0.025em;
+        }
+
+        .environment-badge {
+            padding: 7px 10px;
+
+            border: 1px solid rgba(255, 194, 71, 0.2);
+            border-radius: 999px;
+
+            color: var(--amber);
+            background: rgba(255, 194, 71, 0.065);
+
+            font-size: 0.67rem;
+            font-weight: 750;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .route-visual {
+            padding: 22px 0;
+
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 16px;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .route-node {
+            min-width: 0;
+            padding: 15px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            background: rgba(0, 0, 0, 0.16);
+        }
+
+        .route-node-label {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 0.64rem;
+            font-weight: 720;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .route-node strong {
+            display: block;
+            overflow: hidden;
+
+            margin-top: 7px;
+
+            font-size: 0.84rem;
+            font-weight: 680;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .route-arrow {
+            color: var(--orange);
+
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .panel-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+
+            padding-top: 22px;
+        }
+
+        .panel-metric {
+            min-height: 96px;
+            padding: 16px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, 0.022);
+        }
+
+        .panel-metric span {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            font-weight: 650;
+        }
+
+        .panel-metric strong {
+            display: block;
+
+            margin-top: 11px;
+
+            color: var(--text);
+
+            font-size: 1rem;
+            font-weight: 710;
+        }
+
+        .demo-value {
+            color: var(--amber) !important;
+        }
+
+        /* Sections */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin-bottom: 46px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            font-size: clamp(2.1rem, 4.8vw, 4rem);
+            font-weight: 760;
+            line-height: 1.02;
+            letter-spacing: -0.052em;
+        }
+
+        .section-heading p {
+            margin: 20px 0 0;
+
+            color: var(--muted);
+
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        /* Overview */
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .metric-card {
+            min-height: 176px;
+            padding: 24px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: var(--surface);
+
+            transition:
+                transform 180ms ease,
+                border-color 180ms ease,
+                background 180ms ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-strong);
+            background: var(--surface-strong);
+        }
+
+        .metric-title {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+
+            color: var(--muted);
+
+            font-size: 0.72rem;
+            font-weight: 680;
+        }
+
+        .metric-icon {
+            color: var(--orange);
+        }
+
+        .metric-value {
+            margin-top: 29px;
+
+            font-size: clamp(1.45rem, 3vw, 2.2rem);
+            font-weight: 770;
+            letter-spacing: -0.045em;
+        }
+
+        .metric-description {
+            margin-top: 9px;
+
+            color: var(--muted);
+
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+
+        /* Routing */
+
+        .routing-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            gap: 18px;
+        }
+
+        .table-panel,
+        .configuration-panel {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+
+            background: var(--surface);
+        }
+
+        .panel-header {
+            padding: 23px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-header h3 {
+            margin: 0;
+
+            font-size: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .panel-header span {
+            color: var(--muted);
+            font-size: 0.7rem;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 17px 25px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            color: var(--muted);
+
+            font-size: 0.65rem;
+            font-weight: 750;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        td {
+            border-top: 1px solid var(--border);
+
+            color: var(--text-soft);
+            font-size: 0.8rem;
+        }
+
+        .pool-name {
+            color: var(--text);
+            font-weight: 680;
+        }
+
+        .routing-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .routing-status::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+            background: var(--amber);
+        }
+
+        .configuration-content {
+            padding: 25px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            font-weight: 690;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            min-height: 46px;
+            padding: 0 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.2);
+
+            outline: none;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--border-strong);
+        }
+
+        .field input::placeholder {
+            color: #666b70;
+        }
+
+        .configuration-note {
+            margin: 4px 0 20px;
+
+            color: var(--muted);
+
+            font-size: 0.72rem;
+            line-height: 1.6;
+        }
+
+        .save-button {
+            width: 100%;
+        }
+
+        /* Features */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .feature-card {
+            min-height: 264px;
+            padding: 27px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: var(--surface);
+
+            transition:
+                transform 180ms ease,
+                border-color 180ms ease,
+                background 180ms ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-strong);
+            background: var(--surface-hover);
+        }
+
+        .feature-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 37px;
+            height: 37px;
+
+            border: 1px solid rgba(255, 145, 50, 0.18);
+            border-radius: 10px;
+
+            color: var(--orange);
+            background: rgba(255, 145, 50, 0.06);
+
+            font-size: 0.72rem;
+            font-weight: 780;
+        }
+
+        .feature-card h3 {
+            margin: 37px 0 12px;
+
+            font-size: 1.08rem;
+            letter-spacing: -0.025em;
+        }
+
+        .feature-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 0.87rem;
+            line-height: 1.7;
+        }
+
+        /* Architecture */
+
+        .architecture {
+            padding: 35px;
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            gap: 14px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-large);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.05),
+                    rgba(255, 255, 255, 0.015)
+                );
+        }
+
+        .architecture-node {
+            min-height: 128px;
+            padding: 19px;
+
+            display: grid;
+            align-content: center;
+            gap: 9px;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .architecture-node span {
+            color: var(--orange);
+
+            font-size: 0.64rem;
+            font-weight: 760;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .architecture-node strong {
+            font-size: 0.86rem;
+            line-height: 1.45;
+        }
+
+        .architecture-arrow {
+            color: var(--orange);
+
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        /* Legal notice */
+
+        .notice {
+            margin-bottom: 100px;
+            padding: 32px;
+
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 21px;
+
+            border: 1px solid rgba(255, 194, 71, 0.19);
+            border-radius: var(--radius);
+
+            background: rgba(255, 194, 71, 0.035);
+        }
+
+        .notice-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(255, 194, 71, 0.22);
+            border-radius: 12px;
+
+            color: var(--amber);
+            background: rgba(255, 194, 71, 0.06);
+
+            font-weight: 800;
+        }
+
+        .notice h2 {
+            margin: 0 0 10px;
+
+            font-size: 1rem;
+            letter-spacing: -0.015em;
+        }
+
+        .notice p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 0.79rem;
+            line-height: 1.75;
+        }
+
+        .notice p + p {
+            margin-top: 9px;
+        }
+
+        .notice a {
+            color: var(--orange-light);
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            min-height: 130px;
+
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .footer-copy {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: 0.72rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 21px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* Toast */
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+
+            max-width: 360px;
+            padding: 15px 17px;
+
+            border: 1px solid rgba(255, 145, 50, 0.25);
+            border-radius: 12px;
+
+            color: var(--text-soft);
+            background: rgba(15, 16, 17, 0.96);
+
+            box-shadow: var(--shadow);
+
+            font-size: 0.78rem;
+            line-height: 1.55;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transform: translateY(12px);
+
+            transition:
+                opacity 180ms ease,
+                transform 180ms ease;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1040px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 55px;
+            }
+
+            .proxy-panel {
+                max-width: 680px;
+            }
+
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .routing-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .navigation-links {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .container {
+                width: min(calc(100% - 28px), var(--max-width));
+            }
+
+            .navigation-status {
+                display: none;
+            }
+
+            .hero {
+                padding: 130px 0 65px;
+            }
+
+            h1 {
+                font-size: clamp(3.2rem, 16vw, 5rem);
+            }
+
+            .hero-description {
+                line-height: 1.68;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .proxy-panel {
+                padding: 20px;
+            }
+
+            .route-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .route-arrow {
+                transform: rotate(90deg);
+                text-align: center;
+            }
+
+            .panel-metrics,
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .panel-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            th,
+            td {
+                padding-inline: 18px;
+            }
+
+            .notice {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+
+            .footer-inner {
+                padding: 30px 0;
+
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
     </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/referral/terms/">
 </head>
 
 <body>
 
-<main>
+<a class="skip-link" href="#main-content">
+    Direkt zum Inhalt
+</a>
 
-    <div class="label">
-        CoreCraft Genesis
+<header class="navigation">
+    <div class="container navigation-inner">
+
+        <a
+            class="brand"
+            href="/"
+            aria-label="CoreCraft Genesis Startseite"
+        >
+            <span class="brand-mark" aria-hidden="true"></span>
+
+            <span class="brand-copy">
+                <span class="brand-name">CoreCraft Genesis</span>
+                <span class="brand-product">Farm Proxy</span>
+            </span>
+        </a>
+
+        <nav
+            class="navigation-links"
+            aria-label="Seitennavigation"
+        >
+            <a href="#overview">Übersicht</a>
+            <a href="#routing">Routing</a>
+            <a href="#features">Funktionen</a>
+            <a href="#architecture">Architektur</a>
+        </nav>
+
+        <div
+            class="navigation-status"
+            aria-label="Lokaler Demonstrationsmodus"
+        >
+            <span class="status-indicator" aria-hidden="true"></span>
+            Demo Mode
+        </div>
+
+    </div>
+</header>
+
+<main id="main-content">
+
+    <section class="hero">
+        <div class="container hero-grid">
+
+            <div>
+                <div class="eyebrow">
+                    Bitcoin Mining Infrastructure
+                </div>
+
+                <h1>
+                    Farm<br>
+                    Proxy.<br>
+                    <span class="gradient-text">Route Hashrate.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Eine unabhängige CoreCraft-Genesis-Oberfläche für
+                    Mining-Proxy-Infrastruktur, Worker-Zuordnung,
+                    Pool-Endpunkte und kontrolliertes Hashrate-Routing.
+                </p>
+
+                <div class="hero-actions">
+                    <a
+                        class="button button-primary"
+                        href="#routing"
+                    >
+                        Routing öffnen
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="#architecture"
+                    >
+                        Architektur ansehen
+                    </a>
+                </div>
+
+                <div class="hero-note">
+                    <span class="hero-note-icon" aria-hidden="true">i</span>
+
+                    <span>
+                        Diese statische Oberfläche stellt keine Verbindung
+                        zu echten Minern oder Pools her. Angezeigte Zustände
+                        dienen ausschließlich der lokalen Vorschau.
+                    </span>
+                </div>
+            </div>
+
+            <aside
+                class="proxy-panel"
+                aria-label="Farm-Proxy-Status"
+            >
+                <div class="panel-top">
+                    <div>
+                        <div class="panel-label">Proxy Instance</div>
+                        <div class="panel-title">CoreCraft Farm Node</div>
+                    </div>
+
+                    <span class="environment-badge">
+                        Local Demo
+                    </span>
+                </div>
+
+                <div class="route-visual">
+                    <div class="route-node">
+                        <span class="route-node-label">Input</span>
+                        <strong>Mining Workers</strong>
+                    </div>
+
+                    <div class="route-arrow" aria-hidden="true">→</div>
+
+                    <div class="route-node">
+                        <span class="route-node-label">Output</span>
+                        <strong>Configured Pool</strong>
+                    </div>
+                </div>
+
+                <div class="panel-metrics">
+                    <div class="panel-metric">
+                        <span>Proxy status</span>
+                        <strong class="demo-value">Nicht verbunden</strong>
+                    </div>
+
+                    <div class="panel-metric">
+                        <span>Routing mode</span>
+                        <strong>Manuell</strong>
+                    </div>
+
+                    <div class="panel-metric">
+                        <span>Active workers</span>
+                        <strong class="demo-value">Keine Daten</strong>
+                    </div>
+
+                    <div class="panel-metric">
+                        <span>Hashrate</span>
+                        <strong class="demo-value">Keine Daten</strong>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <section class="section" id="overview">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Operational Overview</div>
+
+                <h2>
+                    Infrastrukturstatus auf einen Blick.
+                </h2>
+
+                <p>
+                    Die Karten sind für eine spätere Anbindung an einen
+                    lokalen Proxy-, Monitoring- oder Telemetrie-Endpunkt
+                    vorbereitet. Ohne Datenquelle werden keine Messwerte
+                    erfunden.
+                </p>
+            </div>
+
+            <div class="overview-grid">
+
+                <article class="metric-card">
+                    <div class="metric-title">
+                        <span>GESAMTHASHRATE</span>
+                        <span class="metric-icon" aria-hidden="true">◆</span>
+                    </div>
+
+                    <div class="metric-value">– TH/s</div>
+
+                    <div class="metric-description">
+                        Noch keine Telemetriequelle konfiguriert.
+                    </div>
+                </article>
+
+                <article class="metric-card">
+                    <div class="metric-title">
+                        <span>WORKER</span>
+                        <span class="metric-icon" aria-hidden="true">●</span>
+                    </div>
+
+                    <div class="metric-value">0 / 0</div>
+
+                    <div class="metric-description">
+                        Keine Worker-Daten verfügbar.
+                    </div>
+                </article>
+
+                <article class="metric-card">
+                    <div class="metric-title">
+                        <span>ROUTING</span>
+                        <span class="metric-icon" aria-hidden="true">↗</span>
+                    </div>
+
+                    <div class="metric-value">Manuell</div>
+
+                    <div class="metric-description">
+                        Lokale Konfiguration ohne aktiven Proxy.
+                    </div>
+                </article>
+
+                <article class="metric-card">
+                    <div class="metric-title">
+                        <span>FEHLERRATE</span>
+                        <span class="metric-icon" aria-hidden="true">!</span>
+                    </div>
+
+                    <div class="metric-value">– %</div>
+
+                    <div class="metric-description">
+                        Für die Berechnung werden Share-Daten benötigt.
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="routing">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Hashrate Routing</div>
+
+                <h2>
+                    Pools und Endpunkte kontrollieren.
+                </h2>
+
+                <p>
+                    Die Konfiguration wird in dieser statischen Version nur
+                    lokal im Browser gespeichert. Es werden keine Zugangsdaten
+                    übertragen und keine externen Anfragen ausgeführt.
+                </p>
+            </div>
+
+            <div class="routing-layout">
+
+                <div class="table-panel">
+                    <div class="panel-header">
+                        <h3>Routing-Tabelle</h3>
+                        <span>Lokale Konfiguration</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Priorität</th>
+                                    <th>Endpunkt</th>
+                                    <th>Modus</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="routing-table-body">
+                                <tr>
+                                    <td>01</td>
+                                    <td class="pool-name" id="primary-pool-cell">
+                                        Nicht konfiguriert
+                                    </td>
+                                    <td>Primary</td>
+                                    <td>
+                                        <span class="routing-status">
+                                            Inaktiv
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>02</td>
+                                    <td class="pool-name" id="fallback-pool-cell">
+                                        Nicht konfiguriert
+                                    </td>
+                                    <td>Fallback</td>
+                                    <td>
+                                        <span class="routing-status">
+                                            Inaktiv
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <aside class="configuration-panel">
+                    <div class="panel-header">
+                        <h3>Proxy-Konfiguration</h3>
+                        <span>Browser Storage</span>
+                    </div>
+
+                    <form
+                        class="configuration-content"
+                        id="proxy-configuration"
+                    >
+                        <div class="field">
+                            <label for="proxy-name">
+                                Instanzname
+                            </label>
+
+                            <input
+                                id="proxy-name"
+                                name="proxyName"
+                                type="text"
+                                maxlength="80"
+                                placeholder="CoreCraft Farm Node"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="primary-endpoint">
+                                Primärer Stratum-Endpunkt
+                            </label>
+
+                            <input
+                                id="primary-endpoint"
+                                name="primaryEndpoint"
+                                type="text"
+                                maxlength="220"
+                                placeholder="stratum+tcp://pool.example:3333"
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="fallback-endpoint">
+                                Fallback-Endpunkt
+                            </label>
+
+                            <input
+                                id="fallback-endpoint"
+                                name="fallbackEndpoint"
+                                type="text"
+                                maxlength="220"
+                                placeholder="stratum+tcp://fallback.example:3333"
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="routing-mode">
+                                Routing-Modus
+                            </label>
+
+                            <select
+                                id="routing-mode"
+                                name="routingMode"
+                            >
+                                <option value="manual">
+                                    Manuell
+                                </option>
+
+                                <option value="priority">
+                                    Prioritätsbasiert
+                                </option>
+
+                                <option value="failover">
+                                    Failover
+                                </option>
+                            </select>
+                        </div>
+
+                        <p class="configuration-note">
+                            Keine Kennwörter oder privaten Schlüssel eingeben.
+                            Die Demo validiert oder aktiviert keine
+                            Netzwerkverbindung.
+                        </p>
+
+                        <button
+                            class="button button-primary save-button"
+                            type="submit"
+                        >
+                            Lokal speichern
+                        </button>
+                    </form>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Infrastructure Modules</div>
+
+                <h2>
+                    Für kontrollierten Mining-Betrieb aufgebaut.
+                </h2>
+
+                <p>
+                    Die Oberfläche trennt technische Konfiguration,
+                    Betriebsüberwachung und Pool-Routing in klar definierte
+                    Funktionsbereiche.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+                    <span class="feature-number">01</span>
+
+                    <h3>Worker Management</h3>
+
+                    <p>
+                        Worker-Kennungen, Gruppen und Routing-Ziele können
+                        später aus einer lokalen Proxy-Schnittstelle geladen
+                        und zentral dargestellt werden.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">02</span>
+
+                    <h3>Pool Failover</h3>
+
+                    <p>
+                        Primäre und alternative Endpunkte werden getrennt
+                        verwaltet. Die eigentliche Umschaltung muss durch
+                        den angebundenen Proxy-Dienst erfolgen.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">03</span>
+
+                    <h3>Share Monitoring</h3>
+
+                    <p>
+                        Akzeptierte, abgelehnte und veraltete Shares können
+                        über eine reale Telemetriequelle ergänzt und für
+                        Betriebsprüfungen ausgewertet werden.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">04</span>
+
+                    <h3>Local Control</h3>
+
+                    <p>
+                        Die Oberfläche kann lokal im Farm-Netzwerk betrieben
+                        werden. Diese Version lädt keine externen
+                        JavaScript- oder CSS-Bibliotheken.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">05</span>
+
+                    <h3>Operational Clarity</h3>
+
+                    <p>
+                        Fehlende Daten werden klar als nicht verfügbar
+                        ausgewiesen. Die Oberfläche erzeugt keine
+                        vermeintlichen Live-Werte.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-number">06</span>
+
+                    <h3>Independent Branding</h3>
+
+                    <p>
+                        Produktname, Gestaltung und Bedienoberfläche sind
+                        eindeutig dem CoreCraft-Genesis-Ökosystem
+                        zugeordnet.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="architecture">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">Proxy Architecture</div>
+
+                <h2>
+                    Klare Trennung der Infrastruktur.
+                </h2>
+
+                <p>
+                    Das Modell zeigt die vorgesehene Daten- und
+                    Routing-Struktur. Die konkrete Implementierung hängt
+                    vom eingesetzten Proxy-Dienst und dessen Schnittstellen
+                    ab.
+                </p>
+            </div>
+
+            <div
+                class="architecture"
+                aria-label="Farm-Proxy-Architektur"
+            >
+                <div class="architecture-node">
+                    <span>Layer 01</span>
+                    <strong>ASIC Miner und Worker</strong>
+                </div>
+
+                <div class="architecture-arrow" aria-hidden="true">→</div>
+
+                <div class="architecture-node">
+                    <span>Layer 02</span>
+                    <strong>CoreCraft Farm Proxy</strong>
+                </div>
+
+                <div class="architecture-arrow" aria-hidden="true">→</div>
+
+                <div class="architecture-node">
+                    <span>Layer 03</span>
+                    <strong>Konfigurierte Mining-Pools</strong>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="container">
+        <aside class="notice" aria-labelledby="independence-title">
+
+            <div class="notice-icon" aria-hidden="true">i</div>
+
+            <div>
+                <h2 id="independence-title">
+                    Unabhängigkeit und Markenhinweis
+                </h2>
+
+                <p>
+                    CoreCraft Genesis Farm Proxy ist ein eigenständiges
+                    CoreCraft-Genesis-Projekt. Es besteht keine Zugehörigkeit
+                    zu, Partnerschaft mit oder Unterstützung durch Mempool
+                    Holdings S.A. de C.V. oder The Mempool Open Source Project.
+                </p>
+
+                <p>
+                    Erwähnungen von <strong>mempool.space®</strong> dürfen
+                    ausschließlich der sachlichen Beschreibung einer
+                    tatsächlichen technischen Beziehung, Kompatibilität oder
+                    Datenquelle dienen. Fremde Logos und geschützte
+                    Gestaltungselemente werden auf dieser Seite nicht
+                    verwendet.
+                </p>
+
+                <p>
+                    Technische Integrationen müssen zusätzlich die jeweils
+                    anwendbaren Softwarelizenzen, Nutzungsbedingungen und
+                    Markenrichtlinien erfüllen.
+                </p>
+            </div>
+
+        </aside>
     </div>
 
-    <h1>terms</h1>
-
-    <p>
-        Dieser Bereich ist Bestandteil des
-        CoreCraft-Genesis-Ökosystems.
-    </p>
-
-    <a href="/">
-        Zur Startseite
-    </a>
-
 </main>
+
+<footer>
+    <div class="container footer-inner">
+
+        <div>
+            <div class="footer-brand">
+                CoreCraft Genesis · Farm Proxy
+            </div>
+
+            <div class="footer-copy">
+                Bitcoin Mining Infrastructure · Independent Project
+            </div>
+        </div>
+
+        <nav
+            class="footer-links"
+            aria-label="Rechtliche Navigation"
+        >
+            <a href="/">Home</a>
+            <a href="/products/bitcoin-mining/">Bitcoin Mining</a>
+            <a href="/impressum/">Impressum</a>
+            <a href="/datenschutz/">Datenschutz</a>
+            <a href="/licenses/">Lizenzen</a>
+        </nav>
+
+    </div>
+</footer>
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+<script>
+    (() => {
+        "use strict";
+
+        const STORAGE_KEY = "corecraft-farm-proxy-configuration";
+
+        const form = document.getElementById("proxy-configuration");
+        const proxyName = document.getElementById("proxy-name");
+        const primaryEndpoint =
+            document.getElementById("primary-endpoint");
+        const fallbackEndpoint =
+            document.getElementById("fallback-endpoint");
+        const routingMode =
+            document.getElementById("routing-mode");
+
+        const primaryPoolCell =
+            document.getElementById("primary-pool-cell");
+        const fallbackPoolCell =
+            document.getElementById("fallback-pool-cell");
+
+        const toast = document.getElementById("toast");
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("visible");
+
+            window.clearTimeout(showToast.timeout);
+
+            showToast.timeout = window.setTimeout(() => {
+                toast.classList.remove("visible");
+            }, 3200);
+        }
+
+        function normalizeEndpoint(value) {
+            return value.trim();
+        }
+
+        function isAllowedEndpoint(value) {
+            if (value === "") {
+                return true;
+            }
+
+            return /^stratum(\+tcp|\+ssl)?:\/\/[^\s]+$/i.test(value);
+        }
+
+        function renderConfiguration(configuration) {
+            primaryPoolCell.textContent =
+                configuration.primaryEndpoint ||
+                "Nicht konfiguriert";
+
+            fallbackPoolCell.textContent =
+                configuration.fallbackEndpoint ||
+                "Nicht konfiguriert";
+        }
+
+        function loadConfiguration() {
+            const storedValue =
+                window.localStorage.getItem(STORAGE_KEY);
+
+            if (!storedValue) {
+                return;
+            }
+
+            try {
+                const configuration = JSON.parse(storedValue);
+
+                proxyName.value =
+                    configuration.proxyName || "";
+
+                primaryEndpoint.value =
+                    configuration.primaryEndpoint || "";
+
+                fallbackEndpoint.value =
+                    configuration.fallbackEndpoint || "";
+
+                routingMode.value =
+                    configuration.routingMode || "manual";
+
+                renderConfiguration(configuration);
+            } catch {
+                window.localStorage.removeItem(STORAGE_KEY);
+            }
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const primary =
+                normalizeEndpoint(primaryEndpoint.value);
+
+            const fallback =
+                normalizeEndpoint(fallbackEndpoint.value);
+
+            if (!isAllowedEndpoint(primary)) {
+                primaryEndpoint.focus();
+
+                showToast(
+                    "Der primäre Endpunkt muss mit " +
+                    "stratum://, stratum+tcp:// oder " +
+                    "stratum+ssl:// beginnen."
+                );
+
+                return;
+            }
+
+            if (!isAllowedEndpoint(fallback)) {
+                fallbackEndpoint.focus();
+
+                showToast(
+                    "Der Fallback-Endpunkt muss mit " +
+                    "stratum://, stratum+tcp:// oder " +
+                    "stratum+ssl:// beginnen."
+                );
+
+                return;
+            }
+
+            const configuration = {
+                proxyName:
+                    proxyName.value.trim() ||
+                    "CoreCraft Farm Node",
+
+                primaryEndpoint: primary,
+                fallbackEndpoint: fallback,
+                routingMode: routingMode.value
+            };
+
+            window.localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(configuration)
+            );
+
+            renderConfiguration(configuration);
+
+            showToast(
+                "Konfiguration wurde ausschließlich " +
+                "lokal im Browser gespeichert."
+            );
+        });
+
+        loadConfiguration();
+    })();
+</script>
 
 </body>
 </html>

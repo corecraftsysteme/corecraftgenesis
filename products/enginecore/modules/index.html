@@ -1,305 +1,1492 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>EngineCore Modules | CoreCraft Genesis</title>
 
   <meta
     name="description"
-    content="Modulare EngineCore-Komponenten mit klaren Zuständigkeiten, Routen und technischen Produktgrenzen."
+    content="EngineCore Modules defines modular runtime components, responsibilities, dependencies, interfaces, loading order and system boundaries."
   >
+
+  <meta name="robots" content="index,follow">
 
   <link
-    rel="stylesheet"
-    href="/products/enginecore/assets/css/enginecore.css"
+    rel="canonical"
+    href="https://corecraftgenesis.ch/products/enginecore/modules/"
   >
-  <link rel="canonical" href="https://corecraftgenesis.ch/products/enginecore/modules/">
+
+  <meta name="theme-color" content="#07090d">
+
+  <style>
+    :root {
+      --bg: #07090d;
+      --bg-soft: #0b0f15;
+      --panel: #10151d;
+      --panel-soft: #0d1219;
+      --line: #202936;
+      --line-strong: #344154;
+
+      --text: #f4f7fb;
+      --muted: #9ca9b8;
+      --muted-2: #748194;
+
+      --accent: #ff7a00;
+      --accent-2: #ff9a32;
+      --accent-soft: rgba(255, 122, 0, 0.12);
+
+      --green: #45d483;
+      --blue: #5ca7ff;
+      --yellow: #ffcb63;
+
+      --max-width: 1180px;
+      --radius: 16px;
+      --radius-small: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 75% -10%,
+          rgba(255, 122, 0, 0.09),
+          transparent 31rem
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    code,
+    pre {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(7, 9, 13, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .main-nav a:hover {
+      color: var(--text);
+    }
+
+    .main-nav .active {
+      color: var(--accent);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 110px 0 90px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: .97;
+      letter-spacing: -.055em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 780px;
+      margin: 32px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #111;
+    }
+
+    .button-primary:hover {
+      background: var(--accent-2);
+    }
+
+    .module-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 55px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .status-item {
+      min-width: 150px;
+    }
+
+    .status-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted-2);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .status-value {
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .status-ok {
+      color: var(--green);
+    }
+
+    /* Sections */
+
+    section {
+      padding: 92px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: .55fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Module cards */
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .module-card {
+      min-height: 280px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.025),
+          transparent
+        ),
+        var(--panel-soft);
+    }
+
+    .module-card:hover {
+      border-color: var(--line-strong);
+    }
+
+    .module-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 44px;
+    }
+
+    .module-index {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .module-type {
+      padding: 4px 8px;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .module-card h3 {
+      margin: 0 0 12px;
+      font-size: 23px;
+    }
+
+    .module-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .module-id {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    /* Responsibility matrix */
+
+    .matrix {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+    }
+
+    .matrix-row {
+      display: grid;
+      grid-template-columns: 60px 190px 1fr;
+      gap: 25px;
+      align-items: start;
+      padding: 22px 25px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .matrix-row:last-child {
+      border-bottom: 0;
+    }
+
+    .matrix-id {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .matrix-name {
+      font-weight: 700;
+    }
+
+    .matrix-value {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Dependency chain */
+
+    .dependency-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+    }
+
+    .dependency-node {
+      padding: 11px 15px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .dependency-node.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .dependency-arrow {
+      color: var(--muted-2);
+    }
+
+    /* Interfaces */
+
+    .interface-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .interface-card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+    }
+
+    .interface-card code {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .interface-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .interface-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Loading */
+
+    .loading-flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .loading-step {
+      display: grid;
+      grid-template-columns: 70px 180px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: var(--panel-soft);
+    }
+
+    .loading-step-number {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .loading-step strong {
+      font-size: 15px;
+    }
+
+    .loading-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .loading-state {
+      color: var(--green);
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    /* Principles */
+
+    .principles {
+      counter-reset: module-principle;
+      border-top: 1px solid var(--line);
+    }
+
+    .principle {
+      counter-increment: module-principle;
+      display: grid;
+      grid-template-columns: 80px 260px 1fr;
+      gap: 30px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .principle::before {
+      content: "0" counter(module-principle);
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .principle strong {
+      font-size: 16px;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Code */
+
+    .code-panel {
+      overflow-x: auto;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #05070a;
+    }
+
+    .code-panel pre {
+      margin: 0;
+      color: #c7d2df;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .json-key {
+      color: #75b7ff;
+    }
+
+    .json-value {
+      color: #f3ba75;
+    }
+
+    .json-bool {
+      color: #7ee2a8;
+    }
+
+    /* Navigation */
+
+    .area-navigation {
+      background: var(--bg-soft);
+    }
+
+    .area-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .area-link {
+      min-height: 160px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition:
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+    .area-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .area-link.current {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .area-direction {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--muted-2);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .area-link strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .area-link span:last-child {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 45px 0;
+      color: var(--muted-2);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .main-nav {
+        display: none;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .modules-grid,
+      .interface-grid,
+      .area-links {
+        grid-template-columns: 1fr;
+      }
+
+      .matrix-row {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .matrix-value {
+        grid-column: 2;
+      }
+
+      .loading-step {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .loading-step p,
+      .loading-state {
+        grid-column: 2;
+      }
+
+      .principle {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .principle span {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .hero {
+        padding: 80px 0 65px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
-<body data-page="modules">
+<body>
 
-<header class="ec-header">
-  <div class="ec-shell">
-      <nav class="ec-nav" aria-label="EngineCore Navigation">
+<header class="site-header">
+  <div class="container header-inner">
 
-        <a class="ec-brand" href="/products/enginecore/">
-          EngineCore
-        </a>
+    <a
+      class="brand"
+      href="/"
+      aria-label="CoreCraft Genesis home"
+    >
+      <span class="brand-mark" aria-hidden="true">CG</span>
+      <span>CoreCraft Genesis</span>
+    </a>
 
-        <div class="ec-nav-links">
-          <a data-ec-nav href="/products/enginecore/architecture/">
-            Architecture
-          </a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="/products/">Products</a>
+      <a
+        href="/products/enginecore/"
+        class="active"
+      >
+        EngineCore
+      </a>
+      <a href="/docs/">Documentation</a>
+      <a href="/support/">Support</a>
+    </nav>
 
-          <a data-ec-nav href="/products/enginecore/runtime/">
-            Runtime
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/modules/">
-            Modules
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/validation/">
-            Validation
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/diagnostics/">
-            Diagnostics
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/developer/">
-            Developer
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/demos/">
-            Demos
-          </a>
-        </div>
-
-      </nav>
   </div>
 </header>
 
+
 <main>
 
-  <section class="ec-hero">
-    <div class="ec-shell">
+  <!-- HERO -->
 
-      <div class="ec-eyebrow">
-        EngineCore / Modules
+  <section class="hero">
+    <div class="container">
+
+      <div class="eyebrow">
+        EngineCore / Area 03 / Modules
       </div>
 
-      <h1>EngineCore Modules</h1>
+      <h1>
+        Modular components.<br>
+        <span>Explicit responsibility.</span>
+      </h1>
 
-      <p class="ec-lead">
-        EngineCore besteht aus unabhängigen, aber aufeinander abgestimmten Produktbereichen und technischen Modulen.
+      <p class="hero-copy">
+        EngineCore Modules separates system capabilities into
+        defined components with explicit responsibilities,
+        dependencies, interfaces and controlled runtime integration.
       </p>
 
-      <div class="ec-actions">
-
+      <div class="hero-actions">
         <a
-          class="ec-button"
-          href="#overview"
+          class="button button-primary"
+          href="#module-registry"
         >
-          Bereich ansehen
+          Explore Modules
         </a>
 
         <a
-          class="ec-button ec-button-secondary"
-          href="/products/enginecore/"
+          class="button"
+          href="/products/enginecore/runtime/"
         >
-          EngineCore Übersicht
+          View Runtime
         </a>
+      </div>
+
+      <div
+        class="module-status"
+        aria-label="Module overview"
+      >
+
+        <div class="status-item">
+          <span class="status-label">Area</span>
+          <span class="status-value">03 / Modules</span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">Structure</span>
+          <span class="status-value status-ok">MODULAR</span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">Responsibilities</span>
+          <span class="status-value status-ok">EXPLICIT</span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">Dependencies</span>
+          <span class="status-value status-ok">CONTROLLED</span>
+        </div>
 
       </div>
 
     </div>
   </section>
 
-  <section class="ec-section" id="overview">
-    <div class="ec-shell">
 
-      <div class="ec-card">
+  <!-- MODULE REGISTRY -->
 
-        <span class="ec-status">
-          ACTIVE ENGINECORE AREA
-        </span>
+  <section id="module-registry">
+    <div class="container">
 
-        <h2>Modulare Produktstruktur</h2>
+      <div class="section-header">
 
-        <p class="ec-lead">
-          Module können getrennt dokumentiert, validiert und erweitert werden. Gemeinsame Regeln sorgen gleichzeitig für konsistente Integration.
-        </p>
+        <div class="section-kicker">
+          01 / Module Registry
+        </div>
 
-      </div>
-
-    </div>
-  </section>
-
-  <section class="ec-section">
-    <div class="ec-shell">
-
-      <h2>Kernbereiche</h2>
-
-      <div class="ec-grid">
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Runtime</h3>
-
-            <p>
-              Ausführungsorientierter Bereich für Lebenszyklus und Zustandsverwaltung.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Validation</h3>
-
-            <p>
-              Technischer Prüfbereich für Integrität und Konsistenz.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Diagnostics</h3>
-
-            <p>
-              Bereich für Beobachtbarkeit, Zustandsprüfung und Diagnose.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Developer</h3>
-
-            <p>
-              Ressourcen für Entwicklung, Erweiterung und technische Integration.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Data</h3>
-
-            <p>
-              Strukturierte JSON-Daten für Module, Architektur und Fähigkeiten.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">MODULE</span>
-
-            <h3>Demos</h3>
-
-            <p>
-              Beispiele zur Darstellung definierter EngineCore-Konzepte.
-            </p>
-          </article>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="ec-section">
-    <div class="ec-shell">
-
-      <div class="ec-grid">
-
-        <article class="ec-card">
-
-          <h2>Grundsätze</h2>
-
-          <ul class="ec-list">
-              <li>Jedes Modul besitzt eine definierte Verantwortung</li>
-              <li>Module werden über klare Schnittstellen verbunden</li>
-              <li>Gemeinsame Regeln verhindern uneindeutige Zustände</li>
-              <li>Neue Module können kontrolliert ergänzt werden</li>
-              <li>Modulstatus und Validierung bleiben nachvollziehbar</li>
-          </ul>
-
-        </article>
-
-        <article class="ec-card">
-
-          <h2>Technische Daten</h2>
+        <div>
+          <h2>
+            Defined components for defined responsibilities.
+          </h2>
 
           <p>
-            Der Bereich verwendet strukturierte EngineCore-Daten
-            und gemeinsame technische Assets.
+            The module layer organizes EngineCore capabilities into
+            separate components. Each module owns a specific system
+            responsibility and communicates through defined
+            interfaces.
           </p>
-
-          <p>
-            <a href="/products/enginecore/data/modules.json">
-              Zugehörige JSON-Daten öffnen
-            </a>
-          </p>
-
-        </article>
-
-        <article class="ec-card">
-
-          <h2>Validierung</h2>
-
-          <p>
-            Die Seite ist Bestandteil des lokalen und veröffentlichten
-            EngineCore-Audits. Routen, Links und Assets werden vor der
-            Freigabe kontrolliert.
-          </p>
-
-        </article>
+        </div>
 
       </div>
 
-    </div>
-  </section>
 
-  <section class="ec-section">
-    <div class="ec-shell">
-        <div class="ec-card">
+      <div class="modules-grid">
 
-          <h2>Weitere EngineCore-Bereiche</h2>
-
-          <div class="ec-nav-links">
-            <a href="/products/enginecore/architecture/">
-              Architecture
-            </a>
-
-            <a href="/products/enginecore/runtime/">
-              Runtime
-            </a>
-
-            <a href="/products/enginecore/modules/">
-              Modules
-            </a>
-
-            <a href="/products/enginecore/validation/">
-              Validation
-            </a>
-
-            <a href="/products/enginecore/diagnostics/">
-              Diagnostics
-            </a>
-
-            <a href="/products/enginecore/developer/">
-              Developer
-            </a>
-
-            <a href="/products/enginecore/demos/">
-              Demos
-            </a>
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 01</span>
+            <span class="module-type">Core</span>
           </div>
 
+          <h3>Runtime Core</h3>
+
+          <p>
+            Provides the central execution context and coordinates
+            the active runtime lifecycle.
+          </p>
+
+          <code class="module-id">enginecore.runtime</code>
+        </article>
+
+
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 02</span>
+            <span class="module-type">State</span>
+          </div>
+
+          <h3>State Manager</h3>
+
+          <p>
+            Maintains explicit runtime state and controls state
+            transition requests.
+          </p>
+
+          <code class="module-id">enginecore.state</code>
+        </article>
+
+
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 03</span>
+            <span class="module-type">Validation</span>
+          </div>
+
+          <h3>Validation Layer</h3>
+
+          <p>
+            Evaluates defined conditions around module activation,
+            state transitions and runtime execution.
+          </p>
+
+          <code class="module-id">enginecore.validation</code>
+        </article>
+
+
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 04</span>
+            <span class="module-type">Control</span>
+          </div>
+
+          <h3>Orchestrator</h3>
+
+          <p>
+            Coordinates module participation across controlled
+            execution paths.
+          </p>
+
+          <code class="module-id">enginecore.orchestration</code>
+        </article>
+
+
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 05</span>
+            <span class="module-type">Diagnostics</span>
+          </div>
+
+          <h3>Diagnostics</h3>
+
+          <p>
+            Exposes structured module and runtime state information
+            for technical observation.
+          </p>
+
+          <code class="module-id">enginecore.diagnostics</code>
+        </article>
+
+
+        <article class="module-card">
+          <div class="module-top">
+            <span class="module-index">MODULE 06</span>
+            <span class="module-type">Recovery</span>
+          </div>
+
+          <h3>Recovery</h3>
+
+          <p>
+            Provides a defined coordination point for recoverable
+            runtime and module conditions.
+          </p>
+
+          <code class="module-id">enginecore.recovery</code>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- RESPONSIBILITIES -->
+
+  <section id="responsibilities">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          02 / Responsibilities
         </div>
+
+        <div>
+          <h2>
+            Each module owns a bounded system concern.
+          </h2>
+
+          <p>
+            Explicit ownership reduces hidden coupling and makes
+            runtime behavior easier to inspect, validate and evolve.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="matrix">
+
+        <div class="matrix-row">
+          <span class="matrix-id">01</span>
+          <span class="matrix-name">Runtime</span>
+          <span class="matrix-value">
+            Execution context and lifecycle coordination.
+          </span>
+        </div>
+
+        <div class="matrix-row">
+          <span class="matrix-id">02</span>
+          <span class="matrix-name">State</span>
+          <span class="matrix-value">
+            System state and controlled state transitions.
+          </span>
+        </div>
+
+        <div class="matrix-row">
+          <span class="matrix-id">03</span>
+          <span class="matrix-name">Validation</span>
+          <span class="matrix-value">
+            Integrity checks and execution constraints.
+          </span>
+        </div>
+
+        <div class="matrix-row">
+          <span class="matrix-id">04</span>
+          <span class="matrix-name">Orchestration</span>
+          <span class="matrix-value">
+            Coordination between participating system components.
+          </span>
+        </div>
+
+        <div class="matrix-row">
+          <span class="matrix-id">05</span>
+          <span class="matrix-name">Diagnostics</span>
+          <span class="matrix-value">
+            Observable technical state and diagnostic signals.
+          </span>
+        </div>
+
+        <div class="matrix-row">
+          <span class="matrix-id">06</span>
+          <span class="matrix-name">Recovery</span>
+          <span class="matrix-value">
+            Controlled handling of recoverable system conditions.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- DEPENDENCIES -->
+
+  <section id="dependencies">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          03 / Dependencies
+        </div>
+
+        <div>
+          <h2>
+            Dependencies follow an explicit path.
+          </h2>
+
+          <p>
+            Module dependencies should remain visible and limited.
+            The runtime can therefore establish a predictable loading
+            and activation path.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div
+        class="dependency-chain"
+        aria-label="Example module dependency chain"
+      >
+
+        <span class="dependency-node active">
+          runtime
+        </span>
+
+        <span class="dependency-arrow" aria-hidden="true">
+          →
+        </span>
+
+        <span class="dependency-node">
+          state
+        </span>
+
+        <span class="dependency-arrow" aria-hidden="true">
+          →
+        </span>
+
+        <span class="dependency-node">
+          validation
+        </span>
+
+        <span class="dependency-arrow" aria-hidden="true">
+          →
+        </span>
+
+        <span class="dependency-node">
+          orchestration
+        </span>
+
+        <span class="dependency-arrow" aria-hidden="true">
+          →
+        </span>
+
+        <span class="dependency-node">
+          diagnostics
+        </span>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- INTERFACES -->
+
+  <section id="interfaces">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          04 / Module Interfaces
+        </div>
+
+        <div>
+          <h2>
+            Components communicate through defined boundaries.
+          </h2>
+
+          <p>
+            Interfaces separate module responsibilities from their
+            internal implementation and provide explicit integration
+            points.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="interface-grid">
+
+        <article class="interface-card">
+          <code>initialize()</code>
+          <h3>Initialization</h3>
+          <p>
+            Establish the module context required before activation.
+          </p>
+        </article>
+
+        <article class="interface-card">
+          <code>validate()</code>
+          <h3>Validation</h3>
+          <p>
+            Evaluate relevant conditions before controlled execution.
+          </p>
+        </article>
+
+        <article class="interface-card">
+          <code>activate()</code>
+          <h3>Activation</h3>
+          <p>
+            Move a prepared module into its active runtime state.
+          </p>
+        </article>
+
+        <article class="interface-card">
+          <code>status()</code>
+          <h3>Status</h3>
+          <p>
+            Expose the current module condition in a structured form.
+          </p>
+        </article>
+
+        <article class="interface-card">
+          <code>diagnose()</code>
+          <h3>Diagnostics</h3>
+          <p>
+            Provide diagnostic information about current operation.
+          </p>
+        </article>
+
+        <article class="interface-card">
+          <code>terminate()</code>
+          <h3>Termination</h3>
+          <p>
+            Close module activity through a defined lifecycle step.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- LOADING ORDER -->
+
+  <section id="loading">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          05 / Module Loading
+        </div>
+
+        <div>
+          <h2>
+            Loading follows a controlled sequence.
+          </h2>
+
+          <p>
+            Modules move from discovery through dependency resolution,
+            validation and initialization before they become available
+            to runtime execution.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="loading-flow">
+
+        <div class="loading-step">
+          <span class="loading-step-number">01</span>
+          <strong>Discover</strong>
+          <p>Identify the modules required by the runtime context.</p>
+          <span class="loading-state">READY</span>
+        </div>
+
+        <div class="loading-step">
+          <span class="loading-step-number">02</span>
+          <strong>Resolve</strong>
+          <p>Determine dependencies and required system boundaries.</p>
+          <span class="loading-state">READY</span>
+        </div>
+
+        <div class="loading-step">
+          <span class="loading-step-number">03</span>
+          <strong>Validate</strong>
+          <p>Check the module context before initialization.</p>
+          <span class="loading-state">READY</span>
+        </div>
+
+        <div class="loading-step">
+          <span class="loading-step-number">04</span>
+          <strong>Initialize</strong>
+          <p>Establish the module's controlled runtime context.</p>
+          <span class="loading-state">READY</span>
+        </div>
+
+        <div class="loading-step">
+          <span class="loading-step-number">05</span>
+          <strong>Activate</strong>
+          <p>Expose the module to the active execution path.</p>
+          <span class="loading-state">ACTIVE</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PRINCIPLES -->
+
+  <section id="principles">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          06 / Module Principles
+        </div>
+
+        <div>
+          <h2>
+            Modularity requires clear boundaries.
+          </h2>
+
+          <p>
+            The module model emphasizes responsibility, dependency
+            control and observable system behavior.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="principles">
+
+        <div class="principle">
+          <strong>Single Responsibility</strong>
+          <span>
+            Each module owns a clearly bounded system concern.
+          </span>
+        </div>
+
+        <div class="principle">
+          <strong>Explicit Dependencies</strong>
+          <span>
+            Required relationships remain visible instead of being
+            hidden inside module implementation.
+          </span>
+        </div>
+
+        <div class="principle">
+          <strong>Defined Interfaces</strong>
+          <span>
+            Modules communicate through intentional integration
+            boundaries.
+          </span>
+        </div>
+
+        <div class="principle">
+          <strong>Controlled Activation</strong>
+          <span>
+            A module becomes active only after its required preparation
+            and validation stages.
+          </span>
+        </div>
+
+        <div class="principle">
+          <strong>Observable State</strong>
+          <span>
+            Module condition can be represented in a structured,
+            inspectable form.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- MODULE DATA -->
+
+  <section id="module-data">
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          07 / Module Data
+        </div>
+
+        <div>
+          <h2>
+            Machine-readable module definition.
+          </h2>
+
+          <p>
+            Module metadata can represent identity, responsibility,
+            dependencies, lifecycle state and runtime capabilities
+            through a predictable structure.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="code-panel">
+
+<pre><code>{
+  <span class="json-key">"engine"</span>: <span class="json-value">"EngineCore"</span>,
+  <span class="json-key">"area"</span>: <span class="json-value">"modules"</span>,
+  <span class="json-key">"module"</span>: {
+    <span class="json-key">"id"</span>: <span class="json-value">"enginecore.validation"</span>,
+    <span class="json-key">"type"</span>: <span class="json-value">"validation"</span>,
+    <span class="json-key">"state"</span>: <span class="json-value">"READY"</span>,
+    <span class="json-key">"enabled"</span>: <span class="json-bool">true</span>,
+    <span class="json-key">"dependencies"</span>: [
+      <span class="json-value">"enginecore.runtime"</span>,
+      <span class="json-value">"enginecore.state"</span>
+    ],
+    <span class="json-key">"interfaces"</span>: [
+      <span class="json-value">"initialize"</span>,
+      <span class="json-value">"validate"</span>,
+      <span class="json-value">"status"</span>,
+      <span class="json-value">"terminate"</span>
+    ]
+  }
+}</code></pre>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- AREA NAVIGATION -->
+
+  <section
+    class="area-navigation"
+    aria-labelledby="enginecore-navigation"
+  >
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-kicker">
+          EngineCore Areas
+        </div>
+
+        <div>
+          <h2 id="enginecore-navigation">
+            Continue through EngineCore.
+          </h2>
+
+          <p>
+            Modules connect the runtime execution model with the
+            dedicated validation layer.
+          </p>
+        </div>
+
+      </div>
+
+
+      <nav
+        class="area-links"
+        aria-label="EngineCore areas"
+      >
+
+        <a
+          class="area-link"
+          href="/products/enginecore/runtime/"
+        >
+          <span class="area-direction">
+            ← Area 02
+          </span>
+
+          <strong>Runtime</strong>
+
+          <span>
+            Execution model, lifecycle and runtime state.
+          </span>
+        </a>
+
+
+        <a
+          class="area-link current"
+          href="/products/enginecore/modules/"
+          aria-current="page"
+        >
+          <span class="area-direction">
+            Area 03
+          </span>
+
+          <strong>Modules</strong>
+
+          <span>
+            Modular components and defined responsibilities.
+          </span>
+        </a>
+
+
+        <a
+          class="area-link"
+          href="/products/enginecore/validation/"
+        >
+          <span class="area-direction">
+            Area 04 →
+          </span>
+
+          <strong>Validation</strong>
+
+          <span>
+            Integrity, consistency and controlled validation.
+          </span>
+        </a>
+
+      </nav>
+
     </div>
   </section>
 
 </main>
 
-<footer class="ec-footer">
-  <div class="ec-shell">
 
-    <p>
-      &copy;
-      <span data-ec-year>2026</span>
-      CoreCraft Genesis · EngineCore Modules
-    </p>
+<footer>
+  <div class="container footer-inner">
 
-    <p>
-      <a href="/products/">Alle Produkte</a>
-      ·
-      <a href="/docs/">Dokumentation</a>
-      ·
-      <a href="/contact/">Kontakt</a>
-    </p>
+    <div>
+      CoreCraft Genesis / EngineCore Modules
+    </div>
+
+    <nav
+      class="footer-links"
+      aria-label="Footer navigation"
+    >
+      <a href="/products/enginecore/">EngineCore</a>
+      <a href="/products/enginecore/architecture/">Architecture</a>
+      <a href="/products/enginecore/runtime/">Runtime</a>
+      <a href="/products/enginecore/validation/">Validation</a>
+      <a href="/products/enginecore/diagnostics/">Diagnostics</a>
+    </nav>
 
   </div>
 </footer>
-
-<script src="/products/enginecore/assets/js/enginecore.js"></script>
-<script src="/products/enginecore/assets/js/ui.js"></script>
 
 </body>
 </html>

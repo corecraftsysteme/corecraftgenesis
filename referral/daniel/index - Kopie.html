@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farm Proxy | Bitcoin Mining Infrastructure | CoreCraft Genesis</title>
+
+    <meta
+        name="description"
+        content="CoreCraft Genesis Farm Proxy für Bitcoin-Mining-Infrastruktur, Hashrate-Routing, Worker-Management, Pool-Endpunkte und Telemetrie."
+    >
+
+    <meta name="author" content="CoreCraft Genesis">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow">
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/products/bitcoin-mining/farm-proxy/"
+    >
+
+    <style>
+        :root {
+            --bg: #050505;
+            --bg-secondary: #080808;
+            --panel: #0b0b0b;
+            --panel-secondary: #0e0e0e;
+            --panel-hover: #121212;
+
+            --border: #202020;
+            --border-light: #292929;
+
+            --text: #f5f5f2;
+            --text-secondary: #b5b5b0;
+            --muted: #74746f;
+
+            --orange: #ff7a00;
+            --orange-light: #ff9a3c;
+            --orange-dark: #a84e00;
+
+            --green: #58d68d;
+            --amber: #f6bc45;
+            --red: #ef6262;
+
+            --max-width: 1280px;
+            --header-height: 72px;
+
+            --font:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            --mono:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                Menlo,
+                monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            color-scheme: dark;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            color: var(--text);
+            background: var(--bg);
+
+            font-family: var(--font);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 82% 5%,
+                    rgba(255, 122, 0, 0.085),
+                    transparent 27rem
+                );
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.012) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.012) 1px,
+                    transparent 1px
+                );
+
+            background-size: 64px 64px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    #000 0%,
+                    transparent 82%
+                );
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--orange);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(calc(100% - 48px), var(--max-width));
+            margin-inline: auto;
+        }
+
+        .mono {
+            font-family: var(--mono);
+        }
+
+        .orange {
+            color: var(--orange);
+        }
+
+        /* =========================
+           Navigation
+        ========================= */
+
+        .header {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+
+            min-height: var(--header-height);
+
+            border-bottom: 1px solid var(--border);
+
+            background: rgba(5, 5, 5, 0.93);
+            backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: var(--header-height);
+
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 28px;
+            height: 28px;
+
+            position: relative;
+
+            border: 1px solid var(--orange);
+            background: rgba(255, 122, 0, 0.05);
+        }
+
+        .brand-mark::before {
+            content: "";
+            position: absolute;
+            inset: 6px;
+
+            border: 1px solid var(--orange);
+        }
+
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            top: 50%;
+            left: 50%;
+
+            background: var(--orange);
+
+            transform: translate(-50%, -50%);
+        }
+
+        .brand-text {
+            display: grid;
+            gap: 2px;
+        }
+
+        .brand-name {
+            font-size: 0.8rem;
+            font-weight: 760;
+            letter-spacing: 0.09em;
+        }
+
+        .brand-product {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+        }
+
+        .nav {
+            justify-self: center;
+
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav a {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.69rem;
+            letter-spacing: 0.035em;
+
+            text-decoration: none;
+            text-transform: uppercase;
+
+            transition: color 150ms ease;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        .system-state {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.66rem;
+        }
+
+        .state-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+            background: var(--amber);
+
+            box-shadow:
+                0 0 10px rgba(246, 188, 69, 0.45);
+        }
+
+        /* =========================
+           Hero
+        ========================= */
+
+        .hero {
+            padding:
+                calc(var(--header-height) + 110px)
+                0
+                90px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.35fr)
+                minmax(320px, 0.65fr);
+
+            align-items: end;
+            gap: 70px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb span {
+            color: var(--orange);
+        }
+
+        h1 {
+            margin: 0;
+
+            max-width: 900px;
+
+            font-size: clamp(4.2rem, 9vw, 8.2rem);
+            font-weight: 790;
+            line-height: 0.82;
+            letter-spacing: -0.072em;
+        }
+
+        .hero-description {
+            max-width: 700px;
+
+            margin: 40px 0 0;
+
+            color: var(--text-secondary);
+
+            font-size: clamp(1rem, 1.4vw, 1.13rem);
+            line-height: 1.75;
+        }
+
+        .hero-tags {
+            margin-top: 36px;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .system-tag {
+            padding: 7px 9px;
+
+            border: 1px solid var(--border);
+
+            color: var(--muted);
+            background: var(--panel);
+
+            font-family: var(--mono);
+            font-size: 0.63rem;
+            letter-spacing: 0.06em;
+        }
+
+        .system-tag.active {
+            color: var(--orange);
+            border-color: rgba(255, 122, 0, 0.35);
+        }
+
+        .hero-console {
+            border-top: 2px solid var(--orange);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            background: var(--panel);
+        }
+
+        .console-header {
+            padding: 15px 17px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid var(--border);
+
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+        }
+
+        .console-header span:first-child {
+            color: var(--text-secondary);
+        }
+
+        .console-header span:last-child {
+            color: var(--amber);
+        }
+
+        .console-row {
+            min-height: 64px;
+            padding: 0 17px;
+
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 20px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .console-row:last-child {
+            border-bottom: 0;
+        }
+
+        .console-label {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+        }
+
+        .console-value {
+            color: var(--text-secondary);
+
+            font-family: var(--mono);
+            font-size: 0.7rem;
+
+            text-align: right;
+        }
+
+        .console-value.warning {
+            color: var(--amber);
+        }
+
+        /* =========================
+           Section architecture
+        ========================= */
+
+        .section {
+            padding: 95px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 35px;
+        }
+
+        .section-id {
+            padding-top: 7px;
+
+            color: var(--orange);
+
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.09em;
+        }
+
+        .section-heading {
+            max-width: 750px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            font-size: clamp(2.1rem, 4vw, 3.65rem);
+            font-weight: 740;
+            line-height: 1.03;
+            letter-spacing: -0.052em;
+        }
+
+        .section-heading p {
+            margin: 19px 0 0;
+
+            color: var(--muted);
+
+            line-height: 1.75;
+        }
+
+        /* =========================
+           Metrics
+        ========================= */
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+
+        .metric {
+            min-height: 170px;
+            padding: 23px;
+
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            background: var(--panel);
+
+            transition: background 140ms ease;
+        }
+
+        .metric:hover {
+            background: var(--panel-hover);
+        }
+
+        .metric-label {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.63rem;
+            letter-spacing: 0.07em;
+        }
+
+        .metric-value {
+            margin-top: 36px;
+
+            font-family: var(--mono);
+            font-size: clamp(1.45rem, 3vw, 2.1rem);
+            font-weight: 550;
+            letter-spacing: -0.04em;
+        }
+
+        .metric-note {
+            margin-top: 9px;
+
+            color: var(--muted);
+
+            font-size: 0.72rem;
+            line-height: 1.45;
+        }
+
+        /* =========================
+           Routing
+        ========================= */
+
+        .routing-grid {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.25fr)
+                minmax(330px, 0.75fr);
+
+            gap: 18px;
+        }
+
+        .panel {
+            border: 1px solid var(--border);
+
+            background: var(--panel);
+        }
+
+        .panel-title {
+            min-height: 56px;
+            padding: 0 19px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title h3 {
+            margin: 0;
+
+            font-family: var(--mono);
+            font-size: 0.71rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .panel-title span {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.59rem;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 17px 20px;
+
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.59rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+
+        td {
+            border-top: 1px solid var(--border);
+
+            color: var(--text-secondary);
+
+            font-family: var(--mono);
+            font-size: 0.68rem;
+        }
+
+        .route-name {
+            color: var(--text);
+        }
+
+        .inactive {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            color: var(--muted);
+        }
+
+        .inactive::before {
+            content: "";
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+            background: var(--amber);
+        }
+
+        /* =========================
+           Form
+        ========================= */
+
+        .configuration {
+            padding: 21px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.61rem;
+            letter-spacing: 0.04em;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            height: 44px;
+
+            padding: 0 12px;
+
+            border: 1px solid var(--border);
+            border-radius: 0;
+
+            outline: 0;
+
+            color: var(--text);
+            background: var(--bg-secondary);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+
+            transition: border-color 140ms ease;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--orange);
+        }
+
+        .field input::placeholder {
+            color: #4f4f4c;
+        }
+
+        .form-note {
+            margin: 5px 0 19px;
+
+            color: var(--muted);
+
+            font-size: 0.7rem;
+            line-height: 1.6;
+        }
+
+        .button {
+            min-height: 44px;
+
+            padding: 0 18px;
+
+            border: 1px solid var(--orange);
+            border-radius: 0;
+
+            color: #120900;
+            background: var(--orange);
+
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+
+            transition:
+                background 140ms ease,
+                color 140ms ease;
+        }
+
+        .button:hover {
+            background: var(--orange-light);
+        }
+
+        .button.full {
+            width: 100%;
+        }
+
+        /* =========================
+           Infrastructure
+        ========================= */
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+
+        .module {
+            min-height: 235px;
+            padding: 25px;
+
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            background: var(--panel);
+
+            transition: background 140ms ease;
+        }
+
+        .module:hover {
+            background: var(--panel-hover);
+        }
+
+        .module-id {
+            color: var(--orange);
+
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+        }
+
+        .module h3 {
+            margin: 55px 0 12px;
+
+            font-size: 1.05rem;
+            font-weight: 680;
+            letter-spacing: -0.025em;
+        }
+
+        .module p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 0.83rem;
+            line-height: 1.68;
+        }
+
+        /* =========================
+           Architecture
+        ========================= */
+
+        .architecture {
+            display: grid;
+            grid-template-columns:
+                1fr
+                70px
+                1fr
+                70px
+                1fr;
+            align-items: stretch;
+        }
+
+        .architecture-node {
+            min-height: 150px;
+            padding: 22px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border: 1px solid var(--border);
+
+            background: var(--panel);
+        }
+
+        .architecture-id {
+            color: var(--orange);
+
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.07em;
+        }
+
+        .architecture-node strong {
+            font-size: 0.9rem;
+            font-weight: 640;
+        }
+
+        .architecture-arrow {
+            display: grid;
+            place-items: center;
+
+            color: var(--orange);
+
+            font-family: var(--mono);
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           Legal
+        ========================= */
+
+        .legal {
+            padding: 65px 0;
+        }
+
+        .legal-box {
+            padding: 25px 27px;
+
+            border-left: 2px solid var(--orange);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            background: var(--panel);
+        }
+
+        .legal-box h2 {
+            margin: 0 0 14px;
+
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.07em;
+        }
+
+        .legal-box p {
+            max-width: 950px;
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 0.76rem;
+            line-height: 1.7;
+        }
+
+        .legal-box p + p {
+            margin-top: 10px;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+            background: #030303;
+        }
+
+        .footer-inner {
+            min-height: 120px;
+
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            color: var(--text-secondary);
+
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-meta {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.58rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 21px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+
+            font-family: var(--mono);
+            font-size: 0.61rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        /* =========================
+           Toast
+        ========================= */
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 300;
+
+            max-width: 390px;
+
+            padding: 14px 16px;
+
+            border-left: 2px solid var(--orange);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            color: var(--text-secondary);
+            background: #0b0b0b;
+
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            line-height: 1.55;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transform: translateY(10px);
+
+            transition:
+                opacity 150ms ease,
+                transform 150ms ease;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           Responsive
+        ========================= */
+
+        @media (max-width: 1050px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-console {
+                max-width: 700px;
+            }
+
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .routing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modules {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .nav {
+                display: none;
+            }
+
+            .header-inner {
+                grid-template-columns: 1fr auto;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .architecture {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .architecture-arrow {
+                height: 60px;
+
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 620px) {
+            .container {
+                width: min(calc(100% - 28px), var(--max-width));
+            }
+
+            .system-state {
+                display: none;
+            }
+
+            .hero {
+                padding-top:
+                    calc(var(--header-height) + 70px);
+            }
+
+            h1 {
+                font-size: clamp(3.5rem, 18vw, 5.2rem);
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .metrics,
+            .modules {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                padding: 28px 0;
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+
+        <a
+            class="brand"
+            href="/"
+            aria-label="CoreCraft Genesis"
+        >
+            <span
+                class="brand-mark"
+                aria-hidden="true"
+            ></span>
+
+            <span class="brand-text">
+                <span class="brand-name">
+                    CORECRAFT GENESIS
+                </span>
+
+                <span class="brand-product">
+                    BITCOIN MINING / FARM PROXY
+                </span>
+            </span>
+        </a>
+
+        <nav
+            class="nav"
+            aria-label="Farm Proxy Navigation"
+        >
+            <a href="#overview">Overview</a>
+            <a href="#routing">Routing</a>
+            <a href="#infrastructure">Infrastructure</a>
+            <a href="#architecture">Architecture</a>
+        </nav>
+
+        <div class="system-state">
+            <span
+                class="state-dot"
+                aria-hidden="true"
+            ></span>
+
+            LOCAL / DEMO
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="container hero-grid">
+
+            <div>
+                <div class="breadcrumb">
+                    CORECRAFT GENESIS /
+                    BITCOIN MINING /
+                    <span>FARM PROXY</span>
+                </div>
+
+                <h1>
+                    FARM<br>
+                    <span class="orange">PROXY.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Hashrate Routing und Mining Infrastructure Control
+                    für strukturierte Bitcoin-Mining-Umgebungen.
+                    Worker, Pool-Endpunkte und Routing-Zustände in
+                    einer zentralen CoreCraft-Genesis-Oberfläche.
+                </p>
+
+                <div class="hero-tags">
+                    <span class="system-tag active">
+                        SYSTEM
+                    </span>
+
+                    <span class="system-tag">
+                        ROUTING
+                    </span>
+
+                    <span class="system-tag">
+                        WORKERS
+                    </span>
+
+                    <span class="system-tag">
+                        POOLS
+                    </span>
+
+                    <span class="system-tag">
+                        TELEMETRY
+                    </span>
+                </div>
+            </div>
+
+            <aside
+                class="hero-console"
+                aria-label="Systemstatus"
+            >
+                <div class="console-header">
+                    <span>SYSTEM STATUS</span>
+                    <span>NO DATA SOURCE</span>
+                </div>
+
+                <div class="console-row">
+                    <span class="console-label">
+                        PROXY
+                    </span>
+
+                    <span class="console-value warning">
+                        OFFLINE
+                    </span>
+                </div>
+
+                <div class="console-row">
+                    <span class="console-label">
+                        HASHRATE
+                    </span>
+
+                    <span class="console-value">
+                        -- TH/s
+                    </span>
+                </div>
+
+                <div class="console-row">
+                    <span class="console-label">
+                        WORKERS
+                    </span>
+
+                    <span class="console-value">
+                        0 / 0
+                    </span>
+                </div>
+
+                <div class="console-row">
+                    <span class="console-label">
+                        ROUTING MODE
+                    </span>
+
+                    <span
+                        class="console-value"
+                        id="console-routing-mode"
+                    >
+                        MANUAL
+                    </span>
+                </div>
+
+                <div class="console-row">
+                    <span class="console-label">
+                        TELEMETRY
+                    </span>
+
+                    <span class="console-value warning">
+                        NOT CONNECTED
+                    </span>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <section
+        class="section"
+        id="overview"
+    >
+        <div class="container">
+
+            <div class="section-header">
+
+                <div class="section-id">
+                    01 / OVERVIEW
+                </div>
+
+                <div class="section-heading">
+                    <h2>
+                        Mining infrastructure status.
+                    </h2>
+
+                    <p>
+                        Betriebsdaten werden ausschließlich angezeigt,
+                        wenn eine reale Telemetriequelle angebunden ist.
+                        Fehlende Daten bleiben ausdrücklich als nicht
+                        verfügbar gekennzeichnet.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="metrics">
+
+                <article class="metric">
+                    <div class="metric-label">
+                        TOTAL HASHRATE
+                    </div>
+
+                    <div class="metric-value">
+                        -- TH/s
+                    </div>
+
+                    <div class="metric-note">
+                        Keine Telemetriedaten
+                    </div>
+                </article>
+
+                <article class="metric">
+                    <div class="metric-label">
+                        ACTIVE WORKERS
+                    </div>
+
+                    <div class="metric-value">
+                        0 / 0
+                    </div>
+
+                    <div class="metric-note">
+                        Keine Worker-Daten
+                    </div>
+                </article>
+
+                <article class="metric">
+                    <div class="metric-label">
+                        PRIMARY ROUTE
+                    </div>
+
+                    <div
+                        class="metric-value"
+                        id="primary-route-metric"
+                    >
+                        NONE
+                    </div>
+
+                    <div class="metric-note">
+                        Lokale Routing-Konfiguration
+                    </div>
+                </article>
+
+                <article class="metric">
+                    <div class="metric-label">
+                        SHARE HEALTH
+                    </div>
+
+                    <div class="metric-value">
+                        -- %
+                    </div>
+
+                    <div class="metric-note">
+                        Share-Daten erforderlich
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section
+        class="section"
+        id="routing"
+    >
+        <div class="container">
+
+            <div class="section-header">
+
+                <div class="section-id">
+                    02 / ROUTING
+                </div>
+
+                <div class="section-heading">
+                    <h2>
+                        Hashrate routing control.
+                    </h2>
+
+                    <p>
+                        Primäre und alternative Stratum-Endpunkte
+                        konfigurieren. Diese lokale Oberfläche aktiviert
+                        keine echte Netzwerkverbindung.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="routing-grid">
+
+                <div class="panel">
+
+                    <div class="panel-title">
+                        <h3>ROUTING TABLE</h3>
+                        <span>LOCAL CONFIGURATION</span>
+                    </div>
+
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>PRIORITY</th>
+                                    <th>ENDPOINT</th>
+                                    <th>ROLE</th>
+                                    <th>STATE</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+
+                                    <td
+                                        class="route-name"
+                                        id="primary-route"
+                                    >
+                                        NOT CONFIGURED
+                                    </td>
+
+                                    <td>PRIMARY</td>
+
+                                    <td>
+                                        <span class="inactive">
+                                            INACTIVE
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>02</td>
+
+                                    <td
+                                        class="route-name"
+                                        id="fallback-route"
+                                    >
+                                        NOT CONFIGURED
+                                    </td>
+
+                                    <td>FALLBACK</td>
+
+                                    <td>
+                                        <span class="inactive">
+                                            INACTIVE
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <aside class="panel">
+
+                    <div class="panel-title">
+                        <h3>PROXY CONFIGURATION</h3>
+                        <span>BROWSER STORAGE</span>
+                    </div>
+
+                    <form
+                        class="configuration"
+                        id="proxy-form"
+                    >
+
+                        <div class="field">
+                            <label for="instance-name">
+                                INSTANCE NAME
+                            </label>
+
+                            <input
+                                id="instance-name"
+                                type="text"
+                                maxlength="80"
+                                placeholder="CoreCraft Farm Node"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="primary-endpoint">
+                                PRIMARY STRATUM ENDPOINT
+                            </label>
+
+                            <input
+                                id="primary-endpoint"
+                                type="text"
+                                maxlength="220"
+                                placeholder="stratum+tcp://pool.example:3333"
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="fallback-endpoint">
+                                FALLBACK ENDPOINT
+                            </label>
+
+                            <input
+                                id="fallback-endpoint"
+                                type="text"
+                                maxlength="220"
+                                placeholder="stratum+tcp://fallback.example:3333"
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="routing-mode">
+                                ROUTING MODE
+                            </label>
+
+                            <select id="routing-mode">
+                                <option value="manual">
+                                    Manual
+                                </option>
+
+                                <option value="priority">
+                                    Priority
+                                </option>
+
+                                <option value="failover">
+                                    Failover
+                                </option>
+                            </select>
+                        </div>
+
+                        <p class="form-note">
+                            Keine Passwörter, Wallet-Seeds oder privaten
+                            Schlüssel eingeben. Die Konfiguration wird
+                            ausschließlich lokal im Browser gespeichert.
+                        </p>
+
+                        <button
+                            type="submit"
+                            class="button full"
+                        >
+                            SAVE LOCAL CONFIGURATION
+                        </button>
+
+                    </form>
+
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="section"
+        id="infrastructure"
+    >
+        <div class="container">
+
+            <div class="section-header">
+
+                <div class="section-id">
+                    03 / INFRASTRUCTURE
+                </div>
+
+                <div class="section-heading">
+                    <h2>
+                        Operational modules.
+                    </h2>
+
+                    <p>
+                        Die Farm-Proxy-Struktur trennt Routing,
+                        Worker-Verwaltung, Telemetrie und Betriebsstatus
+                        in klar definierte Infrastrukturmodule.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="modules">
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 01
+                    </div>
+
+                    <h3>Worker Management</h3>
+
+                    <p>
+                        Strukturierte Darstellung von ASIC-Minern,
+                        Worker-Kennungen, Gruppen und zugewiesenen
+                        Routing-Zielen.
+                    </p>
+                </article>
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 02
+                    </div>
+
+                    <h3>Pool Routing</h3>
+
+                    <p>
+                        Verwaltung primärer und alternativer
+                        Mining-Endpunkte mit klarer Prioritätsstruktur.
+                    </p>
+                </article>
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 03
+                    </div>
+
+                    <h3>Failover</h3>
+
+                    <p>
+                        Vorbereitete Konfiguration für kontrollierte
+                        Umschaltung zwischen definierten Pool-Zielen.
+                    </p>
+                </article>
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 04
+                    </div>
+
+                    <h3>Share Telemetry</h3>
+
+                    <p>
+                        Erweiterbar für akzeptierte, abgelehnte und
+                        veraltete Shares aus einer realen Datenquelle.
+                    </p>
+                </article>
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 05
+                    </div>
+
+                    <h3>Local Control</h3>
+
+                    <p>
+                        Eigenständige Oberfläche ohne externe
+                        JavaScript- oder CSS-Abhängigkeiten.
+                    </p>
+                </article>
+
+                <article class="module">
+                    <div class="module-id">
+                        MOD / 06
+                    </div>
+
+                    <h3>System Integrity</h3>
+
+                    <p>
+                        Fehlende Betriebswerte werden nicht simuliert,
+                        sondern eindeutig als nicht verfügbar
+                        ausgewiesen.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="section"
+        id="architecture"
+    >
+        <div class="container">
+
+            <div class="section-header">
+
+                <div class="section-id">
+                    04 / ARCHITECTURE
+                </div>
+
+                <div class="section-heading">
+                    <h2>
+                        Proxy infrastructure chain.
+                    </h2>
+
+                    <p>
+                        Die Architektur trennt Mining-Hardware,
+                        Proxy-Control und konfigurierte Pool-Ziele.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                class="architecture"
+                aria-label="Farm Proxy Architektur"
+            >
+
+                <div class="architecture-node">
+                    <span class="architecture-id">
+                        LAYER / 01
+                    </span>
+
+                    <strong>
+                        ASIC MINERS<br>
+                        + WORKERS
+                    </strong>
+                </div>
+
+                <div
+                    class="architecture-arrow"
+                    aria-hidden="true"
+                >
+                    →
+                </div>
+
+                <div class="architecture-node">
+                    <span class="architecture-id">
+                        LAYER / 02
+                    </span>
+
+                    <strong>
+                        CORECRAFT<br>
+                        FARM PROXY
+                    </strong>
+                </div>
+
+                <div
+                    class="architecture-arrow"
+                    aria-hidden="true"
+                >
+                    →
+                </div>
+
+                <div class="architecture-node">
+                    <span class="architecture-id">
+                        LAYER / 03
+                    </span>
+
+                    <strong>
+                        MINING POOL<br>
+                        ENDPOINTS
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="legal">
+        <div class="container">
+
+            <div class="legal-box">
+
+                <h2>
+                    INDEPENDENCE / TRADEMARK NOTICE
+                </h2>
+
+                <p>
+                    CoreCraft Genesis Farm Proxy ist ein eigenständiges
+                    CoreCraft-Genesis-Projekt. Es besteht keine
+                    Zugehörigkeit zu, Partnerschaft mit oder Unterstützung
+                    durch Mempool Holdings S.A. de C.V. oder The Mempool
+                    Open Source Project.
+                </p>
+
+                <p>
+                    Erwähnungen von mempool.space® dienen, sofern vorhanden,
+                    ausschließlich der sachlichen Beschreibung einer
+                    tatsächlichen technischen Beziehung, Kompatibilität
+                    oder Datenquelle. Fremde Logos oder geschützte
+                    Gestaltungselemente werden auf dieser Oberfläche
+                    nicht verwendet.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-inner">
+
+        <div>
+            <div class="footer-brand">
+                CORECRAFT GENESIS /
+                BITCOIN MINING /
+                FARM PROXY
+            </div>
+
+            <div class="footer-meta">
+                INFRASTRUCTURE CONTROL SYSTEM
+            </div>
+        </div>
+
+        <nav
+            class="footer-links"
+            aria-label="Footer Navigation"
+        >
+            <a href="/">HOME</a>
+
+            <a href="/products/bitcoin-mining/">
+                BITCOIN MINING
+            </a>
+
+            <a href="/impressum/">
+                IMPRESSUM
+            </a>
+
+            <a href="/datenschutz/">
+                DATENSCHUTZ
+            </a>
+
+            <a href="/licenses/">
+                LICENSES
+            </a>
+        </nav>
+
+    </div>
+</footer>
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+<script>
+    (() => {
+        "use strict";
+
+        const STORAGE_KEY =
+            "corecraft-farm-proxy-configuration";
+
+        const form =
+            document.getElementById("proxy-form");
+
+        const instanceName =
+            document.getElementById("instance-name");
+
+        const primaryEndpoint =
+            document.getElementById("primary-endpoint");
+
+        const fallbackEndpoint =
+            document.getElementById("fallback-endpoint");
+
+        const routingMode =
+            document.getElementById("routing-mode");
+
+        const primaryRoute =
+            document.getElementById("primary-route");
+
+        const fallbackRoute =
+            document.getElementById("fallback-route");
+
+        const primaryRouteMetric =
+            document.getElementById(
+                "primary-route-metric"
+            );
+
+        const consoleRoutingMode =
+            document.getElementById(
+                "console-routing-mode"
+            );
+
+        const toast =
+            document.getElementById("toast");
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("visible");
+
+            clearTimeout(showToast.timer);
+
+            showToast.timer = setTimeout(() => {
+                toast.classList.remove("visible");
+            }, 3200);
+        }
+
+        function normalizeEndpoint(value) {
+            return value.trim();
+        }
+
+        function validEndpoint(value) {
+            if (!value) {
+                return true;
+            }
+
+            return /^stratum(\+tcp|\+ssl)?:\/\/[^\s]+$/i
+                .test(value);
+        }
+
+        function endpointHost(endpoint) {
+            if (!endpoint) {
+                return "NONE";
+            }
+
+            return endpoint
+                .replace(
+                    /^stratum(\+tcp|\+ssl)?:\/\//i,
+                    ""
+                )
+                .split("/")[0];
+        }
+
+        function render(config) {
+            primaryRoute.textContent =
+                config.primaryEndpoint ||
+                "NOT CONFIGURED";
+
+            fallbackRoute.textContent =
+                config.fallbackEndpoint ||
+                "NOT CONFIGURED";
+
+            primaryRouteMetric.textContent =
+                endpointHost(
+                    config.primaryEndpoint
+                );
+
+            consoleRoutingMode.textContent =
+                (
+                    config.routingMode ||
+                    "manual"
+                ).toUpperCase();
+        }
+
+        function load() {
+            const stored =
+                localStorage.getItem(STORAGE_KEY);
+
+            if (!stored) {
+                return;
+            }
+
+            try {
+                const config = JSON.parse(stored);
+
+                instanceName.value =
+                    config.instanceName || "";
+
+                primaryEndpoint.value =
+                    config.primaryEndpoint || "";
+
+                fallbackEndpoint.value =
+                    config.fallbackEndpoint || "";
+
+                routingMode.value =
+                    config.routingMode || "manual";
+
+                render(config);
+            } catch {
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        }
+
+        form.addEventListener(
+            "submit",
+            (event) => {
+                event.preventDefault();
+
+                const primary =
+                    normalizeEndpoint(
+                        primaryEndpoint.value
+                    );
+
+                const fallback =
+                    normalizeEndpoint(
+                        fallbackEndpoint.value
+                    );
+
+                if (!validEndpoint(primary)) {
+                    primaryEndpoint.focus();
+
+                    showToast(
+                        "INVALID PRIMARY ENDPOINT: " +
+                        "Use stratum://, " +
+                        "stratum+tcp:// or " +
+                        "stratum+ssl://"
+                    );
+
+                    return;
+                }
+
+                if (!validEndpoint(fallback)) {
+                    fallbackEndpoint.focus();
+
+                    showToast(
+                        "INVALID FALLBACK ENDPOINT: " +
+                        "Use stratum://, " +
+                        "stratum+tcp:// or " +
+                        "stratum+ssl://"
+                    );
+
+                    return;
+                }
+
+                const config = {
+                    instanceName:
+                        instanceName.value.trim() ||
+                        "CoreCraft Farm Node",
+
+                    primaryEndpoint: primary,
+                    fallbackEndpoint: fallback,
+                    routingMode: routingMode.value
+                };
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(config)
+                );
+
+                render(config);
+
+                showToast(
+                    "CONFIGURATION SAVED LOCALLY"
+                );
+            }
+        );
+
+        load();
+    })();
+</script>
+
+</body>
+</html>

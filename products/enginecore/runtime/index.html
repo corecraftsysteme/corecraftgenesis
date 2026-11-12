@@ -1,305 +1,1625 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>EngineCore Runtime | CoreCraft Genesis</title>
 
   <meta
     name="description"
-    content="Runtime-Modell für strukturierte Ausführung, Zustandsverwaltung, Lebenszyklus und kontrollierte Verarbeitung."
+    content="EngineCore Runtime defines the controlled execution model, lifecycle, runtime states, module loading, validation hooks, diagnostics and deterministic state transitions."
   >
+
+  <meta name="robots" content="index,follow">
 
   <link
-    rel="stylesheet"
-    href="/products/enginecore/assets/css/enginecore.css"
+    rel="canonical"
+    href="https://corecraftgenesis.ch/products/enginecore/runtime/"
   >
-  <link rel="canonical" href="https://corecraftgenesis.ch/products/enginecore/runtime/">
+
+  <meta name="theme-color" content="#07090d">
+
+  <style>
+    :root {
+      --bg: #07090d;
+      --bg-soft: #0b0f15;
+      --panel: #10151d;
+      --panel-soft: #0d1219;
+      --line: #202936;
+      --line-strong: #344154;
+
+      --text: #f4f7fb;
+      --muted: #9ca9b8;
+      --muted-2: #748194;
+
+      --accent: #ff7a00;
+      --accent-2: #ff9a32;
+      --accent-soft: rgba(255, 122, 0, 0.12);
+
+      --green: #45d483;
+      --blue: #5ca7ff;
+      --yellow: #ffcb63;
+      --red: #ff6b6b;
+
+      --max-width: 1180px;
+      --radius: 16px;
+      --radius-small: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 75% -10%,
+          rgba(255, 122, 0, 0.09),
+          transparent 31rem
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    code,
+    pre {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(7, 9, 13, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .main-nav a:hover {
+      color: var(--text);
+    }
+
+    .main-nav .active {
+      color: var(--accent);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 110px 0 90px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.97;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 32px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+    }
+
+    .button-primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #111;
+    }
+
+    .button-primary:hover {
+      border-color: var(--accent-2);
+      background: var(--accent-2);
+    }
+
+    .runtime-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 55px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .status-item {
+      min-width: 150px;
+    }
+
+    .status-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted-2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .status-value {
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .status-ok {
+      color: var(--green);
+    }
+
+    /* Shared sections */
+
+    section {
+      padding: 92px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.55fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+    }
+
+    .section-header p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Cards */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 220px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.025),
+          transparent
+        ),
+        var(--panel-soft);
+    }
+
+    .card-index {
+      display: block;
+      margin-bottom: 35px;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Lifecycle */
+
+    .lifecycle {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--line);
+    }
+
+    .lifecycle-step {
+      position: relative;
+      min-height: 190px;
+      padding: 24px;
+      background: var(--panel-soft);
+    }
+
+    .lifecycle-number {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .lifecycle-step h3 {
+      margin: 38px 0 10px;
+      font-size: 17px;
+    }
+
+    .lifecycle-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* State matrix */
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .state {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: var(--panel-soft);
+    }
+
+    .state-name {
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .state-description {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .state-ready {
+      color: var(--green);
+    }
+
+    .state-active {
+      color: var(--blue);
+    }
+
+    .state-waiting {
+      color: var(--yellow);
+    }
+
+    .state-fault {
+      color: var(--red);
+    }
+
+    /* Flow */
+
+    .flow {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+      overflow: hidden;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 70px 200px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 22px 25px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .flow-row:last-child {
+      border-bottom: 0;
+    }
+
+    .flow-id {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .flow-name {
+      font-weight: 700;
+    }
+
+    .flow-description {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Modules */
+
+    .module-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .module {
+      display: grid;
+      grid-template-columns: 180px 1fr auto;
+      gap: 30px;
+      align-items: center;
+      padding: 20px 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: var(--panel-soft);
+    }
+
+    .module code {
+      color: var(--accent);
+    }
+
+    .module p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .module-status {
+      color: var(--green);
+      font-family: monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Transition path */
+
+    .transition-path {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+    }
+
+    .transition-node {
+      padding: 10px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .transition-node.current {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .transition-arrow {
+      color: var(--muted-2);
+    }
+
+    /* Hooks */
+
+    .hook-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .hook {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-soft);
+    }
+
+    .hook-label {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 5px 8px;
+      border-radius: 5px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    .hook h3 {
+      margin: 0 0 10px;
+    }
+
+    .hook p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Principles */
+
+    .principles {
+      counter-reset: principle;
+      border-top: 1px solid var(--line);
+    }
+
+    .principle {
+      counter-increment: principle;
+      display: grid;
+      grid-template-columns: 80px 260px 1fr;
+      gap: 30px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .principle::before {
+      content: "0" counter(principle);
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .principle strong {
+      font-size: 16px;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* JSON */
+
+    .code-panel {
+      overflow-x: auto;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #05070a;
+    }
+
+    .code-panel pre {
+      margin: 0;
+      color: #c7d2df;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .json-key {
+      color: #75b7ff;
+    }
+
+    .json-value {
+      color: #f3ba75;
+    }
+
+    .json-bool {
+      color: #7ee2a8;
+    }
+
+    /* Navigation */
+
+    .area-navigation {
+      background: var(--bg-soft);
+    }
+
+    .area-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .area-link {
+      min-height: 160px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .area-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .area-direction {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--muted-2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .area-link strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .area-link span:last-child {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .area-link.current {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 45px 0;
+      color: var(--muted-2);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .main-nav {
+        display: none;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lifecycle {
+        grid-template-columns: 1fr;
+      }
+
+      .state-grid,
+      .hook-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-row {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .flow-description {
+        grid-column: 2;
+      }
+
+      .module {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .principle {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .principle span {
+        grid-column: 2;
+      }
+
+      .area-links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .hero {
+        padding: 80px 0 65px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .state {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
-<body data-page="runtime">
+<body>
 
-<header class="ec-header">
-  <div class="ec-shell">
-      <nav class="ec-nav" aria-label="EngineCore Navigation">
+  <header class="site-header">
+    <div class="container header-inner">
 
-        <a class="ec-brand" href="/products/enginecore/">
+      <a
+        class="brand"
+        href="/"
+        aria-label="CoreCraft Genesis home"
+      >
+        <span class="brand-mark" aria-hidden="true">CG</span>
+        <span>CoreCraft Genesis</span>
+      </a>
+
+      <nav
+        class="main-nav"
+        aria-label="Primary navigation"
+      >
+        <a href="/products/">Products</a>
+        <a
+          href="/products/enginecore/"
+          class="active"
+          aria-current="page"
+        >
           EngineCore
         </a>
+        <a href="/docs/">Documentation</a>
+        <a href="/support/">Support</a>
+      </nav>
 
-        <div class="ec-nav-links">
-          <a data-ec-nav href="/products/enginecore/architecture/">
-            Architecture
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="eyebrow">
+          EngineCore / Area 02 / Runtime
+        </div>
+
+        <h1>
+          Controlled execution.<br>
+          <span>Deterministic runtime.</span>
+        </h1>
+
+        <p class="hero-copy">
+          The EngineCore Runtime defines how execution enters the
+          system, moves through controlled states, loads modules,
+          validates transitions and exposes diagnostic signals.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button button-primary"
+            href="#lifecycle"
+          >
+            Explore Runtime
           </a>
 
-          <a data-ec-nav href="/products/enginecore/runtime/">
-            Runtime
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/modules/">
-            Modules
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/validation/">
-            Validation
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/diagnostics/">
-            Diagnostics
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/developer/">
-            Developer
-          </a>
-
-          <a data-ec-nav href="/products/enginecore/demos/">
-            Demos
+          <a
+            class="button"
+            href="/products/enginecore/architecture/"
+          >
+            View Architecture
           </a>
         </div>
 
-      </nav>
-  </div>
-</header>
-
-<main>
-
-  <section class="ec-hero">
-    <div class="ec-shell">
-
-      <div class="ec-eyebrow">
-        EngineCore / Runtime
-      </div>
-
-      <h1>EngineCore Runtime</h1>
-
-      <p class="ec-lead">
-        Die EngineCore Runtime bildet den ausführungsorientierten Kern für nachvollziehbare Zustände und reproduzierbare Systemabläufe.
-      </p>
-
-      <div class="ec-actions">
-
-        <a
-          class="ec-button"
-          href="#overview"
+        <div
+          class="runtime-status"
+          aria-label="Runtime overview"
         >
-          Bereich ansehen
-        </a>
 
-        <a
-          class="ec-button ec-button-secondary"
-          href="/products/enginecore/"
-        >
-          EngineCore Übersicht
-        </a>
+          <div class="status-item">
+            <span class="status-label">Area</span>
+            <span class="status-value">02 / Runtime</span>
+          </div>
 
-      </div>
+          <div class="status-item">
+            <span class="status-label">Execution</span>
+            <span class="status-value status-ok">CONTROLLED</span>
+          </div>
 
-    </div>
-  </section>
+          <div class="status-item">
+            <span class="status-label">State Model</span>
+            <span class="status-value status-ok">EXPLICIT</span>
+          </div>
 
-  <section class="ec-section" id="overview">
-    <div class="ec-shell">
-
-      <div class="ec-card">
-
-        <span class="ec-status">
-          ACTIVE ENGINECORE AREA
-        </span>
-
-        <h2>Kontrollierte Ausführung</h2>
-
-        <p class="ec-lead">
-          Die Runtime organisiert Initialisierung, Ausführung, Zustandsübergänge, Validierung und Abschluss als klar definierte technische Phasen.
-        </p>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="ec-section">
-    <div class="ec-shell">
-
-      <h2>Kernbereiche</h2>
-
-      <div class="ec-grid">
-          <article class="ec-card">
-            <span class="ec-status">PHASE 01</span>
-
-            <h3>Initialize</h3>
-
-            <p>
-              Lädt Konfiguration, registriert Komponenten und stellt den erwarteten Startzustand her.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">PHASE 02</span>
-
-            <h3>Validate</h3>
-
-            <p>
-              Prüft Voraussetzungen und technische Abhängigkeiten vor der Verarbeitung.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">PHASE 03</span>
-
-            <h3>Execute</h3>
-
-            <p>
-              Führt den definierten Runtime-Prozess innerhalb kontrollierter Grenzen aus.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">PHASE 04</span>
-
-            <h3>Observe</h3>
-
-            <p>
-              Erfasst relevante Zustände und Diagnoseinformationen während der Ausführung.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">PHASE 05</span>
-
-            <h3>Finalize</h3>
-
-            <p>
-              Schließt den Prozess kontrolliert ab und stellt den finalen Zustand bereit.
-            </p>
-          </article>
-          <article class="ec-card">
-            <span class="ec-status">PHASE 06</span>
-
-            <h3>Recover</h3>
-
-            <p>
-              Unterstützt definierte Wiederherstellungswege bei fehlerhaften Zuständen.
-            </p>
-          </article>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="ec-section">
-    <div class="ec-shell">
-
-      <div class="ec-grid">
-
-        <article class="ec-card">
-
-          <h2>Grundsätze</h2>
-
-          <ul class="ec-list">
-              <li>Definierte Initialisierung vor der Ausführung</li>
-              <li>Explizite Runtime-Zustände und Übergänge</li>
-              <li>Kontrollierte Verarbeitung modularer Komponenten</li>
-              <li>Validierung vor kritischen Zustandsänderungen</li>
-              <li>Nachvollziehbarer Abschluss und Diagnosezustand</li>
-          </ul>
-
-        </article>
-
-        <article class="ec-card">
-
-          <h2>Technische Daten</h2>
-
-          <p>
-            Der Bereich verwendet strukturierte EngineCore-Daten
-            und gemeinsame technische Assets.
-          </p>
-
-          <p>
-            <a href="/products/enginecore/data/capabilities.json">
-              Zugehörige JSON-Daten öffnen
-            </a>
-          </p>
-
-        </article>
-
-        <article class="ec-card">
-
-          <h2>Validierung</h2>
-
-          <p>
-            Die Seite ist Bestandteil des lokalen und veröffentlichten
-            EngineCore-Audits. Routen, Links und Assets werden vor der
-            Freigabe kontrolliert.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="ec-section">
-    <div class="ec-shell">
-        <div class="ec-card">
-
-          <h2>Weitere EngineCore-Bereiche</h2>
-
-          <div class="ec-nav-links">
-            <a href="/products/enginecore/architecture/">
-              Architecture
-            </a>
-
-            <a href="/products/enginecore/runtime/">
-              Runtime
-            </a>
-
-            <a href="/products/enginecore/modules/">
-              Modules
-            </a>
-
-            <a href="/products/enginecore/validation/">
-              Validation
-            </a>
-
-            <a href="/products/enginecore/diagnostics/">
-              Diagnostics
-            </a>
-
-            <a href="/products/enginecore/developer/">
-              Developer
-            </a>
-
-            <a href="/products/enginecore/demos/">
-              Demos
-            </a>
+          <div class="status-item">
+            <span class="status-label">Validation</span>
+            <span class="status-value status-ok">ENABLED</span>
           </div>
 
         </div>
+
+      </div>
+    </section>
+
+
+    <!-- LIFECYCLE -->
+
+    <section id="lifecycle">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            01 / Runtime Lifecycle
+          </div>
+
+          <div>
+            <h2>
+              A controlled lifecycle from initialization to shutdown.
+            </h2>
+
+            <p>
+              Runtime execution is represented as a sequence of
+              explicit lifecycle stages. Each stage defines a clear
+              responsibility and prepares the system for the next
+              controlled transition.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="lifecycle">
+
+          <article class="lifecycle-step">
+            <span class="lifecycle-number">01</span>
+            <h3>Initialize</h3>
+            <p>
+              Establish runtime context and prepare the execution
+              environment.
+            </p>
+          </article>
+
+          <article class="lifecycle-step">
+            <span class="lifecycle-number">02</span>
+            <h3>Validate</h3>
+            <p>
+              Check runtime conditions before execution is allowed
+              to continue.
+            </p>
+          </article>
+
+          <article class="lifecycle-step">
+            <span class="lifecycle-number">03</span>
+            <h3>Load</h3>
+            <p>
+              Resolve and prepare the modules required by the
+              runtime context.
+            </p>
+          </article>
+
+          <article class="lifecycle-step">
+            <span class="lifecycle-number">04</span>
+            <h3>Execute</h3>
+            <p>
+              Run controlled operations through the active
+              execution path.
+            </p>
+          </article>
+
+          <article class="lifecycle-step">
+            <span class="lifecycle-number">05</span>
+            <h3>Terminate</h3>
+            <p>
+              Close the active runtime context and finalize
+              execution state.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- STATES -->
+
+    <section id="states">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            02 / Runtime States
+          </div>
+
+          <div>
+            <h2>Execution is always associated with a state.</h2>
+
+            <p>
+              Explicit states make runtime behavior observable and
+              provide defined boundaries for validation, control,
+              recovery and diagnostics.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="state-grid">
+
+          <article class="state">
+            <div class="state-name">
+              INITIALIZING
+            </div>
+            <div class="state-description">
+              Runtime context is being constructed and prepared.
+            </div>
+          </article>
+
+          <article class="state">
+            <div class="state-name state-ready">
+              READY
+            </div>
+            <div class="state-description">
+              Initialization is complete and execution can begin.
+            </div>
+          </article>
+
+          <article class="state">
+            <div class="state-name state-active">
+              RUNNING
+            </div>
+            <div class="state-description">
+              The runtime is actively processing an approved
+              execution path.
+            </div>
+          </article>
+
+          <article class="state">
+            <div class="state-name state-waiting">
+              WAITING
+            </div>
+            <div class="state-description">
+              Execution is temporarily suspended pending a permitted
+              condition or dependency.
+            </div>
+          </article>
+
+          <article class="state">
+            <div class="state-name state-fault">
+              FAULT
+            </div>
+            <div class="state-description">
+              A runtime condition requires controlled handling,
+              diagnostics or recovery.
+            </div>
+          </article>
+
+          <article class="state">
+            <div class="state-name">
+              TERMINATED
+            </div>
+            <div class="state-description">
+              Runtime execution has completed and the context is
+              closed.
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- EXECUTION FLOW -->
+
+    <section id="execution-flow">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            03 / Execution Flow
+          </div>
+
+          <div>
+            <h2>A defined path for every execution request.</h2>
+
+            <p>
+              Runtime work passes through explicit control points
+              before it reaches active execution.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="flow">
+
+          <div class="flow-row">
+            <span class="flow-id">01</span>
+            <span class="flow-name">Request</span>
+            <span class="flow-description">
+              Receive an execution request and establish its context.
+            </span>
+          </div>
+
+          <div class="flow-row">
+            <span class="flow-id">02</span>
+            <span class="flow-name">Resolve</span>
+            <span class="flow-description">
+              Determine the runtime path and required modules.
+            </span>
+          </div>
+
+          <div class="flow-row">
+            <span class="flow-id">03</span>
+            <span class="flow-name">Validate</span>
+            <span class="flow-description">
+              Evaluate the execution context before activation.
+            </span>
+          </div>
+
+          <div class="flow-row">
+            <span class="flow-id">04</span>
+            <span class="flow-name">Activate</span>
+            <span class="flow-description">
+              Move the runtime into an executable state.
+            </span>
+          </div>
+
+          <div class="flow-row">
+            <span class="flow-id">05</span>
+            <span class="flow-name">Execute</span>
+            <span class="flow-description">
+              Process the approved operation.
+            </span>
+          </div>
+
+          <div class="flow-row">
+            <span class="flow-id">06</span>
+            <span class="flow-name">Finalize</span>
+            <span class="flow-description">
+              Record the final state and close the execution context.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MODULE LOADING -->
+
+    <section id="modules">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            04 / Module Loading
+          </div>
+
+          <div>
+            <h2>Runtime capabilities are resolved through modules.</h2>
+
+            <p>
+              The runtime separates execution responsibilities into
+              clearly defined components instead of embedding every
+              capability into a single execution layer.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="module-stack">
+
+          <article class="module">
+            <code>runtime.core</code>
+            <p>
+              Establishes the primary execution context and lifecycle.
+            </p>
+            <span class="module-status">core</span>
+          </article>
+
+          <article class="module">
+            <code>runtime.state</code>
+            <p>
+              Maintains runtime state and evaluates state changes.
+            </p>
+            <span class="module-status">core</span>
+          </article>
+
+          <article class="module">
+            <code>runtime.validation</code>
+            <p>
+              Provides validation checkpoints around execution.
+            </p>
+            <span class="module-status">hook</span>
+          </article>
+
+          <article class="module">
+            <code>runtime.diagnostics</code>
+            <p>
+              Exposes diagnostic information from runtime activity.
+            </p>
+            <span class="module-status">hook</span>
+          </article>
+
+          <article class="module">
+            <code>runtime.recovery</code>
+            <p>
+              Coordinates controlled handling of recoverable
+              runtime conditions.
+            </p>
+            <span class="module-status">control</span>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- STATE TRANSITIONS -->
+
+    <section id="transitions">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            05 / State Transitions
+          </div>
+
+          <div>
+            <h2>State changes are explicit.</h2>
+
+            <p>
+              Runtime transitions create visible boundaries between
+              initialization, readiness, execution and termination.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div
+          class="transition-path"
+          aria-label="Example runtime state transition"
+        >
+
+          <span class="transition-node">
+            INITIALIZING
+          </span>
+
+          <span class="transition-arrow" aria-hidden="true">
+            →
+          </span>
+
+          <span class="transition-node">
+            READY
+          </span>
+
+          <span class="transition-arrow" aria-hidden="true">
+            →
+          </span>
+
+          <span class="transition-node current">
+            RUNNING
+          </span>
+
+          <span class="transition-arrow" aria-hidden="true">
+            →
+          </span>
+
+          <span class="transition-node">
+            TERMINATED
+          </span>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- VALIDATION AND DIAGNOSTICS -->
+
+    <section id="hooks">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            06 / Runtime Hooks
+          </div>
+
+          <div>
+            <h2>
+              Validation and diagnostics remain part of the
+              execution path.
+            </h2>
+
+            <p>
+              Runtime hooks provide defined integration points for
+              checking execution conditions and observing runtime
+              behavior.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="hook-grid">
+
+          <article class="hook">
+
+            <span class="hook-label">
+              VALIDATION
+            </span>
+
+            <h3>Pre-execution validation</h3>
+
+            <p>
+              Validate runtime context before an operation moves
+              into an active execution state.
+            </p>
+
+          </article>
+
+
+          <article class="hook">
+
+            <span class="hook-label">
+              VALIDATION
+            </span>
+
+            <h3>Transition validation</h3>
+
+            <p>
+              Evaluate runtime conditions when execution moves
+              between defined states.
+            </p>
+
+          </article>
+
+
+          <article class="hook">
+
+            <span class="hook-label">
+              DIAGNOSTICS
+            </span>
+
+            <h3>Runtime observation</h3>
+
+            <p>
+              Expose execution-state information for diagnostics
+              and system analysis.
+            </p>
+
+          </article>
+
+
+          <article class="hook">
+
+            <span class="hook-label">
+              RECOVERY
+            </span>
+
+            <h3>Controlled fault handling</h3>
+
+            <p>
+              Route fault conditions through an explicit recovery
+              or termination path.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PRINCIPLES -->
+
+    <section id="principles">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            07 / Runtime Principles
+          </div>
+
+          <div>
+            <h2>Execution should remain understandable.</h2>
+
+            <p>
+              The runtime model is designed around explicit state,
+              controlled transitions and observable execution.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="principles">
+
+          <div class="principle">
+            <strong>Explicit State</strong>
+            <span>
+              Runtime behavior is represented through named states
+              rather than hidden execution conditions.
+            </span>
+          </div>
+
+          <div class="principle">
+            <strong>Controlled Transitions</strong>
+            <span>
+              State changes occur through defined runtime
+              boundaries.
+            </span>
+          </div>
+
+          <div class="principle">
+            <strong>Validation First</strong>
+            <span>
+              Relevant execution conditions are evaluated before
+              activation.
+            </span>
+          </div>
+
+          <div class="principle">
+            <strong>Observable Execution</strong>
+            <span>
+              Runtime state can be exposed to diagnostics and other
+              system layers.
+            </span>
+          </div>
+
+          <div class="principle">
+            <strong>Controlled Failure</strong>
+            <span>
+              Fault conditions follow explicit handling paths rather
+              than uncontrolled continuation.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TECHNICAL DATA -->
+
+    <section id="technical-data">
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            08 / Runtime Data
+          </div>
+
+          <div>
+            <h2>Machine-readable runtime context.</h2>
+
+            <p>
+              A runtime context can expose its execution state,
+              active modules and control signals in a predictable
+              structured representation.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="code-panel">
+
+<pre><code>{
+  <span class="json-key">"engine"</span>: <span class="json-value">"EngineCore"</span>,
+  <span class="json-key">"area"</span>: <span class="json-value">"runtime"</span>,
+  <span class="json-key">"runtime"</span>: {
+    <span class="json-key">"state"</span>: <span class="json-value">"READY"</span>,
+    <span class="json-key">"controlledExecution"</span>: <span class="json-bool">true</span>,
+    <span class="json-key">"validation"</span>: <span class="json-bool">true</span>,
+    <span class="json-key">"diagnostics"</span>: <span class="json-bool">true</span>,
+    <span class="json-key">"modules"</span>: [
+      <span class="json-value">"runtime.core"</span>,
+      <span class="json-value">"runtime.state"</span>,
+      <span class="json-value">"runtime.validation"</span>,
+      <span class="json-value">"runtime.diagnostics"</span>
+    ]
+  }
+}</code></pre>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ENGINECORE NAVIGATION -->
+
+    <section
+      class="area-navigation"
+      aria-labelledby="enginecore-navigation"
+    >
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-kicker">
+            EngineCore Areas
+          </div>
+
+          <div>
+            <h2 id="enginecore-navigation">
+              Continue through EngineCore.
+            </h2>
+
+            <p>
+              Runtime connects the architectural model with modules,
+              validation and diagnostic capabilities.
+            </p>
+          </div>
+
+        </div>
+
+
+        <nav
+          class="area-links"
+          aria-label="EngineCore areas"
+        >
+
+          <a
+            class="area-link"
+            href="/products/enginecore/architecture/"
+          >
+            <span class="area-direction">
+              ← Area 01
+            </span>
+
+            <strong>Architecture</strong>
+
+            <span>
+              System structure and architectural boundaries.
+            </span>
+          </a>
+
+
+          <a
+            class="area-link current"
+            href="/products/enginecore/runtime/"
+            aria-current="page"
+          >
+            <span class="area-direction">
+              Area 02
+            </span>
+
+            <strong>Runtime</strong>
+
+            <span>
+              Execution model, lifecycle and runtime state.
+            </span>
+          </a>
+
+
+          <a
+            class="area-link"
+            href="/products/enginecore/modules/"
+          >
+            <span class="area-direction">
+              Area 03 →
+            </span>
+
+            <strong>Modules</strong>
+
+            <span>
+              Modular capabilities and component boundaries.
+            </span>
+          </a>
+
+        </nav>
+
+
+        <div
+          class="hero-actions"
+          style="margin-top: 20px;"
+        >
+          <a
+            class="button"
+            href="/products/enginecore/validation/"
+          >
+            Validation
+          </a>
+
+          <a
+            class="button"
+            href="/products/enginecore/diagnostics/"
+          >
+            Diagnostics
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        CoreCraft Genesis / EngineCore Runtime
+      </div>
+
+      <nav
+        class="footer-links"
+        aria-label="Footer navigation"
+      >
+        <a href="/products/enginecore/">
+          EngineCore
+        </a>
+
+        <a href="/docs/">
+          Documentation
+        </a>
+
+        <a href="/support/">
+          Support
+        </a>
+      </nav>
+
     </div>
-  </section>
 
-</main>
-
-<footer class="ec-footer">
-  <div class="ec-shell">
-
-    <p>
-      &copy;
-      <span data-ec-year>2026</span>
-      CoreCraft Genesis · EngineCore Runtime
-    </p>
-
-    <p>
-      <a href="/products/">Alle Produkte</a>
-      ·
-      <a href="/docs/">Dokumentation</a>
-      ·
-      <a href="/contact/">Kontakt</a>
-    </p>
-
-  </div>
-</footer>
-
-<script src="/products/enginecore/assets/js/enginecore.js"></script>
-<script src="/products/enginecore/assets/js/ui.js"></script>
+  </footer>
 
 </body>
 </html>
