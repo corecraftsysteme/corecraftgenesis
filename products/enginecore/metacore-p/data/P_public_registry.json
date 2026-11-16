@@ -1,0 +1,873 @@
+{
+  "schemaVersion": "1.0",
+  "title": "MetaCore P Public Registry",
+  "layer": "EngineCoreLayer",
+  "series": "P000-P099",
+  "status": "public",
+  "scope": "Public module identifiers, names and categories only. Internal paths, hashes, timestamps and implementation details are excluded.",
+  "moduleCount": 100,
+  "categories": [
+    {
+      "slug": "foundation",
+      "name": "MetaCore Foundation",
+      "range": "P000-P009",
+      "moduleCount": 10
+    },
+    {
+      "slug": "governance",
+      "name": "Governance",
+      "range": "P010-P019",
+      "moduleCount": 10
+    },
+    {
+      "slug": "compliance",
+      "name": "Compliance",
+      "range": "P020-P029",
+      "moduleCount": 10
+    },
+    {
+      "slug": "metalogic",
+      "name": "MetaLogic",
+      "range": "P030-P039",
+      "moduleCount": 10
+    },
+    {
+      "slug": "interchain",
+      "name": "Interchain Governance",
+      "range": "P040-P049",
+      "moduleCount": 10
+    },
+    {
+      "slug": "analytics",
+      "name": "MetaAnalytics",
+      "range": "P050-P059",
+      "moduleCount": 10
+    },
+    {
+      "slug": "tools",
+      "name": "Governance Tools",
+      "range": "P060-P079",
+      "moduleCount": 20
+    },
+    {
+      "slug": "future",
+      "name": "Future Interchain Systems",
+      "range": "P080-P089",
+      "moduleCount": 10
+    },
+    {
+      "slug": "symbolic-ai",
+      "name": "Symbolic AI",
+      "range": "P090-P094",
+      "moduleCount": 5
+    },
+    {
+      "slug": "runtime",
+      "name": "Runtime Governance",
+      "range": "P095-P099",
+      "moduleCount": 5
+    }
+  ],
+  "modules": [
+    {
+      "id": "P000",
+      "name": "MetaCore",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P001",
+      "name": "MetaCore Specification",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P002",
+      "name": "MetaCore Governance",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P003",
+      "name": "MetaCore Interfaces",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P004",
+      "name": "MetaCore Resource Model",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P005",
+      "name": "MetaCore Security",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P006",
+      "name": "MetaCore Health Monitor",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P007",
+      "name": "MetaCore Startup Sequence",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P008",
+      "name": "MetaCore Shutdown Sequence",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P009",
+      "name": "MetaCore Audit",
+      "category": "MetaCore Foundation",
+      "categorySlug": "foundation",
+      "range": "P000-P009",
+      "status": "public"
+    },
+    {
+      "id": "P010",
+      "name": "Governance Policies",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P011",
+      "name": "Governance Roles",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P012",
+      "name": "Governance Authority Model",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P013",
+      "name": "Governance Delegation",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P014",
+      "name": "Governance Consensus",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P015",
+      "name": "Governance Review Process",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P016",
+      "name": "Governance Change Management",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P017",
+      "name": "Governance Incident Response",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P018",
+      "name": "Governance Transparency",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P019",
+      "name": "Governance Reporting",
+      "category": "Governance",
+      "categorySlug": "governance",
+      "range": "P010-P019",
+      "status": "public"
+    },
+    {
+      "id": "P020",
+      "name": "Compliance Framework",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P021",
+      "name": "Compliance Standards",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P022",
+      "name": "Compliance Audit",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P023",
+      "name": "Compliance Test Vectors",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P024",
+      "name": "Compliance Reference Implementation",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P025",
+      "name": "Compliance Health Monitor",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P026",
+      "name": "Compliance Analytics",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P027",
+      "name": "Compliance Validator",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P028",
+      "name": "Compliance Registry",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P029",
+      "name": "Compliance Genesis",
+      "category": "Compliance",
+      "categorySlug": "compliance",
+      "range": "P020-P029",
+      "status": "public"
+    },
+    {
+      "id": "P030",
+      "name": "MetaLogic Core",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P031",
+      "name": "MetaLogic Transform Engine",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P032",
+      "name": "MetaLogic Interchain Bridge",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P033",
+      "name": "MetaLogic Scheduler",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P034",
+      "name": "MetaLogic Security",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P035",
+      "name": "MetaLogic Test Vectors",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P036",
+      "name": "MetaLogic Reference Implementation",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P037",
+      "name": "MetaLogic Health Monitor",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P038",
+      "name": "MetaLogic Analytics",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P039",
+      "name": "MetaLogic Audit",
+      "category": "MetaLogic",
+      "categorySlug": "metalogic",
+      "range": "P030-P039",
+      "status": "public"
+    },
+    {
+      "id": "P040",
+      "name": "Interchain Governance Core",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P041",
+      "name": "Interchain Policies",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P042",
+      "name": "Interchain Security",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P043",
+      "name": "Interchain Consensus",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P044",
+      "name": "Interchain State Model",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P045",
+      "name": "Interchain Health Monitor",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P046",
+      "name": "Interchain Test Vectors",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P047",
+      "name": "Interchain Reference Implementation",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P048",
+      "name": "Interchain Genesis",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P049",
+      "name": "Interchain Audit",
+      "category": "Interchain Governance",
+      "categorySlug": "interchain",
+      "range": "P040-P049",
+      "status": "public"
+    },
+    {
+      "id": "P050",
+      "name": "MetaAnalytics Core",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P051",
+      "name": "MetaAnalytics Visualization",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P052",
+      "name": "MetaAnalytics Reporting",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P053",
+      "name": "MetaAnalytics Optimization",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P054",
+      "name": "MetaAnalytics Health Monitor",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P055",
+      "name": "MetaAnalytics Test Vectors",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P056",
+      "name": "MetaAnalytics Reference Implementation",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P057",
+      "name": "MetaAnalytics Audit",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P058",
+      "name": "MetaAnalytics Cloud Runtime",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P059",
+      "name": "MetaAnalytics Edge Runtime",
+      "category": "MetaAnalytics",
+      "categorySlug": "analytics",
+      "range": "P050-P059",
+      "status": "public"
+    },
+    {
+      "id": "P060",
+      "name": "Governance Tools CLI",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P061",
+      "name": "Governance Tools Editor",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P062",
+      "name": "Governance Tools Validator",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P063",
+      "name": "Governance Tools Analyzer",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P064",
+      "name": "Governance Tools Visualizer",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P065",
+      "name": "Governance Tools Exporter",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P066",
+      "name": "Governance Tools Importer",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P067",
+      "name": "Governance Tools Test Suite",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P068",
+      "name": "Governance Tools Audit",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P069",
+      "name": "Governance Tools Health Monitor",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P070",
+      "name": "Governance Tools Reference",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P071",
+      "name": "Governance Tools Security",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P072",
+      "name": "Governance Tools Developer Tools",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P073",
+      "name": "Governance Tools Integration",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P074",
+      "name": "Governance Tools Interchain",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P075",
+      "name": "Governance Tools Registry",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P076",
+      "name": "Governance Tools Analytics",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P077",
+      "name": "Governance Tools Reporting",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P078",
+      "name": "Governance Tools Transform Engine",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P079",
+      "name": "Governance Tools Genesis",
+      "category": "Governance Tools",
+      "categorySlug": "tools",
+      "range": "P060-P079",
+      "status": "public"
+    },
+    {
+      "id": "P080",
+      "name": "Interchain Future Protocols",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P081",
+      "name": "Interchain Autonomous Bridges",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P082",
+      "name": "Interchain Zero Trust",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P083",
+      "name": "Interchain Self Healing",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P084",
+      "name": "Interchain Predictive Consensus",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P085",
+      "name": "Interchain Adaptive Routing",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P086",
+      "name": "Interchain Quantum Safe",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P087",
+      "name": "Interchain Universal State Model",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P088",
+      "name": "Interchain Global Registry",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P089",
+      "name": "Interchain Continuity Model",
+      "category": "Future Interchain Systems",
+      "categorySlug": "future",
+      "range": "P080-P089",
+      "status": "public"
+    },
+    {
+      "id": "P090",
+      "name": "Symbolic AI Governance",
+      "category": "Symbolic AI",
+      "categorySlug": "symbolic-ai",
+      "range": "P090-P094",
+      "status": "public"
+    },
+    {
+      "id": "P091",
+      "name": "Symbolic AI Reasoning Model",
+      "category": "Symbolic AI",
+      "categorySlug": "symbolic-ai",
+      "range": "P090-P094",
+      "status": "public"
+    },
+    {
+      "id": "P092",
+      "name": "Symbolic AI Validation",
+      "category": "Symbolic AI",
+      "categorySlug": "symbolic-ai",
+      "range": "P090-P094",
+      "status": "public"
+    },
+    {
+      "id": "P093",
+      "name": "Symbolic AI Transparency",
+      "category": "Symbolic AI",
+      "categorySlug": "symbolic-ai",
+      "range": "P090-P094",
+      "status": "public"
+    },
+    {
+      "id": "P094",
+      "name": "Symbolic AI Audit",
+      "category": "Symbolic AI",
+      "categorySlug": "symbolic-ai",
+      "range": "P090-P094",
+      "status": "public"
+    },
+    {
+      "id": "P095",
+      "name": "Distributed Runtime Governance",
+      "category": "Runtime Governance",
+      "categorySlug": "runtime",
+      "range": "P095-P099",
+      "status": "public"
+    },
+    {
+      "id": "P096",
+      "name": "Cloud Runtime Governance",
+      "category": "Runtime Governance",
+      "categorySlug": "runtime",
+      "range": "P095-P099",
+      "status": "public"
+    },
+    {
+      "id": "P097",
+      "name": "Edge Runtime Governance",
+      "category": "Runtime Governance",
+      "categorySlug": "runtime",
+      "range": "P095-P099",
+      "status": "public"
+    },
+    {
+      "id": "P098",
+      "name": "Quantum Governance",
+      "category": "Runtime Governance",
+      "categorySlug": "runtime",
+      "range": "P095-P099",
+      "status": "public"
+    },
+    {
+      "id": "P099",
+      "name": "HPC Crypto Governance",
+      "category": "Runtime Governance",
+      "categorySlug": "runtime",
+      "range": "P095-P099",
+      "status": "public"
+    }
+  ]
+}
