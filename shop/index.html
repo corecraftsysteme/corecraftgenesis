@@ -8,13 +8,13 @@
 
     <meta
         name="description"
-        content="Produkte, technische Ressourcen, Developer Tools und Dokumentationen von CoreCraft Genesis entdecken."
+        content="Produkte, digitale Ressourcen, Developer Tools und technische Dokumentationen von CoreCraft Genesis entdecken."
     >
 
-    <link
-        rel="canonical"
-        href="https://corecraftgenesis.ch/shop/"
-    >
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#05070a">
+
+    <link rel="canonical" href="https://corecraftgenesis.ch/shop/">
 
     <style>
         :root {
@@ -25,6 +25,7 @@
             --muted: #95a2b3;
             --blue: #4ea1ff;
             --green: #57d38c;
+            --orange: #ff7a00;
             --line: #1d2a38;
             --line-hover: #2d4258;
             --max-width: 1120px;
@@ -42,6 +43,7 @@
             margin: 0;
             max-width: 100%;
             overflow-x: hidden;
+
             font-family:
                 Inter,
                 system-ui,
@@ -49,7 +51,15 @@
                 BlinkMacSystemFont,
                 "Segoe UI",
                 sans-serif;
-            background: var(--bg);
+
+            background:
+                radial-gradient(
+                    circle at 75% -10%,
+                    rgba(78, 161, 255, 0.11),
+                    transparent 31rem
+                ),
+                var(--bg);
+
             color: var(--text);
             line-height: 1.7;
         }
@@ -58,29 +68,49 @@
             color: inherit;
         }
 
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
         .container {
             width: min(90%, var(--max-width));
             margin: 0 auto;
             min-width: 0;
         }
 
+        /* HEADER */
+
         header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
             border-bottom: 1px solid var(--line);
+
+            background: rgba(5, 7, 10, 0.9);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .nav {
             min-height: 72px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             gap: 24px;
         }
 
         .brand {
             color: var(--text);
+
             text-decoration: none;
             font-weight: 750;
-            letter-spacing: -.02em;
+            letter-spacing: -0.02em;
         }
 
         .brand span {
@@ -107,6 +137,12 @@
             color: var(--text);
         }
 
+        .nav-links .active {
+            color: var(--blue);
+        }
+
+        /* GENERAL */
+
         main {
             display: block;
             min-width: 0;
@@ -117,16 +153,14 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .hero {
-            padding: 120px 0 100px;
-        }
-
         .label,
         .section-label {
             color: var(--blue);
+
             text-transform: uppercase;
-            letter-spacing: .14em;
-            font-size: .78rem;
+            letter-spacing: 0.14em;
+
+            font-size: 0.78rem;
             font-weight: 750;
         }
 
@@ -139,19 +173,23 @@
 
         h1 {
             max-width: 920px;
+
             margin: 22px 0;
+
             font-size: clamp(2.8rem, 7vw, 5.8rem);
-            letter-spacing: -.05em;
+            letter-spacing: -0.05em;
         }
 
         h2 {
             margin: 16px 0 24px;
+
             font-size: clamp(2rem, 4vw, 3.4rem);
-            letter-spacing: -.035em;
+            letter-spacing: -0.035em;
         }
 
         h3 {
             margin: 0;
+
             font-size: 1.25rem;
         }
 
@@ -168,101 +206,32 @@
 
         .lead {
             margin: 0;
+
             font-size: clamp(1.05rem, 2vw, 1.25rem);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-            margin-top: 42px;
-        }
+        /* HERO */
 
-        .card {
-            display: flex;
-            min-width: 0;
-            padding: 30px;
-            flex-direction: column;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            background: var(--surface);
-        }
-
-        .product-grid .card {
-            min-height: 310px;
-        }
-
-        .card:hover {
-            border-color: var(--line-hover);
-        }
-
-        .card-label {
-            display: block;
-            margin-bottom: 18px;
-            color: var(--green);
-            font-family:
-                ui-monospace,
-                SFMono-Regular,
-                Consolas,
-                monospace;
-            font-size: .82rem;
-            letter-spacing: .04em;
-        }
-
-        .card-link {
-            display: inline-block;
-            margin-top: auto;
-            padding-top: 18px;
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .card-link:hover {
-            text-decoration: underline;
-        }
-
-        .status {
-            display: inline-block;
-            width: fit-content;
-            margin-top: 14px;
-            padding: 6px 9px;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            color: var(--green);
-            font-family:
-                ui-monospace,
-                SFMono-Regular,
-                Consolas,
-                monospace;
-            font-size: .78rem;
-        }
-
-        .notice {
-            max-width: 900px;
-            margin-top: 38px;
-            padding: 26px;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            background: var(--surface-light);
-        }
-
-        .notice strong {
-            color: var(--green);
+        .hero {
+            padding: 120px 0 100px;
         }
 
         .actions {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
+
             margin-top: 34px;
         }
 
         .button {
             display: inline-block;
+
             padding: 12px 18px;
+
             border: 1px solid transparent;
             border-radius: 8px;
+
             text-decoration: none;
             font-weight: 700;
         }
@@ -277,24 +246,164 @@
             color: var(--text);
         }
 
-        a:focus-visible,
-        .button:focus-visible {
-            outline: 3px solid var(--blue);
-            outline-offset: 4px;
+        .button:hover {
+            transform: translateY(-1px);
         }
+
+        /* GRID */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 42px;
+        }
+
+        .card {
+            display: flex;
+            min-width: 0;
+
+            padding: 30px;
+
+            flex-direction: column;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            background: var(--surface);
+
+            transition:
+                border-color 0.2s ease,
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .product-grid .card {
+            min-height: 310px;
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+            transform: translateY(-2px);
+        }
+
+        .card-label {
+            display: block;
+
+            margin-bottom: 18px;
+
+            color: var(--green);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+        }
+
+        .card-link {
+            display: inline-block;
+
+            margin-top: auto;
+            padding-top: 18px;
+
+            color: var(--blue);
+
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .status {
+            display: inline-block;
+            width: fit-content;
+
+            margin-top: 14px;
+            padding: 6px 9px;
+
+            border: 1px solid var(--line);
+            border-radius: 6px;
+
+            color: var(--green);
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+
+            font-size: 0.78rem;
+        }
+
+        /* FEATURED PRODUCT */
+
+        .featured {
+            border-color: rgba(255, 122, 0, 0.55);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 122, 0, 0.08),
+                    transparent 60%
+                ),
+                var(--surface);
+        }
+
+        .featured .card-label {
+            color: var(--orange);
+        }
+
+        .featured .status {
+            border-color: rgba(255, 122, 0, 0.35);
+            color: var(--orange);
+        }
+
+        /* NOTICE */
+
+        .notice {
+            max-width: 900px;
+
+            margin-top: 38px;
+            padding: 26px;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            background: var(--surface-light);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        /* FOOTER */
 
         footer {
             padding: 40px 0;
+
             color: var(--muted);
-            font-size: .92rem;
+
+            font-size: 0.92rem;
         }
 
         .footer-row {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+
             gap: 18px;
         }
+
+        /* RESPONSIVE */
 
         @media (max-width: 780px) {
             .hero {
@@ -312,6 +421,7 @@
             .nav {
                 align-items: flex-start;
                 flex-direction: column;
+
                 padding: 18px 0;
             }
 
@@ -323,6 +433,7 @@
         @media (max-width: 480px) {
             .container {
                 width: 100%;
+
                 padding-left: 18px;
                 padding-right: 18px;
             }
@@ -357,9 +468,14 @@
 <body>
 
 <header>
+
     <div class="container nav">
 
-        <a class="brand" href="/">
+        <a
+            class="brand"
+            href="/"
+            aria-label="CoreCraft Genesis Startseite"
+        >
             CoreCraft <span>Genesis</span>
         </a>
 
@@ -367,19 +483,46 @@
             class="nav-links"
             aria-label="Hauptnavigation"
         >
-            <a href="/products/">Produkte</a>
-            <a href="/solutions/">Solutions</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/downloads/">Downloads</a>
-            <a href="/support/">Support</a>
+            <a
+                class="active"
+                href="/shop/"
+                aria-current="page"
+            >
+                Shop
+            </a>
+
+            <a href="/products/">
+                Produkte
+            </a>
+
+            <a href="/solutions/">
+                Solutions
+            </a>
+
+            <a href="/pricing/">
+                Pricing
+            </a>
+
+            <a href="/downloads/">
+                Downloads
+            </a>
+
+            <a href="/support/">
+                Support
+            </a>
         </nav>
 
     </div>
+
 </header>
+
 
 <main>
 
+    <!-- HERO -->
+
     <section class="hero">
+
         <div class="container">
 
             <div class="label">
@@ -391,20 +534,19 @@
             </h1>
 
             <p class="lead">
-                Diese Übersicht bündelt Produktbereiche, technische
-                Ressourcen, Developer Tools und Dokumentationen von
-                CoreCraft Genesis. Informationen zu Verfügbarkeit,
-                Preis, Lizenzierung und Bezug werden dem jeweiligen
-                Angebot eindeutig zugeordnet.
+                Diese Übersicht bündelt Produktbereiche,
+                digitale Produkte, technische Ressourcen,
+                Developer Tools und Dokumentationen von
+                CoreCraft Genesis.
             </p>
 
             <div class="actions">
 
                 <a
                     class="button button-primary"
-                    href="/products/"
+                    href="#product-catalog"
                 >
-                    Produkte entdecken
+                    Katalog entdecken
                 </a>
 
                 <a
@@ -417,9 +559,14 @@
             </div>
 
         </div>
+
     </section>
 
-    <section>
+
+    <!-- PRODUCT CATALOG -->
+
+    <section id="product-catalog">
+
         <div class="container">
 
             <div class="section-label">
@@ -427,28 +574,35 @@
             </div>
 
             <h2>
-                Technische Produktbereiche im Überblick.
+                Technische Produkte und Produktbereiche.
             </h2>
 
             <p class="section-intro">
-                Der Katalog dient als zentraler Einstieg in die
-                Produkt-, Dokumentations- und Ressourcenbereiche von
+                Der Katalog dient als zentraler Einstieg in
+                Produkte, technische Plattformen,
+                Dokumentationen und digitale Ressourcen von
                 CoreCraft Genesis.
             </p>
 
+
             <div class="grid product-grid">
 
+                <!-- ENGINECORE -->
+
                 <article class="card">
+
                     <span class="card-label">
                         ENGINECORE
                     </span>
 
-                    <h3>EngineCore</h3>
+                    <h3>
+                        EngineCore
+                    </h3>
 
                     <p>
-                        Runtime-, Architektur-, Modul-, Diagnose-
-                        und Validierungsbereiche für strukturierte
-                        technische Systeme.
+                        Runtime-, Architektur-, Modul-,
+                        Diagnose- und Validierungsbereiche
+                        für strukturierte technische Systeme.
                     </p>
 
                     <span class="status">
@@ -461,18 +615,59 @@
                     >
                         EngineCore öffnen
                     </a>
+
                 </article>
 
+
+                <!-- ENGINECORE STARTER PACK -->
+
+                <article class="card featured">
+
+                    <span class="card-label">
+                        ENGINECORE STARTER PACK
+                    </span>
+
+                    <h3>
+                        EngineCore Starter Pack
+                    </h3>
+
+                    <p>
+                        Ein strukturierter Einstieg in das
+                        öffentliche EngineCore-Ökosystem mit
+                        technischen Ressourcen, Dokumentation
+                        und entwicklungsorientierten Workflows.
+                    </p>
+
+                    <span class="status">
+                        Digital Product
+                    </span>
+
+                    <a
+                        class="card-link"
+                        href="/shop/enginecore-starter-pack/"
+                    >
+                        EngineCore Starter Pack öffnen
+                    </a>
+
+                </article>
+
+
+                <!-- CORECRAFT PAY -->
+
                 <article class="card">
+
                     <span class="card-label">
                         CORECRAFT PAY
                     </span>
 
-                    <h3>CoreCraft Pay</h3>
+                    <h3>
+                        CoreCraft Pay
+                    </h3>
 
                     <p>
-                        Technische Bereiche für Payment-Architektur,
-                        Checkout, Integrationen und Sicherheit.
+                        Technische Bereiche für
+                        Payment-Architektur, Checkout,
+                        Integrationen und Sicherheit.
                     </p>
 
                     <span class="status">
@@ -485,19 +680,26 @@
                     >
                         CoreCraft Pay öffnen
                     </a>
+
                 </article>
 
+
+                <!-- DEVELOPER TOOLS -->
+
                 <article class="card">
+
                     <span class="card-label">
                         DEVELOPER TOOLS
                     </span>
 
-                    <h3>Developer Tools</h3>
+                    <h3>
+                        Developer Tools
+                    </h3>
 
                     <p>
-                        Validatoren, Diagnosewerkzeuge, Data Tools
-                        sowie Werkzeuge für Links, Routen und
-                        technische Ressourcen.
+                        Validatoren, Diagnosewerkzeuge,
+                        Data Tools sowie Werkzeuge für Links,
+                        Routen und technische Ressourcen.
                     </p>
 
                     <span class="status">
@@ -510,19 +712,26 @@
                     >
                         Developer Tools öffnen
                     </a>
+
                 </article>
 
+
+                <!-- DOCUMENTATION -->
+
                 <article class="card">
+
                     <span class="card-label">
                         DOCUMENTATION
                     </span>
 
-                    <h3>Technical Documentation</h3>
+                    <h3>
+                        Technical Documentation
+                    </h3>
 
                     <p>
-                        Technische Dokumentation für Architektur,
-                        Einstieg, Entwicklung, Referenzen,
-                        Standards und Releases.
+                        Technische Dokumentation für
+                        Architektur, Einstieg, Entwicklung,
+                        Referenzen, Standards und Releases.
                     </p>
 
                     <span class="status">
@@ -535,14 +744,21 @@
                     >
                         Documentation öffnen
                     </a>
+
                 </article>
 
+
+                <!-- AUDIO -->
+
                 <article class="card">
+
                     <span class="card-label">
                         AUDIO
                     </span>
 
-                    <h3>Audio Systems</h3>
+                    <h3>
+                        Audio Systems
+                    </h3>
 
                     <p>
                         Digitale Audioverarbeitung, DSP,
@@ -560,19 +776,26 @@
                     >
                         Audio öffnen
                     </a>
+
                 </article>
 
+
+                <!-- BITCOIN MINING -->
+
                 <article class="card">
+
                     <span class="card-label">
                         BITCOIN MINING
                     </span>
 
-                    <h3>Bitcoin Mining Systems</h3>
+                    <h3>
+                        Bitcoin Mining Systems
+                    </h3>
 
                     <p>
-                        Technische Informationen zu Architektur,
-                        Hardware, Energie, Economics,
-                        Betrieb und Monitoring.
+                        Technische Informationen zu
+                        Architektur, Hardware, Energie,
+                        Economics, Betrieb und Monitoring.
                     </p>
 
                     <span class="status">
@@ -585,14 +808,78 @@
                     >
                         Bitcoin Mining öffnen
                     </a>
+
                 </article>
 
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- ENGINECORE PRODUCT -->
+
     <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Featured Product
+            </div>
+
+            <h2>
+                EngineCore Starter Pack.
+            </h2>
+
+            <p class="section-intro">
+                Der EngineCore Starter Pack bildet einen
+                eigenständigen digitalen Produkteinstieg in
+                das öffentliche EngineCore-Ökosystem.
+            </p>
+
+            <div class="notice">
+
+                <strong>
+                    EngineCore Starter Pack
+                </strong>
+
+                <p>
+                    Die eigene Produktseite enthält die
+                    öffentliche Produktbeschreibung und
+                    führt von dort zum externen
+                    Kauf- und Bereitstellungsangebot.
+                </p>
+
+                <div class="actions">
+
+                    <a
+                        class="button button-primary"
+                        href="/shop/enginecore-starter-pack/"
+                    >
+                        Starter Pack öffnen
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="/products/enginecore/"
+                    >
+                        EngineCore entdecken
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEVELOPER RESOURCES -->
+
+    <section>
+
         <div class="container">
 
             <div class="section-label">
@@ -604,22 +891,28 @@
             </h2>
 
             <p class="section-intro">
-                Spezialisierte Developer Tools unterstützen bei
-                strukturierten technischen Prüfungen und Analysen.
+                Spezialisierte Developer Tools unterstützen
+                strukturierte technische Prüfungen und
+                Analysen.
             </p>
+
 
             <div class="grid">
 
                 <article class="card">
+
                     <span class="card-label">
                         VALIDATORS
                     </span>
 
-                    <h3>Validatoren</h3>
+                    <h3>
+                        Validatoren
+                    </h3>
 
                     <p>
-                        JSON-, Schema- und Datei-Prüfungen für
-                        strukturierte technische Workflows.
+                        JSON-, Schema- und Datei-Prüfungen
+                        für strukturierte technische
+                        Workflows.
                     </p>
 
                     <a
@@ -628,18 +921,24 @@
                     >
                         Validatoren öffnen
                     </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         DIAGNOSTICS
                     </span>
 
-                    <h3>Diagnostics</h3>
+                    <h3>
+                        Diagnostics
+                    </h3>
 
                     <p>
-                        Diagnosewerkzeuge für technische Strukturen,
-                        Manifeste und Prüfvorgänge.
+                        Diagnosewerkzeuge für technische
+                        Strukturen, Manifeste und
+                        Prüfvorgänge.
                     </p>
 
                     <a
@@ -648,14 +947,19 @@
                     >
                         Diagnostics öffnen
                     </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         WEB TOOLS
                     </span>
 
-                    <h3>Web Tools</h3>
+                    <h3>
+                        Web Tools
+                    </h3>
 
                     <p>
                         Werkzeuge für Links, Routen und
@@ -668,18 +972,23 @@
                     >
                         Web Tools öffnen
                     </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         DATA TOOLS
                     </span>
 
-                    <h3>Data Tools</h3>
+                    <h3>
+                        Data Tools
+                    </h3>
 
                     <p>
-                        Werkzeuge zur Untersuchung und Formatierung
-                        strukturierter Daten.
+                        Werkzeuge zur Untersuchung und
+                        Formatierung strukturierter Daten.
                     </p>
 
                     <a
@@ -688,14 +997,20 @@
                     >
                         Data Tools öffnen
                     </a>
+
                 </article>
 
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- PRICING -->
+
     <section>
+
         <div class="container">
 
             <div class="section-label">
@@ -707,21 +1022,29 @@
             </h2>
 
             <p class="section-intro">
-                Unterschiedliche Produktarten können unterschiedliche
-                Bereitstellungs- und Lizenzmodelle verwenden.
-                Verbindliche Informationen werden deshalb direkt dem
-                jeweiligen Angebot zugeordnet.
+                Unterschiedliche Produktarten können
+                unterschiedliche Bereitstellungs- und
+                Lizenzmodelle verwenden.
             </p>
 
             <div class="notice">
-                <strong>Hinweis zur Verfügbarkeit:</strong>
-                Dieser Bereich bietet eine Übersicht über Produkte und
-                digitale Ressourcen von CoreCraft Genesis. Die Darstellung
-                eines Produkts stellt noch kein Verkaufsangebot dar.
-                Informationen zu Verfügbarkeit, Preis, Lizenzierung und
-                Bezugsmöglichkeiten werden veröffentlicht, sobald sie für
-                das jeweilige Angebot festgelegt sind.
+
+                <strong>
+                    Hinweis zur Verfügbarkeit:
+                </strong>
+
+                <p>
+                    Produktbereiche können sowohl
+                    veröffentlichte Produkte als auch
+                    technische Informations- und
+                    Dokumentationsbereiche enthalten.
+                    Verbindliche Informationen zu Preis,
+                    Lizenzierung und Bereitstellung werden
+                    dem jeweiligen Angebot zugeordnet.
+                </p>
+
             </div>
+
 
             <div class="actions">
 
@@ -742,9 +1065,14 @@
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- DOWNLOADS -->
+
     <section>
+
         <div class="container">
 
             <div class="section-label">
@@ -756,9 +1084,9 @@
             </h2>
 
             <p class="section-intro">
-                Ressourcen, die zur direkten Bereitstellung vorgesehen
-                sind, werden im Download-Bereich oder beim jeweiligen
-                Produkt eingeordnet.
+                Ressourcen zur direkten Bereitstellung
+                werden im Download-Bereich oder beim
+                jeweiligen Produkt eingeordnet.
             </p>
 
             <div class="actions">
@@ -780,9 +1108,14 @@
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- SOLUTIONS -->
+
     <section>
+
         <div class="container">
 
             <div class="section-label">
@@ -794,8 +1127,9 @@
             </h2>
 
             <p class="section-intro">
-                Die Solutions-Übersicht ordnet Produkte, Werkzeuge
-                und Dokumentationen nach technischen Einsatzbereichen.
+                Die Solutions-Übersicht ordnet Produkte,
+                Werkzeuge und Dokumentationen nach
+                technischen Einsatzbereichen.
             </p>
 
             <div class="actions">
@@ -817,9 +1151,14 @@
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- FAQ -->
+
     <section>
+
         <div class="container">
 
             <div class="section-label">
@@ -830,31 +1169,37 @@
                 Häufige Fragen zum Produktkatalog.
             </h2>
 
-            <p class="section-intro">
-                Informationen zu Produktstatus, Verfügbarkeit,
-                Preisen, Lizenzen und Downloads.
-            </p>
 
             <div class="grid">
 
                 <article class="card">
+
                     <span class="card-label">
-                        AVAILABILITY
+                        ENGINECORE
                     </span>
 
                     <h3>
-                        Sind alle dargestellten Produkte bereits verfügbar?
+                        Wo finde ich den EngineCore Starter Pack?
                     </h3>
 
                     <p>
-                        Nein. Einige Produktbereiche dienen derzeit
-                        der technischen Dokumentation und Orientierung.
-                        Informationen zur konkreten Verfügbarkeit werden
-                        beim jeweiligen Angebot veröffentlicht.
+                        Der Starter Pack besitzt eine eigene
+                        Shop-Landingpage innerhalb von
+                        CoreCraft Genesis.
                     </p>
+
+                    <a
+                        class="card-link"
+                        href="/shop/enginecore-starter-pack/"
+                    >
+                        EngineCore Starter Pack öffnen
+                    </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         PRICING
                     </span>
@@ -864,9 +1209,9 @@
                     </h3>
 
                     <p>
-                        Konkrete Preise werden veröffentlicht, sobald
-                        für das jeweilige Angebot ein Preismodell
-                        festgelegt ist.
+                        Konkrete Preis- und Kaufangaben
+                        werden beim jeweiligen Angebot
+                        ausgewiesen.
                     </p>
 
                     <a
@@ -875,9 +1220,12 @@
                     >
                         Pricing & Licensing öffnen
                     </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         LICENSES
                     </span>
@@ -887,10 +1235,9 @@
                     </h3>
 
                     <p>
-                        Produkte, Dokumentationen und Komponenten können
-                        unterschiedlichen Lizenzbedingungen unterliegen.
-                        Maßgeblich sind die Angaben beim jeweiligen
-                        Angebot.
+                        Produkte, Dokumentationen und
+                        Komponenten können unterschiedlichen
+                        Lizenzbedingungen unterliegen.
                     </p>
 
                     <a
@@ -899,9 +1246,12 @@
                     >
                         Lizenzinformationen öffnen
                     </a>
+
                 </article>
 
+
                 <article class="card">
+
                     <span class="card-label">
                         DOWNLOADS
                     </span>
@@ -911,9 +1261,10 @@
                     </h3>
 
                     <p>
-                        Ressourcen zur direkten Bereitstellung werden
-                        im Download-Bereich oder beim jeweiligen Produkt
-                        eingeordnet.
+                        Ressourcen zur direkten
+                        Bereitstellung werden im
+                        Download-Bereich oder beim
+                        jeweiligen Produkt eingeordnet.
                     </p>
 
                     <a
@@ -922,80 +1273,41 @@
                     >
                         Downloads öffnen
                     </a>
-                </article>
 
-                <article class="card">
-                    <span class="card-label">
-                        TOOLS
-                    </span>
-
-                    <h3>
-                        Sind Developer Tools bereits nutzbar?
-                    </h3>
-
-                    <p>
-                        Verfügbare Developer Tools können direkt über
-                        den jeweiligen Produktbereich aufgerufen werden.
-                    </p>
-
-                    <a
-                        class="card-link"
-                        href="/products/developer-tools/"
-                    >
-                        Developer Tools öffnen
-                    </a>
-                </article>
-
-                <article class="card">
-                    <span class="card-label">
-                        CONTACT
-                    </span>
-
-                    <h3>
-                        Wo kann ich allgemeine Fragen stellen?
-                    </h3>
-
-                    <p>
-                        Für allgemeine Fragen zu CoreCraft Genesis,
-                        Produktbereichen und veröffentlichten
-                        Informationen steht der Kontaktbereich zur
-                        Verfügung.
-                    </p>
-
-                    <a
-                        class="card-link"
-                        href="/contact/"
-                    >
-                        Kontakt öffnen
-                    </a>
                 </article>
 
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- FINAL CTA -->
+
     <section>
+
         <div class="container">
 
             <div class="section-label">
-                Orientierung
+                Explore
             </div>
 
             <h2>
                 Den passenden Bereich direkt öffnen.
             </h2>
 
-            <p class="section-intro">
-                Wechseln Sie direkt zur Produktübersicht,
-                zu verfügbaren Downloads, zur Preis- und
-                Lizenzinformation oder zum Kontaktbereich.
-            </p>
-
             <div class="actions">
 
                 <a
                     class="button button-primary"
+                    href="/shop/enginecore-starter-pack/"
+                >
+                    EngineCore Starter Pack
+                </a>
+
+                <a
+                    class="button button-secondary"
                     href="/products/"
                 >
                     Produkte
@@ -1010,13 +1322,6 @@
 
                 <a
                     class="button button-secondary"
-                    href="/pricing/"
-                >
-                    Pricing
-                </a>
-
-                <a
-                    class="button button-secondary"
                     href="/contact/"
                 >
                     Kontakt
@@ -1025,11 +1330,14 @@
             </div>
 
         </div>
+
     </section>
 
 </main>
 
+
 <footer>
+
     <div class="container footer-row">
 
         <div>
@@ -1037,19 +1345,47 @@
         </div>
 
         <div class="footer-links">
-            <a href="/products/">Produkte</a>
-            <a href="/solutions/">Solutions</a>
-            <a href="/pricing/">Pricing</a>
-            <a href="/downloads/">Downloads</a>
-            <a href="/support/">Support</a>
-            <a href="/contact/">Kontakt</a>
-            <a href="/legal/">Legal</a>
-            <a href="/legal/imprint/">Impressum</a>
-            <a href="/legal/privacy/">Datenschutz</a>
-            <a href="/legal/licenses/">Lizenzen</a>
+
+            <a href="/shop/">
+                Shop
+            </a>
+
+            <a href="/shop/enginecore-starter-pack/">
+                EngineCore Starter Pack
+            </a>
+
+            <a href="/products/">
+                Produkte
+            </a>
+
+            <a href="/solutions/">
+                Solutions
+            </a>
+
+            <a href="/pricing/">
+                Pricing
+            </a>
+
+            <a href="/downloads/">
+                Downloads
+            </a>
+
+            <a href="/support/">
+                Support
+            </a>
+
+            <a href="/contact/">
+                Kontakt
+            </a>
+
+            <a href="/legal/">
+                Legal
+            </a>
+
         </div>
 
     </div>
+
 </footer>
 
 </body>
