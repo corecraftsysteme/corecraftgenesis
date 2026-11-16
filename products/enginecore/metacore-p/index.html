@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetaCore P | EngineCore | CoreCraft Genesis</title>
+  <meta name="description" content="Öffentliche Übersicht der MetaCore-P-Serie P000 bis P099 innerhalb von EngineCore.">
+  <link rel="canonical" href="https://corecraftgenesis.ch/products/enginecore/metacore-p/">
+  <style>
+    :root{--bg:#05070a;--surface:#0c1118;--surface-light:#111924;--line:#1d2938;--text:#f4f7fb;--muted:#95a2b3;--blue:#4ea1ff;--green:#42d392;--red:#ff7685;--max:1180px}
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 75% -10%,rgba(28,83,132,.42) 0,transparent 32%),var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none} a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+    .container{width:min(92%,var(--max));margin-inline:auto}
+    header{position:sticky;top:0;z-index:100;background:rgba(5,7,10,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:30px}.brand{font-weight:750;letter-spacing:-.03em}.brand span{color:var(--blue)}
+    .nav-links{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:.92rem}.nav-links a:hover,.nav-links .active{color:var(--text)}
+    .breadcrumbs{padding-top:30px;color:var(--muted);font-size:.84rem}.breadcrumbs ol{list-style:none;display:flex;gap:8px;flex-wrap:wrap}.breadcrumbs li:not(:last-child)::after{content:"/";margin-left:8px;color:#536477}
+    .hero{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:70px;padding:72px 0 95px}.eyebrow,.section-label{color:var(--blue);text-transform:uppercase;letter-spacing:.13em;font-size:.77rem;font-weight:700}
+    h1{font-size:clamp(3.5rem,8vw,7rem);line-height:.9;letter-spacing:-.07em}.hero p{max-width:720px;margin:28px 0;color:var(--muted);font-size:1.12rem}
+    .panel{border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(78,161,255,.09),transparent 60%),var(--surface);padding:32px}.status{color:var(--green);font: .78rem monospace;margin-bottom:24px}
+    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.kpi{padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.015)}.kpi strong{display:block;color:var(--blue);font-size:1.6rem}.kpi span{color:var(--muted);font-size:.82rem}
+    section{padding:95px 0}.section-band{border-block:1px solid var(--line);background:rgba(255,255,255,.015)}h2{font-size:clamp(2.3rem,5vw,4.1rem);line-height:1.04;letter-spacing:-.05em;margin:12px 0 20px}.lead{max-width:800px;color:var(--muted);margin-bottom:38px}
+    .toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;margin-bottom:28px}.search{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text)}.counter{display:flex;align-items:center;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--muted);font: .82rem monospace}
+    .series-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:35px}.series-nav button{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted);cursor:pointer}.series-nav button:hover,.series-nav button.active{color:var(--text);border-color:#45617e;background:var(--surface-light)}
+    .groups{display:grid;gap:18px}.group{scroll-margin-top:100px;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}.group-header{display:grid;grid-template-columns:140px 1fr auto;gap:20px;align-items:center;padding:24px 28px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(78,161,255,.08),transparent)}.group-range{color:var(--blue);font:.8rem monospace}.group-count{color:var(--muted);font:.75rem monospace}.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.module{min-height:88px;display:grid;grid-template-columns:70px 1fr;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line)}.module:nth-child(odd){border-right:1px solid var(--line)}.module-id{color:var(--blue);font:.78rem monospace;font-weight:700}.module-name{font-size:.92rem;font-weight:620;overflow-wrap:anywhere}.empty{display:none;padding:35px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--muted)}
+    .notice{padding:24px;border:1px solid rgba(78,161,255,.25);border-radius:14px;background:rgba(78,161,255,.06);color:var(--muted)}.notice strong{color:var(--text)}
+    .error{display:none;padding:20px;border:1px solid rgba(255,118,133,.35);border-radius:12px;background:rgba(255,118,133,.08);color:var(--red);margin-bottom:20px}
+    footer{padding:50px 0;border-top:1px solid var(--line);color:var(--muted)}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}.footer-title{color:var(--text);font-weight:700;margin-bottom:12px}footer a{display:block;margin:8px 0}.copyright{margin-top:38px;padding-top:25px;border-top:1px solid var(--line);font-size:.82rem}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}@media(max-width:700px){.nav-links{display:none}.module-grid,.footer-grid{grid-template-columns:1fr}.module:nth-child(odd){border-right:0}.group-header{grid-template-columns:1fr;gap:5px}.toolbar{grid-template-columns:1fr}.hero{padding:55px 0 70px}section{padding:70px 0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<header><div class="container"><nav aria-label="Hauptnavigation"><a class="brand" href="/" aria-label="CoreCraft Genesis Startseite">CoreCraft <span>Genesis</span></a><div class="nav-links"><a class="active" href="/products/">Produkte</a><a href="/solutions/">Solutions</a><a href="/docs/">Docs</a><a href="/about/">Über uns</a></div></nav></div></header>
+<main>
+  <div class="container breadcrumbs"><nav aria-label="Breadcrumb"><ol><li><a href="/products/">Produkte</a></li><li><a href="/products/enginecore/">EngineCore</a></li><li aria-current="page">MetaCore P</li></ol></nav></div>
+  <section class="container hero">
+    <div><div class="eyebrow">EngineCore · MetaCore P</div><h1>MetaCore P</h1><p>Die öffentliche Übersicht der P-Serie organisiert P000 bis P099 in klar definierte Funktionsbereiche. Interne Pfade, Hashes, Zeitstempel und Implementierungsdetails sind nicht Bestandteil dieser Darstellung.</p><a href="#registry" style="display:inline-flex;padding:13px 20px;border-radius:8px;background:var(--blue);color:#001326;font-weight:700">Registry öffnen</a></div>
+    <aside class="panel" aria-label="Registry-Kennzahlen"><div class="status">● PUBLIC REGISTRY CONNECTED</div><div class="kpis"><div class="kpi"><strong id="moduleKpi">100</strong><span>öffentliche Module</span></div><div class="kpi"><strong id="categoryKpi">10</strong><span>Kategorien</span></div><div class="kpi"><strong>P000</strong><span>Serienbeginn</span></div><div class="kpi"><strong>P099</strong><span>Serienende</span></div></div></aside>
+  </section>
+  <section class="section-band" id="registry"><div class="container"><div class="section-label">P-Series Directory</div><h2>Dynamisch aus der Public Registry.</h2><p class="lead">Die Modulübersicht wird aus <code>data/P_public_registry.json</code> geladen. Suche und Kategorien filtern ausschließlich die öffentlichen Registry-Felder.</p>
+    <div id="loadError" class="error" role="alert"></div>
+    <div class="toolbar"><label><span style="position:absolute;left:-9999px">Module durchsuchen</span><input id="searchInput" class="search" type="search" placeholder="Nach ID oder Modulname suchen …" autocomplete="off"></label><div id="resultCounter" class="counter" aria-live="polite">100 Module</div></div>
+    <div id="categoryFilters" class="series-nav" aria-label="Registry-Kategorien"></div>
+    <div id="groups" class="groups"></div>
+    <div id="emptyState" class="empty">Keine öffentlichen Module entsprechen dem Filter.</div>
+  </div></section>
+  <section class="container"><div class="section-label">Public Scope</div><h2>Öffentliche Registry, intern klar getrennt.</h2><div class="notice"><strong>Enthalten:</strong> IDs, öffentliche Namen, Kategorien, Bereiche und Status. <strong>Nicht enthalten:</strong> lokale Windows-Pfade, interne Hash-Ketten, Zeitstempel, Signaturen oder technische Implementierungsdetails.</div></section>
+</main>
+<footer><div class="container"><div class="footer-grid"><div><div class="brand">CoreCraft <span>Genesis</span></div><p>Engineering Deterministic Systems and Digital Infrastructure.</p></div><div><p class="footer-title">EngineCore</p><a href="/products/enginecore/">Overview</a><a href="/products/enginecore/metacore-p/">MetaCore P</a><a href="/products/enginecore/runtime/">Runtime</a></div><div><p class="footer-title">Resources</p><a href="/docs/">Docs</a><a href="/downloads/">Downloads</a><a href="/contact/">Kontakt</a></div></div><div class="copyright">© 2026 CoreCraft Genesis</div></div></footer>
+<script>
+(() => {
+  'use strict';
+  const DATA_URL = './data/P_public_registry.json';
+  const groupsEl = document.getElementById('groups');
+  const filtersEl = document.getElementById('categoryFilters');
+  const searchEl = document.getElementById('searchInput');
+  const counterEl = document.getElementById('resultCounter');
+  const emptyEl = document.getElementById('emptyState');
+  const errorEl = document.getElementById('loadError');
+  const moduleKpi = document.getElementById('moduleKpi');
+  const categoryKpi = document.getElementById('categoryKpi');
+  let registry = null;
+  let activeCategory = 'all';
+
+  const safeText = value => String(value ?? '');
+
+  function createButton(label, value) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    button.dataset.category = value;
+    button.addEventListener('click', () => {
+      activeCategory = value;
+      document.querySelectorAll('#categoryFilters button').forEach(item => item.classList.toggle('active', item.dataset.category === value));
+      render();
+    });
+    return button;
+  }
+
+  function renderFilters() {
+    filtersEl.replaceChildren();
+    const all = createButton('Alle', 'all');
+    all.classList.add('active');
+    filtersEl.appendChild(all);
+    registry.categories.forEach(category => filtersEl.appendChild(createButton(`${category.range} · ${category.name}`, category.slug)));
+  }
+
+  function render() {
+    const query = searchEl.value.trim().toLocaleLowerCase('de');
+    const filtered = registry.modules.filter(module => {
+      const categoryMatch = activeCategory === 'all' || module.categorySlug === activeCategory;
+      const searchMatch = !query || `${module.id} ${module.name} ${module.category}`.toLocaleLowerCase('de').includes(query);
+      return categoryMatch && searchMatch;
+    });
+    groupsEl.replaceChildren();
+    registry.categories.forEach(category => {
+      const modules = filtered.filter(module => module.categorySlug === category.slug);
+      if (!modules.length) return;
+      const article = document.createElement('article');
+      article.className = 'group';
+      article.id = category.slug;
+      const header = document.createElement('div');
+      header.className = 'group-header';
+      const range = document.createElement('span'); range.className = 'group-range'; range.textContent = category.range;
+      const heading = document.createElement('h3'); heading.textContent = category.name;
+      const count = document.createElement('span'); count.className = 'group-count'; count.textContent = `${modules.length} Module`;
+      header.append(range, heading, count);
+      const grid = document.createElement('div'); grid.className = 'module-grid';
+      modules.forEach(module => {
+        const item = document.createElement('div'); item.className = 'module';
+        const id = document.createElement('span'); id.className = 'module-id'; id.textContent = safeText(module.id);
+        const name = document.createElement('span'); name.className = 'module-name'; name.textContent = safeText(module.name);
+        item.append(id, name); grid.appendChild(item);
+      });
+      article.append(header, grid); groupsEl.appendChild(article);
+    });
+    counterEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'Modul' : 'Module'}`;
+    emptyEl.style.display = filtered.length ? 'none' : 'block';
+  }
+
+  async function init() {
+    try {
+      const response = await fetch(DATA_URL, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      registry = await response.json();
+      if (!Array.isArray(registry.modules) || !Array.isArray(registry.categories)) throw new Error('Ungültiges Registry-Schema');
+      moduleKpi.textContent = registry.moduleCount;
+      categoryKpi.textContent = registry.categories.length;
+      renderFilters();
+      render();
+      searchEl.addEventListener('input', render);
+    } catch (error) {
+      errorEl.style.display = 'block';
+      errorEl.textContent = `Registry konnte nicht geladen werden: ${error.message}. Stelle sicher, dass data/P_public_registry.json vorhanden ist und die Seite über einen Webserver geöffnet wird.`;
+    }
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
