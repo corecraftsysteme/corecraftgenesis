@@ -11,6 +11,8 @@
     content="Die Produktbereiche von CoreCraft Genesis: Audio, Bitcoin Mining, CoreCraft Pay, Developer Tools, Documentation und EngineCore."
   >
 
+  <link rel="canonical" href="https://corecraftgenesis.ch/products/">
+
   <style>
     :root {
       --bg: #05070a;
@@ -57,9 +59,15 @@
       text-decoration: none;
     }
 
+    a:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
     .container {
       width: min(92%, var(--max));
-      margin: auto;
+      margin-inline: auto;
     }
 
     /* HEADER */
@@ -71,8 +79,9 @@
 
       background: rgba(5, 7, 10, 0.88);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
 
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     nav {
@@ -87,7 +96,7 @@
 
     .brand {
       font-weight: 750;
-      letter-spacing: -.03em;
+      letter-spacing: -0.03em;
       font-size: 1.1rem;
     }
 
@@ -102,12 +111,16 @@
       flex-wrap: wrap;
 
       color: var(--muted);
-      font-size: .92rem;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
     }
 
     .nav-links a:hover,
     .nav-links .active {
-      color: white;
+      color: var(--text);
     }
 
     .nav-button {
@@ -122,7 +135,7 @@
       min-height: 620px;
 
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.1fr 0.9fr;
       align-items: center;
 
       gap: 70px;
@@ -132,16 +145,16 @@
     .eyebrow {
       color: var(--blue);
       text-transform: uppercase;
-      letter-spacing: .13em;
+      letter-spacing: 0.13em;
       font-weight: 700;
-      font-size: .77rem;
+      font-size: 0.77rem;
       margin-bottom: 20px;
     }
 
     h1 {
       font-size: clamp(3rem, 7vw, 6.3rem);
-      line-height: .96;
-      letter-spacing: -.065em;
+      line-height: 0.96;
+      letter-spacing: -0.065em;
       max-width: 900px;
     }
 
@@ -167,10 +180,13 @@
       border-radius: 8px;
 
       font-weight: 650;
-      font-size: .93rem;
+      font-size: 0.93rem;
 
       border: 1px solid var(--line);
-      transition: .2s ease;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
     }
 
     .button-primary {
@@ -188,7 +204,7 @@
 
     .directory-panel {
       background:
-        linear-gradient(145deg, rgba(78,161,255,.08), transparent),
+        linear-gradient(145deg, rgba(78, 161, 255, 0.08), transparent),
         var(--surface);
 
       border: 1px solid var(--line);
@@ -200,14 +216,14 @@
     .status {
       color: var(--green);
       font-family: monospace;
-      font-size: .8rem;
+      font-size: 0.8rem;
       margin-bottom: 25px;
     }
 
     .directory-path {
       color: var(--muted);
       font-family: monospace;
-      font-size: .8rem;
+      font-size: 0.8rem;
       margin-bottom: 20px;
     }
 
@@ -220,7 +236,7 @@
       gap: 20px;
 
       font-family: monospace;
-      font-size: .83rem;
+      font-size: 0.83rem;
     }
 
     .directory-item span:last-child {
@@ -235,15 +251,15 @@
 
     .section-label {
       color: var(--blue);
-      font-size: .78rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: .12em;
+      letter-spacing: 0.12em;
       font-weight: 700;
     }
 
     h2 {
       font-size: clamp(2.2rem, 5vw, 4rem);
-      letter-spacing: -.045em;
+      letter-spacing: -0.045em;
       line-height: 1.05;
 
       margin: 12px 0 22px;
@@ -260,7 +276,7 @@
     /* PRODUCT GRID */
 
     .products {
-      background: rgba(255,255,255,.015);
+      background: rgba(255, 255, 255, 0.015);
 
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -268,7 +284,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
@@ -284,7 +300,10 @@
       border-radius: 14px;
       padding: 28px;
 
-      transition: .22s ease;
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
     }
 
     .card:hover {
@@ -296,7 +315,7 @@
     .card-number {
       color: var(--blue);
       font-family: monospace;
-      font-size: .75rem;
+      font-size: 0.75rem;
     }
 
     .card h3 {
@@ -306,13 +325,13 @@
 
     .card p {
       color: var(--muted);
-      font-size: .93rem;
+      font-size: 0.93rem;
     }
 
     .card-path {
       color: #65778d;
       font-family: monospace;
-      font-size: .76rem;
+      font-size: 0.76rem;
 
       margin-top: 18px;
     }
@@ -324,14 +343,14 @@
       margin-top: auto;
       padding-top: 25px;
 
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
 
     /* STRUCTURE */
 
     .structure {
       display: grid;
-      grid-template-columns: .85fr 1.15fr;
+      grid-template-columns: 0.85fr 1.15fr;
       gap: 70px;
       align-items: start;
     }
@@ -352,19 +371,19 @@
 
     .structure-row code {
       color: var(--blue);
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
 
     .structure-row p {
       color: var(--muted);
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
 
     /* CTA */
 
     .cta {
       background:
-        linear-gradient(125deg, rgba(78,161,255,.15), transparent),
+        linear-gradient(125deg, rgba(78, 161, 255, 0.15), transparent),
         var(--surface);
 
       border: 1px solid var(--line);
@@ -388,19 +407,21 @@
       gap: 40px;
     }
 
-    footer h4 {
-      color: white;
+    .footer-title {
+      color: var(--text);
+      font-weight: 700;
       margin-bottom: 15px;
     }
 
     footer a {
       display: block;
       margin: 8px 0;
-      font-size: .9rem;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
     }
 
     footer a:hover {
-      color: white;
+      color: var(--text);
     }
 
     .footer-description {
@@ -413,18 +434,19 @@
       padding-top: 30px;
       margin-top: 45px;
 
-      font-size: .82rem;
+      font-size: 0.82rem;
     }
 
-    @media (max-width: 900px) {
+    /* RESPONSIVE */
 
+    @media (max-width: 900px) {
       .hero,
       .structure {
         grid-template-columns: 1fr;
       }
 
       .grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .footer-grid {
@@ -437,7 +459,6 @@
     }
 
     @media (max-width: 600px) {
-
       .nav-links {
         display: none;
       }
@@ -459,26 +480,48 @@
       .cta {
         padding: 35px 25px;
       }
+
+      section {
+        padding: 75px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button,
+      .card {
+        transition: none;
+      }
+
+      .button:hover,
+      .card:hover {
+        transform: none;
+      }
     }
   </style>
-  <link rel="canonical" href="https://corecraftgenesis.ch/products/">
 </head>
 
 <body>
 
 <header>
-
   <div class="container">
 
-    <nav>
+    <nav aria-label="Hauptnavigation">
 
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="CoreCraft Genesis Startseite">
         CoreCraft <span>Genesis</span>
       </a>
 
       <div class="nav-links">
 
-        <a class="active" href="/products/">
+        <a
+          class="active"
+          href="/products/"
+          aria-current="page"
+        >
           Produkte
         </a>
 
@@ -511,7 +554,6 @@
     </nav>
 
   </div>
-
 </header>
 
 
@@ -540,11 +582,17 @@
 
       <div class="buttons">
 
-        <a class="button button-primary" href="#product-areas">
+        <a
+          class="button button-primary"
+          href="#product-areas"
+        >
           Produktbereiche entdecken
         </a>
 
-        <a class="button" href="/docs/">
+        <a
+          class="button"
+          href="/docs/"
+        >
           Dokumentation
         </a>
 
@@ -553,7 +601,10 @@
     </div>
 
 
-    <div class="directory-panel">
+    <div
+      class="directory-panel"
+      aria-label="Produktverzeichnis"
+    >
 
       <div class="status">
         ● PRODUCT DIRECTORY
@@ -600,7 +651,11 @@
 
   <!-- PRODUCT AREAS -->
 
-  <section class="products" id="product-areas">
+  <section
+    class="products"
+    id="product-areas"
+    aria-labelledby="product-areas-heading"
+  >
 
     <div class="container">
 
@@ -608,12 +663,12 @@
         Product Areas
       </div>
 
-      <h2>
+      <h2 id="product-areas-heading">
         Sechs Bereiche. Ein technisches Ökosystem.
       </h2>
 
       <p class="lead">
-        Jeder Produktordner bildet einen eigenen Bereich
+        Jeder Produktbereich bildet einen eigenen Teil
         innerhalb von CoreCraft Genesis und erhält eine
         eigene Produktseite, Dokumentation und technische
         Struktur.
@@ -624,7 +679,10 @@
 
         <!-- AUDIO -->
 
-        <a class="card" href="/products/audio/">
+        <a
+          class="card"
+          href="/products/audio/"
+        >
 
           <span class="card-number">
             01 · AUDIO
@@ -654,7 +712,10 @@
 
         <!-- BITCOIN MINING -->
 
-        <a class="card" href="/products/bitcoin-mining/">
+        <a
+          class="card"
+          href="/products/bitcoin-mining/"
+        >
 
           <span class="card-number">
             02 · INFRASTRUCTURE
@@ -684,7 +745,10 @@
 
         <!-- CORECRAFT PAY -->
 
-        <a class="card" href="/products/corecraft-pay/">
+        <a
+          class="card"
+          href="/products/corecraft-pay/"
+        >
 
           <span class="card-number">
             03 · PAYMENTS
@@ -714,7 +778,10 @@
 
         <!-- DEVELOPER TOOLS -->
 
-        <a class="card" href="/products/developer-tools/">
+        <a
+          class="card"
+          href="/products/developer-tools/"
+        >
 
           <span class="card-number">
             04 · DEVELOPER
@@ -744,7 +811,10 @@
 
         <!-- DOCUMENTATION -->
 
-        <a class="card" href="/products/documentation/">
+        <a
+          class="card"
+          href="/products/documentation/"
+        >
 
           <span class="card-number">
             05 · KNOWLEDGE
@@ -774,7 +844,10 @@
 
         <!-- ENGINECORE -->
 
-        <a class="card" href="/products/enginecore/">
+        <a
+          class="card"
+          href="/products/enginecore/"
+        >
 
           <span class="card-number">
             06 · RUNTIME
@@ -785,11 +858,10 @@
           </h3>
 
           <p>
-            EngineCore bildet den Bereich für
-            deterministische Runtime-Architektur,
-            State Management, Validierung, Recovery,
-            Orchestration und nachvollziehbare
-            Systemzustände.
+            EngineCore bildet den Produktbereich für
+            strukturierte Runtime-Workflows, Validierung,
+            Diagnostik, technische Dokumentation und
+            nachvollziehbare Systemprozesse.
           </p>
 
           <div class="card-path">
@@ -809,7 +881,7 @@
   </section>
 
 
-  <!-- DIRECTORY EXPLANATION -->
+  <!-- PRODUCT STRUCTURE -->
 
   <section class="container">
 
@@ -902,8 +974,9 @@
           <code>enginecore/</code>
 
           <p>
-            Deterministische Runtime-,
-            State- und Systemarchitektur.
+            Strukturierte Runtime-Workflows,
+            Validierung, Diagnostik und
+            technische Dokumentation.
           </p>
 
         </div>
@@ -990,7 +1063,9 @@
 
       <div>
 
-        <p class="footer-title">Produkte</p>
+        <p class="footer-title">
+          Produkte
+        </p>
 
         <a href="/products/audio/">
           Audio
@@ -1013,7 +1088,9 @@
 
       <div>
 
-        <p class="footer-title">Resources</p>
+        <p class="footer-title">
+          Resources
+        </p>
 
         <a href="/products/developer-tools/">
           Developer Tools
@@ -1036,7 +1113,9 @@
 
       <div>
 
-        <p class="footer-title">CoreCraft</p>
+        <p class="footer-title">
+          CoreCraft
+        </p>
 
         <a href="/about/">
           Über uns
