@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EngineCore Intro v1.0 | CoreCraft Genesis</title>
+
+    <meta
+        name="description"
+        content="EngineCore Intro v1.0 introduces the deterministic runtime architecture, execution layers, routing logic, AuditChain, FreezeSync and reproducible system validation."
+    >
+
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#05070a">
+
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/shop/enginecore-intro/"
+    >
+
+    <style>
+        :root {
+            --bg: #05070a;
+            --surface: #0a0f16;
+            --surface-light: #0f1721;
+            --text: #f4f7fb;
+            --muted: #95a2b3;
+            --blue: #4ea1ff;
+            --green: #57d38c;
+            --orange: #ff7a00;
+            --line: #1d2a38;
+            --line-hover: #2d4258;
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 75% -10%,
+                    rgba(78, 161, 255, 0.11),
+                    transparent 31rem
+                ),
+                var(--bg);
+
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(90%, var(--max-width));
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--line);
+            background: rgba(5, 7, 10, 0.9);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .nav-links a,
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        .nav-links .active {
+            color: var(--blue);
+        }
+
+        main {
+            display: block;
+            min-width: 0;
+        }
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero {
+            padding: 120px 0 100px;
+        }
+
+        .label,
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.78rem;
+            font-weight: 750;
+        }
+
+        h1,
+        h2,
+        h3 {
+            overflow-wrap: anywhere;
+            line-height: 1.1;
+        }
+
+        h1 {
+            max-width: 920px;
+            margin: 22px 0;
+            font-size: clamp(2.8rem, 7vw, 5.8rem);
+            letter-spacing: -0.05em;
+        }
+
+        h2 {
+            margin: 16px 0 24px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            letter-spacing: -0.035em;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        .lead,
+        .section-intro {
+            max-width: 800px;
+        }
+
+        .lead {
+            margin: 0;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: #001326;
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            color: var(--text);
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .status {
+            display: inline-block;
+            width: fit-content;
+            padding: 6px 9px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: 0.78rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 42px;
+        }
+
+        .card {
+            display: flex;
+            min-width: 0;
+            padding: 30px;
+            flex-direction: column;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+            transition:
+                border-color 0.2s ease,
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--line-hover);
+            background: var(--surface-light);
+            transform: translateY(-2px);
+        }
+
+        .card-label {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--green);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+        }
+
+        .feature-list {
+            margin: 18px 0 0;
+            padding-left: 22px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::marker {
+            color: var(--green);
+        }
+
+        .notice {
+            max-width: 900px;
+            margin-top: 38px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface-light);
+        }
+
+        .notice strong {
+            color: var(--green);
+        }
+
+        .file {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Consolas,
+                monospace;
+            color: var(--green);
+        }
+
+        footer {
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                padding: 80px 0 70px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 13vw, 3.2rem);
+            }
+
+            .nav-links,
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a
+            class="brand"
+            href="/"
+            aria-label="CoreCraft Genesis Home"
+        >
+            CoreCraft <span>Genesis</span>
+        </a>
+
+        <nav
+            class="nav-links"
+            aria-label="Main navigation"
+        >
+            <a
+                class="active"
+                href="/shop/"
+            >
+                Shop
+            </a>
+
+            <a href="/products/">
+                Products
+            </a>
+
+            <a href="/solutions/">
+                Solutions
+            </a>
+
+            <a href="/pricing/">
+                Pricing
+            </a>
+
+            <a href="/downloads/">
+                Downloads
+            </a>
+
+            <a href="/support/">
+                Support
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="label">
+                ENGINECORE · INTRODUCTION · v1.0
+            </div>
+
+            <h1>
+                EngineCore Intro
+            </h1>
+
+            <p class="lead">
+                The foundational technical document for understanding
+                the deterministic runtime architecture of the
+                EngineCore framework.
+            </p>
+
+            <div class="product-meta">
+
+                <span class="status">
+                    Digital Documentation
+                </span>
+
+                <span class="status">
+                    Version 1.0
+                </span>
+
+                <span class="status">
+                    Single-User License
+                </span>
+
+            </div>
+
+            <div class="actions">
+
+                <a
+                    class="button button-primary"
+                    href="#get-enginecore-intro"
+                >
+                    Get EngineCore Intro
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="#overview"
+                >
+                    Explore Documentation
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OVERVIEW -->
+
+    <section id="overview">
+
+        <div class="container">
+
+            <div class="section-label">
+                Overview
+            </div>
+
+            <h2>
+                Understand the EngineCore runtime foundation.
+            </h2>
+
+            <p class="section-intro">
+                EngineCore Intro v1.0 explains how EngineCore
+                structures execution layers, routing logic,
+                audit integration and snapshot validation to
+                support reproducible system behavior.
+            </p>
+
+            <p class="section-intro">
+                The guide establishes the conceptual and technical
+                foundation for advanced EngineCore modules and the
+                A-Series documentation suite.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- KEY FEATURES -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Key Features
+            </div>
+
+            <h2>
+                Core architectural concepts.
+            </h2>
+
+            <div class="grid">
+
+                <article class="card">
+
+                    <span class="card-label">
+                        DETERMINISM
+                    </span>
+
+                    <h3>
+                        Deterministic Runtime Architecture
+                    </h3>
+
+                    <p>
+                        Introduces the architectural principles used
+                        to structure reproducible runtime behavior.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="card-label">
+                        EXECUTION
+                    </span>
+
+                    <h3>
+                        Routing & Execution Layers
+                    </h3>
+
+                    <p>
+                        Covers the fundamental organization of
+                        routing paths and execution layers within
+                        the EngineCore architecture.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="card-label">
+                        MODULARITY
+                    </span>
+
+                    <h3>
+                        Modular System Design
+                    </h3>
+
+                    <p>
+                        Introduces modular system principles and
+                        the role of structured module dependencies.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="card-label">
+                        TRACEABILITY
+                    </span>
+
+                    <h3>
+                        AuditChain & FreezeSync
+                    </h3>
+
+                    <p>
+                        Explains the integration of AuditChain and
+                        FreezeSync within the EngineCore validation
+                        model.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT YOU WILL LEARN -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                What You'll Learn
+            </div>
+
+            <h2>
+                Build the foundation before moving deeper.
+            </h2>
+
+            <div class="notice">
+
+                <ul class="feature-list">
+                    <li>Deterministic runtime architecture overview</li>
+                    <li>Modular system design principles</li>
+                    <li>AuditChain and FreezeSync integration</li>
+                    <li>Reproducible workflow structure</li>
+                    <li>Routing and execution layer fundamentals</li>
+                    <li>Compliance-ready runtime validation concepts</li>
+                    <li>EngineCore Runtime compatibility from v1.0 to v1.4</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AUDIENCE -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Ideal For
+            </div>
+
+            <h2>
+                Technical readers working with structured systems.
+            </h2>
+
+            <div class="grid">
+
+                <article class="card">
+                    <span class="card-label">RUNTIME</span>
+                    <h3>Runtime Engineers</h3>
+                    <p>
+                        For engineers exploring deterministic
+                        runtime architecture and execution models.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">DSP</span>
+                    <h3>DSP Pipeline Developers</h3>
+                    <p>
+                        For developers working with structured
+                        processing and technical execution pipelines.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">ARCHITECTURE</span>
+                    <h3>System Architects</h3>
+                    <p>
+                        For architects evaluating modular,
+                        reproducible system structures.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">VALIDATION</span>
+                    <h3>Auditors & Integrators</h3>
+                    <p>
+                        For technical auditors and EngineCore
+                        integrators examining validation,
+                        traceability and runtime structure.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INCLUDED -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Included
+            </div>
+
+            <h2>
+                One focused technical introduction.
+            </h2>
+
+            <p class="section-intro">
+                EngineCore Intro is delivered as a dedicated
+                technical documentation package.
+            </p>
+
+            <div class="file">
+                EngineCore-Intro.pdf
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPATIBILITY -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Compatibility
+            </div>
+
+            <h2>
+                EngineCore Runtime.
+            </h2>
+
+            <div class="notice">
+
+                <strong>
+                    EngineCore Runtime v1.0–v1.4
+                </strong>
+
+                <p>
+                    EngineCore Intro v1.0 is positioned as the
+                    conceptual and technical starting point for
+                    the EngineCore documentation ecosystem.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LICENSE -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                License
+            </div>
+
+            <h2>
+                Single-User License.
+            </h2>
+
+            <div class="notice">
+
+                <strong>
+                    Non-transferable · No redistribution
+                </strong>
+
+                <p>
+                    This document may be used for personal or
+                    internal technical reference only.
+                    Modification, republishing or commercial reuse
+                    is not permitted.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PURCHASE -->
+
+    <section id="get-enginecore-intro">
+
+        <div class="container">
+
+            <div class="section-label">
+                Get EngineCore Intro
+            </div>
+
+            <h2>
+                Start with the EngineCore foundation.
+            </h2>
+
+            <p class="section-intro">
+                Begin with the architectural concepts behind
+                deterministic execution, structured routing,
+                validation and traceability.
+            </p>
+
+            <div class="actions">
+
+                <!-- Replace this URL with the final Gumroad product URL. -->
+                <a
+                    class="button button-primary"
+                    href="https://aesenginecgr94.gumroad.com/l/enginecore-intro"
+                >
+                    Get EngineCore Intro
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/shop/"
+                >
+                    Back to Shop
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="/products/enginecore/"
+                >
+                    Explore EngineCore
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-row">
+
+        <div>
+            © 2026 CoreCraft Genesis
+        </div>
+
+        <div class="footer-links">
+
+            <a href="/shop/">
+                Shop
+            </a>
+
+            <a href="/shop/enginecore-intro/">
+                EngineCore Intro
+            </a>
+
+            <a href="/shop/enginecore-starter-pack/">
+                EngineCore Starter Pack
+            </a>
+
+            <a href="/products/">
+                Products
+            </a>
+
+            <a href="/pricing/">
+                Pricing
+            </a>
+
+            <a href="/support/">
+                Support
+            </a>
+
+            <a href="/legal/">
+                Legal
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
