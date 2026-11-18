@@ -3,9 +3,11 @@ param(
     [ValidateSet("Audit", "Apply")]
     [string]$Mode = "Audit",
 
-    [string]$Source = "C:\corecraftgenesis.ch",
+    [Parameter(Mandatory)]
+    [string]$Source,
 
-    [string]$Destination = "C:\corecraftgenesis-github"
+    [Parameter(Mandatory)]
+    [string]$Destination
 )
 
 Set-StrictMode -Version Latest

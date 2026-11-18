@@ -2,7 +2,8 @@
 
 [CmdletBinding()]
 param(
-    [string]$Root = "C:\corecraftgenesis.ch\products\audio"
+    [Parameter(Mandatory)]
+    [string]$Root
 )
 
 Set-StrictMode -Version Latest

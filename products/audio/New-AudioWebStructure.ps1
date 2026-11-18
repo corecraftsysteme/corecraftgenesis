@@ -2,7 +2,11 @@
 
 [CmdletBinding()]
 param(
-    [string]$Root = "C:\corecraftgenesis.ch\products\audio"
+    [Parameter(Mandatory)]
+    [string]$Root,
+
+    [Parameter(Mandatory)]
+    [string]$SiteRoot
 )
 
 Set-StrictMode -Version Latest
@@ -2211,7 +2215,7 @@ $ReadmeLines = @(
     ""
     "PowerShell:"
     ""
-    "Set-Location C:\corecraftgenesis.ch"
+    "Set-Location `"$SiteRoot`""
     "python -m http.server 8080"
     ""
     "Danach die Website über den lokalen Port 8080 öffnen."
