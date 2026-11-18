@@ -14,7 +14,10 @@
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#05070a">
 
-    <link rel="canonical" href="https://corecraftgenesis.ch/shop/">
+    <link
+        rel="canonical"
+        href="https://corecraftgenesis.ch/shop/"
+    >
 
     <style>
         :root {
@@ -25,7 +28,6 @@
             --muted: #95a2b3;
             --blue: #4ea1ff;
             --green: #57d38c;
-            --orange: #ff7a00;
             --line: #1d2a38;
             --line-hover: #2d4258;
             --max-width: 1120px;
@@ -189,7 +191,6 @@
 
         h3 {
             margin: 0;
-
             font-size: 1.25rem;
         }
 
@@ -206,7 +207,6 @@
 
         .lead {
             margin: 0;
-
             font-size: clamp(1.05rem, 2vw, 1.25rem);
         }
 
@@ -220,7 +220,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
-
             margin-top: 34px;
         }
 
@@ -234,6 +233,10 @@
 
             text-decoration: none;
             font-weight: 700;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
         }
 
         .button-primary {
@@ -257,7 +260,6 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
 
             gap: 18px;
-
             margin-top: 42px;
         }
 
@@ -344,27 +346,27 @@
             font-size: 0.78rem;
         }
 
-        /* FEATURED PRODUCT */
+        /* FEATURED */
 
         .featured {
-            border-color: rgba(255, 122, 0, 0.55);
+            border-color: rgba(78, 161, 255, 0.55);
 
             background:
                 linear-gradient(
                     145deg,
-                    rgba(255, 122, 0, 0.08),
+                    rgba(78, 161, 255, 0.08),
                     transparent 60%
                 ),
                 var(--surface);
         }
 
-        .featured .card-label {
-            color: var(--orange);
+        .featured .card-label,
+        .featured .status {
+            color: var(--blue);
         }
 
         .featured .status {
-            border-color: rgba(255, 122, 0, 0.35);
-            color: var(--orange);
+            border-color: rgba(78, 161, 255, 0.35);
         }
 
         /* NOTICE */
@@ -391,7 +393,6 @@
             padding: 40px 0;
 
             color: var(--muted);
-
             font-size: 0.92rem;
         }
 
@@ -399,7 +400,6 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-
             gap: 18px;
         }
 
@@ -421,7 +421,6 @@
             .nav {
                 align-items: flex-start;
                 flex-direction: column;
-
                 padding: 18px 0;
             }
 
@@ -433,7 +432,6 @@
         @media (max-width: 480px) {
             .container {
                 width: 100%;
-
                 padding-left: 18px;
                 padding-right: 18px;
             }
@@ -553,7 +551,7 @@
                     class="button button-secondary"
                     href="/pricing/"
                 >
-                    Pricing & Licensing
+                    Pricing &amp; Licensing
                 </a>
 
             </div>
@@ -583,7 +581,6 @@
                 Dokumentationen und digitale Ressourcen von
                 CoreCraft Genesis.
             </p>
-
 
             <div class="grid product-grid">
 
@@ -618,37 +615,40 @@
 
                 </article>
 
-<!-- ENGINECORE INTRO -->
 
-<article class="card featured">
+                <!-- ENGINECORE INTRO -->
 
-    <span class="card-label">
-        ENGINECORE INTRO · v1.0
-    </span>
+                <article class="card featured">
 
-    <h3>
-        EngineCore Intro
-    </h3>
+                    <span class="card-label">
+                        ENGINECORE INTRO · v1.0
+                    </span>
 
-    <p>
-        Der grundlegende Einstieg in die deterministische
-        Runtime-Architektur von EngineCore mit
-        Ausführungsebenen, Routing, Audit-Integration
-        und reproduzierbarer Validierung.
-    </p>
+                    <h3>
+                        EngineCore Intro
+                    </h3>
 
-    <span class="status">
-        Digital Documentation
-    </span>
+                    <p>
+                        Der grundlegende Einstieg in die
+                        deterministische Runtime-Architektur
+                        von EngineCore mit Ausführungsebenen,
+                        Routing, Audit-Integration und
+                        reproduzierbarer Validierung.
+                    </p>
 
-    <a
-        class="card-link"
-        href="/shop/enginecore-intro/"
-    >
-        EngineCore Intro öffnen
-    </a>
+                    <span class="status">
+                        Digital Documentation
+                    </span>
 
-</article>
+                    <a
+                        class="card-link"
+                        href="/shop/enginecore-intro/"
+                    >
+                        EngineCore Intro öffnen
+                    </a>
+
+                </article>
+
 
                 <!-- ENGINECORE STARTER PACK -->
 
@@ -734,7 +734,7 @@
                     </p>
 
                     <span class="status">
-                        Tools & Utilities
+                        Tools &amp; Utilities
                     </span>
 
                     <a
@@ -849,25 +849,25 @@
     </section>
 
 
-    <!-- ENGINECORE PRODUCT -->
+    <!-- FEATURED PRODUCTS -->
 
     <section>
 
         <div class="container">
 
             <div class="section-label">
-                Featured Product
+                Featured Products
             </div>
 
-<h2>
-    EngineCore Einstieg.
-</h2>
+            <h2>
+                EngineCore Einstieg.
+            </h2>
 
             <p class="section-intro">
-                Der EngineCore Starter Pack bildet einen
-                eigenständigen digitalen Produkteinstieg in
-                das öffentliche EngineCore-Ökosystem.
+                Direkte Einstiege in die veröffentlichten
+                EngineCore-Produkte.
             </p>
+
 
             <!-- ENGINECORE INTRO FEATURED -->
 
@@ -899,38 +899,8 @@
 
             </div>
 
-<div class="notice">
 
-    <strong>
-        EngineCore Intro v1.0
-    </strong>
-
-    <p>
-        Der grundlegende Einstieg in die EngineCore-Architektur.
-        EngineCore Intro vermittelt die Konzepte hinter
-        deterministischer Ausführung, Routing, Audit-Integration
-        und reproduzierbarer Runtime-Validierung.
-    </p>
-
-    <div class="actions">
-
-        <a
-            class="button button-primary"
-            href="/shop/enginecore-intro/"
-        >
-            EngineCore Intro öffnen
-        </a>
-
-    </div>
-
-</div>
-
-<a
-    class="button button-primary"
-    href="/shop/enginecore-intro/"
->
-    EngineCore Intro
-</a>
+            <!-- ENGINECORE STARTER PACK FEATURED -->
 
             <div class="notice">
 
@@ -989,7 +959,6 @@
                 strukturierte technische Prüfungen und
                 Analysen.
             </p>
-
 
             <div class="grid">
 
@@ -1108,7 +1077,7 @@
         <div class="container">
 
             <div class="section-label">
-                Pricing & Licensing
+                Pricing &amp; Licensing
             </div>
 
             <h2>
@@ -1139,14 +1108,13 @@
 
             </div>
 
-
             <div class="actions">
 
                 <a
                     class="button button-primary"
                     href="/pricing/"
                 >
-                    Pricing & Licensing
+                    Pricing &amp; Licensing
                 </a>
 
                 <a
@@ -1263,7 +1231,6 @@
                 Häufige Fragen zum Produktkatalog.
             </h2>
 
-
             <div class="grid">
 
                 <article class="card">
@@ -1312,7 +1279,7 @@
                         class="card-link"
                         href="/pricing/"
                     >
-                        Pricing & Licensing öffnen
+                        Pricing &amp; Licensing öffnen
                     </a>
 
                 </article>
@@ -1393,8 +1360,6 @@
 
             <div class="actions">
 
-                                <!-- ENGINECORE INTRO FINAL CTA -->
-
                 <a
                     class="button button-primary"
                     href="/shop/enginecore-intro/"
@@ -1402,7 +1367,7 @@
                     EngineCore Intro
                 </a>
 
-<a
+                <a
                     class="button button-primary"
                     href="/shop/enginecore-starter-pack/"
                 >
@@ -1453,13 +1418,11 @@
                 Shop
             </a>
 
-                        <!-- ENGINECORE INTRO FOOTER -->
-
             <a href="/shop/enginecore-intro/">
                 EngineCore Intro
             </a>
 
-<a href="/shop/enginecore-starter-pack/">
+            <a href="/shop/enginecore-starter-pack/">
                 EngineCore Starter Pack
             </a>
 
@@ -1499,3 +1462,4 @@
 
 </body>
 </html>
+
