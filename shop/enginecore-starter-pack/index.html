@@ -570,7 +570,39 @@
         transition: none !important;
       }
     }
-  </style>
+
+        /* PRODUCT BANNER */
+
+        .product-banner {
+            padding: 0;
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+        }
+
+        .product-banner .container {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .product-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+    </style>
+
+    <meta property="og:image" content="https://corecraftgenesis.ch/assets/images/shop/enginecore-starter-pack-og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="960">
+    <meta property="og:image:height" content="210">
+    <meta property="og:image:alt" content="EngineCore Starter Pack Banner">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://corecraftgenesis.ch/assets/images/shop/enginecore-starter-pack-og.png">
+    <meta name="twitter:image:alt" content="EngineCore Starter Pack Banner">
 </head>
 
 <body>
@@ -628,6 +660,19 @@
 
 
 <main>
+    <section class="product-banner" aria-label="EngineCore Starter Pack Banner">
+        <div class="container">
+            <img
+                src="/assets/images/shop/enginecore-starter-pack-og.png"
+                alt="EngineCore Starter Pack Banner"
+                width="960"
+                height="210"
+                loading="eager"
+                decoding="async"
+            >
+        </div>
+    </section>
+
 
   <div class="container breadcrumbs">
 
