@@ -85,21 +85,17 @@
             position: sticky;
             top: 0;
             z-index: 100;
-
             border-bottom: 1px solid var(--line);
             background: rgba(5, 7, 10, 0.9);
-
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
         }
 
         .nav {
             min-height: 72px;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             gap: 24px;
         }
 
@@ -153,10 +149,8 @@
         .label,
         .section-label {
             color: var(--blue);
-
             text-transform: uppercase;
             letter-spacing: 0.14em;
-
             font-size: 0.78rem;
             font-weight: 750;
         }
@@ -170,16 +164,13 @@
 
         h1 {
             max-width: 920px;
-
             margin: 22px 0;
-
             font-size: clamp(2.8rem, 7vw, 5.8rem);
             letter-spacing: -0.05em;
         }
 
         h2 {
             margin: 16px 0 24px;
-
             font-size: clamp(2rem, 4vw, 3.4rem);
             letter-spacing: -0.035em;
         }
@@ -220,15 +211,11 @@
 
         .button {
             display: inline-block;
-
             padding: 12px 18px;
-
             border: 1px solid transparent;
             border-radius: 8px;
-
             text-decoration: none;
             font-weight: 700;
-
             transition:
                 transform 0.2s ease,
                 border-color 0.2s ease;
@@ -253,7 +240,6 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-
             gap: 18px;
             margin-top: 42px;
         }
@@ -261,16 +247,11 @@
         .card {
             display: flex;
             min-width: 0;
-
             padding: 30px;
-
             flex-direction: column;
-
             border: 1px solid var(--line);
             border-radius: 12px;
-
             background: var(--surface);
-
             transition:
                 border-color 0.2s ease,
                 transform 0.2s ease,
@@ -289,29 +270,22 @@
 
         .card-label {
             display: block;
-
             margin-bottom: 18px;
-
             color: var(--green);
-
             font-family:
                 ui-monospace,
                 SFMono-Regular,
                 Consolas,
                 monospace;
-
             font-size: 0.82rem;
             letter-spacing: 0.04em;
         }
 
         .card-link {
             display: inline-block;
-
             margin-top: auto;
             padding-top: 18px;
-
             color: var(--blue);
-
             text-decoration: none;
             font-weight: 700;
         }
@@ -323,29 +297,30 @@
         .status {
             display: inline-block;
             width: fit-content;
-
             margin-top: 14px;
             padding: 6px 9px;
-
             border: 1px solid var(--line);
             border-radius: 6px;
-
             color: var(--green);
-
             font-family:
                 ui-monospace,
                 SFMono-Regular,
                 Consolas,
                 monospace;
-
             font-size: 0.78rem;
+        }
+
+        .price {
+            margin: 18px 0 0;
+            color: var(--text);
+            font-size: 1.35rem;
+            font-weight: 750;
         }
 
         /* FEATURED */
 
         .featured {
             border-color: rgba(78, 161, 255, 0.55);
-
             background:
                 linear-gradient(
                     145deg,
@@ -368,13 +343,10 @@
 
         .notice {
             max-width: 900px;
-
             margin-top: 38px;
             padding: 26px;
-
             border: 1px solid var(--line);
             border-radius: 12px;
-
             background: var(--surface-light);
         }
 
@@ -386,7 +358,6 @@
 
         footer {
             padding: 40px 0;
-
             color: var(--muted);
             font-size: 0.92rem;
         }
@@ -463,26 +434,12 @@
 <header>
     <div class="container nav">
 
-        <a
-            class="brand"
-            href="/"
-            aria-label="CoreCraft Genesis Startseite"
-        >
+        <a class="brand" href="/" aria-label="CoreCraft Genesis Startseite">
             CoreCraft <span>Genesis</span>
         </a>
 
-        <nav
-            class="nav-links"
-            aria-label="Hauptnavigation"
-        >
-            <a
-                class="active"
-                href="/shop/"
-                aria-current="page"
-            >
-                Shop
-            </a>
-
+        <nav class="nav-links" aria-label="Hauptnavigation">
+            <a class="active" href="/shop/" aria-current="page">Shop</a>
             <a href="/products/">Produkte</a>
             <a href="/solutions/">Solutions</a>
             <a href="/pricing/">Pricing</a>
@@ -500,13 +457,9 @@
     <section class="hero">
         <div class="container">
 
-            <div class="label">
-                Shop
-            </div>
+            <div class="label">Shop</div>
 
-            <h1>
-                Produkte und digitale Ressourcen entdecken.
-            </h1>
+            <h1>Produkte und digitale Ressourcen entdecken.</h1>
 
             <p class="lead">
                 Diese Übersicht bündelt Produktbereiche,
@@ -516,21 +469,13 @@
             </p>
 
             <div class="actions">
-
-                <a
-                    class="button button-primary"
-                    href="#product-catalog"
-                >
+                <a class="button button-primary" href="#product-catalog">
                     Katalog entdecken
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/pricing/"
-                >
+                <a class="button button-secondary" href="/pricing/">
                     Pricing &amp; Licensing
                 </a>
-
             </div>
 
         </div>
@@ -541,13 +486,9 @@
     <section id="product-catalog">
         <div class="container">
 
-            <div class="section-label">
-                Product Catalog
-            </div>
+            <div class="section-label">Product Catalog</div>
 
-            <h2>
-                Technische Produkte und Produktbereiche.
-            </h2>
+            <h2>Technische Produkte und Produktbereiche.</h2>
 
             <p class="section-intro">
                 Der Katalog dient als zentraler Einstieg in
@@ -561,14 +502,9 @@
                 <!-- ENGINECORE -->
 
                 <article class="card">
+                    <span class="card-label">ENGINECORE</span>
 
-                    <span class="card-label">
-                        ENGINECORE
-                    </span>
-
-                    <h3>
-                        EngineCore
-                    </h3>
+                    <h3>EngineCore</h3>
 
                     <p>
                         Runtime-, Architektur-, Modul-,
@@ -580,26 +516,19 @@
                         Technischer Produktbereich
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/enginecore/"
-                    >
+                    <a class="card-link" href="/products/enginecore/">
                         EngineCore öffnen
                     </a>
-
                 </article>
 
                 <!-- ENGINECORE INTRO -->
 
                 <article class="card featured">
-
                     <span class="card-label">
                         ENGINECORE INTRO · v1.0
                     </span>
 
-                    <h3>
-                        EngineCore Intro
-                    </h3>
+                    <h3>EngineCore Intro</h3>
 
                     <p>
                         Der grundlegende Einstieg in die
@@ -613,26 +542,19 @@
                         Digital Documentation
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/shop/enginecore-intro/"
-                    >
+                    <a class="card-link" href="/shop/enginecore-intro/">
                         EngineCore Intro öffnen
                     </a>
-
                 </article>
 
                 <!-- ENGINECORE STARTER PACK -->
 
                 <article class="card featured">
-
                     <span class="card-label">
                         ENGINECORE STARTER PACK
                     </span>
 
-                    <h3>
-                        EngineCore Starter Pack
-                    </h3>
+                    <h3>EngineCore Starter Pack</h3>
 
                     <p>
                         Ein strukturierter Einstieg in das
@@ -645,26 +567,104 @@
                         Digital Product
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/shop/enginecore-starter-pack/"
-                    >
+                    <a class="card-link" href="/shop/enginecore-starter-pack/">
                         EngineCore Starter Pack öffnen
                     </a>
+                </article>
 
+                <!-- AUDITCHAIN QUICKSTART -->
+
+                <article class="card featured">
+                    <span class="card-label">
+                        AUDITCHAIN QUICKSTART
+                    </span>
+
+                    <h3>AuditChain Quickstart</h3>
+
+                    <p>
+                        Ein kompakter Einstieg für klare,
+                        nachvollziehbare Audit-Workflows,
+                        strukturierte Validierung und
+                        reproduzierbare technische Prüfungen.
+                    </p>
+
+                    <span class="status">
+                        Digital Product
+                    </span>
+
+                    <div class="price">
+                        CHF 4.95
+                    </div>
+
+                    <a class="card-link" href="/shop/auditchain-quickstart/">
+                        AuditChain Quickstart öffnen
+                    </a>
+                </article>
+
+                <!-- GRAPH TOPOLOGY GUIDE -->
+
+                <article class="card featured">
+                    <span class="card-label">
+                        GRAPH TOPOLOGY GUIDE
+                    </span>
+
+                    <h3>Graph Topology Guide</h3>
+
+                    <p>
+                        Ein kompakter technischer Guide zu
+                        Graphstrukturen, Topologiebeziehungen
+                        und verbundenen Systemarchitekturen
+                        für strukturierte Workflows.
+                    </p>
+
+                    <span class="status">
+                        Technical Guide
+                    </span>
+
+                    <div class="price">
+                        CHF 9.95
+                    </div>
+
+                    <a class="card-link" href="/shop/graph-topology-guide/">
+                        Graph Topology Guide öffnen
+                    </a>
+                </article>
+
+                <!-- FREEZESYNC AUDIT CHECKLIST -->
+
+                <article class="card featured">
+                    <span class="card-label">
+                        FREEZESYNC AUDIT CHECKLIST
+                    </span>
+
+                    <h3>FreezeSync Audit Checklist</h3>
+
+                    <p>
+                        Eine fokussierte Checkliste zur
+                        strukturierten Prüfung von
+                        FreezeSync-Workflows, Konsistenz
+                        und Audit-Bereitschaft.
+                    </p>
+
+                    <span class="status">
+                        Audit Checklist
+                    </span>
+
+                    <div class="price">
+                        CHF 4.90
+                    </div>
+
+                    <a class="card-link" href="/shop/freezesync-audit-checklist/">
+                        FreezeSync Audit Checklist öffnen
+                    </a>
                 </article>
 
                 <!-- CORECRAFT PAY -->
 
                 <article class="card">
+                    <span class="card-label">CORECRAFT PAY</span>
 
-                    <span class="card-label">
-                        CORECRAFT PAY
-                    </span>
-
-                    <h3>
-                        CoreCraft Pay
-                    </h3>
+                    <h3>CoreCraft Pay</h3>
 
                     <p>
                         Technische Bereiche für
@@ -676,26 +676,17 @@
                         Technischer Produktbereich
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/corecraft-pay/"
-                    >
+                    <a class="card-link" href="/products/corecraft-pay/">
                         CoreCraft Pay öffnen
                     </a>
-
                 </article>
 
                 <!-- DEVELOPER TOOLS -->
 
                 <article class="card">
+                    <span class="card-label">DEVELOPER TOOLS</span>
 
-                    <span class="card-label">
-                        DEVELOPER TOOLS
-                    </span>
-
-                    <h3>
-                        Developer Tools
-                    </h3>
+                    <h3>Developer Tools</h3>
 
                     <p>
                         Validatoren, Diagnosewerkzeuge,
@@ -707,26 +698,17 @@
                         Tools &amp; Utilities
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/developer-tools/"
-                    >
+                    <a class="card-link" href="/products/developer-tools/">
                         Developer Tools öffnen
                     </a>
-
                 </article>
 
                 <!-- DOCUMENTATION -->
 
                 <article class="card">
+                    <span class="card-label">DOCUMENTATION</span>
 
-                    <span class="card-label">
-                        DOCUMENTATION
-                    </span>
-
-                    <h3>
-                        Technical Documentation
-                    </h3>
+                    <h3>Technical Documentation</h3>
 
                     <p>
                         Technische Dokumentation für
@@ -738,26 +720,19 @@
                         Documentation
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/documentation/"
-                    >
+                    <a class="card-link" href="/products/documentation/">
                         Documentation öffnen
                     </a>
-
                 </article>
 
                 <!-- TECHNICAL DOCUMENTATION STARTER PACK -->
 
                 <article class="card featured">
-
                     <span class="card-label">
                         TECHNICAL DOCUMENTATION STARTER PACK
                     </span>
 
-                    <h3>
-                        Technical Documentation Starter Pack
-                    </h3>
+                    <h3>Technical Documentation Starter Pack</h3>
 
                     <p>
                         Ein professionelles Starter-Paket für
@@ -775,20 +750,14 @@
                     >
                         Documentation Starter Pack öffnen
                     </a>
-
                 </article>
 
                 <!-- AUDIO -->
 
                 <article class="card">
+                    <span class="card-label">AUDIO</span>
 
-                    <span class="card-label">
-                        AUDIO
-                    </span>
-
-                    <h3>
-                        Audio Systems
-                    </h3>
+                    <h3>Audio Systems</h3>
 
                     <p>
                         Digitale Audioverarbeitung, DSP,
@@ -800,26 +769,17 @@
                         Technischer Produktbereich
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/audio/"
-                    >
+                    <a class="card-link" href="/products/audio/">
                         Audio öffnen
                     </a>
-
                 </article>
 
                 <!-- BITCOIN MINING -->
 
                 <article class="card">
+                    <span class="card-label">BITCOIN MINING</span>
 
-                    <span class="card-label">
-                        BITCOIN MINING
-                    </span>
-
-                    <h3>
-                        Bitcoin Mining Systems
-                    </h3>
+                    <h3>Bitcoin Mining Systems</h3>
 
                     <p>
                         Technische Informationen zu
@@ -831,17 +791,12 @@
                         Technical Intelligence
                     </span>
 
-                    <a
-                        class="card-link"
-                        href="/products/bitcoin-mining/"
-                    >
+                    <a class="card-link" href="/products/bitcoin-mining/">
                         Bitcoin Mining öffnen
                     </a>
-
                 </article>
 
             </div>
-
         </div>
     </section>
 
@@ -850,26 +805,17 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                Featured Products
-            </div>
+            <div class="section-label">Featured Products</div>
 
-            <h2>
-                Veröffentlichte digitale Produkte.
-            </h2>
+            <h2>Veröffentlichte digitale Produkte.</h2>
 
             <p class="section-intro">
                 Direkte Einstiege in ausgewählte Produkte
                 und technische Ressourcen von CoreCraft Genesis.
             </p>
 
-            <!-- ENGINECORE INTRO FEATURED -->
-
             <div class="notice">
-
-                <strong>
-                    EngineCore Intro v1.0
-                </strong>
+                <strong>EngineCore Intro v1.0</strong>
 
                 <p>
                     Der grundlegende Einstieg in die
@@ -881,25 +827,17 @@
                 </p>
 
                 <div class="actions">
-
                     <a
                         class="button button-primary"
                         href="/shop/enginecore-intro/"
                     >
                         EngineCore Intro öffnen
                     </a>
-
                 </div>
-
             </div>
 
-            <!-- ENGINECORE STARTER PACK FEATURED -->
-
             <div class="notice">
-
-                <strong>
-                    EngineCore Starter Pack
-                </strong>
+                <strong>EngineCore Starter Pack</strong>
 
                 <p>
                     Die eigene Produktseite enthält die
@@ -909,7 +847,6 @@
                 </p>
 
                 <div class="actions">
-
                     <a
                         class="button button-primary"
                         href="/shop/enginecore-starter-pack/"
@@ -923,18 +860,11 @@
                     >
                         EngineCore entdecken
                     </a>
-
                 </div>
-
             </div>
 
-            <!-- TECHNICAL DOCUMENTATION STARTER PACK FEATURED -->
-
             <div class="notice">
-
-                <strong>
-                    Technical Documentation Starter Pack
-                </strong>
+                <strong>Technical Documentation Starter Pack</strong>
 
                 <p>
                     Ein strukturierter Einstieg für die Erstellung
@@ -944,7 +874,6 @@
                 </p>
 
                 <div class="actions">
-
                     <a
                         class="button button-primary"
                         href="/shop/technical-documentation-starter-pack/"
@@ -958,9 +887,66 @@
                     >
                         Documentation entdecken
                     </a>
-
                 </div>
+            </div>
 
+            <!-- NEW FEATURED PRODUCTS -->
+
+            <div class="notice">
+                <strong>AuditChain Quickstart · CHF 4.95</strong>
+
+                <p>
+                    Praktischer Einstieg für nachvollziehbare
+                    Audit-Workflows, strukturierte Validierung
+                    und reproduzierbare technische Prüfungen.
+                </p>
+
+                <div class="actions">
+                    <a
+                        class="button button-primary"
+                        href="/shop/auditchain-quickstart/"
+                    >
+                        AuditChain Quickstart öffnen
+                    </a>
+                </div>
+            </div>
+
+            <div class="notice">
+                <strong>Graph Topology Guide · CHF 9.95</strong>
+
+                <p>
+                    Kompakter technischer Guide zu Graphstrukturen,
+                    Topologiebeziehungen und verbundenen
+                    Systemarchitekturen.
+                </p>
+
+                <div class="actions">
+                    <a
+                        class="button button-primary"
+                        href="/shop/graph-topology-guide/"
+                    >
+                        Graph Topology Guide öffnen
+                    </a>
+                </div>
+            </div>
+
+            <div class="notice">
+                <strong>FreezeSync Audit Checklist · CHF 4.90</strong>
+
+                <p>
+                    Strukturierte Checkliste zur Prüfung von
+                    FreezeSync-Workflows, Konsistenz und
+                    Audit-Bereitschaft.
+                </p>
+
+                <div class="actions">
+                    <a
+                        class="button button-primary"
+                        href="/shop/freezesync-audit-checklist/"
+                    >
+                        FreezeSync Audit Checklist öffnen
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -971,13 +957,9 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                Developer Resources
-            </div>
+            <div class="section-label">Developer Resources</div>
 
-            <h2>
-                Werkzeuge für Prüfung und Diagnose.
-            </h2>
+            <h2>Werkzeuge für Prüfung und Diagnose.</h2>
 
             <p class="section-intro">
                 Spezialisierte Developer Tools unterstützen
@@ -988,19 +970,12 @@
             <div class="grid">
 
                 <article class="card">
-
-                    <span class="card-label">
-                        VALIDATORS
-                    </span>
-
-                    <h3>
-                        Validatoren
-                    </h3>
+                    <span class="card-label">VALIDATORS</span>
+                    <h3>Validatoren</h3>
 
                     <p>
                         JSON-, Schema- und Datei-Prüfungen
-                        für strukturierte technische
-                        Workflows.
+                        für strukturierte technische Workflows.
                     </p>
 
                     <a
@@ -1009,23 +984,15 @@
                     >
                         Validatoren öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
-
-                    <span class="card-label">
-                        DIAGNOSTICS
-                    </span>
-
-                    <h3>
-                        Diagnostics
-                    </h3>
+                    <span class="card-label">DIAGNOSTICS</span>
+                    <h3>Diagnostics</h3>
 
                     <p>
                         Diagnosewerkzeuge für technische
-                        Strukturen, Manifeste und
-                        Prüfvorgänge.
+                        Strukturen, Manifeste und Prüfvorgänge.
                     </p>
 
                     <a
@@ -1034,18 +1001,11 @@
                     >
                         Diagnostics öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
-
-                    <span class="card-label">
-                        WEB TOOLS
-                    </span>
-
-                    <h3>
-                        Web Tools
-                    </h3>
+                    <span class="card-label">WEB TOOLS</span>
+                    <h3>Web Tools</h3>
 
                     <p>
                         Werkzeuge für Links, Routen und
@@ -1058,18 +1018,11 @@
                     >
                         Web Tools öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
-
-                    <span class="card-label">
-                        DATA TOOLS
-                    </span>
-
-                    <h3>
-                        Data Tools
-                    </h3>
+                    <span class="card-label">DATA TOOLS</span>
+                    <h3>Data Tools</h3>
 
                     <p>
                         Werkzeuge zur Untersuchung und
@@ -1082,11 +1035,9 @@
                     >
                         Data Tools öffnen
                     </a>
-
                 </article>
 
             </div>
-
         </div>
     </section>
 
@@ -1099,9 +1050,7 @@
                 Pricing &amp; Licensing
             </div>
 
-            <h2>
-                Preis und Lizenzierung transparent zuordnen.
-            </h2>
+            <h2>Preis und Lizenzierung transparent zuordnen.</h2>
 
             <p class="section-intro">
                 Unterschiedliche Produktarten können
@@ -1111,9 +1060,7 @@
 
             <div class="notice">
 
-                <strong>
-                    Hinweis zur Verfügbarkeit:
-                </strong>
+                <strong>Hinweis zur Verfügbarkeit:</strong>
 
                 <p>
                     Produktbereiche können sowohl
@@ -1129,22 +1076,15 @@
 
             <div class="actions">
 
-                <a
-                    class="button button-primary"
-                    href="/pricing/"
-                >
+                <a class="button button-primary" href="/pricing/">
                     Pricing &amp; Licensing
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/legal/licenses/"
-                >
+                <a class="button button-secondary" href="/legal/licenses/">
                     Lizenzinformationen
                 </a>
 
             </div>
-
         </div>
     </section>
 
@@ -1153,13 +1093,9 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                Downloads
-            </div>
+            <div class="section-label">Downloads</div>
 
-            <h2>
-                Verfügbare Ressourcen zentral finden.
-            </h2>
+            <h2>Verfügbare Ressourcen zentral finden.</h2>
 
             <p class="section-intro">
                 Ressourcen zur direkten Bereitstellung
@@ -1169,22 +1105,15 @@
 
             <div class="actions">
 
-                <a
-                    class="button button-primary"
-                    href="/downloads/"
-                >
+                <a class="button button-primary" href="/downloads/">
                     Downloads öffnen
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/docs/"
-                >
+                <a class="button button-secondary" href="/docs/">
                     Dokumentation
                 </a>
 
             </div>
-
         </div>
     </section>
 
@@ -1193,9 +1122,7 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                Solutions
-            </div>
+            <div class="section-label">Solutions</div>
 
             <h2>
                 Produkte nach technischem Problemfeld entdecken.
@@ -1209,22 +1136,15 @@
 
             <div class="actions">
 
-                <a
-                    class="button button-primary"
-                    href="/solutions/"
-                >
+                <a class="button button-primary" href="/solutions/">
                     Solutions öffnen
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/support/"
-                >
+                <a class="button button-secondary" href="/support/">
                     Technische Ressourcen
                 </a>
 
             </div>
-
         </div>
     </section>
 
@@ -1233,21 +1153,14 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                FAQ
-            </div>
+            <div class="section-label">FAQ</div>
 
-            <h2>
-                Häufige Fragen zum Produktkatalog.
-            </h2>
+            <h2>Häufige Fragen zum Produktkatalog.</h2>
 
             <div class="grid">
 
                 <article class="card">
-
-                    <span class="card-label">
-                        ENGINECORE
-                    </span>
+                    <span class="card-label">ENGINECORE</span>
 
                     <h3>
                         Wo finde ich den EngineCore Starter Pack?
@@ -1265,14 +1178,10 @@
                     >
                         EngineCore Starter Pack öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
-
-                    <span class="card-label">
-                        DOCUMENTATION
-                    </span>
+                    <span class="card-label">DOCUMENTATION</span>
 
                     <h3>
                         Wo finde ich den Technical Documentation Starter Pack?
@@ -1290,18 +1199,12 @@
                     >
                         Documentation Starter Pack öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
+                    <span class="card-label">PRICING</span>
 
-                    <span class="card-label">
-                        PRICING
-                    </span>
-
-                    <h3>
-                        Wo finde ich Preise?
-                    </h3>
+                    <h3>Wo finde ich Preise?</h3>
 
                     <p>
                         Konkrete Preis- und Kaufangaben
@@ -1309,24 +1212,15 @@
                         ausgewiesen.
                     </p>
 
-                    <a
-                        class="card-link"
-                        href="/pricing/"
-                    >
+                    <a class="card-link" href="/pricing/">
                         Pricing &amp; Licensing öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
+                    <span class="card-label">LICENSES</span>
 
-                    <span class="card-label">
-                        LICENSES
-                    </span>
-
-                    <h3>
-                        Welche Lizenz gilt für ein Produkt?
-                    </h3>
+                    <h3>Welche Lizenz gilt für ein Produkt?</h3>
 
                     <p>
                         Produkte, Dokumentationen und
@@ -1334,43 +1228,28 @@
                         Lizenzbedingungen unterliegen.
                     </p>
 
-                    <a
-                        class="card-link"
-                        href="/legal/licenses/"
-                    >
+                    <a class="card-link" href="/legal/licenses/">
                         Lizenzinformationen öffnen
                     </a>
-
                 </article>
 
                 <article class="card">
+                    <span class="card-label">DOWNLOADS</span>
 
-                    <span class="card-label">
-                        DOWNLOADS
-                    </span>
-
-                    <h3>
-                        Wo finde ich verfügbare Downloads?
-                    </h3>
+                    <h3>Wo finde ich verfügbare Downloads?</h3>
 
                     <p>
-                        Ressourcen zur direkten
-                        Bereitstellung werden im
-                        Download-Bereich oder beim
+                        Ressourcen zur direkten Bereitstellung
+                        werden im Download-Bereich oder beim
                         jeweiligen Produkt eingeordnet.
                     </p>
 
-                    <a
-                        class="card-link"
-                        href="/downloads/"
-                    >
+                    <a class="card-link" href="/downloads/">
                         Downloads öffnen
                     </a>
-
                 </article>
 
             </div>
-
         </div>
     </section>
 
@@ -1379,20 +1258,13 @@
     <section>
         <div class="container">
 
-            <div class="section-label">
-                Explore
-            </div>
+            <div class="section-label">Explore</div>
 
-            <h2>
-                Den passenden Bereich direkt öffnen.
-            </h2>
+            <h2>Den passenden Bereich direkt öffnen.</h2>
 
             <div class="actions">
 
-                <a
-                    class="button button-primary"
-                    href="/shop/enginecore-intro/"
-                >
+                <a class="button button-primary" href="/shop/enginecore-intro/">
                     EngineCore Intro
                 </a>
 
@@ -1411,28 +1283,39 @@
                 </a>
 
                 <a
-                    class="button button-secondary"
-                    href="/products/"
+                    class="button button-primary"
+                    href="/shop/auditchain-quickstart/"
                 >
+                    AuditChain Quickstart
+                </a>
+
+                <a
+                    class="button button-primary"
+                    href="/shop/graph-topology-guide/"
+                >
+                    Graph Topology Guide
+                </a>
+
+                <a
+                    class="button button-primary"
+                    href="/shop/freezesync-audit-checklist/"
+                >
+                    FreezeSync Audit Checklist
+                </a>
+
+                <a class="button button-secondary" href="/products/">
                     Produkte
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/downloads/"
-                >
+                <a class="button button-secondary" href="/downloads/">
                     Downloads
                 </a>
 
-                <a
-                    class="button button-secondary"
-                    href="/contact/"
-                >
+                <a class="button button-secondary" href="/contact/">
                     Kontakt
                 </a>
 
             </div>
-
         </div>
     </section>
 
@@ -1447,9 +1330,7 @@
 
         <div class="footer-links">
 
-            <a href="/shop/">
-                Shop
-            </a>
+            <a href="/shop/">Shop</a>
 
             <a href="/shop/enginecore-intro/">
                 EngineCore Intro
@@ -1463,36 +1344,27 @@
                 Documentation Starter Pack
             </a>
 
-            <a href="/products/">
-                Produkte
+            <a href="/shop/auditchain-quickstart/">
+                AuditChain Quickstart
             </a>
 
-            <a href="/solutions/">
-                Solutions
+            <a href="/shop/graph-topology-guide/">
+                Graph Topology Guide
             </a>
 
-            <a href="/pricing/">
-                Pricing
+            <a href="/shop/freezesync-audit-checklist/">
+                FreezeSync Audit Checklist
             </a>
 
-            <a href="/downloads/">
-                Downloads
-            </a>
-
-            <a href="/support/">
-                Support
-            </a>
-
-            <a href="/contact/">
-                Kontakt
-            </a>
-
-            <a href="/legal/">
-                Legal
-            </a>
+            <a href="/products/">Produkte</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/pricing/">Pricing</a>
+            <a href="/downloads/">Downloads</a>
+            <a href="/support/">Support</a>
+            <a href="/contact/">Kontakt</a>
+            <a href="/legal/">Legal</a>
 
         </div>
-
     </div>
 </footer>
 
