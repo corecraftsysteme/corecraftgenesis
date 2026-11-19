@@ -455,6 +455,28 @@
                 transition-delay: 0ms !important;
             }
         }
+
+        /* PRODUCT BANNER */
+
+        .product-banner {
+            padding: 0;
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+        }
+
+        .product-banner .container {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .product-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+        }
     </style>
 
     <meta property="og:image" content="https://corecraftgenesis.ch/assets/images/shop/graph-topology-guide-og.png">
@@ -497,6 +519,19 @@
 </header>
 
 <main>
+    <section class="product-banner" aria-label="Graph Topology Guide Banner">
+        <div class="container">
+            <img
+                src="/assets/images/shop/graph-topology-guide-og.png"
+                alt="Graph Topology Guide Banner"
+                width="960"
+                height="210"
+                loading="eager"
+                decoding="async"
+            >
+        </div>
+    </section>
+
 
     <section class="hero">
         <div class="container hero-grid">
