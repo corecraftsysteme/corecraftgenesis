@@ -6,3 +6,4 @@ blob-report/
 performance-accessibility-audit.json
 seo-metadata-audit.json
 live-seo-audit.json
+*.bak
