@@ -1,0 +1,1273 @@
+{
+  "generatedAt": "2026-11-22T01:01:37.0337532+01:00",
+  "root": "C:\\corecraftgenesis-github\\products\\enginecore",
+  "summary": {
+    "pagesExpected": 5,
+    "pagesFound": 5,
+    "totalChecks": 167,
+    "passedChecks": 162,
+    "errorFailures": 0,
+    "warnings": 5,
+    "auditPassed": true
+  },
+  "pages": [
+    {
+      "Area": "Architecture",
+      "Number": "01",
+      "File": "architecture\\index.html",
+      "SizeKB": 7.49,
+      "Title": "EngineCore Architecture | CoreCraft Genesis",
+      "H1": "EngineCore Architecture",
+      "Canonical": "https://corecraftgenesis.ch/products/enginecore/architecture/",
+      "SHA256": "99E0ADCD3F9B86066125895E501B6C1C77F5D4ADFED2C45B14CFD91C9E59EAF8"
+    },
+    {
+      "Area": "Runtime",
+      "Number": "02",
+      "File": "runtime\\index.html",
+      "SizeKB": 7.33,
+      "Title": "EngineCore Runtime | CoreCraft Genesis",
+      "H1": "EngineCore Runtime",
+      "Canonical": "https://corecraftgenesis.ch/products/enginecore/runtime/",
+      "SHA256": "AAD0E0454BBF69B2B9E65863B7F6CCAB29C4F9B7AEB1AAF117C8AA6F3DED0454"
+    },
+    {
+      "Area": "Modules",
+      "Number": "03",
+      "File": "modules\\index.html",
+      "SizeKB": 7.21,
+      "Title": "EngineCore Modules | CoreCraft Genesis",
+      "H1": "EngineCore Modules",
+      "Canonical": "https://corecraftgenesis.ch/products/enginecore/modules/",
+      "SHA256": "5A9F829FAD80B5A41F30E3EB0A23772B93DABBF54490CE5E44DEB35CF8944304"
+    },
+    {
+      "Area": "Validation",
+      "Number": "04",
+      "File": "validation\\index.html",
+      "SizeKB": 17.7,
+      "Title": "EngineCore Validation | CoreCraft Genesis",
+      "H1": "Validate before trust. Control before execution.",
+      "Canonical": "https://corecraftgenesis.ch/products/enginecore/validation/",
+      "SHA256": "08E1B2EA7E196660DBD472E5DC3DCC5526015FC1AEF91FAF56100BC3FD60A395"
+    },
+    {
+      "Area": "Diagnostics",
+      "Number": "05",
+      "File": "diagnostics\\index.html",
+      "SizeKB": 7.26,
+      "Title": "EngineCore Diagnostics | CoreCraft Genesis",
+      "H1": "EngineCore Diagnostics",
+      "Canonical": "https://corecraftgenesis.ch/products/enginecore/diagnostics/",
+      "SHA256": "CADD91223AF1AED6B63A960D63925BE2F580DEC940D344A5020C3A72A5DB2BC8"
+    }
+  ],
+  "findings": [
+    {
+      "Area": "Architecture",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": "Validate before trust. Control before execution."
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    }
+  ],
+  "checks": [
+    {
+      "Area": "Architecture",
+      "Check": "Datei vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "C:\\corecraftgenesis-github\\products\\enginecore\\architecture\\index.html"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Datei nicht leer",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "DOCTYPE vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "HTML-Element vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Sprachattribut vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Head vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "UTF-8 festgelegt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Viewport vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Title vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Title enthält EngineCore",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Architecture | CoreCraft Genesis"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Title enthält Architecture",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Architecture | CoreCraft Genesis"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Meta-Description vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Canonical vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Canonical korrekt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "https://corecraftgenesis.ch/products/enginecore/architecture/"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Body vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Header vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Navigation vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Main-Bereich vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Genau eine H1 vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Architecture"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Footer vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Selbstlink vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "/products/enginecore/architecture/"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Link zum nächsten Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/runtime/"
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Keine codierten HTML-Tags",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Keine Links in href-Attributen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Keine Chat-Artefakte",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Kein JavaScript-Link",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Kein leerer href-Wert",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Schliessender Main-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "Schliessender Body-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Architecture",
+      "Check": "HTML sauber geschlossen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Datei vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "C:\\corecraftgenesis-github\\products\\enginecore\\runtime\\index.html"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Datei nicht leer",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "DOCTYPE vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "HTML-Element vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Sprachattribut vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Head vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "UTF-8 festgelegt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Viewport vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Title vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Title enthält EngineCore",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Runtime | CoreCraft Genesis"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Title enthält Runtime",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Runtime | CoreCraft Genesis"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Meta-Description vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Canonical vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Canonical korrekt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "https://corecraftgenesis.ch/products/enginecore/runtime/"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Body vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Header vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Navigation vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Main-Bereich vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Genau eine H1 vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Runtime"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Footer vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Selbstlink vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "/products/enginecore/runtime/"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Link zum vorherigen Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/architecture/"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Link zum nächsten Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/modules/"
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Keine codierten HTML-Tags",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Keine Links in href-Attributen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Keine Chat-Artefakte",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Kein JavaScript-Link",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Kein leerer href-Wert",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Schliessender Main-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "Schliessender Body-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Runtime",
+      "Check": "HTML sauber geschlossen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Datei vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "C:\\corecraftgenesis-github\\products\\enginecore\\modules\\index.html"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Datei nicht leer",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "DOCTYPE vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "HTML-Element vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Sprachattribut vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Head vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "UTF-8 festgelegt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Viewport vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Title vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Title enthält EngineCore",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Modules | CoreCraft Genesis"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Title enthält Modules",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Modules | CoreCraft Genesis"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Meta-Description vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Canonical vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Canonical korrekt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "https://corecraftgenesis.ch/products/enginecore/modules/"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Body vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Header vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Navigation vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Main-Bereich vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Genau eine H1 vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Modules"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Footer vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Selbstlink vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "/products/enginecore/modules/"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Link zum vorherigen Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/runtime/"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Link zum nächsten Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/validation/"
+    },
+    {
+      "Area": "Modules",
+      "Check": "Keine codierten HTML-Tags",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Keine Links in href-Attributen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Keine Chat-Artefakte",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Kein JavaScript-Link",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Kein leerer href-Wert",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Schliessender Main-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "Schliessender Body-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Modules",
+      "Check": "HTML sauber geschlossen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Datei vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "C:\\corecraftgenesis-github\\products\\enginecore\\validation\\index.html"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Datei nicht leer",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "DOCTYPE vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "HTML-Element vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Sprachattribut vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Head vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "UTF-8 festgelegt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Viewport vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Title vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Title enthält EngineCore",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Validation | CoreCraft Genesis"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Title enthält Validation",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Validation | CoreCraft Genesis"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Meta-Description vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Canonical vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Canonical korrekt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "https://corecraftgenesis.ch/products/enginecore/validation/"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Body vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Header vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Navigation vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Main-Bereich vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Genau eine H1 vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": "Validate before trust. Control before execution."
+    },
+    {
+      "Area": "Validation",
+      "Check": "Footer vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Selbstlink vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "/products/enginecore/validation/"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Link zum vorherigen Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/modules/"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Link zum nächsten Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/diagnostics/"
+    },
+    {
+      "Area": "Validation",
+      "Check": "Keine codierten HTML-Tags",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Keine Links in href-Attributen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Keine Chat-Artefakte",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Kein JavaScript-Link",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Kein leerer href-Wert",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Schliessender Main-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "Schliessender Body-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Validation",
+      "Check": "HTML sauber geschlossen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Datei vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "C:\\corecraftgenesis-github\\products\\enginecore\\diagnostics\\index.html"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Datei nicht leer",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "DOCTYPE vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "HTML-Element vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Sprachattribut vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Head vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "UTF-8 festgelegt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Viewport vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Title vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Title enthält EngineCore",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Diagnostics | CoreCraft Genesis"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Title enthält Diagnostics",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Diagnostics | CoreCraft Genesis"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Meta-Description vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Robots-Meta vorhanden",
+      "Result": "FAIL",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Canonical vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Canonical korrekt",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "https://corecraftgenesis.ch/products/enginecore/diagnostics/"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Body vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Header vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Navigation vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Main-Bereich vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Genau eine H1 vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "H1 enthält Bereichsbezeichnung",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "EngineCore Diagnostics"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Footer vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Selbstlink vorhanden",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": "/products/enginecore/diagnostics/"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Link zum vorherigen Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/validation/"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Link zum nächsten Bereich",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "/products/enginecore/developer/"
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Keine codierten HTML-Tags",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Keine Links in href-Attributen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Keine Chat-Artefakte",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Kein JavaScript-Link",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Kein leerer href-Wert",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Schliessender Main-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "Schliessender Body-Tag",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "Diagnostics",
+      "Check": "HTML sauber geschlossen",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "CrossPage",
+      "Check": "Keine doppelten Canonical-URLs",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": ""
+    },
+    {
+      "Area": "CrossPage",
+      "Check": "Keine doppelten Seitentitel",
+      "Result": "PASS",
+      "Severity": "WARN",
+      "Detail": ""
+    },
+    {
+      "Area": "CrossPage",
+      "Check": "Alle fünf Kernseiten vorhanden",
+      "Result": "PASS",
+      "Severity": "ERROR",
+      "Detail": "5/5"
+    }
+  ]
+}
