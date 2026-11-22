@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Engineering Whitepaper | EngineCore</title>
+  <meta name="description" content="EngineCore Whitepaper Demo: Context Engineering vom einzelnen Prompt zur Kontextarchitektur.">
+  <style>
+    :root { --bg:#05070a; --surface:#0c1118; --line:#1d2938; --text:#f4f7fb; --muted:#95a2b3; --blue:#4ea1ff; --max:1100px; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Aptos,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { width:min(94%,var(--max)); margin:auto; }
+    header { padding:72px 0 34px; }
+    .eyebrow { color:var(--blue); font:700 .78rem "Cascadia Mono",monospace; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:10px 0 14px; font-size:clamp(2.7rem,7vw,5.4rem); line-height:.98; letter-spacing:-.055em; }
+    .lead { margin:0; max-width:760px; color:var(--muted); font-size:1.08rem; }
+    .viewer-shell { margin:20px 0 30px; padding:14px; background:var(--surface); border:1px solid var(--line); border-radius:18px; }
+    .viewer-head { display:flex; justify-content:space-between; gap:16px; padding:4px 4px 14px; color:var(--muted); font-size:.85rem; }
+    .viewer { width:100%; height:min(82vh,920px); border:0; border-radius:10px; background:#fff; }
+    .fallback { margin-top:10px; color:var(--muted); font-size:.82rem; }
+    .fallback a { color:var(--blue); }
+    .demo { margin:30px 0 90px; padding:36px; background:linear-gradient(135deg,rgba(78,161,255,.12),transparent),var(--surface); border:1px solid #284866; border-radius:18px; }
+    .demo-label { color:var(--blue); font:700 .78rem "Cascadia Mono",monospace; letter-spacing:.1em; }
+    .demo h2 { margin:8px 0 12px; font-size:1.8rem; }
+    .demo p { margin:0; color:var(--muted); max-width:760px; }
+    .disabled { display:inline-flex; margin-top:20px; padding:12px 18px; border:1px solid #32465d; border-radius:9px; color:#748397; background:#090d13; font-weight:700; cursor:not-allowed; }
+    footer { border-top:1px solid var(--line); padding:30px 0 46px; color:var(--muted); font-size:.84rem; }
+    @media (max-width:650px) { header{padding-top:48px}.viewer{height:70vh}.demo{padding:24px}.viewer-head{display:block} }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">EngineCore · Whitepaper · System 01</div>
+      <h1>Context Engineering</h1>
+      <p class="lead">Vom einzelnen Prompt zur Kontextarchitektur. Das Whitepaper kann hier vollständig online gelesen werden.</p>
+    </header>
+
+    <section class="viewer-shell" aria-label="EngineCore Context Engineering Whitepaper">
+      <div class="viewer-head">
+        <span>ONLINE VIEWER</span>
+        <span>PDF · SYSTEM 01</span>
+      </div>
+      <object class="viewer" data="./EngineCore-Context-Engineering-Whitepaper_a4.pdf#view=FitH" type="application/pdf">
+        <iframe class="viewer" src="./EngineCore-Context-Engineering-Whitepaper_a4.pdf#view=FitH" title="EngineCore Context Engineering Whitepaper"></iframe>
+      </object>
+      <p class="fallback">Falls der Browser keinen eingebetteten PDF-Viewer unterstützt, kann das Dokument über die PDF-Datei im selben Verzeichnis geöffnet werden.</p>
+    </section>
+
+    <section class="demo" aria-labelledby="download-title">
+      <div class="demo-label">WHITEPAPER DOWNLOAD · DEMO</div>
+      <h2 id="download-title">Download derzeit nicht freigeschaltet</h2>
+      <p>Der Download-Bereich ist nur als Demo dargestellt. Das Whitepaper bleibt online im Viewer lesbar; eine Download-Freischaltung oder E-Mail-Erfassung ist auf dieser Seite nicht aktiv.</p>
+      <span class="disabled" aria-disabled="true">PDF-Download nicht verfügbar</span>
+    </section>
+  </main>
+
+  <footer><div class="wrap">© 2026 CoreCraft Genesis · EngineCore</div></footer>
+</body>
+</html>
