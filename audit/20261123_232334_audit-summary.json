@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-11-23T23:23:34.5918474+01:00",
+  "repository": "corecraftgenesis",
+  "finalStatus": {
+    "auditPassed": true,
+    "liveSeoReady": true,
+    "failures": 0,
+    "warnings": 0
+  },
+  "liveSeo": {
+    "sitemapUrls": 88,
+    "pagesChecked": 88,
+    "failures": 0,
+    "warnings": 0,
+    "duplicateTitles": 0,
+    "duplicateDescriptions": 0,
+    "status404": 404,
+    "ready": true,
+    "source": "live-seo-audit.json"
+  },
+  "seoMetadata": {
+    "htmlPages": 106,
+    "referenceFailures": 0,
+    "metadataFailures": 0,
+    "metadataWarnings": 0,
+    "metadataInfo": 0,
+    "duplicateTitles": 0,
+    "duplicateDescriptions": 0,
+    "totalFindings": 0,
+    "source": "seo-metadata-audit.json"
+  },
+  "performanceAccessibility": {
+    "htmlPages": 106,
+    "cssFiles": 14,
+    "javascriptFiles": 22,
+    "images": 12,
+    "fonts": 0,
+    "mediaFiles": 0,
+    "largeAssets": 0,
+    "failures": 0,
+    "warnings": 0,
+    "information": 0,
+    "totalFindings": 0,
+    "passed": true,
+    "source": "performance-accessibility-audit.json"
+  },
+  "completedFixes": [
+    "Context Engineering heading hierarchy corrected from H3 to H2",
+    "Obsolete /shop/labels/dspsignature/ sitemap route removed",
+    "Large unused DeepSpace image removed from repository asset inventory",
+    "Centrifugal Airlock Spreadshop integration deployed",
+    "Spreadshop readability styles deployed",
+    "dspSignature audio crosslink corrected to /shop/labels/"
+  ],
+  "manualReviewRemaining": [
+    "Keyboard and focus",
+    "Contrast, zoom and reflow",
+    "Mobile and touch interaction",
+    "Screen reader and dynamic status messages"
+  ],
+  "commits": [
+    "2d7a8a4 Fix Context Engineering heading hierarchy",
+    "035a84c Remove obsolete dspSignature sitemap route",
+    "4aea5b6 Force readable Spreadshop product text",
+    "9da2aa2 Fix dspSignature audio crosslink",
+    "483ecf5 Improve Centrifugal Airlock shop readability",
+    "1f14f97 Embed Centrifugal Airlock Spreadshop"
+  ]
+}
