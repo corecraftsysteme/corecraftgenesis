@@ -435,7 +435,27 @@
       }
 
     }
-  </style>
+
+    /* INFRASTRUCTURE REFERRALS CSS START */
+    .referral-partners { padding: 90px 0; }
+    .partner-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 36px; }
+    .partner-card { display: flex; min-width: 0; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .partner-card:hover { border-color: #315579; }
+    .partner-card-starlink { background: linear-gradient(135deg, rgba(78, 161, 255, .09), transparent), var(--surface); }
+    .partner-type { margin-bottom: 14px; color: var(--blue); font-family: "Cascadia Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 700; letter-spacing: .10em; }
+    .partner-card h3 { margin: 0 0 12px; font-size: 1.5rem; }
+    .partner-card p { color: var(--muted); }
+    .partner-banner { display: block; width: fit-content; max-width: 100%; margin-top: 18px; }
+    .partner-banner img { display: block; max-width: 100%; height: auto; border-radius: 12px; }
+    .starlink-referral { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+    .referral-value { color: var(--text); font-size: 2.6rem; font-weight: 800; line-height: 1; }
+    .referral-description { color: var(--muted); font-weight: 700; }
+    .partner-button { display: inline-flex; align-items: center; justify-content: center; width: fit-content; margin-top: auto; padding: 12px 18px; border-radius: 8px; background: var(--blue); color: #001326; text-decoration: none; font-weight: 750; }
+    .partner-button:hover { filter: brightness(1.08); }
+    .partner-note { margin: 18px 0 0; font-size: .78rem; line-height: 1.5; }
+    @media (max-width: 760px) { .partner-grid { grid-template-columns: 1fr; } }
+    /* INFRASTRUCTURE REFERRALS CSS END */
+</style>
   <link rel="canonical" href="https://corecraftgenesis.ch/">
 </head>
 
@@ -851,49 +871,37 @@
     </div>
 
   </section>
-  <!-- INFOMANIAK AFFILIATE -->
-
-  <section class="container">
-
-    <div class="cta">
-
-      <div class="section-label">
-        Infrastructure Partner
+  <!-- INFRASTRUCTURE REFERRALS START -->
+  <section class="referral-partners">
+    <div class="container">
+      <div class="section-label">Infrastructure Recommendations</div>
+      <h2>Infrastruktur und Connectivity</h2>
+      <p class="lead">Empfehlungen fuer Cloud-Infrastruktur und satellitengestuetzte Internetverbindungen.</p>
+      <div class="partner-grid">
+        <article class="partner-card">
+          <div class="partner-type">AFFILIATE</div>
+          <h3>Infomaniak</h3>
+          <p>Souveraene Cloud-, Hosting- und Infrastruktur-Dienste.</p>
+          <a class="partner-banner" href="https://www.infomaniak.com/goto/de/home?utm_term=6ac2f54f7da62" target="_blank" rel="sponsored noopener noreferrer" aria-label="Infomaniak Partnerangebot oeffnen">
+            <img src="/assets/affiliate/infomaniak-affiliate-300x250.png" alt="Infomaniak - The Ethical Cloud" width="300" height="250" loading="lazy">
+          </a>
+          <p class="partner-note">Partnerlink. Bei einer Bestellung ueber diesen Link kann CoreCraft Genesis eine Provision erhalten.</p>
+        </article>
+        <article class="partner-card partner-card-starlink">
+          <div class="partner-type">PERSONAL REFERRAL</div>
+          <h3>Starlink Empfehlung</h3>
+          <div class="starlink-referral">
+            <span class="referral-value">CHF 40</span>
+            <span class="referral-description">fuer beide Seiten</span>
+          </div>
+          <p>Bei einer berechtigten Empfehlung erhalten der neue Kunde und der Empfehlende gemaess dem aktuell im Starlink-Konto angezeigten Angebot jeweils CHF 40.</p>
+          <a class="partner-button" href="https://starlink.com?referral=RC-DF-14565708-42995-11" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Persoenlichen Starlink-Empfehlungslink oeffnen">Empfehlungslink oeffnen</a>
+          <p class="partner-note">Persoenliche Empfehlung. CoreCraft Genesis ist kein Partner, Affiliate oder Vertreter von Starlink oder SpaceX. Es gelten die jeweils aktuellen Bedingungen und Verfuegbarkeiten.</p>
+        </article>
       </div>
-
-      <h2>
-        Souveräne Cloud-Infrastruktur mit Infomaniak.
-      </h2>
-
-      <p class="lead">
-        Entdecke Hosting-, Cloud- und Infrastruktur-Dienste
-        von Infomaniak.
-      </p>
-
-      <a href="https://www.infomaniak.com/goto/de/home?utm_term=6ac2f54f7da62"
-   target="_blank"
-   rel="sponsored noopener noreferrer"
-   aria-label="Infomaniak Partnerangebot öffnen">
-
-        <img
-          src="/assets/affiliate/infomaniak-affiliate-300x250.png"
-          alt="Infomaniak – The Ethical Cloud"
-          width="300"
-          height="250"
-          loading="lazy"
-          style="display:block;max-width:100%;height:auto;border-radius:12px;">
-
-      </a>
-
-      <p style="margin-top:14px;color:var(--muted);font-size:.78rem;">
-        Partnerlink: Bei einer Bestellung über diesen Link
-        kann CoreCraft Genesis eine Provision erhalten.
-      </p>
-
     </div>
-
   </section>
-
+  <!-- INFRASTRUCTURE REFERRALS END -->
 <!-- REFERRAL -->
 
   <section class="container">
